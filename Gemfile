@@ -36,6 +36,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'nyan-cat-formatter'
   gem 'shoulda-matchers'
 end
 
