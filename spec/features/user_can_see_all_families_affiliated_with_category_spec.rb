@@ -5,9 +5,9 @@ RSpec.feature "user can see all families affiliated w/ category" do
     family1 = Family.create(first_name: "First1", last_name: "Last1", num_people: 4, nationality: "Somali", arrival_date: Date.today)
     family2 = Family.create(first_name: "First2", last_name: "Last2", num_people: 2, nationality: "Syrian", arrival_date: Date.today)
 
-    category1 = Category.create(name: "Most Critical")
-    category2 = Category.create(name: "Elderly")
-    category3 = Category.create(name: "Children")
+    category1 = Category.create(name: "Most Critical", slug: "most-critical")
+    category2 = Category.create(name: "Elderly", slug: "elderly")
+    category3 = Category.create(name: "Children", slug: "children")
 
     family1.categories << [category1, category2]
     family2.categories << [category2, category3]
