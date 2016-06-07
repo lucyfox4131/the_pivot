@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607212710) do
+ActiveRecord::Schema.define(version: 20160607233309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,13 +36,49 @@ ActiveRecord::Schema.define(version: 20160607212710) do
   create_table "families", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "num_people"
-    t.string   "nationality"
     t.date     "arrival_date"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "num_married_adults"
+    t.integer  "num_unmarried_adults"
+    t.integer  "num_children_over_two"
+    t.integer  "num_children_under_two"
+    t.date     "donation_deadline"
+    t.integer  "nationality_id"
   end
+
+  add_index "families", ["nationality_id"], name: "index_families_on_nationality_id", using: :btree
+
+  create_table "nationalities", force: :cascade do |t|
+    t.string   "photo_path"
+    t.string   "info_link"
+    t.string   "greeting"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "supplies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.decimal  "value"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "supply_items", force: :cascade do |t|
+    t.integer  "supply_id"
+    t.integer  "family_id"
+    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "supply_items", ["family_id"], name: "index_supply_items_on_family_id", using: :btree
+  add_index "supply_items", ["supply_id"], name: "index_supply_items_on_supply_id", using: :btree
 
   add_foreign_key "category_families", "categories"
   add_foreign_key "category_families", "families"
+  add_foreign_key "families", "nationalities"
+  add_foreign_key "supply_items", "families"
+  add_foreign_key "supply_items", "supplies"
 end
