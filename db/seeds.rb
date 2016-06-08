@@ -15,9 +15,9 @@ category6 = Category.create(name: "East Asia", slug: "east-asia")
 category7 = Category.create(name: "Africa", slug: "africa")
 category8 = Category.create(name: "Latin America", slug: "latin-america")
 
-nationality1 = Nationality.create(photo_path: "http://www.criticalthreats.org/sites/default/files/AEI_Somalia_Map_Political.gif" ,info_link: "Somali", greeting: "most-critical", name: "Syrian")
-nationality2 = Nationality.create(photo_path: "http://www.edmaps.com/Syrian_Civil_War_Territorial_Control_Map_November_28.png" ,info_link: "Syrian", greeting: "elderly", name: "Iraqi")
-nationality3 = Nationality.create(photo_path: "https://www.google.com/search?q=iraq+map+control&espv=2&biw=636&bih=601&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiQvPCc3pjNAhUOb1IKHZvrBK8Q_AUIBigB#imgrc=WUdateDORNem6M%3A" ,info_link: "Iraqi", greeting: "children", name: "Afghan")
+nationality1 = Nationality.create(photo_path: "http://www.criticalthreats.org/sites/default/files/AEI_Somalia_Map_Political.gif" ,info_link: "Somali", greeting: "most-critical", name: "Somali")
+nationality2 = Nationality.create(photo_path: "http://www.edmaps.com/Syrian_Civil_War_Territorial_Control_Map_November_28.png" ,info_link: "Syrian", greeting: "elderly", name: "Syrian")
+nationality3 = Nationality.create(photo_path: "http://2.bp.blogspot.com/-h9mc-KDynlU/UtL5BM3CkvI/AAAAAAAABso/a8MB0YFhehU/s1600/iraq_control_qaeda_kurdistan_2014-01-12.png" ,info_link: "Iraqi", greeting: "children", name: "Iraqi")
 nationality4 = Nationality.create(photo_path: "http://asia.nikkei.com/var/site_cache/storage/images/node_43/node_51/2015/201501/20150128/20150128-myanmar-map/2281975-1-eng-GB/20150128-Myanmar-map_article_main_image.png" ,info_link: "Burmese", greeting: "single-mother",  name: "Burmese")
 nationality5 = Nationality.create(photo_path: "http://www.bizbilla.com/country-maps/maps/bhutan-admin.jpg" ,info_link: "Bhutanese", greeting: "east-asia", name: "Bhutanese")
 
