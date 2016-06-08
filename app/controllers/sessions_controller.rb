@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:notice] = "Hi, #{user.username}!"
-      redirect_to user_dashboard_path(user)
+      redirect_to dashboard_path
     else
       flash.now[:notice] = "Invalid username or password. Try Again."
       render :new

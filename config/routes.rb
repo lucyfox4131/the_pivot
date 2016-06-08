@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
   resources :families, only: [:index, :show]
 
-  resources :categories, only: [:show], path: ""
-
   resources :users, only: [:new, :create]
 
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
 
+  get '/dashboard', to: "users#show"
+
   root to: "families#index"
+
+  resources :categories, only: [:show], path: ""
 end
