@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Nationality, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should validate_presence_of(:photo_path) }
+  it { should validate_presence_of(:info_link) }
+  it { should validate_presence_of(:greeting) }
+  it { should validate_presence_of(:name) }
+
+  it { should have_many(:families) }
 end
