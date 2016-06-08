@@ -4,6 +4,7 @@ class CreateCategoryFamilies < ActiveRecord::Migration
       t.references :family, index: true, foreign_key: true
       t.references :category, index: true, foreign_key: true
 
+
       t.timestamps null: false
     end
   end
