@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "user can create an account" do
   scenario "they become logged in and see dashboard page" do
     visit login_path
-    click_on "Create New Account"
+    click_on "Create Account"
 
     fill_in "Username", with: "Robbie"
     fill_in "Password", with: "password"
