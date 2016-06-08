@@ -38,6 +38,7 @@ group :development, :test do
   gem 'launchy'
   gem 'nyan-cat-formatter'
   gem 'shoulda-matchers'
+  gem 'pry'
 end
 
 group :development do

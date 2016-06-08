@@ -20,28 +20,36 @@
         Quantity
       </th>
       <th>
-        
+
       </th>
     </tr>
+
+
     <% @family.supply_items.each do |supply_item| %>
-    <%= form_for @family do |f| %>
+      <%= form_for supply_item, url: cart_supply_items_path, method: :create do |f| %>
+
+
+      <div class='<%=supply_item.supply.name %>' >
+
+
       <tr>
         <td>
-          <%= supply_item.supply.name %>
+          <%= supply_item.supply.name%>
         </td>
         <td>
           <%= supply_item.supply.value %>
         </td>
         <td>
           <div class="form-group">
-            <%= f.select(:quantity, (0..supply_item.quantity), { :prompt => '0', :selected => supply_item.quantity}, { class: 'form-control' }) %>
+            <%= f.select(:quantity, (0..supply_item.quantity), { :prompt => '0'}, { class: 'form-control' }) %>
           </div>
         </td>
         <td>
-          <%= f.submit('add to cart') %>
+          <%= f.submit 'add to cart' %>
         </td>
       </tr>
       <% end %>
     <% end  %>
+    </div>
   </table>
 <%= link_to "All Families", families_path %>
