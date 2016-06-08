@@ -1,5 +1,5 @@
 <ul>
   <% @families.each do |family| %>
-    <li><%= family.nationality.name %> Family of <%= family.num_people %></li>
+    <li><%= link_to "#{family.nationality.name} Family of #{family.num_people}", family_path(family) %></li>
   <% end %>
 </ul>
