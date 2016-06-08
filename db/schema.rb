@@ -25,12 +25,10 @@ ActiveRecord::Schema.define(version: 20160607233309) do
 
   create_table "category_families", force: :cascade do |t|
     t.integer  "family_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "category_families", ["category_id"], name: "index_category_families_on_category_id", using: :btree
   add_index "category_families", ["family_id"], name: "index_category_families_on_family_id", using: :btree
 
   create_table "families", force: :cascade do |t|
@@ -76,7 +74,6 @@ ActiveRecord::Schema.define(version: 20160607233309) do
   add_index "supply_items", ["family_id"], name: "index_supply_items_on_family_id", using: :btree
   add_index "supply_items", ["supply_id"], name: "index_supply_items_on_supply_id", using: :btree
 
-  add_foreign_key "category_families", "categories"
   add_foreign_key "category_families", "families"
   add_foreign_key "families", "nationalities"
   add_foreign_key "supply_items", "families"
