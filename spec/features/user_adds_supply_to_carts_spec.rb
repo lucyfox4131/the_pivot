@@ -12,13 +12,13 @@ RSpec.feature "User Adds Supply To Carts" do
 
     visit family_path(family)
 
-
     within(".Dresser") do
       select  1, from: "supply_item[quantity]"
       find(:button, "add to cart").click
     end
 
-    visit cart_path
+    visit cart_supply_items_path
+    save_and_open_page
 
     expect(page).to have_content("Dresser: 1")
   end
