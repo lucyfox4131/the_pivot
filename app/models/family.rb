@@ -12,15 +12,14 @@ class Family < ActiveRecord::Base
     num_married_adults + num_unmarried_adults
   end
 
-  def supply_quantity_hash  #since supplies added by admin and will be designed via dropdown, not worried about lack of normalization. Seems unnecessary to make a table out of this.
+  def supply_quantity_hash
     {"adult" => num_adults,
      "person" => num_people,
      "household" => 1,
      "baby" => num_children_under_two,
-     "child" => num_children_over_two
+     "child" => num_children_over_two,
      "other" => 0}
   end
-
 
   def create_supply_items
     Supply.all.each do |supply|
