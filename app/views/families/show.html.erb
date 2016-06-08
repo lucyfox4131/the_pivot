@@ -26,7 +26,7 @@
 
 
     <% @family.supply_items.each do |supply_item| %>
-      <%= form_for supply_item, url: cart_supply_items_path, method: :create do |f| %>
+      <%= form_for supply_item, url: cart_index_path, method: :create do |f| %>
       <div class='<%=supply_item.supply.name %>' >
       <tr>
         <td><%= supply_item.supply.name%></td>
@@ -47,3 +47,5 @@
     </div>
   </table>
 <%= link_to "All Families", families_path %>
+
+<%= link_to "View Cart", cart_index_path %>

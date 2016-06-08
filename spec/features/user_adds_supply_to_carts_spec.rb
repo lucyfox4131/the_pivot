@@ -17,9 +17,8 @@ RSpec.feature "User Adds Supply To Carts" do
       find(:button, "add to cart").click
     end
 
-    visit cart_supply_items_path
-    save_and_open_page
+    visit cart_index_path
 
-    expect(page).to have_content("Dresser: 1")
+    expect(page).to have_content("Dresser")
   end
 end
