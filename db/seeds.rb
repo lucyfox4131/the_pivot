@@ -15,18 +15,17 @@ category6 = Category.create(name: "East Asia", slug: "east-asia")
 category7 = Category.create(name: "Africa", slug: "africa")
 category8 = Category.create(name: "Latin America", slug: "latin-america")
 
-nationality1 = Nationality.create(photo_path: "x", info_link: "x", greeting: "x", name: "Syrian")
-nationality2 = Nationality.create(photo_path: "x", info_link: "x", greeting: "x", name: "Iraqi")
-nationality3 = Nationality.create(photo_path: "x", info_link: "x", greeting: "x", name: "Afghan")
-nationality4 = Nationality.create(photo_path: "x", info_link: "x", greeting: "x", name: "Burmese")
-nationality5 = Nationality.create(photo_path: "x", info_link: "x", greeting: "x", name: "Bhutanese")
+nationality1 = Nationality.create(photo_path: "http://www.criticalthreats.org/sites/default/files/AEI_Somalia_Map_Political.gif" ,info_link: "Somali", greeting: "most-critical", name: "Somali")
+nationality2 = Nationality.create(photo_path: "http://www.edmaps.com/Syrian_Civil_War_Territorial_Control_Map_November_28.png" ,info_link: "Syrian", greeting: "elderly", name: "Syrian")
+nationality3 = Nationality.create(photo_path: "http://2.bp.blogspot.com/-h9mc-KDynlU/UtL5BM3CkvI/AAAAAAAABso/a8MB0YFhehU/s1600/iraq_control_qaeda_kurdistan_2014-01-12.png" ,info_link: "Iraqi", greeting: "children", name: "Iraqi")
+nationality4 = Nationality.create(photo_path: "http://asia.nikkei.com/var/site_cache/storage/images/node_43/node_51/2015/201501/20150128/20150128-myanmar-map/2281975-1-eng-GB/20150128-Myanmar-map_article_main_image.png" ,info_link: "Burmese", greeting: "single-mother",  name: "Burmese")
+nationality5 = Nationality.create(photo_path: "http://www.bizbilla.com/country-maps/maps/bhutan-admin.jpg" ,info_link: "Bhutanese", greeting: "east-asia", name: "Bhutanese")
 
 family1 = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality_id: nationality1.id, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 0, num_children_under_two: 0)
 family2 = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality_id: nationality2.id, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 2, num_children_under_two: 1)
 family3 = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality_id: nationality3.id, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 0, num_children_under_two: 0)
 family4 = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality_id: nationality4.id, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 0, num_children_under_two: 0)
 family5 = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality_id: nationality5.id, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 0, num_children_under_two: 0)
-
 
 family1.categories << [category1, category2]
 family2.categories << [category3]

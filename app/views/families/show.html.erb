@@ -1,0 +1,47 @@
+<h1><%= @family.nationality.name %> Family of <%= @family.num_people %></h1>
+  <%= image_tag(@family.nationality.photo_path) %>
+  <ul>
+    <li>Arrival Date:<%= @family.arrival_date %></li>
+    <li>Number of Married Adults:<%= @family.num_married_adults %></li>
+    <li>Number of Unmarried Adults:<%= @family.num_unmarried_adults %></li>
+    <li>Number of Children Over Two:<%= @family.num_children_over_two %></li>
+    <li>Number of Children Under Two:<%= @family.num_children_under_two %></li>
+    <li>Family Donation Deadline<%= @family.donation_deadline %></li>
+  </ul>
+  <table>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Value
+      </th>
+      <th>
+        Quantity
+      </th>
+      <th>
+        
+      </th>
+    </tr>
+    <% @family.supply_items.each do |supply_item| %>
+    <%= form_for @family do |f| %>
+      <tr>
+        <td>
+          <%= supply_item.supply.name %>
+        </td>
+        <td>
+          <%= supply_item.supply.value %>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= f.select(:quantity, (0..supply_item.quantity), { :prompt => '0', :selected => supply_item.quantity}, { class: 'form-control' }) %>
+          </div>
+        </td>
+        <td>
+          <%= f.submit('add to cart') %>
+        </td>
+      </tr>
+      <% end %>
+    <% end  %>
+  </table>
+<%= link_to "All Families", families_path %>
