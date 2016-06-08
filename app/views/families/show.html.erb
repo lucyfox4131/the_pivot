@@ -1,0 +1,8 @@
+<h1>Family's Original Home:<%= @family.nationality_id %></h1>
+  <li>Arrival Date:<%= @family.arrival_date %></li>
+  <li>Number of Married Adults:<%= @family.num_married_adults %></li>
+  <li>Number of Unmarried Adults:<%= @family.num_unmarried_adults %></li>
+  <li>Number of Children Over Two:<%= @family.num_children_over_two %></li>
+  <li>Number of Children Under Two:<%= @family.num_children_under_two %></li>
+  <li>Family Donation Deadline<%= @family.donation_deadline %></li>
+<%= link_to "All Families", families_path %>
