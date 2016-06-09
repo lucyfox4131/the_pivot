@@ -1,34 +1,42 @@
-<table class="table">
+<% if !@cart_items.empty? %>
+  <table class="table">
+    <% @cart_items.each do |item_id, quantity| %>
+      <tr>
+        <td><%= SupplyItem.find(item_id).supply.name %></td>
+        <td><%= SupplyItem.find(item_id).supply.description %></td>
+        <td><%= SupplyItem.find(item_id).supply.value %></td>
+        <td><%= SupplyItem.find(item_id).supply.value * quantity %></td>
+        <td>
+          <%= form_for SupplyItem.find(item_id), url: cart_path(item_id), method: :put do |f| %>
+            <div class="<%= SupplyItem.find(item_id).supply.name %>">
+              <td>
+                <%= f.hidden_field :id, :value => item_id %>
+                <div class="form-group">
+                  <%= f.select :quantity, (0..SupplyItem.find(item_id).quantity), selected: quantity, class: 'form-control' %>
+                </div>
+              </td>
+              <td>
+                <%= f.submit 'Update Cart' %>
+              </td>
+            </div>
+          <% end %>
+        </td>
+        <td><%= button_to "Remove", cart_path(item_id), method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
 
-<% @cart_items.each do |item_id, quantity| %>
+  <h2>Total: <%= @cart.total_price %> </h2>
 
-  <tr>
-    <td><%= SupplyItem.find(item_id).supply.name %></td>
-    <td><%= SupplyItem.find(item_id).supply.description %></td>
-    <td><%= SupplyItem.find(item_id).supply.value %></td>
-    <td><%= SupplyItem.find(item_id).supply.value * quantity %></td>
-    <td>
-        <%= form_for SupplyItem.find(item_id), url: cart_path(item_id), method: :put do |f| %>
-          <div class="<%= SupplyItem.find(item_id).supply.name %>">
-            <td>
-              <%= f.hidden_field :id, :value => item_id %>
-              <div class="form-group">
-                <%= f.select :quantity, (0..SupplyItem.find(item_id).quantity), selected: quantity, class: 'form-control' %>
-              </div>
-            </td>
-            <td>
-              <%= f.submit 'Update Cart' %>
-            </td>
-          </div>
-        <% end %>
-    </td>
-    <td><%= button_to "Remove", cart_path(item_id), method: :delete %></td>
-  </tr>
+  <% if current_user %>
+    <%= link_to "Checkout", cart_index_path %>
+  <% else %>
+    <%= link_to "Login or Create Account to Checkout", login_path %>
+  <% end %>
+
+<% else %>
+  <h3>There are no items in your cart</h3>
 <% end %>
-
-</table>
-
-<h2>Total: <%= @cart.total_price %> </h2>
 
 
 <%= link_to "See All Families", families_path %>
