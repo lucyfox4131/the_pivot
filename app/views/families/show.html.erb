@@ -8,22 +8,13 @@
     <li>Number of Children Under Two:<%= @family.num_children_under_two %></li>
     <li>Family Donation Deadline<%= @family.donation_deadline %></li>
   </ul>
-  <table>
+  <table class="table">
     <tr>
-      <th>
-        Item
-      </th>
-      <th>
-        Value
-      </th>
-      <th>
-        Quantity
-      </th>
-      <th>
-
-      </th>
+      <th>Item</th>
+      <th>Value</th>
+      <th>Quantity</th>
+      <th></th>
     </tr>
-
 
     <% @family.supply_items.each do |supply_item| %>
       <%= form_for supply_item, url: cart_index_path, method: :create do |f| %>
