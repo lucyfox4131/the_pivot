@@ -1,12 +1,12 @@
 <% if !@cart_items.empty? %>
   <table class="table">
-  <% @cart_items.each do |item_id, quantity| %>
-    <tr>
-      <td><%= SupplyItem.find(item_id).supply.name %></td>
-      <td><%= SupplyItem.find(item_id).supply.description %></td>
-      <td><%= SupplyItem.find(item_id).supply.value %></td>
-      <td><%= SupplyItem.find(item_id).supply.value * quantity %></td>
-      <td>
+    <% @cart_items.each do |item_id, quantity| %>
+      <tr>
+        <td><%= SupplyItem.find(item_id).supply.name %></td>
+        <td><%= SupplyItem.find(item_id).supply.description %></td>
+        <td><%= SupplyItem.find(item_id).supply.value %></td>
+        <td><%= SupplyItem.find(item_id).supply.value * quantity %></td>
+        <td>
           <%= form_for SupplyItem.find(item_id), url: cart_path(item_id), method: :put do |f| %>
             <div class="<%= SupplyItem.find(item_id).supply.name %>">
               <td>
@@ -20,10 +20,10 @@
               </td>
             </div>
           <% end %>
-      </td>
-      <td><%= button_to "Remove", cart_path(item_id), method: :delete %></td>
-    </tr>
-  <% end %>
+        </td>
+        <td><%= button_to "Remove", cart_path(item_id), method: :delete %></td>
+      </tr>
+    <% end %>
   </table>
 
   <h2>Total: <%= @cart.total_price %> </h2>
