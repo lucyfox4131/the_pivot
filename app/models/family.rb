@@ -34,7 +34,9 @@ class Family < ActiveRecord::Base
 
   def create_supply_items
     Supply.all.each do |supply|
-      supply_items.create(supply: supply, quantity: supply_quantity_hash[supply.multiplier_type])
+      if supply_quantity_hash[supply.multiplier_type] != 0
+        supply_items.create(supply: supply, quantity: supply_quantity_hash[supply.multiplier_type])
+      end
     end
   end
 
