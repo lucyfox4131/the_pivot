@@ -8,16 +8,17 @@
     <th></th>
     <th></th>
   </tr>
-<% @cart_items.each do |item_id, quantity| %>
 
-  <div class='<%=SupplyItem.find(item_id).supply.name %>' >
+  <% @cart_items.each do |item_id, quantity| %>
+
+    <div class='<%=SupplyItem.find(item_id).supply.name %>' >
 
   <tr>
     <td><%= SupplyItem.find(item_id).supply.name %></td>
     <td><%= SupplyItem.find(item_id).supply.description %></td>
     <td><%= number_to_currency SupplyItem.find(item_id).supply.value %></td>
     <td><%= number_to_currency SupplyItem.find(item_id).supply.value * quantity %></td>
-    <td>
+
         <%= form_for SupplyItem.find(item_id), url: cart_path(item_id), method: :put do |f| %>
           <div class="<%= SupplyItem.find(item_id).supply.name %>">
             <td>
@@ -26,12 +27,10 @@
                 <%= f.select :quantity, (0..SupplyItem.find(item_id).quantity), selected: quantity, class: 'form-control' %>
               </div>
             </td>
-            <td>
-              <%= f.submit 'Update Cart' %>
-            </td>
+            <td><%= f.submit 'Update Cart' %></td>
           </div>
         <% end %>
-    </td>
+
     <td><%= button_to "Remove", cart_path(item_id), method: :delete %></td>
   </tr>
 </div>

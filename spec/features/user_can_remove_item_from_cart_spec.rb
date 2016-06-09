@@ -22,12 +22,9 @@ RSpec.feature "user can remove item from cart" do
     visit cart_index_path
     expect(page).to have_content("Total: $50.00")
 
-
-  save_and_open_page
-
     expect(page).to have_content("Dresser")
     click_on("Remove")
-    
+
     expect(page).to have_content("Successfully deleted Dresser")
     expect(page).to have_content("Total: $0.00")
 
