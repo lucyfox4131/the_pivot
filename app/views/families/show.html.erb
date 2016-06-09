@@ -21,7 +21,7 @@
       <div class='<%=supply_item.supply.name %>' >
       <tr>
         <td><%= supply_item.supply.name%></td>
-        <td><%= supply_item.supply.value %>
+        <td><%= number_to_currency supply_item.supply.value %>
         </td>
         <td>
           <%= f.hidden_field :id, :value => supply_item.id %>

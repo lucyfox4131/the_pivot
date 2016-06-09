@@ -1,32 +1,43 @@
+
 <% if !@cart_items.empty? %>
   <table class="table">
-    <% @cart_items.each do |item_id, quantity| %>
-      <tr>
-        <td><%= SupplyItem.find(item_id).supply.name %></td>
-        <td><%= SupplyItem.find(item_id).supply.description %></td>
-        <td><%= SupplyItem.find(item_id).supply.value %></td>
-        <td><%= SupplyItem.find(item_id).supply.value * quantity %></td>
-        <td>
-          <%= form_for SupplyItem.find(item_id), url: cart_path(item_id), method: :put do |f| %>
-            <div class="<%= SupplyItem.find(item_id).supply.name %>">
-              <td>
-                <%= f.hidden_field :id, :value => item_id %>
-                <div class="form-group">
-                  <%= f.select :quantity, (0..SupplyItem.find(item_id).quantity), selected: quantity, class: 'form-control' %>
-                </div>
-              </td>
-              <td>
-                <%= f.submit 'Update Cart' %>
-              </td>
-            </div>
-          <% end %>
-        </td>
-        <td><%= button_to "Remove", cart_path(item_id), method: :delete %></td>
-      </tr>
-    <% end %>
-  </table>
 
-  <h2>Total: <%= @cart.total_price %> </h2>
+  <tr>
+    <th>Supply</th>
+    <th>Description</th>
+    <th>Value</th>
+    <th>Subtotal</th>
+    <th>Quantity</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @cart_items.each do |item_id, quantity| %>
+
+  <tr>
+    <td><%= SupplyItem.find(item_id).supply.name %></td>
+    <td><%= SupplyItem.find(item_id).supply.description %></td>
+    <td><%= number_to_currency SupplyItem.find(item_id).supply.value %></td>
+    <td><%= number_to_currency SupplyItem.find(item_id).supply.value * quantity %></td>
+
+    <%= form_for SupplyItem.find(item_id), url: cart_path(item_id), method: :put do |f| %>
+      <div class="<%= SupplyItem.find(item_id).supply.name %>">
+        <td>
+          <%= f.hidden_field :id, :value => item_id %>
+          <div class="form-group">
+          <%= f.select :quantity, (0..SupplyItem.find(item_id).quantity), selected: quantity, class: 'form-control' %>
+          </div>
+        </td>
+        <td><%= f.submit 'Update Cart' %></td>
+      </div>
+    <% end %>
+    <td><%= button_to "Remove", cart_path(item_id), method: :delete %></td>
+  </tr>
+<% end %>
+
+</table>
+
+<h2>Total: <%= number_to_currency @cart.total_price %> </h2>
 
   <% if current_user %>
     <%= link_to "Checkout", cart_index_path %>
@@ -37,6 +48,7 @@
 <% else %>
   <h3>There are no items in your cart</h3>
 <% end %>
+
 
 
 <%= link_to "See All Families", families_path %>
