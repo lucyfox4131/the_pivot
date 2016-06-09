@@ -13,7 +13,9 @@ class CartController <ApplicationController
   end
 
   def update
-
+    @cart.change_cart_item_quantity(params[:supply_item][:id], params[:supply_item][:quantity])
+    session[:cart] = @cart.contents
+    redirect_to cart_index_path
   end
 
   def destroy

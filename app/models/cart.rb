@@ -3,6 +3,7 @@ class Cart
 
   def initialize(initial_contents)
     @contents = initial_contents || {}
+    # @contents = {}
   end
 
   def add_cart_item(supply_item_id, quantity)
@@ -12,6 +13,14 @@ class Cart
 
   def delete_cart_item(item_id)
     contents.delete(item_id)
+  end
+
+  def change_cart_item_quantity(supply_item_id, supply_item_quantity)
+    if supply_item_quantity == 0
+      contents.delete(supply_item_id)
+    else
+      contents[supply_item_id] = supply_item_quantity.to_i
+    end
   end
 
   def total_items
