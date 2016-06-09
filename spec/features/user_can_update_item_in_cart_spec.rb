@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 RSpec.feature "user can update item in cart" do
@@ -23,8 +22,10 @@ RSpec.feature "user can update item in cart" do
     expect(page).to have_content("Total: $50.00")
     expect(page).to have_content("Dresser")
 
-    select  2, from: "supply_item[quantity]"
-    click_on("Update Cart")
+    within(".Dresser") do
+      select  2, from: "supply_item[quantity]"
+      click_on("Update Cart")
+    end
 
     expect(page).to have_content("Total: $100.00")
 

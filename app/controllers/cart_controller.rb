@@ -23,7 +23,7 @@ class CartController <ApplicationController
     session[:cart] = @cart.contents
     supply_name = SupplyItem.find(params[:id]).supply.name
     family = SupplyItem.find(params[:id]).family
-    flash[:notice] = "Successfully deleted #{view_context.link_to(supply_name, family_path(family))} from your cart."
+    flash[:success] = "Successfully deleted #{view_context.link_to(supply_name, family_path(family))} from your cart."
     redirect_to cart_index_path
   end
 end

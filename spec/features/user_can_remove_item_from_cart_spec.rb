@@ -26,7 +26,7 @@ RSpec.feature "user can remove item from cart" do
     click_on("Remove")
 
     expect(page).to have_content("Successfully deleted Dresser")
-    expect(page).to have_content("Total: $0.00")
+    expect(page).to have_content("There are no items in your cart")
 
 
     click_on("Dresser")
