@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe OrderItem, type: :model do
-  it {should belong_to(:order)}
+RSpec.describe DonationItem, type: :model do
+  it {should belong_to(:donation)}
   it {should belong_to(:supply_item)}
 
-  it "associates orders and order items with users" do
+  it "associates donations and donation items with users" do
     user = User.create(username: "TestUser", password: "password")
     supply = Supply.create(name: "Small Pot", value: 3.0, description: "New or used.", multiplier_type: "household")
 
@@ -14,13 +14,13 @@ RSpec.describe OrderItem, type: :model do
 
     supply_item = SupplyItem.create(supply: supply, quantity: 3, family: family)
 
-    order = Order.create(status: 'pledged', user: user)
-    order_item = OrderItem.create(quantity: 2, supply_item: supply_item, order: order)
+    donation = Donation.create(status: 'pledged', user: user)
+    donation_item = DonationItem.create(quantity: 2, supply_item: supply_item, donation: donation)
 
-    expect(user.orders.count).to eq(1)
-    expect(user.order_items.count).to eq(1)
-    expect(user.order_items.first.supply_item.supply.name).to eq("Small Pot")
-    expect(user.order_items.first.supply_item.family.first_name).to eq("TestFirst")
+    expect(user.donations.count).to eq(1)
+    expect(user.donation_items.count).to eq(1)
+    expect(user.donation_items.first.supply_item.supply.name).to eq("Small Pot")
+    expect(user.donation_items.first.supply_item.family.first_name).to eq("TestFirst")
 
   end
 

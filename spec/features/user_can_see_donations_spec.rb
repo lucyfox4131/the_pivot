@@ -14,26 +14,29 @@ RSpec.feature "user can see all orders" do
 
 
     supply = Supply.create(name: "Small Pot", value: 3.0, description: "New or used.", multiplier_type: "household")
+    supply2 = Supply.create(name: "Couch", value: 100.0, description: "New or used.  Used must be in good condition.", multiplier_type: "household")
     other_supply = Supply.create(name: "Large Pot", value: 3.0, description: "New or used.", multiplier_type: "household")
 
     supply_item = SupplyItem.create(supply: supply, quantity: 1, family: family)
+    supply_item2 = SupplyItem.create(supply: supply2, quantity: 1, family: family)
     other_supply_item = SupplyItem.create(supply: other_supply, quantity: 1, family: family)
 
-    order = Order.create(status: 'pledged', user: user)
-    other_order = Order.create(status: 'pledged', user: other_user)
+    donation = Donation.create(status: 'pledged', user: user)
+    other_donation = Donation.create(status: 'pledged', user: other_user)
 
-    order_item = OrderItem.create(quantity: 1, supply_item: supply_item, order: order)
-    other_order_item = OrderItem.create(quantity: 1, supply_item: other_supply_item, order: other_order)
+    donation_item = DonationItem.create(quantity: 1, supply_item: supply_item, donation: donation)
+    donation_item2 = DonationItem.create(quantity: 1, supply_item: supply_item2, donation: donation)
+    other_donation_item = DonationItem.create(quantity: 1, supply_item: other_supply_item, donation: other_donation)
 
-    visit orders_path
+    visit donations_path
 
   save_and_open_page
 
-    expect(page).to have_content("#{user.username}'s Orders")
-    expect(page).to have_content("Total Orders: 1")
-    expect(page).to have_content("Order placed on: #{Time.now.to_date}")
-    expect(page).to have_content("Order benefitting: Somali family of 3")
+    expect(page).to have_content("#{user.username}'s Donations")
+    expect(page).to have_content("Total Donations: 1")
+    expect(page).to have_content("Somali family of 3")
     expect(page).to have_content("1 Small Pot")
+    expect(page).to have_content("1 Couch")
     expect(page).to_not have_content("1 Large Pot")
 
 

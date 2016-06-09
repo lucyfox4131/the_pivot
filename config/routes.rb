@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: "users#show"
 
-  get '/orders', to: "orders#index"
+  get '/donations', to: "donations#index"
 
   root to: "families#index"
 
