@@ -81,12 +81,12 @@ RSpec.describe Family, type: :model do
 
     family.create_supply_items
 
-    expect(family.supply_items.count).to eq(5)
+    expect(family.supply_items.count).to eq(3)
     expect(family.supply_items.find_by(supply: supply1).quantity).to eq(3)
     expect(family.supply_items.find_by(supply: supply2).quantity).to eq(1)
     expect(family.supply_items.find_by(supply: supply3).quantity).to eq(3)
-    expect(family.supply_items.find_by(supply: supply4).quantity).to eq(0)
-    expect(family.supply_items.find_by(supply: supply5).quantity).to eq(0)
+    expect(family.supply_items.find_by(supply: supply4)).to eq(nil)
+    expect(family.supply_items.find_by(supply: supply5)).to eq(nil)
 
   end
 
