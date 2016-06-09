@@ -1,7 +1,12 @@
 class DonationsController<ApplicationController
 
   def index
-    @donations = current_user.donations
+    if !current_user
+      flash[:notice] = "Please login to see your donation history."
+      redirect_to login_path
+    else
+      @donations = current_user.donations
+    end
   end
 
 end
