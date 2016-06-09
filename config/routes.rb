@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: "users#show"
 
+  get '/orders', to: "orders#index"
+
   root to: "families#index"
 
   resources :categories, only: [:show], path: ""
