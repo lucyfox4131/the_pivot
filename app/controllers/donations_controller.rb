@@ -4,5 +4,4 @@ class DonationsController<ApplicationController
     @donations = current_user.donations
   end
 
-
 end

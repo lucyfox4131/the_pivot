@@ -30,15 +30,12 @@ RSpec.feature "user can see all orders" do
 
     visit donations_path
 
-  save_and_open_page
-
     expect(page).to have_content("#{user.username}'s Donations")
     expect(page).to have_content("Total Donations: 1")
     expect(page).to have_content("Somali family of 3")
     expect(page).to have_content("1 Small Pot")
     expect(page).to have_content("1 Couch")
     expect(page).to_not have_content("1 Large Pot")
-
 
   end
 
