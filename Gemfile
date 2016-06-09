@@ -39,6 +39,7 @@ group :development, :test do
   gem 'nyan-cat-formatter'
   gem 'shoulda-matchers'
   gem 'pry'
+  gem 'database_cleaner'
 end
 
 group :development do

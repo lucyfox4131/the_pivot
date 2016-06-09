@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "user can view all families" do
   scenario "they see a list of families" do
-    
+
     nationality1 = Nationality.create(photo_path: "x", info_link: "x", greeting: "x", name: "Somali")
     nationality2 = Nationality.create(photo_path: "x", info_link: "x", greeting: "x", name: "Syrian")
     nationality3 = Nationality.create(photo_path: "x", info_link: "x", greeting: "x", name: "Iraqi")
@@ -15,6 +15,7 @@ RSpec.feature "user can view all families" do
 
 
     visit families_path
+    save_and_open_page
 
     expect(page).to have_content "Somali"
     expect(page).to have_content "Syrian"
