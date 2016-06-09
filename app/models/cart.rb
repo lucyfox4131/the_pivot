@@ -3,7 +3,6 @@ class Cart
 
   def initialize(initial_contents)
     @contents = initial_contents || {}
-    # @contents = {}
   end
 
   def add_cart_item(supply_item_id, quantity)

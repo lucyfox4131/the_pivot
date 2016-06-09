@@ -6,6 +6,7 @@
     <td><%= SupplyItem.find(item_id).supply.name %></td>
     <td><%= SupplyItem.find(item_id).supply.description %></td>
     <td><%= SupplyItem.find(item_id).supply.value %></td>
+    <td><%= SupplyItem.find(item_id).supply.value * quantity %></td>
     <td>
         <%= form_for SupplyItem.find(item_id), url: cart_path(item_id), method: :put do |f| %>
           <div class="<%= SupplyItem.find(item_id).supply.name %>">
