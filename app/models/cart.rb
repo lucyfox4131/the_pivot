@@ -16,7 +16,7 @@ class Cart
   end
 
   def change_cart_item_quantity(supply_item_id, supply_item_quantity)
-    if supply_item_quantity == 0
+    if supply_item_quantity.to_i == 0
       contents.delete(supply_item_id)
     else
       contents[supply_item_id] = supply_item_quantity.to_i
