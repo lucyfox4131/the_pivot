@@ -12,7 +12,6 @@ RSpec.feature "user can see all orders" do
 
     family = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality: nationality, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 0, num_children_under_two: 0)
 
-
     supply = Supply.create(name: "Small Pot", value: 3.0, description: "New or used.", multiplier_type: "household")
     supply2 = Supply.create(name: "Couch", value: 100.0, description: "New or used.  Used must be in good condition.", multiplier_type: "household")
     other_supply = Supply.create(name: "Large Pot", value: 3.0, description: "New or used.", multiplier_type: "household")

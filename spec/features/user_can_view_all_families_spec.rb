@@ -15,7 +15,6 @@ RSpec.feature "user can view all families" do
 
 
     visit families_path
-    save_and_open_page
 
     expect(page).to have_content "Somali"
     expect(page).to have_content "Syrian"

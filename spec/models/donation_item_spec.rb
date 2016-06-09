@@ -21,7 +21,6 @@ RSpec.describe DonationItem, type: :model do
     expect(user.donation_items.count).to eq(1)
     expect(user.donation_items.first.supply_item.supply.name).to eq("Small Pot")
     expect(user.donation_items.first.supply_item.family.first_name).to eq("TestFirst")
-
   end
 
 end
