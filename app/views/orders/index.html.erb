@@ -1,0 +1,30 @@
+<h2><%= current_user.username %>'s Orders</h2>
+<p>Total Orders: <%= @orders.count %> </p>
+
+<table>
+  <tr>
+    <th>Order ID:</th>
+    <th>Placed on:</th>
+    <th>Benefitting Families:</th>
+    <th>Order Items:</th>
+  </tr>
+  <% @orders.each do |order| %>
+    <tr>
+      <td> <%= order.id %></td>
+      <td> <%= order.created_at.to_date %></td>
+      <td>
+      <% order.order_items.each do |order_item| %>
+        <%= order_item.supply_item.family.nationality.name %> family of <%= order_item.supply_item.family.num_people %></br>
+      <% end %>
+      </td>
+      <td>
+      <% order.order_items.each do |order_item| %>
+          <%= order_item.quantity %>
+          <%= order_item.supply_item.supply.name %></br>
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+
+
+</table>
