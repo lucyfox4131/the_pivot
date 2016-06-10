@@ -1,4 +1,6 @@
 class Donation < ActiveRecord::Base
+  validates :status, presence: true, inclusion: %w(Pledged Received Cancelled)
+
   belongs_to :user
   has_many :donation_items
 

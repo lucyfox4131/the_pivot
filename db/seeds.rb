@@ -67,9 +67,9 @@ family5.create_supply_items
 user1 = User.create(username: "user1", password: "password")
 user2 = User.create(username: "user2", password: "password")
 
-donation1 = Donation.create(status: 'pledged', user: user1)
-donation2 = Donation.create(status: 'pledged', user: user1)
-donation3 = Donation.create(status: 'pledged', user: user2)
+donation1 = Donation.create(status: 'Pledged', user: user1)
+donation2 = Donation.create(status: 'Received', user: user1)
+donation3 = Donation.create(status: 'Cancelled', user: user2)
 
 donation_item1 = DonationItem.create(quantity: 1, supply_item: family1.supply_items.first, donation: donation1)
 

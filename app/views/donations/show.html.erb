@@ -2,7 +2,7 @@
 <h4>Placed on: <%= @donation.date %></h4>
 <h4>Status: <%= @donation.status %></h4>
 <h4>Total: <%= number_to_currency @donation.total %> </h4>
-<% if @donation.status != "pledged" %>
+<% if @donation.status != "Pledged" %>
 <h4>Updated on: <%= @donation.updated_at.to_date %></h4>
 <% end %>
 

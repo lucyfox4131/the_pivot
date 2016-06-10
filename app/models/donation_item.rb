@@ -3,7 +3,6 @@ class DonationItem < ActiveRecord::Base
   belongs_to :donation
 
 
-
   def family_nationality
     supply_item.family.nationality.name
   end
@@ -15,6 +14,7 @@ class DonationItem < ActiveRecord::Base
   def family_description
     "#{family_nationality} family of #{family_size}"
   end
+  
   def name
     supply_item.supply.name
   end
