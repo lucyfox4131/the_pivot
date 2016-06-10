@@ -7,7 +7,7 @@ RSpec.describe Supply, type: :model do
 
   it do
     should validate_inclusion_of(:multiplier_type).
-    in_array(['adult', 'baby', 'child', 'household', 'person', 'other'])
+      in_array(["adult", "baby", "child", "household", "person", "other"])
   end
 
   it { should have_many(:families) }

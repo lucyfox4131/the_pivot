@@ -6,7 +6,7 @@ RSpec.describe Donation, type: :model do
   it { should validate_presence_of(:status) }
   it do
     should validate_inclusion_of(:status).
-    in_array(['Pledged', 'Received', 'Cancelled'])
+      in_array(['Pledged', 'Received', 'Cancelled'])
   end
 
 
@@ -21,7 +21,7 @@ RSpec.describe Donation, type: :model do
 
     supply_item = SupplyItem.create(supply: supply, quantity: 3, family: family)
 
-    donation = Donation.create(status: 'Pledged', user: user)
+    donation = Donation.create(status: "Pledged", user: user)
     donation_item = DonationItem.create(quantity: 2, supply_item: supply_item, donation: donation)
     donation_item = DonationItem.create(quantity: 2, supply_item: supply_item, donation: donation)
 
