@@ -66,6 +66,7 @@ family5.create_supply_items
 
 user1 = User.create(username: "user1", password: "password")
 user2 = User.create(username: "user2", password: "password")
+user3 = User.create(username: "admin", password: "password", role: 1)
 
 donation1 = Donation.create(status: 'pledged', user: user1)
 donation2 = Donation.create(status: 'pledged', user: user1)
