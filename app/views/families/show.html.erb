@@ -16,6 +16,8 @@
       <th></th>
     </tr>
 
+    <h4>Donate to this Family:</h4>
+
     <% @family.supply_items.each do |supply_item| %>
       <%= form_for supply_item, url: cart_index_path, method: :create do |f| %>
       <div class='<%=supply_item.supply.name %>' >
@@ -26,7 +28,7 @@
         <td>
           <%= f.hidden_field :id, :value => supply_item.id %>
           <div class="form-group">
-            <%= f.select(:quantity, (0..supply_item.quantity), { :prompt => '0'}, { class: 'form-control' }) %>
+            <%= f.select(:quantity, (1..supply_item.quantity), { :prompt => '0'}, { class: 'form-control' }) %>
           </div>
         </td>
         <td>

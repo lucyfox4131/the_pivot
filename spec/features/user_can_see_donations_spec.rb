@@ -38,4 +38,14 @@ RSpec.feature "user can see all orders" do
 
   end
 
+  scenario "guest user visiting donations is redirected to log in" do
+    visit donations_path
+
+    expect(current_path).to eq(login_path)
+    expect(page).to have_content("Please login to see your donation history")
+
+  end
+
+
+
 end
