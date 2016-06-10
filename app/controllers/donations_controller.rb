@@ -9,4 +9,8 @@ class DonationsController<ApplicationController
     end
   end
 
+  def show
+    @donation = Donation.find(params[:id])
+  end
+
 end

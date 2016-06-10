@@ -1,0 +1,32 @@
+<h2>Donation ID: <%= @donation.id %> </h2>
+<h4>Placed on: <%= @donation.date %></h4>
+<h4>Status: <%= @donation.status %></h4>
+<h4>Total: <%= number_to_currency @donation.total %> </h4>
+<% if @donation.status != "pledged" %>
+<h4>Updated on: <%= @donation.updated_at.to_date %></h4>
+<% end %>
+
+
+<table class="table">
+  <tr>
+    <th>Benefitting Families:</th>
+    <th>Donation Item:</th>
+    <th>Quantity:</th>
+    <th>Value:</th>
+    <th>Subtotal:</th>
+  </tr>
+
+
+  <% @donation.donation_items.each do |donation_item| %>
+  <tr>
+    <td><%= link_to donation_item.family_description, family_path(donation_item.supply_item.family) %></td>
+    <td><%= donation_item.name %></td>
+    <td><%= donation_item.quantity %></td>
+    <td><%= number_to_currency donation_item.value %></td>
+    <td><%= number_to_currency donation_item.subtotal %></td>
+
+  </tr>
+
+  <% end %>
+
+</table>

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "user can see all orders" do
-  scenario "authenticated user sees list of only her orders" do
+RSpec.feature "user can see all donations" do
+  scenario "authenticated user sees list of only her donations" do
 
     user = User.create(username: "test", password: "password")
     other_user = User.create(username: "other", password: "password")
