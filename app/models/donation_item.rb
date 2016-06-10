@@ -17,5 +17,4 @@ class DonationItem < ActiveRecord::Base
   def name
     supply_item.supply.name
   end
-
 end

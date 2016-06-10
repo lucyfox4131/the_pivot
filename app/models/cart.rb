@@ -33,5 +33,4 @@ class Cart
     end
     total
   end
-
 end
