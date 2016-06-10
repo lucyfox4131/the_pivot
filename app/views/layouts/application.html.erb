@@ -7,29 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="container">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <ul class="nav navbar-nav">
-        <li><%= link_to "All Families", families_path %></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if current_user %>
-          <li><p class="navbar-text">Logged in as <%= current_user.username %></p></li>
-          <li><%= link_to "Logout", logout_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to "Login", login_path %></li>
-        <% end %>
-        <li>
-          <%= link_to cart_index_path do %>
-            Cart <span class="badge"><%= cart_item_count %></span>
+  <div class="collapse navbar-collapse">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li><%= link_to "All Families", families_path %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" id="bs-example-navbar-collapse-1">
+          <% if current_user %>
+            <li><p class="navbar-text">Logged in as <%= current_user.username %></p></li>
+            <li><%= link_to "Logout", logout_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Login", login_path %></li>
           <% end %>
-        </li>
-      </ul>
-    </div>
-  </nav>
+          <li>
+            <%= link_to cart_index_path do %>
+              Cart <span class="badge"><%= cart_item_count %></span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 
   <% flash.each do |type, message| %>
-    <%= content_tag :div, sanitize(message), class: "bg-#{type} text-center" %>
+    <div class="alert alert-<%= type %> text-center alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= sanitize(message) %>
+    </div>
   <% end %>
 
   <%= yield %>
