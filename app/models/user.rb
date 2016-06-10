@@ -8,5 +8,5 @@ class User < ActiveRecord::Base
   has_many :donations
   has_many :donation_items, through: :donations
 
-  enum role: ['default', 'admin']
+  enum role: ["default", "admin"]
 end
