@@ -6,7 +6,7 @@ RSpec.describe Donation, type: :model do
   it { should validate_presence_of(:status) }
   it do
     should validate_inclusion_of(:status).
-      in_array(['Pledged', 'Received', 'Cancelled'])
+      in_array(["Pledged", "Received", "Cancelled"])
   end
 
 

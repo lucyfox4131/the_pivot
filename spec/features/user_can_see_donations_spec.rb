@@ -21,8 +21,8 @@ RSpec.feature "user can see all donations" do
     supply_item2 = SupplyItem.create(supply: supply2, quantity: 1, family: family)
     other_supply_item = SupplyItem.create(supply: other_supply, quantity: 1, family: family)
 
-    donation = Donation.create(status: 'Pledged', user: user)
-    other_donation = Donation.create(status: 'Pledged', user: other_user)
+    donation = Donation.create(status: "Pledged", user: user)
+    other_donation = Donation.create(status: "Pledged", user: other_user)
 
     donation_item = DonationItem.create(quantity: 1, supply_item: supply_item, donation: donation)
     donation_item2 = DonationItem.create(quantity: 1, supply_item: supply_item2, donation: donation)

@@ -22,8 +22,8 @@ RSpec.feature "user sees past donation" do
     supply_item2 = SupplyItem.create(supply: supply2, quantity: 2, family: family2)
 
 
-    donation1 = Donation.create(status: 'Received', user: user)
-    donation2 = Donation.create(status: 'Pledged', user: user)
+    donation1 = Donation.create(status: "Received", user: user)
+    donation2 = Donation.create(status: "Pledged", user: user)
 
     donation_item = DonationItem.create(quantity: 2, supply_item: supply_item1, donation: donation1)
     donation_item2 = DonationItem.create(quantity: 2, supply_item: supply_item2, donation: donation1)
@@ -61,7 +61,7 @@ RSpec.feature "user sees past donation" do
 
     supply_item1 = SupplyItem.create(supply: supply1, quantity: 2, family: family1)
 
-    donation1 = Donation.create(status: 'Received', user: other_user)
+    donation1 = Donation.create(status: "Received", user: other_user)
 
     donation_item = DonationItem.create(quantity: 2, supply_item: supply_item1, donation: donation1)
 
