@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "user can see all orders" do
-  scenario "authenticated user sees list of only her orders" do
+RSpec.feature "user can see all donations" do
+  scenario "authenticated user sees list of only her donations" do
 
     user = User.create(username: "test", password: "password")
     other_user = User.create(username: "other", password: "password")
@@ -21,8 +21,8 @@ RSpec.feature "user can see all orders" do
     supply_item2 = SupplyItem.create(supply: supply2, quantity: 1, family: family)
     other_supply_item = SupplyItem.create(supply: other_supply, quantity: 1, family: family)
 
-    donation = Donation.create(status: 'pledged', user: user)
-    other_donation = Donation.create(status: 'pledged', user: other_user)
+    donation = Donation.create(status: "Pledged", user: user)
+    other_donation = Donation.create(status: "Pledged", user: other_user)
 
     donation_item = DonationItem.create(quantity: 1, supply_item: supply_item, donation: donation)
     donation_item2 = DonationItem.create(quantity: 1, supply_item: supply_item2, donation: donation)
