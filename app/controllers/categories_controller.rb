@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
     if @category
       @families = @category.families
     else
-      flash[:error] =
+      flash[:danger] =
       "Sorry, it seems that is not a category."
       redirect_to root_path and return
     end
