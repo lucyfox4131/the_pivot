@@ -25,4 +25,8 @@ class DonationItem < ActiveRecord::Base
   def subtotal
     value * quantity
   end
+
+  def self.total_items
+    sum(:quantity)
+  end
 end

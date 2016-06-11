@@ -14,7 +14,12 @@ class Donation < ActiveRecord::Base
     end
   end
 
-  def stats
-    
+  def self.stats
+    num_items = DonationItem.total_items
+    num_families = Family.count
+    money_raised =  Donation.all.reduce(0) do |sum, donation|
+      sum += donation.total
+    end
+    {num_items: num_items, num_families: num_families, money_raised: money_raised.to_f}   
   end
 end
