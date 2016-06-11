@@ -62,7 +62,7 @@
     <h4>Welcome them to the United States.  Donate these items to help them set up their new home.</h4>
 
     <% @family.supply_items.each do |supply_item| %>
-      <%= form_for supply_item, url: cart_index_path, method: :create do |f| %>
+      <%= form_for supply_item, url: cart_items_path, method: :create do |f| %>
       <div class='<%=supply_item.supply.name %>' >
       <tr>
         <td><%= supply_item.supply.name%></br>

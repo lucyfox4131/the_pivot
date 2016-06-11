@@ -14,7 +14,7 @@ class DonationItem < ActiveRecord::Base
   def family_description
     "#{family_nationality} family of #{family_size}"
   end
-  
+
   def name
     supply_item.supply.name
   end
@@ -26,6 +26,4 @@ class DonationItem < ActiveRecord::Base
   def subtotal
     value * quantity
   end
-
-
 end

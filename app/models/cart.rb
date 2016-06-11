@@ -10,8 +10,8 @@ class Cart
     contents[supply_item_id.to_s] += quantity.to_i
   end
 
-  def delete_cart_item(item_id)
-    contents.delete(item_id)
+  def delete_cart_item(supply_item_id)
+    contents.delete(supply_item_id.to_s)
   end
 
   def change_cart_item_quantity(supply_item_id, supply_item_quantity)
@@ -33,5 +33,4 @@ class Cart
     end
     total
   end
-
 end
