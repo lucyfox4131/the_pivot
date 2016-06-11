@@ -28,8 +28,6 @@ RSpec.feature "user can update item in cart" do
     end
 
     expect(page).to have_content("Total: $100.00")
-
-
   end
 
 end

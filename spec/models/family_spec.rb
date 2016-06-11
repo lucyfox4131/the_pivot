@@ -28,7 +28,6 @@ RSpec.describe Family, type: :model do
     family = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality_id: nationality.id, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 2, num_children_under_two: 1)
 
     expect(family.num_adults).to eq(3)
-
   end
 
   it "generates correct supply hash for famililes with all features" do
@@ -64,10 +63,7 @@ RSpec.describe Family, type: :model do
     expect(family.supply_items.find_by(supply: supply3).quantity).to eq(6)
     expect(family.supply_items.find_by(supply: supply4).quantity).to eq(1)
     expect(family.supply_items.find_by(supply: supply5).quantity).to eq(2)
-
   end
-
-
 
   it "generates correct supply hash for famililes with some features" do
     nationality = Nationality.create(photo_path: "x", info_link: "x", greeting: "x", name: "Syrian")
@@ -89,6 +85,5 @@ RSpec.describe Family, type: :model do
     expect(family.supply_items.find_by(supply: supply5)).to eq(nil)
 
   end
-
 
 end

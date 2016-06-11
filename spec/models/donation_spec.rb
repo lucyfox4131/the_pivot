@@ -9,9 +9,7 @@ RSpec.describe Donation, type: :model do
       in_array(["Pledged", "Received", "Cancelled"])
   end
 
-
   it "returns correct donation total" do
-
     user = User.create(username: "TestUser", password: "password")
     supply = Supply.create(name: "Small Pot", value: 3.0, description: "New or used.", multiplier_type: "household")
 
@@ -29,4 +27,10 @@ RSpec.describe Donation, type: :model do
   end
 
 
+  # it "outputs donation date" do
+  #   user1 = User.create(username: "user1", password: "password")
+  #   donation1 = Donation.create(status: 'pledged', user: user1)
+  #
+  #   expect(donation1.date.to_s).to eq("2016-06-10")
+  # end
 end

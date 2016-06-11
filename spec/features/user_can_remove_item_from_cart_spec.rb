@@ -32,8 +32,6 @@ RSpec.feature "user can remove item from cart" do
     click_on("Dresser")
 
     expect(current_path).to eq(family_path(family))
-
-
   end
 
 end
