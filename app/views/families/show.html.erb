@@ -1,28 +1,72 @@
-<h1><%= @family.nationality.name %> Family of <%= @family.num_people %></h1>
-  <%= image_tag(@family.nationality.photo_path) %>
-  <ul>
-    <li>Arrival Date:<%= @family.arrival_date %></li>
-    <li>Number of Married Adults:<%= @family.num_married_adults %></li>
-    <li>Number of Unmarried Adults:<%= @family.num_unmarried_adults %></li>
-    <li>Number of Children Over Two:<%= @family.num_children_over_two %></li>
-    <li>Number of Children Under Two:<%= @family.num_children_under_two %></li>
-    <li>Family Donation Deadline<%= @family.donation_deadline %></li>
-  </ul>
+<div class="">
+
+  <h1 class="family-heading"><%= @family.nationality.name %> Family of <%= @family.num_people %></h1>
+
+  <div class="tags">
+    <% if @family.categories %>
+      <% @family.categories.take(3).each do |category| %>
+        <%= link_to category.name, category_path(category), class: "btn btn-inverse" %>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>
+
+<h4 class="col-sm-6 details">Arrival Date: <%= @family.arrival_date.to_formatted_s(:long)  %></h4>
+<h4 class="col-sm-6 details">Donate by: <%= @family.donation_deadline.to_formatted_s(:long) %></h4>
+
+
+
+<div class="profile">
+
+  <div class="col-sm-6 photo">
+    <%= image_tag @family.nationality.photo_path %>
+    <p> <%=  @family.description %> </p>
+  </div>
+
+  <div class="col-sm-4 details">
+
+    <div class="greeting">
+      <%= image_tag @family.nationality.greeting %>
+      <p>Welcome to America</p>
+    </div>
+
+    <div class="learn-more">
+      <%= link_to "Learn more about the #{@family.nationality.name} conflict", @family.nationality.info_link %>
+    </div>
+
+
+    <div class="family-info">
+        <table class="table">
+          <tr><td>Married Adults: <%= @family.num_married_adults %></td>
+          <td>Unmarried Adults: <%= @family.num_unmarried_adults %></td></tr>
+          <tr><td>Children Over Two: <%= @family.num_children_over_two %></td>
+          <td>Children Under Two: <%= @family.num_children_under_two %></td></tr>
+        </table>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="col-sm-10">
+
   <table class="table">
     <tr>
-      <th>Item</th>
-      <th>Value</th>
+      <th>Donation Item</th>
+      <th>Donation Value</th>
       <th>Quantity</th>
       <th></th>
     </tr>
 
-    <h4>Donate to this Family:</h4>
+    <h4>Welcome them to the United States.  Donate these items to help them set up their new home.</h4>
 
     <% @family.supply_items.each do |supply_item| %>
       <%= form_for supply_item, url: cart_index_path, method: :create do |f| %>
       <div class='<%=supply_item.supply.name %>' >
       <tr>
-        <td><%= supply_item.supply.name%></td>
+        <td><%= supply_item.supply.name%></br>
+        <em><%= supply_item.supply.description%></em></td>
         <td><%= number_to_currency supply_item.supply.value %>
         </td>
         <td>
@@ -32,13 +76,12 @@
           </div>
         </td>
         <td>
-          <%= f.submit 'add to cart' %>
+          <%= f.submit 'add to cart', class: "btn btn-warning" %>
         </td>
       </tr>
       <% end %>
     <% end  %>
     </div>
   </table>
-<%= link_to "All Families", families_path %>
 
-<%= link_to "View Cart", cart_index_path %>
+</div>

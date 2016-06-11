@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609234250) do
+ActiveRecord::Schema.define(version: 20160611001336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20160609234250) do
     t.integer  "num_children_under_two"
     t.date     "donation_deadline"
     t.integer  "nationality_id"
+    t.string   "description"
   end
 
   add_index "families", ["nationality_id"], name: "index_families_on_nationality_id", using: :btree

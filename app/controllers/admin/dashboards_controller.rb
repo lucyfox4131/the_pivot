@@ -1,5 +1,5 @@
 class Admin::DashboardsController < Admin::BaseController
 
-  def show
+  def showr
   end
 end

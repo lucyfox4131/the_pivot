@@ -14,3 +14,75 @@
  *= require_self
  *= require bootstrap.min
  */
+
+ .tags a {
+   background-color: gray;
+   height: 30px;
+   padding: 5px;
+   margin: 5px;
+   border-radius: 6px;
+   text-align: center;
+   color: #ffbf00;
+   min-width: 100px;
+   font-size: 12px;
+ }
+
+ .tags a:hover {
+   text-decoration: none;
+   color: white;
+
+ }
+
+ .tags {
+   max-width: 300px;
+   display: inline-block;
+ }
+
+.family-heading {
+  display: inline-block;
+  max-width: 400px;
+}
+
+
+.learn-more {
+  background-color: #1f1f14;
+  height: 50px;
+  padding: 12px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  text-align: center;
+  color: #ffbf00;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.learn-more a:visited {
+  color: #ffbf00;
+}
+.photo img {
+  border-radius: 6px;
+}
+
+.photo p {
+  max-width: 500px;
+}
+
+.learn-more a:hover {
+  color: gray;
+  text-decoration: none;
+}
+
+
+.greeting {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.greeting img {
+  padding: 10px;
+}
+
+.greeting p {
+  text-align: center;
+}
