@@ -4,7 +4,7 @@
 
   <div class="tags">
     <% if @family.categories %>
-      <% @family.categories.take(3).each do |category| %>
+      <% @family.categories.take(2).each do |category| %>
         <%= link_to category.name, category_path(category), class: "btn btn-inverse" %>
       <% end %>
     <% end %>

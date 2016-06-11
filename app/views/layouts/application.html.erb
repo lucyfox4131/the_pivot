@@ -9,21 +9,6 @@
 <body class="container">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-
-      <ul class="nav navbar-nav">
-        <li><%= link_to "All Families", families_path %></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if current_user %>
-          <li><p class="navbar-text">Logged in as <%= current_user.username %></p></li>
-          <li><%= link_to "Logout", logout_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to "Login", login_path %></li>
-        <% end %>
-        <li>
-          <%= link_to cart_index_path do %>
-            Cart <span class="badge"><%= cart_item_count %></span>
-
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
@@ -33,6 +18,9 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
+          <h2 class="brand brand-name navbar-left">
+        <a href="/"><%= image_tag "reSTORE_small.png"%></a>
+      </h2>
           <li><%= link_to "All Families", families_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
