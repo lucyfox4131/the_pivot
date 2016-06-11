@@ -1,5 +1,4 @@
 class CartItemsController < ApplicationController
-  belongs_to :cart
 
   def create
     supply_item = SupplyItem.find(params[:supply_item][:id])
