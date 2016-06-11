@@ -11,15 +11,15 @@ RSpec.describe Cart, type: :model do
     cart = Cart.new({})
     cart.add_cart_item(supply_item.id, 1)
 
-    expect(cart.contents).to eq({"7" => 1})
+    expect(cart.contents).to eq({"10" => 1})
 
     cart.add_cart_item(supply_item1.id, 2)
 
-    expect(cart.contents).to eq({"7"=>1, "8"=>2})
+    expect(cart.contents).to eq({"10"=>1, "11"=>2})
 
     cart.delete_cart_item(supply_item1.id)
 
-    expect(cart.contents).to eq({"7"=>1})
+    expect(cart.contents).to eq({"10"=>1})
   end
 
   it "changes item quantity from the cart" do
@@ -28,15 +28,15 @@ RSpec.describe Cart, type: :model do
     cart = Cart.new({})
     cart.add_cart_item(supply_item1.id, 3)
 
-    expect(cart.contents).to eq({"9"=>3})
+    expect(cart.contents).to eq({"12"=>3})
 
-    cart.change_cart_item_quantity("9", 1)
+    cart.change_cart_item_quantity("12", 1)
 
-    expect(cart.contents).to eq({"9"=>1})
+    expect(cart.contents).to eq({"12"=>1})
 
-    cart.change_cart_item_quantity("9", 6)
+    cart.change_cart_item_quantity("12", 6)
 
-    expect(cart.contents).to eq({"9"=>6})
+    expect(cart.contents).to eq({"12"=>6})
   end
 
   it "outputs accurate number for total items//price in cart" do
