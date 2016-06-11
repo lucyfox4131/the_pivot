@@ -17,10 +17,9 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: "users#show"
 
-  resources :donations, only: [:show]
-
+  resources :donations, only: [:index, :show, :new, :create]
 
   root to: "families#index"
 
-  resources :categories, only: [:show, :index], path: ""
+  resources :categories, only: [:show], path: ""
 end

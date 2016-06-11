@@ -40,9 +40,9 @@
 <h2>Total: <%= number_to_currency @cart.total_price %> </h2>
 
   <% if current_user %>
-    <%= link_to "Checkout", cart_index_path %>
+    <%= link_to "Checkout", new_donation_path, class: "btn btn-primary" %>
   <% else %>
-    <%= link_to "Login or Create Account to Checkout", login_path %>
+    <%= link_to "Login or Create Account to Checkout", login_path, class: "btn btn-primary" %>
   <% end %>
 
 <% else %>
