@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
-  resources :cart, only: [:index] 
+  resources :cart, only: [:index]
 
   resources :cart_items, only: [:create, :update, :destroy]
 
@@ -17,10 +17,10 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: "users#show"
 
-  resources :donations, only: [:index, :show]
+  resources :donations, only: [:show]
 
 
   root to: "families#index"
 
-  resources :categories, only: [:show], path: ""
+  resources :categories, only: [:show, :index], path: ""
 end
