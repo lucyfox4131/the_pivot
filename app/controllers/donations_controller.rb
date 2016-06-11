@@ -17,4 +17,24 @@ class DonationsController<ApplicationController
     end
   end
 
+  def new
+    @supplies = SupplyItem.get_supply_list_from_cart(session[:cart])
+  end
+
+  def create
+    @cart_supply_items = SupplyItem.get_supply_items_from_cart(session[:cart])
+    @donation = Donation.new(user_id: current_user.id, status: "Pledged")
+    if @donation.save
+      @cart_supply_items.each do |supply_item, quantity|
+        @donation.donation_items.create(quantity: quantity, supply_item: supply_item, donation: @donation)
+      end
+      flash[:success] = "Your donation, ##{@donation.id}, was recieved. Thank you!"
+      session[:cart] = {}
+      redirect_to donations_path
+    else
+      flash.now[:warning] = "Something went wrong with your donation confirmation."
+      render :new
+    end
+  end
+
 end
