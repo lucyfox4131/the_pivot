@@ -19,7 +19,7 @@
     <h4>Donate to this Family:</h4>
 
     <% @family.supply_items.each do |supply_item| %>
-      <%= form_for supply_item, url: cart_index_path, method: :create do |f| %>
+      <%= form_for supply_item, url: cart_items_path, method: :create do |f| %>
       <div class='<%=supply_item.supply.name %>' >
       <tr>
         <td><%= supply_item.supply.name%></td>
