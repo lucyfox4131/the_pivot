@@ -8,6 +8,8 @@ class SupplyItem < ActiveRecord::Base
     end
   end
 
+  ##two methods with same name?
+
   def self.get_supply_items_from_cart(cart_items)
     hash = {}
     cart_items.each do |supply_item_id, quantity|
@@ -15,4 +17,23 @@ class SupplyItem < ActiveRecord::Base
     end
     hash
   end
+
+  def name
+    supply.name
+  end
+
+  def description
+    supply.description
+  end
+
+  def value
+    supply.value
+  end
+
+  def quantity_remaining
+    num_donated = DonationItem.where(supply_item_id: id).sum(:quantity)
+    quantity - num_donated
+  end
+
+
 end

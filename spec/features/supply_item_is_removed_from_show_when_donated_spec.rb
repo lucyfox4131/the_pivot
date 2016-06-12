@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe SupplyItem, type: :model do
-  it { should belong_to(:supply) }
-  it { should belong_to(:family) }
+RSpec.feature  "family list show correct items needed when donations made" do
 
-  it "has gets correct name, value, and desctiption" do
+  scenario "item removed when fully donated" do
+
+    user = User.create(username: "user1", password: "password")
     nationality1 = Nationality.create(photo_path: "x", info_link: "x",
       greeting: "x", name: "x")
     fam1 = Family.create(first_name: "x", last_name: "x",
@@ -14,14 +14,29 @@ RSpec.describe SupplyItem, type: :model do
       num_children_under_two: 0)
     supply = Supply.create(name: "Twin Bedframe", value:  30.0,
       description: "Sample.", multiplier_type: "child"  )
-    supply_item = SupplyItem.create(family: fam1, supply: supply, quantity: 2)
+    supply_item = SupplyItem.create(family: fam1, supply: supply, quantity: 1)
 
-    expect(supply_item.name).to eq("Twin Bedframe")
-    expect(supply_item.value).to eq(30.0)
-    expect(supply_item.description).to eq("Sample.")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return( user )
+
+    visit family_path(fam1)
+    expect(page).to have_content("Twin Bedframe")
+    within(".Twin") do
+      click_on "add to cart"
+    end
+
+    visit cart_index_path
+    click_on "Checkout"
+    click_on "Confirm Donation"
+    visit family_path(fam1)
+
+    expect(page).to_not have_content("Twin Bedframe")
+
   end
 
-  it "calculates correct quantity remaining" do
+  scenario "selector reduced when partially donated" do
+
+    user = User.create(username: "user1", password: "password")
     nationality1 = Nationality.create(photo_path: "x", info_link: "x",
       greeting: "x", name: "x")
     fam1 = Family.create(first_name: "x", last_name: "x",
@@ -31,14 +46,17 @@ RSpec.describe SupplyItem, type: :model do
       num_children_under_two: 0)
     supply = Supply.create(name: "Twin Bedframe", value:  30.0,
       description: "Sample.", multiplier_type: "child"  )
-    supply_item = SupplyItem.create(family: fam1, supply: supply, quantity: 2)
-
-    user1 = User.create(username: "user1", password: "password")
-    donation = Donation.create(status: "Pledged", user: user1)
+    supply_item = SupplyItem.create(family: fam1, supply: supply, quantity: 3)
+    donation = Donation.create(status: "Pledged", user: user)
     donation_item = DonationItem.create(quantity: 1,
       supply_item: fam1.supply_items.first, donation: donation)
 
-    expect(supply_item.quantity_remaining).to eq(1)
+    visit family_path(fam1)
+    within(".Twin") do
+      expect(page).to have_select("supply_item[quantity]", options: ["1", "2"])
+      expect(page).to_not have_select("supply_item[quantity]",
+        options: ["1", "2", "3"])
+    end
   end
 
 end
