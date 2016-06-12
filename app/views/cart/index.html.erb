@@ -1,42 +1,39 @@
 <h1 class="text-center">Your Donations Cart</h1>
 
 <% if !session.exists? || !@cart.contents.empty? %>
-  <table class="table">
+  <table class="table table-hover">
+    <tr class="active">
+      <th>Family Supply</th>
+      <th>Description</th>
+      <th>Value</th>
+      <th>Subtotal</th>
+      <th>Quantity</th>
+      <th></th>
+      <th></th>
+    </tr>
 
-  <tr>
-    <th>Supply</th>
-    <th>Description</th>
-    <th>Value</th>
-    <th>Subtotal</th>
-    <th>Quantity</th>
-    <th></th>
-    <th></th>
-  </tr>
+    <% @supply_items.each do |supply_item, quantity| %>
+    <tr>
+      <td><%= link_to supply_item.name, family_path(supply_item.family) %></td>
+      <td><%= supply_item.description %></td>
+      <td><%= number_to_currency supply_item.value %></td>
+      <td><%= number_to_currency supply_item.subtotal(quantity) %></td>
 
-  <% @supply_items.each do |supply_item, quantity| %>
-
-  <tr>
-    <td><%= supply_item.supply.name %></td>
-    <td><%= supply_item.supply.description %></td>
-    <td><%= number_to_currency supply_item.supply.value %></td>
-    <td><%= number_to_currency supply_item.supply.value * quantity %></td>
-
-    <%= form_for supply_item, url: cart_item_path(supply_item), method: :put do |f| %>
-      <div class="<%= supply_item.supply.name %>">
-        <td>
-          <%= f.hidden_field :id, :value => supply_item.id %>
-          <div class="form-group">
-          <%= f.select :quantity, (0..supply_item.quantity), selected: quantity, class: 'form-control' %>
-          </div>
-        </td>
-        <td><%= f.submit "Update Cart", class: "btn btn-default" %></td>
-      </div>
+      <%= form_for supply_item, url: cart_item_path(supply_item), method: :put do |f| %>
+        <div class="<%= supply_item.supply.name %>">
+          <td>
+            <%= f.hidden_field :id, :value => supply_item.id %>
+            <div class="form-group">
+            <%= f.select :quantity, (0..supply_item.quantity), selected: quantity, class: 'form-control' %>
+            </div>
+          </td>
+          <td><%= f.submit "Update Cart", class: "btn btn-default" %></td>
+        </div>
+      <% end %>
+      <td><%= button_to "Remove", cart_item_path(supply_item), method: :delete, class: "btn btn-warning" %></td>
+    </tr>
     <% end %>
-    <td><%= button_to "Remove", cart_item_path(supply_item), method: :delete, class: "btn btn-warning" %></td>
-  </tr>
-<% end %>
-
-</table>
+  </table>
 
   <h2>Total: <%= number_to_currency @cart.total_price %> </h2>
 

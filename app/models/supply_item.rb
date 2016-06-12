@@ -8,14 +8,16 @@ class SupplyItem < ActiveRecord::Base
     end
   end
 
-  ##two methods with same name?
-
   def self.get_supply_items_from_cart(cart_items)
     hash = {}
     cart_items.each do |supply_item_id, quantity|
       hash[find(supply_item_id)] = quantity
     end
     hash
+  end
+
+  def self.find_family(id)
+    find(id).family
   end
 
   def name
@@ -35,5 +37,8 @@ class SupplyItem < ActiveRecord::Base
     quantity - num_donated
   end
 
+  def subtotal(quantity)
+    supply.value * quantity
+  end
 
 end
