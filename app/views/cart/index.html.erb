@@ -1,3 +1,4 @@
+<h1 class="text-center">Your Donations Cart</h1>
 
 <% if !session.exists? || !@cart.contents.empty? %>
   <table class="table">
@@ -12,32 +13,32 @@
     <th></th>
   </tr>
 
-  <% @cart_items.each do |item_id, quantity| %>
+  <% @supply_items.each do |supply_item, quantity| %>
 
   <tr>
-    <td><%= SupplyItem.find(item_id).supply.name %></td>
-    <td><%= SupplyItem.find(item_id).supply.description %></td>
-    <td><%= number_to_currency SupplyItem.find(item_id).supply.value %></td>
-    <td><%= number_to_currency SupplyItem.find(item_id).supply.value * quantity %></td>
+    <td><%= supply_item.supply.name %></td>
+    <td><%= supply_item.supply.description %></td>
+    <td><%= number_to_currency supply_item.supply.value %></td>
+    <td><%= number_to_currency supply_item.supply.value * quantity %></td>
 
-    <%= form_for SupplyItem.find(item_id), url: cart_item_path(item_id), method: :put do |f| %>
-      <div class="<%= SupplyItem.find(item_id).supply.name %>">
+    <%= form_for supply_item, url: cart_item_path(supply_item), method: :put do |f| %>
+      <div class="<%= supply_item.supply.name %>">
         <td>
-          <%= f.hidden_field :id, :value => item_id %>
+          <%= f.hidden_field :id, :value => supply_item.id %>
           <div class="form-group">
-          <%= f.select :quantity, (0..SupplyItem.find(item_id).quantity), selected: quantity, class: 'form-control' %>
+          <%= f.select :quantity, (0..supply_item.quantity), selected: quantity, class: 'form-control' %>
           </div>
         </td>
-        <td><%= f.submit 'Update Cart' %></td>
+        <td><%= f.submit "Update Cart", class: "btn btn-default" %></td>
       </div>
     <% end %>
-    <td><%= button_to "Remove", cart_item_path(item_id), method: :delete %></td>
+    <td><%= button_to "Remove", cart_item_path(supply_item), method: :delete, class: "btn btn-warning" %></td>
   </tr>
 <% end %>
 
 </table>
 
-<h2>Total: <%= number_to_currency @cart.total_price %> </h2>
+  <h2>Total: <%= number_to_currency @cart.total_price %> </h2>
 
   <% if current_user %>
     <%= link_to "Checkout", new_donation_path, class: "btn btn-primary" %>
@@ -46,5 +47,5 @@
   <% end %>
 
 <% else %>
-  <h3>There are no items in your cart</h3>
+  <h3 class="text-center">There are no items in your cart</h3>
 <% end %>
