@@ -5,4 +5,10 @@ class Nationality < ActiveRecord::Base
   validates :name, presence: true
 
   has_many :families
+
+  def self.get_random
+    offset = rand(self.count)
+    self.offset(offset).first
+  end
+  
 end
