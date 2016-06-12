@@ -19,6 +19,5 @@ RSpec.feature "user can view all families" do
     expect(page).to have_content "Somali"
     expect(page).to have_content "Syrian"
     expect(page).to have_content "Iraqi"
-
   end
 end
