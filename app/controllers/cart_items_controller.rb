@@ -4,7 +4,7 @@ class CartItemsController < ApplicationController
     supply_item = SupplyItem.find(params[:supply_item][:id])
     @cart.add_cart_item(supply_item.id, params[:supply_item][:quantity])
     session[:cart] = @cart.contents
-    flash[:notice] = "You added #{supply_item.supply.name}"
+    flash[:notice] = "You added #{supply_item.name}"
     redirect_to family_path(supply_item.family)
   end
 
