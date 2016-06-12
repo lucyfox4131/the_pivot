@@ -2,7 +2,7 @@ class DonationsController<ApplicationController
 
   def index
     if !current_user
-      flash[:notice] = "Please login to see your donation history."
+      flash[:info] = "Please login to see your donation history."
       redirect_to login_path
     else
       @donations = current_user.donations
@@ -12,7 +12,7 @@ class DonationsController<ApplicationController
   def show
     @donation = Donation.find(params[:id])
     if @donation.user != current_user
-      flash[:notice] = "No donation found."
+      flash[:info] = "No donation found."
       redirect_to root_path
     end
   end

@@ -11,10 +11,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "Welcome, #{@user.username}!"
+      flash[:success] = "Welcome, #{@user.username}!"
       redirect_to dashboard_path
     else
-      flash.now[:notice] = @user.errors.full_messages.join(", ")
+      flash.now[:warning] = @user.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       flash[:success] = "Your updates have been saved"
       redirect_to dashboard_path
     else
-      flash.now[:notice] = @user.errors.full_messages.join(", ")
+      flash.now[:warning] = @user.errors.full_messages.join(", ")
       render :edit
     end
   end
