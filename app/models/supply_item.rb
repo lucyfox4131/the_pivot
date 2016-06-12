@@ -35,5 +35,4 @@ class SupplyItem < ActiveRecord::Base
     quantity - num_donated
   end
 
-
 end
