@@ -1,0 +1,25 @@
+<h1>Confirm Your Donation</h1>
+
+<table class="table">
+  <tr>
+    <th>Supply</th>
+    <th>Description</th>
+    <th>Value</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+  </tr>
+
+  <% @supplies.each_with_index do |supply, index| %>
+    <tr>
+      <td><%= supply.name %></td>
+      <td><%= supply.description %></td>
+      <td><%= number_to_currency supply.value %></td>
+      <td><%= session[:cart].values[index] %></td>
+      <td><%= number_to_currency supply.value * session[:cart].values[index]%></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "Back To Your Cart", cart_index_path, class: "btn btn-info" %>
+
+<%= link_to "Confirm Donation", donations_path, method: :post, class: "btn btn-success" %>
