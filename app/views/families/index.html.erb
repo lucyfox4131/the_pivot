@@ -7,35 +7,25 @@
     </div>
     <div class="col-sm-4 details">
       <p><%= link_to "Learn more about the #{@featured.name} conflict", @featured.info_link, class: "center-block learn-more" %></p>
-      <%= image_tag @featured.greeting, :class => "img-responsive center-block" %>
-      <figcaption>Welcome to America</figcaption>
+      <%= image_tag @featured.greeting, :class => "img-responsive center-block greeting" %>
+      <h4>Welcome to America<h4>
     </div>
   </div>
 </div>
 
-<div class="row marketing">
-  <div class="col-lg-6">
-    <h4>Subheading</h4>
-    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
 
-    <h4>Subheading</h4>
-    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+<div class="row nationality">
+<% @nationalities.each do |nationality| %>
 
-    <h4>Subheading</h4>
-    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+  <div class="col-lg-6 <%=nationality.name%>">
+    <h4> <%= nationality.name %> Families Arriving Soon:</h4>
+    <ul>
+      <% nationality.families.each do |family| %>
+        <li><%= link_to "Family of #{family.num_people}", family_path(family) %>: arriving on <%= family.arrival_date.to_formatted_s(:long) %></li>
+      <% end %>
+    </ul>
   </div>
 
-  <div class="col-lg-6">
-    <h4>Subheading</h4>
-    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
 
-    <h4>Subheading</h4>
-    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-    <h4>Subheading</h4>
-    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-  </div>
+<% end %>
 </div>
-
-
-<%= render 'shared/family_list' %>
