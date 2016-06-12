@@ -40,5 +40,26 @@ class Family < ActiveRecord::Base
     end
   end
 
+  def total_value_of_supplies_needed
+    value = 0
+    supply_items.each do |supply_item|
+      value += supply_item.supply.value * supply_item.quantity
+    end
+    value
+  end
+
+  def total_value_of_supplies_purchased
+    value = 0
+    supply_items.each do |supply_item|
+      supply_item.donation_items.each do |donation_item|
+        value += donation_item.quantity * supply_item.supply.value
+      end
+    end
+    value
+  end
+
+  def percentage_donated
+    ((total_value_of_supplies_purchased / total_value_of_supplies_needed)*100).to_i
+  end
 
 end
