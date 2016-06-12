@@ -157,6 +157,6 @@ RSpec.describe Family, type: :model do
     received_donation_item1 = DonationItem.create(quantity: 1,
     supply_item: past_family1.supply_items.first, donation: received_donation1)
 
-    expect(past_family1.donations_received[0].donation_id).to eq(15)
+    expect(past_family1.donations_received[0].donation_id).to eq(16)
   end
 end
