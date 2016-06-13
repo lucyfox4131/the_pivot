@@ -16,8 +16,8 @@
     <tr>
       <td><%= link_to supply_item.name, family_path(supply_item.family) %></td>
       <td><%= supply_item.description %></td>
-      <td><%= number_to_currency supply_item.value %></td>
-      <td><%= number_to_currency supply_item.subtotal(quantity) %></td>
+      <td><%= currency(supply_item.value) %></td>
+      <td><%= currency(supply_item.subtotal(quantity)) %></td>
 
       <%= form_for supply_item, url: cart_item_path(supply_item), method: :put do |f| %>
         <div class="<%= supply_item.supply.name %>">

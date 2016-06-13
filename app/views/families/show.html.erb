@@ -16,8 +16,8 @@
   <% if @family.retired? %>
     <h4>Family Arrived</h4></h4>
   <% else %>
-    <%= @family.arrival_date.to_formatted_s(:long)  %></h4>
-    <h4 class="col-sm-6 details">Donate by: <%= @family.donation_deadline.to_formatted_s(:long) %>
+    <%= format_date @family.arrival_date%></h4>
+    <h4 class="col-sm-6 details">Donate by: <%= format_date @family.donation_deadline %>
     </h4>
 <% end %>
 
@@ -71,7 +71,7 @@
         <tr>
           <td><%= supply_item.name %></br>
           <em><%= supply_item.description %></em></td>
-          <td><%= number_to_currency supply_item.value %></td>
+          <td><%= currency(supply_item.value) %></td>
           <td><%= f.hidden_field :id, :value => supply_item.id %>
             <div class="form-group">
               <%= f.select(:quantity, (1..supply_item.quantity_remaining), { :prompt => '0'}, { class: 'form-control' }) %>
@@ -97,7 +97,7 @@
         <tr>
           <td><%= donation_item.name %></td>
           <td><%= donation_item.quantity %></td>
-          <td><%= donation_item.created_at.to_formatted_s(:long) %></td>
+          <td><%= format_date donation_item.created_at %></td>
         </tr>
       <% end %>
     </table>
