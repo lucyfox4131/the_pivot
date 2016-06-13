@@ -43,6 +43,26 @@ class Family < ActiveRecord::Base
     end
   end
 
+  def value_of_supplies_needed
+    supply_items.reduce(0) do |sum, supply_item|
+      sum + (supply_item.supply.value * supply_item.quantity)
+    end
+  end
+
+  def value_of_supplies_purchased
+    value = 0
+    supply_items.each do |supply_item|
+      supply_item.donation_items.each do |donation_item|
+        value += donation_item.quantity * supply_item.supply.value
+      end
+    end
+    value
+  end
+
+  def percentage_donated
+    ((value_of_supplies_purchased / value_of_supplies_needed)*100).to_i
+  end
+
   def retired?
     arrival_date <= Date.today
   end
