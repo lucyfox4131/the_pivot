@@ -66,6 +66,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
 shared_context "standard test dataset" do
   category1 = Category.create(name: "Most Critical", slug: "most-critical")
   category2 = Category.create(name: "Elderly", slug: "elderly")
