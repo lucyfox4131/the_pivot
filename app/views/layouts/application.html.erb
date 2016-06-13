@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <!-- move this once we figure out asset pipeline -->
   <title>LittleShop</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
+
 <body class="container">
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -19,9 +22,20 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <h2 class="brand brand-name navbar-left">
-        <a href="/"><%= image_tag "reSTORE.png", class: "logo"%></a>
-      </h2>
-          <li><%= link_to "Welcome a refugee family to the US", families_path %></li>
+            <a href="/"><%= image_tag "reSTORE.png", class: "logo"%></a>
+          </h2>
+          <li><%= link_to "See all Families", families_path %></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Families by Category <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% Category.all.each do |category|  %>
+              <li><a href="/<%=category.slug%> "> <%=category.name %> </a></li>
+            <%end %>
+          </ul>
+        </li>
+
+
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
