@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    if !current_user
+      flash[:warning] = "Please login to see your dashboard"
+      redirect_to login_path
+    end
   end
 
   def create
