@@ -6,6 +6,10 @@ class DonationItem < ActiveRecord::Base
     supply_item.family.nationality.name
   end
 
+  def family
+    supply_item.family
+  end
+
   def family_size
     supply_item.family.num_people
   end

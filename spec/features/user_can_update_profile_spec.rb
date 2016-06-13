@@ -3,6 +3,11 @@ require 'rails_helper'
 RSpec.feature "User can edit profile" do
   scenario "Updates when user enters correct current password" do
 
+    nationality = Nationality.create(photo_path: "x",
+      info_link: "x",
+      greeting: "x",
+      name: "x")
+
     user = User.create(username: "test", password: "password")
     new_username = "new_test"
     new_password = "new_password"
@@ -36,6 +41,11 @@ RSpec.feature "User can edit profile" do
 
   scenario "Does not update when user enters incorrect current password" do
 
+    nationality = Nationality.create(photo_path: "x",
+      info_link: "x",
+      greeting: "x",
+      name: "x")
+
     user = User.create(username: "test", password: "password")
     new_username = "new_test"
     new_password = "new_password"
@@ -57,6 +67,10 @@ RSpec.feature "User can edit profile" do
   end
 
   scenario "Other user cannot edit user info" do
+    nationality = Nationality.create(photo_path: "x",
+      info_link: "x",
+      greeting: "x",
+      name: "x")
 
     user = User.create(username: "test2", password: "password")
     other_user = User.create(username: "test2", password: "password")
@@ -66,6 +80,10 @@ RSpec.feature "User can edit profile" do
   end
 
   scenario "guest cannot edit user info" do
+    nationality = Nationality.create(photo_path: "x",
+      info_link: "x",
+      greeting: "x",
+      name: "x")
     user = User.create(username: "test2", password: "password")
     visit edit_user_path(user)
     expect(current_path).to eq(root_path)
@@ -73,6 +91,10 @@ RSpec.feature "User can edit profile" do
   end
 
   scenario "Admin user cannot edit user info" do
+    nationality = Nationality.create(photo_path: "x",
+      info_link: "x",
+      greeting: "x",
+      name: "x")
 
     user = User.create(username: "test2", password: "password")
     admin = User.create(username: "test2", password: "password", role: 1)

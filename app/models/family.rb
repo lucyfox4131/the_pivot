@@ -14,6 +14,9 @@ class Family < ActiveRecord::Base
   has_many :supplies, through: :supply_items
   belongs_to :nationality
 
+  scope :retired, -> {where("arrival_date < ?", Date.today)}
+  scope :active, -> {where("arrival_date > ?", Date.today)}
+
   def num_people
     num_married_adults + num_unmarried_adults +
     num_children_over_two + num_children_under_two
@@ -40,5 +43,34 @@ class Family < ActiveRecord::Base
     end
   end
 
+  def value_of_supplies_needed
+    # byeebug
+    supply_items.reduce(0) do |sum, supply_item|
+      sum + (supply_item.supply.value * supply_item.quantity)
+    end
+  end
 
+  def value_of_supplies_purchased
+    value = 0
+    supply_items.each do |supply_item|
+      supply_item.donation_items.each do |donation_item|
+        value += donation_item.quantity * supply_item.supply.value
+      end
+    end
+    value
+  end
+
+  def percentage_donated
+    ((value_of_supplies_purchased / value_of_supplies_needed)*100).to_i
+  end
+
+  def retired?
+    arrival_date <= Date.today
+  end
+
+  def donations_received
+    supply_items.map do |supply_item|
+      DonationItem.where(supply_item: supply_item)
+    end.flatten.compact
+  end
 end

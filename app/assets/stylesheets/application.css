@@ -107,3 +107,21 @@
   margin-top: 8px;
   color: #ffbf00;
 }
+
+.logo {
+  max-width: 50px;
+}
+
+.nationality {
+  margin: 3rem 0;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.nationality p + h4 {
+  margin-top: 1.5rem;
+}
+
+.details h4 {
+  text-align: center;
+}

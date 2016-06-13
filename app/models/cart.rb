@@ -31,6 +31,6 @@ class Cart
     contents.map do |item_id, quantity|
       total += SupplyItem.find(item_id).supply.value * quantity
     end
-    total
+    total.to_f
   end
 end
