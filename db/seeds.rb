@@ -164,6 +164,11 @@ family2.create_supply_items
 family3.create_supply_items
 family4.create_supply_items
 family5.create_supply_items
+past_family1.create_supply_items
+past_family2.create_supply_items
+past_family3.create_supply_items
+past_family4.create_supply_items
+past_family5.create_supply_items
 
 user1 = User.create(username: "user1", password: "password")
 user2 = User.create(username: "user2", password: "password")
@@ -173,8 +178,26 @@ donation1 = Donation.create(status: "Pledged", user: user1)
 donation2 = Donation.create(status: "Received", user: user1)
 donation3 = Donation.create(status: "Cancelled", user: user2)
 
+received_donation1 = Donation.create(status: "Received", user: user2)
+received_donation2 = Donation.create(status: "Received", user: user2)
+received_donation3 = Donation.create(status: "Received", user: user2)
+received_donation4 = Donation.create(status: "Received", user: user2)
 donation_item1 = DonationItem.create(quantity: 1,
-  supply_item: family1.supply_items.first, donation: donation1)
+supply_item: family1.supply_items.first, donation: donation1)
+donation_item2 = DonationItem.create(quantity: 1,
+supply_item: family2.supply_items.last, donation: donation1)
+donation_item3 = DonationItem.create(quantity: 1,
+supply_item: family3.supply_items.first, donation: donation2)
+donation_item4 = DonationItem.create(quantity: 1,
+supply_item: family4.supply_items.first, donation: donation3)
+received_donation_item1 = DonationItem.create(quantity: 1,
+supply_item: past_family1.supply_items.first, donation: received_donation1)
+received_donation_item2 = DonationItem.create(quantity: 1,
+supply_item: past_family2.supply_items.first, donation: received_donation2)
+received_donation_item2 = DonationItem.create(quantity: 1,
+supply_item: past_family2.supply_items[2], donation: received_donation3)
+received_donation_item2 = DonationItem.create(quantity: 1,
+supply_item: past_family2.supply_items[3], donation: received_donation4)
 
 donation_item2 = DonationItem.create(quantity: 1,
   supply_item: family2.supply_items.last, donation: donation1)
