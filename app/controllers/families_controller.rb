@@ -1,7 +1,9 @@
 class FamiliesController < ApplicationController
 
   def index
-    @families = Family.active
+    @families = Family.all
+    @featured = Nationality.get_random
+    @nationalities = Nationality.all
   end
 
   def show
@@ -16,4 +18,5 @@ class FamiliesController < ApplicationController
       @percentage_purchased = 0
     end
   end
+
 end
