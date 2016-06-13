@@ -83,7 +83,6 @@ RSpec.describe Family, type: :model do
     expect(family.supply_items.find_by(supply: supply3).quantity).to eq(3)
     expect(family.supply_items.find_by(supply: supply4)).to eq(nil)
     expect(family.supply_items.find_by(supply: supply5)).to eq(nil)
-
   end
 
 end

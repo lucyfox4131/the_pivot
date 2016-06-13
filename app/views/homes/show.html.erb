@@ -23,13 +23,22 @@
 </div>
 
 <div class="row2">
-  <div class="num-items">
-    <%= @donation_stats[:num_items] %>
+  <div class="col-sm-4 panel panel-info">
+      <div class="panel-heading">Total Amount of Items Raised</div>
+      <div class="panel-body">
+        <p><%= @donation_stats[:num_items] %></p>
+      </div>
   </div>
-  <div class="money-raised">
-    <%= @donation_stats[:money_raised] %>
+  <div class="money-raised col-sm-4 panel panel-info">
+    <div class="panel-heading">Money Raised</div>
+    <div class="panel-body">
+      <p><%= @donation_stats[:money_raised] %></p>
+    </div>
   </div>
-  <div class="num-families">
-    <%= @donation_stats[:num_families] %>
+  <div class="num-families col-sm-4 panel panel-info">
+    <div class="panel-heading">Number of Families Helped</div>
+    <div class="panel-body">
+      <p><%= @donation_stats[:num_families] %></p>
+    </div>
   </div>
 </div>
