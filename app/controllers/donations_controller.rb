@@ -28,7 +28,7 @@ class DonationsController<ApplicationController
       @cart_supply_items.each do |supply_item, quantity|
         @donation.donation_items.create(quantity: quantity, supply_item: supply_item, donation: @donation)
       end
-      flash[:success] = "Your donation, ##{@donation.id}, was recieved. Thank you!"
+      flash[:success] = "Your donation (ID#: #{@donation.id}) was recieved. Thank you!"
       session[:cart] = {}
       redirect_to donations_path
     else
