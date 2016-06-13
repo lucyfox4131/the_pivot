@@ -1,8 +1,6 @@
 require 'rails_helper'
-require 'database_cleaner'
 
 RSpec.describe Cart, type: :model do
-  DatabaseCleaner.cleaning do
 
   it "adds//deletes an item to and from the cart" do
     supply_item = Supply.create(name: "Twin Bedframe", value:  30.0, description: "New or used.  Used must be in good condition.", multiplier_type: "child")
@@ -64,5 +62,4 @@ RSpec.describe Cart, type: :model do
     expect(cart.total_items).to eq(3)
     expect(cart.total_price).to eq(230.0)
   end
-end
 end
