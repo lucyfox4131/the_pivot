@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "user can view all families" do
+RSpec.feature "user sees correct info for current and past families" do
 
   scenario "they see a form for family that will arrive" do
 
@@ -25,6 +25,7 @@ RSpec.feature "user can view all families" do
       multiplier_type: "child")
 
     family.supply_items.create(supply: supply, quantity: 2)
+
 
     visit family_path(family)
     expect(page).to_not have_content("Family Arrived")
@@ -56,7 +57,7 @@ RSpec.feature "user can view all families" do
           description: "3 notebooks, set of pens, set of pencils. Must be new.",
           multiplier_type: "child")
 
-        family.supply_items.create(supply: supply)
+        family.supply_items.create(supply: supply, quantity: 2)
 
         user = User.create(username: "user1", password: "password")
 
