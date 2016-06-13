@@ -65,6 +65,28 @@ RSpec.describe Family, type: :model do
     expect(family.supply_items.find_by(supply: supply5).quantity).to eq(2)
   end
 
+  it "returns true if retired and false if not" do
+    nationality1 = Nationality.create(photo_path: "somali_photo.jpeg", info_link: "http://www.rescue.org/blog/a-precarious-life-somali-refugees-nairobi",
+    greeting: "somali_greeting.png", name: "Somali")
+    past_family1 = Family.create(first_name: "TestFirst", last_name: "TestLast",
+    arrival_date: 10.days.ago, donation_deadline: 15.days.ago,
+    nationality_id: nationality1.id, num_married_adults: 2, num_unmarried_adults: 1,
+    num_children_over_two: 1, num_children_under_two: 0,
+    description: "This married couple fled Somalia in 2001 with their sone and"\
+    " the wife's elderly mother.  They have lived in Dadaab refugee camp for the"\
+    " past 15 years.")
+    family1 = Family.create(first_name: "Apple", last_name: "TestLast",
+    arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now,
+    nationality_id: nationality1.id, num_married_adults: 2,
+    num_unmarried_adults: 1, num_children_over_two: 1, num_children_under_two: 0,
+    description: "This married couple fled Somalia in 2001 with their sone and the"\
+    " wife's elderly mother.  They have lived in Dadaab refugee camp for the past"\
+    " 15 years.")
+
+    expect(family1.retired?).to eq(false)
+    expect(past_family1.retired?).to eq(true)
+  end
+
   it "generates correct supply hash for famililes with some features" do
     nationality = Nationality.create(photo_path: "x", info_link: "x", greeting: "x", name: "Syrian")
     family = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality_id: nationality.id, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 0, num_children_under_two: 0)
@@ -83,7 +105,58 @@ RSpec.describe Family, type: :model do
     expect(family.supply_items.find_by(supply: supply3).quantity).to eq(3)
     expect(family.supply_items.find_by(supply: supply4)).to eq(nil)
     expect(family.supply_items.find_by(supply: supply5)).to eq(nil)
-
   end
 
+  describe "scopes" do
+    it ".retired returns all votes with an arrival date < today// > today" do
+      nationality1 = Nationality.create(photo_path: "somali_photo.jpeg", info_link: "http://www.rescue.org/blog/a-precarious-life-somali-refugees-nairobi",
+      greeting: "somali_greeting.png", name: "Somali")
+      past_family1 = Family.create(first_name: "TestFirst", last_name: "TestLast",
+      arrival_date: 10.days.ago, donation_deadline: 15.days.ago,
+      nationality_id: nationality1.id, num_married_adults: 2, num_unmarried_adults: 1,
+      num_children_over_two: 1, num_children_under_two: 0,
+      description: "This married couple fled Somalia in 2001 with their sone and"\
+      " the wife's elderly mother.  They have lived in Dadaab refugee camp for the"\
+      " past 15 years.")
+      family1 = Family.create(first_name: "Apple", last_name: "TestLast",
+      arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now,
+      nationality_id: nationality1.id, num_married_adults: 2,
+      num_unmarried_adults: 1, num_children_over_two: 1, num_children_under_two: 0,
+      description: "This married couple fled Somalia in 2001 with their sone and the"\
+      " wife's elderly mother.  They have lived in Dadaab refugee camp for the past"\
+      " 15 years.")
+
+      expect(Family.retired.first.first_name).to eq("TestFirst")
+      expect(Family.active.first.first_name).to eq("Apple")
+    end
+  end
+
+  it "outputs donations received" do
+    Supply.create(name: "Kitchen Chair", value: 10.0,
+    description: "New or used.  Used must be in good condition.",
+    multiplier_type: "person")
+    Supply.create(name: "Silverware Set", value: 1.5,
+    description: "New or used. Set consists of fork, spoon and knife.",
+    multiplier_type: "person")
+    Supply.create(name: "Plate", value: 2.0, description: "New or used.",
+    multiplier_type: "person")
+
+    user1 = User.create(username: "user1", password: "password")
+    donation1 = Donation.create(status: "Pledged", user: user1)
+    received_donation1 = Donation.create(status: "Received", user: user1)
+    nationality1 = Nationality.create(photo_path: "somali_photo.jpeg", info_link: "http://www.rescue.org/blog/a-precarious-life-somali-refugees-nairobi",
+    greeting: "somali_greeting.png", name: "Somali")
+    past_family1 = Family.create(first_name: "TestFirst", last_name: "TestLast",
+    arrival_date: 10.days.ago, donation_deadline: 15.days.ago,
+    nationality_id: nationality1.id, num_married_adults: 2, num_unmarried_adults: 1,
+    num_children_over_two: 1, num_children_under_two: 0,
+    description: "This married couple fled Somalia in 2001 with their sone and"\
+    " the wife's elderly mother.  They have lived in Dadaab refugee camp for the"\
+    " past 15 years.")
+    past_family1.create_supply_items
+    received_donation_item1 = DonationItem.create(quantity: 1,
+    supply_item: past_family1.supply_items.first, donation: received_donation1)
+
+    expect(past_family1.donations_received[0].donation_id).to eq(2)
+  end
 end
