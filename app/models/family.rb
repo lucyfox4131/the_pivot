@@ -12,6 +12,7 @@ class Family < ActiveRecord::Base
   has_many :categories, through: :category_families
   has_many :supply_items
   has_many :supplies, through: :supply_items
+  has_many :donation_items, through: :supply_items
   belongs_to :nationality
 
   scope :retired, -> {where("arrival_date < ?", Date.today)}
@@ -60,7 +61,7 @@ class Family < ActiveRecord::Base
   end
 
   def percentage_donated
-    ((value_of_supplies_purchased / value_of_supplies_needed)*100).to_i
+    ((value_of_supplies_purchased / value_of_supplies_needed) * 100).to_i
   end
 
   def retired?
@@ -68,8 +69,6 @@ class Family < ActiveRecord::Base
   end
 
   def donations_received
-    supply_items.map do |supply_item|
-      DonationItem.where(supply_item: supply_item)
-    end.flatten.compact
+    donation_items
   end
 end

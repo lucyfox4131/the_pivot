@@ -2,10 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Family, type: :model do
 
-  it {should have_many :categories}
   it { should have_many(:categories) }
+  it { should have_many(:category_families) }
   it { should have_many(:supplies) }
   it { should belong_to(:nationality) }
+  it { should have_many(:supply_items) }
+  it { should have_many(:donation_items) }
 
   it { should validate_presence_of(:first_name) }
   it { should validate_presence_of(:last_name) }

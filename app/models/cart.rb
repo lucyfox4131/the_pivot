@@ -27,10 +27,8 @@ class Cart
   end
 
   def total_price
-    total = 0
-    contents.map do |item_id, quantity|
-      total += SupplyItem.find(item_id).supply.value * quantity
-    end
-    total.to_f
+    contents.reduce(0) do |total, (item_id, quantity)|
+      total + SupplyItem.find(item_id).supply.value * quantity
+    end.to_f
   end
 end

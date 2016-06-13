@@ -34,8 +34,7 @@ class SupplyItem < ActiveRecord::Base
   end
 
   def quantity_remaining
-    num_donated = DonationItem.where(supply_item_id: id).sum(:quantity)
-    quantity - num_donated
+    quantity - donation_items.sum(:quantity)
   end
 
   def subtotal(quantity)
