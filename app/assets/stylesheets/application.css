@@ -73,7 +73,6 @@
   text-decoration: none;
 }
 
-
 .greeting {
   border: 2px solid black;
   border-radius: 10px;
@@ -86,14 +85,39 @@
 .greeting p {
   text-align: center;
 }
+
+.lead-text {
+  background-color: #1f1f14;
+  color: white;
+  font-size: 14px;
+  /*padding-bottom: 36px;*/
+}
+
+.lead-text .pop {
+  color: #ffbf00;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.lead-text a {
+  color: #ffbf00;
+}
+
+.lead-text .btn{
+  margin-top: 8px;
+  color: #ffbf00;
+}
+
 .logo {
   max-width: 50px;
 }
+
 .nationality {
   margin: 3rem 0;
   padding-right: 1rem;
   padding-left: 1rem;
 }
+
 .nationality p + h4 {
   margin-top: 1.5rem;
 }

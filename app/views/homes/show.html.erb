@@ -1,0 +1,44 @@
+<div class="row-1">
+  <div class="lead-text col-sm-3">
+    <p>Imagine <span class="pop"> <a href="https://medium.com/uprooted/what-s-in-my-bag-758d435f6e62#.yx166rox8">fleeing your home</a></span> with just a backpack</p>
+
+     <p>Crossing an <span class="pop"> <a href="https://medium.com/uprooted/stranded-lives-3aedc80c1337#.jlsgtlysv">ocean in a raft, </a></span> only to find the borders closed</p>
+
+     <p>Getting the chance to <span class="pop">start over in America</span></p>
+
+     <p> Arriving with sparse possessions, <span class="pop">no money</span>, little English, and few prospects.</p>
+
+     <h3>But welcomed by <span class="pop">safety, freedom and the generosity</span> of the American people.</h3>
+  </div>
+  <div class="home-photo col-sm-6">
+    <%= image_tag "cover_syria.jpeg", class:"img-responsive" %>
+    <figcaption>this is something</figcaption>
+  </div>
+  <div class="categories col-sm-3 btn-group-vertical">
+    <h2>Categories</h2>
+    <% @categories.map do |category| %>
+      <%= link_to category.name, category_path(category), class: "btn btn-info" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row2">
+  <div class="col-sm-4 panel panel-info">
+      <div class="panel-heading">Total Amount of Items Raised</div>
+      <div class="panel-body">
+        <p><%= @donation_stats[:num_items] %></p>
+      </div>
+  </div>
+  <div class="money-raised col-sm-4 panel panel-info">
+    <div class="panel-heading">Money Raised</div>
+    <div class="panel-body">
+      <p><%= @donation_stats[:money_raised] %></p>
+    </div>
+  </div>
+  <div class="num-families col-sm-4 panel panel-info">
+    <div class="panel-heading">Number of Families Helped</div>
+    <div class="panel-body">
+      <p><%= @donation_stats[:num_families] %></p>
+    </div>
+  </div>
+</div>

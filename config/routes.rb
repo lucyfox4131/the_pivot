@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   resources :donations, only: [:index, :show, :new, :create]
 
-  root to: "families#index"
+  resources :homes, only: [:show]
+
+  root to: "homes#show"
 
   resources :categories, only: [:show], path: ""
 end
