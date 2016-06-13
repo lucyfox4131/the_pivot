@@ -48,7 +48,7 @@ family1 = Family.create(first_name: "TestFirst",
   num_unmarried_adults: 1,
   num_children_over_two: 1,
   num_children_under_two: 0,
-  description: "This married couple fled Somalia in 2001 with their sone and"\
+  description: "This married couple fled Somalia in 2001 with their son and"\
     " the wife's elderly mother.  They have lived in Dadaab refugee camp for"\
     " the past 15 years.")
 family2 = Family.create(first_name: "TestFirst",
@@ -104,7 +104,7 @@ past_family1 = Family.create(first_name: "TestFirst",
   num_unmarried_adults: 1,
   num_children_over_two: 1,
   num_children_under_two: 0,
-  description: "This married couple fled Somalia in 2001 with their sone and"\
+  description: "This married couple fled Somalia in 2001 with their son and"\
     " the wife's elderly mother.  They have lived in Dadaab refugee camp "\
     " for the past 15 years.")
 
