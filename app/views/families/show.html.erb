@@ -24,14 +24,14 @@
 <div class="profile">
 
   <div class="col-sm-6 photo">
-    <%= image_tag @family.nationality.photo_path %>
+    <%= image_tag @family.nationality.photo_path, :class => "img-responsive center-block" %>
     <p> <%=  @family.description %> </p>
   </div>
 
   <div class="col-sm-4 details">
 
     <div class="greeting">
-      <%= image_tag @family.nationality.greeting %>
+      <%= image_tag @family.nationality.greeting, :class => "img-responsive center-block" %>
       <p>Welcome to America</p>
     </div>
 
@@ -55,6 +55,7 @@
 <div class="col-sm-10">
 
 <% if !@family.retired? %>
+  <h4>Welcome this family with the following donations:</h4>
   <table class="table">
     <tr>
       <th>Donation Item</th>
@@ -84,6 +85,8 @@
     <% end  %>
   </table>
 <% else %>
+  <h4>This family was welcomed with the following donations:</h4>
+
     <table class="table">
       <tr>
         <th>Donated Item</th>

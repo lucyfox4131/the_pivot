@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="container">
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -19,9 +19,9 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <h2 class="brand brand-name navbar-left">
-        <a href="/"><%= image_tag "reSTORE_small.png"%></a>
+        <a href="/"><%= image_tag "reSTORE.png", class: "logo"%></a>
       </h2>
-          <li><%= link_to "All Families", families_path %></li>
+          <li><%= link_to "Welcome a refugee family to the US", families_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
