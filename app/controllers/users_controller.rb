@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    if !current_user
+      flash[:warning] = "Please login to see your dashboard"
+      redirect_to login_path
+    end
   end
 
   def create
@@ -20,7 +24,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    redirect_to root_path if (!current_user || current_user.id != params[:id].to_i)
+    if (!current_user || current_user.id != params[:id].to_i)
+      flash[:warning] = "Oops, you visited the wrong page."
+      redirect_to root_path
+    end
     @user = User.find(params[:id])
   end
 

@@ -1,6 +1,7 @@
 class SupplyItem < ActiveRecord::Base
   belongs_to :supply
   belongs_to :family
+  has_many :donation_items
 
   def self.get_supply_list_from_cart(cart_items)
     cart_items.map do |supply_item_id, _quantity|
