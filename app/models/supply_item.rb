@@ -15,4 +15,30 @@ class SupplyItem < ActiveRecord::Base
     end
     hash
   end
+
+  def self.find_family(id)
+    find(id).family
+  end
+
+  def name
+    supply.name
+  end
+
+  def description
+    supply.description
+  end
+
+  def value
+    supply.value
+  end
+
+  def quantity_remaining
+    num_donated = DonationItem.where(supply_item_id: id).sum(:quantity)
+    quantity - num_donated
+  end
+
+  def subtotal(quantity)
+    supply.value * quantity
+  end
+
 end

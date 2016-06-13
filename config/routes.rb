@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :families, only: [:index, :show]
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
 
   resources :cart, only: [:index]
 
