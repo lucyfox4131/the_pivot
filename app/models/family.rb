@@ -44,7 +44,6 @@ class Family < ActiveRecord::Base
   end
 
   def value_of_supplies_needed
-    # byeebug
     supply_items.reduce(0) do |sum, supply_item|
       sum + (supply_item.supply.value * supply_item.quantity)
     end
