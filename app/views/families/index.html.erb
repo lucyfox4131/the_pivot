@@ -18,7 +18,7 @@
   <div class="col-lg-6 <%=nationality.name%>">
     <h4> <%= nationality.name %> Families Arriving Soon:</h4>
     <ul>
-      <% nationality.families.each do |family| %>
+      <% nationality.families.active.each do |family| %>
         <li><%= link_to "Family of #{family.num_people}", family_path(family) %>: arriving on <%= family.arrival_date.to_formatted_s(:long) %></li>
       <% end %>
     </ul>
