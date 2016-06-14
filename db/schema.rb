@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611001336) do
+ActiveRecord::Schema.define(version: 20160614031330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 20160611001336) do
     t.string   "first_name"
     t.string   "last_name"
     t.date     "arrival_date"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "num_married_adults"
     t.integer  "num_unmarried_adults"
     t.integer  "num_children_over_two"
@@ -66,6 +66,10 @@ ActiveRecord::Schema.define(version: 20160611001336) do
     t.date     "donation_deadline"
     t.integer  "nationality_id"
     t.string   "description"
+    t.string   "family_photo_file_name"
+    t.string   "family_photo_content_type"
+    t.integer  "family_photo_file_size"
+    t.datetime "family_photo_updated_at"
   end
 
   add_index "families", ["nationality_id"], name: "index_families_on_nationality_id", using: :btree
