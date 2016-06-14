@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.feature "user can see all donations" do
   scenario "authenticated user sees list of only her donations" do
 
-    user = User.create(username: "test", password: "password")
-    other_user = User.create(username: "other", password: "password")
+    user = User.create(username: "test", password: "password", email: "test@example.com")
+    other_user = User.create(username: "other", password: "password", email: "test@example.com")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 

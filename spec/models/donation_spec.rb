@@ -10,7 +10,7 @@ RSpec.describe Donation, type: :model do
   end
 
   it "returns correct donation total" do
-    user = User.create(username: "TestUser", password: "password")
+    user = User.create(username: "TestUser", password: "password", email: "email@example.com")
     supply = Supply.create(name: "Small Pot",
       value: 3.0,
       description: "New or used.",

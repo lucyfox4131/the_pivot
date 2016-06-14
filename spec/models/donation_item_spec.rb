@@ -5,7 +5,7 @@ RSpec.describe DonationItem, type: :model do
   it {should belong_to(:supply_item)}
 
   it "associates donations and donation items with users" do
-    user = User.create(username: "TestUser", password: "password")
+    user = User.create(username: "TestUser", password: "password", email: "email@example.com")
     supply = Supply.create(name: "Small Pot",
       value: 3.0,
       description: "New or used.",
@@ -58,7 +58,7 @@ RSpec.describe DonationItem, type: :model do
       description: "New or used.  Used must be in good condition.",
       multiplier_type: "adult")
     family1.create_supply_items
-    user1 = User.create(username: "user1", password: "password")
+    user1 = User.create(username: "user1", password: "password", email: "email@example.com")
     donation1 = Donation.create(status: 'pledged', user: user1)
     donation_item1 = DonationItem.create(quantity: 1,
       supply_item: family1.supply_items.first,
@@ -88,7 +88,7 @@ RSpec.describe DonationItem, type: :model do
       description: "New or used.  Used must be in good condition.",
       multiplier_type: "adult" )
     family1.create_supply_items
-    user1 = User.create(username: "user1", password: "password")
+    user1 = User.create(username: "user1", password: "password", email: "email@example.com")
     donation1 = Donation.create(status: 'pledged', user: user1)
     donation_item1 = DonationItem.create(quantity: 1,
       supply_item: family1.supply_items.first,
@@ -98,7 +98,7 @@ RSpec.describe DonationItem, type: :model do
   end
 
   it "returns correct family nationality" do
-    user = User.create(username: "TestUser", password: "password")
+    user = User.create(username: "TestUser", password: "password", email: "email@example.com")
     supply = Supply.create(name: "Small Pot",
       value: 3.0,
       description: "New or used.",
@@ -130,7 +130,7 @@ RSpec.describe DonationItem, type: :model do
   end
 
   it "returns correct family size" do
-    user = User.create(username: "TestUser", password: "password")
+    user = User.create(username: "TestUser", password: "password", email: "email@example.com")
     supply = Supply.create(name: "Small Pot", value: 3.0, description: "New or used.", multiplier_type: "household")
 
     nationality = Nationality.create(photo_path: "http://www.criticalthreats.org/sites/default/files/AEI_Somalia_Map_Political.gif" ,info_link: "Somali", greeting: "most-critical", name: "Somali")
@@ -146,7 +146,7 @@ RSpec.describe DonationItem, type: :model do
   end
 
   it "returns correct family description" do
-    user = User.create(username: "TestUser", password: "password")
+    user = User.create(username: "TestUser", password: "password", email: "email@example.com")
     supply = Supply.create(name: "Small Pot",
       value: 3.0,
       description: "New or used.",
@@ -179,7 +179,7 @@ RSpec.describe DonationItem, type: :model do
 
 
   it "returns correct item name" do
-    user = User.create(username: "TestUser", password: "password")
+    user = User.create(username: "TestUser", password: "password", email: "email@example.com")
     supply = Supply.create(name: "Small Pot",
       value: 3.0,
       description: "New or used.",
@@ -211,7 +211,7 @@ RSpec.describe DonationItem, type: :model do
   end
 
   it "returns correct item value" do
-    user = User.create(username: "TestUser", password: "password")
+    user = User.create(username: "TestUser", password: "password", email: "email@example.com")
     supply = Supply.create(name: "Small Pot",
       value: 3.0,
       description: "New or used.",
@@ -243,7 +243,7 @@ RSpec.describe DonationItem, type: :model do
   end
 
   it "returns correct item subtotal" do
-    user = User.create(username: "TestUser", password: "password")
+    user = User.create(username: "TestUser", password: "password", email: "email@example.com")
     supply = Supply.create(name: "Small Pot",
       value: 3.0,
       description: "New or used.",
@@ -275,7 +275,7 @@ RSpec.describe DonationItem, type: :model do
   end
 
   it "outputs correct family object" do
-    user = User.create(username: "TestUser", password: "password")
+    user = User.create(username: "TestUser", password: "password", email: "email@example.com")
     supply = Supply.create(name: "Small Pot", value: 3.0, description: "New or used.", multiplier_type: "household")
 
     nationality = Nationality.create(photo_path: "http://www.criticalthreats.org/sites/default/files/AEI_Somalia_Map_Political.gif" ,info_link: "Somali", greeting: "most-critical", name: "Somali")
