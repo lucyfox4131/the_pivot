@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "user can login and logout" do
   scenario "they can login and see their dashboard" do
-
     nationality = Nationality.create(photo_path: "x",
       info_link: "x",
       greeting: "x",

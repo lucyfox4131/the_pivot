@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CartItemHandler, type: :model do
-
   it "initializes correctly" do
-
     nationality = Nationality.create(photo_path: "x",
       info_link: "x",
       greeting: "x",
@@ -28,7 +26,5 @@ RSpec.describe CartItemHandler, type: :model do
 
     expect(handler.supply_item.name).to eq("Twin Bedframe")
     expect(handler.quantity).to eq(1)
-
   end
-
 end
