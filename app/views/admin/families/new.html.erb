@@ -1,6 +1,6 @@
 <h1>Create a New Family</h1>
 
-<%= form_for [:admin, @family] do |f| %>
+<%= form_for [:admin, @family], multipart: true do |f| %>
   <div class="form-group">
     <%= f.label :first_name %>
     <%= f.text_field :first_name, class: "form-control" %>
@@ -9,6 +9,11 @@
   <div class="form-group">
     <%= f.label :last_name %>
     <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :family_photo %>
+    <%= f.file_field :family_photo %>
   </div>
 
   <div class="form-group">

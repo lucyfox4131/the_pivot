@@ -10,6 +10,7 @@ class Admin::FamiliesController < Admin::BaseController
   def create
     @family = Family.new(family_params)
     if @family.save
+      @family.create_supply_items
       flash[:success] = "Family with last name, #{@family.last_name}, created!"
       redirect_to family_path(@family)
     else
@@ -30,6 +31,7 @@ class Admin::FamiliesController < Admin::BaseController
                                    :num_children_under_two,
                                    :donation_deadline,
                                    :nationality_id,
-                                   :description)
+                                   :description,
+                                   :family_photo)
   end
 end

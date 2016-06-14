@@ -15,6 +15,14 @@ class Family < ActiveRecord::Base
   has_many :donation_items, through: :supply_items
   belongs_to :nationality
 
+  has_attached_file :family_photo, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>',
+    large: '600x600>'
+  }
+  validates_attachment_content_type :family_photo, :content_type => /\Aimage\/.*\Z/
+
   scope :retired, -> {where("arrival_date < ?", Date.today)}
   scope :active, -> {where("arrival_date > ?", Date.today)}
 
