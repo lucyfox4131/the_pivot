@@ -1,3 +1,4 @@
+
 class Admin::FamiliesController < Admin::BaseController
 
   def index
@@ -18,6 +19,8 @@ class Admin::FamiliesController < Admin::BaseController
     if @family.save
       @family.create_supply_items
       flash[:success] = "Family with last name, #{@family.last_name}, created!"
+      url = "https://refugeerestore.herokuapp.com/families/#{@family.id}"
+      TextSender.send_text_message(url)
       redirect_to admin_family_path(@family)
     else
       flash.now[:warning] = @family.errors.full_messages.join(", ")
