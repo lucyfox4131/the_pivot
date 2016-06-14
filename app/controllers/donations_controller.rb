@@ -18,11 +18,11 @@ class DonationsController<ApplicationController
   end
 
   def new
-    @supplies = SupplyItem.get_supply_list_from_cart(session[:cart])
+    @supplies = @cart.get_supply_list_from_cart
   end
 
   def create
-    @cart_supply_items = SupplyItem.get_supply_items_from_cart(session[:cart])
+    @cart_supply_items = @cart.get_supply_items_hash
     @donation = Donation.new(user_id: current_user.id, status: "Pledged")
     if @donation.save
       @cart_supply_items.each do |supply_item, quantity|
