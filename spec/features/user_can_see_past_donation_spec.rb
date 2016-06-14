@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "user sees past donation" do
   scenario "donation page is shown for authenticated user" do
-
     user = User.create(username: "test", password: "password")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
@@ -47,7 +46,6 @@ RSpec.feature "user sees past donation" do
   end
 
   scenario "donation page is not shown if not user's donation" do
-
     user = User.create(username: "test", password: "password")
     other_user = User.create(username: "other", password: "password")
 
@@ -69,7 +67,5 @@ RSpec.feature "user sees past donation" do
 
     expect(current_path).to eq(root_path)
     expect(page).to have_content("No donation found.")
-
   end
-
 end

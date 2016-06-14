@@ -58,5 +58,4 @@ RSpec.describe SupplyItem, type: :model do
 
     expect(supply_item.quantity_remaining).to eq(1)
   end
-
 end

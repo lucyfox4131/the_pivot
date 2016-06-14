@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature  "family list show correct items needed when donations made" do
-
   scenario "item removed when fully donated" do
     user = User.create(username: "user1", password: "password")
     nationality1 = Nationality.create(photo_path: "x",

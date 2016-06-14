@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "user sees correct info for current and past families" do
-
   scenario "they see a form for family that will arrive" do
-
     nationality = Nationality.create(photo_path: "x",
       info_link: "x",
       greeting: "x",
@@ -32,11 +30,9 @@ RSpec.feature "user sees correct info for current and past families" do
     expect(page).to have_content(family.arrival_date.to_formatted_s(:long))
     expect(page).to have_content("Donate by:")
     expect(page).to have_button("add to cart")
-
   end
 
   scenario "they see list of donations for family that already arrived" do
-
       nationality = Nationality.create(photo_path: "x",
         info_link: "x",
         greeting: "x",
@@ -75,6 +71,8 @@ RSpec.feature "user sees correct info for current and past families" do
         expect(page).to have_content("Donated Item")
         expect(page).to have_content(donation.created_at.to_formatted_s(:long))
         expect(page).to have_content("School Supplies")
+      end
 
+      scenario "" do
       end
     end
