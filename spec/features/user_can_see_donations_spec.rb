@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "user can see all donations" do
   scenario "authenticated user sees list of only her donations" do
-
     user = User.create(username: "test", password: "password")
     other_user = User.create(username: "other", password: "password")
 
@@ -35,7 +34,6 @@ RSpec.feature "user can see all donations" do
     expect(page).to have_content("1 Small Pot")
     expect(page).to have_content("1 Couch")
     expect(page).to_not have_content("1 Large Pot")
-
   end
 
   scenario "guest user visiting donations is redirected to log in" do
@@ -43,9 +41,5 @@ RSpec.feature "user can see all donations" do
 
     expect(current_path).to eq(login_path)
     expect(page).to have_content("Please login to see your donation history")
-
   end
-
-
-
 end

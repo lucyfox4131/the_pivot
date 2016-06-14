@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Cart, type: :model do
-
   it "adds//deletes an item to and from the cart" do
     supply_item = Supply.create(name: "Twin Bedframe", value:  30.0, description: "New or used.  Used must be in good condition.", multiplier_type: "child")
     supply_item1 = Supply.create(name: "Twin Mattress", value:  100.0, description: "Must be new.", multiplier_type: "child")
@@ -54,7 +53,6 @@ RSpec.describe Cart, type: :model do
 
     family1.create_supply_items
 
-
     cart = Cart.new({})
     cart.add_cart_item(supply_item.id, 1)
     cart.add_cart_item(supply_item1.id, 2)
@@ -80,7 +78,5 @@ RSpec.describe Cart, type: :model do
 
     expect(cart.get_supply_items.first.supply_item).to eq(supply_item)
     expect(cart.get_supply_items.first.quantity).to eq(2)
-
   end
-
 end

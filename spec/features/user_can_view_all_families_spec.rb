@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "user can view all families" do
-
   scenario "they see a list of all active families" do
-
     nationality1 = Nationality.create(photo_path: "x",
       info_link: "x",
       greeting: "x",
