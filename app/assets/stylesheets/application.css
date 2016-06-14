@@ -90,7 +90,8 @@
   background-color: #1f1f14;
   color: white;
   font-size: 14px;
-  /*padding-bottom: 36px;*/
+  padding-top: 10px;
+  padding-bottom: 18px;
 }
 
 .lead-text .pop {
@@ -125,3 +126,40 @@
 .details h4 {
   text-align: center;
 }
+
+.stat-type {
+  background-color: #1f1f14;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  float: left;
+  width: 50%;
+  height: 150px;
+  padding-top: 35px;
+  margin-left: -15px;
+}
+
+.stat {
+  background-color: #ffbf00;
+  text-align: center;
+  font-weight: bold;
+  float: left;
+  width: 49%;
+  height: 150px;
+  padding-top: 50px;
+  margin-left: -10px;
+}
+
+.stat-type h4 {
+  font-size: 28px;
+}
+
+.stat h4 {
+  font-size: 36px;
+}
+
+/*.categories {
+  margin-top: -2px;
+  background-color: #1f1f14;
+  color: white;
+}*/

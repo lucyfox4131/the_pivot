@@ -28,7 +28,7 @@ RSpec.feature "user can checkout with items in cart" do
 
     click_on "Confirm Donation"
 
-    expect(page).to have_content "Your donation, #1, was recieved. Thank you!"
+    expect(page).to have_content "Your donation (ID#: 1) was recieved. Thank you!"
     expect(page).to have_content "Somali family of 3"
     expect(page).to have_content "1 Small Pot"
     expect(page).to have_content "Pledged"
