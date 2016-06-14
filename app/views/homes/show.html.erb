@@ -12,33 +12,39 @@
   </div>
   <div class="home-photo col-sm-6">
     <%= image_tag "cover_syria.jpeg", class:"img-responsive" %>
-    <figcaption>this is something</figcaption>
+    <figcaption></br></figcaption>
   </div>
-  <div class="categories col-sm-3 btn-group-vertical">
-    <h2>Categories</h2>
+  <div class="categories col-sm-3 btn-group-vertical btn">
+    <h2>Families </br>by Category</h2>
     <% @categories.map do |category| %>
-      <%= link_to category.name, category_path(category), class: "btn btn-info" %>
+      <%= link_to category.name, category_path(category), class: " categories btn btn-default" %>
     <% end %>
   </div>
 </div>
 
-<div class="row-2">
-  <div class="col-sm-4 panel panel-info">
-      <div class="panel-heading">Total Amount of Items Raised</div>
-      <div class="panel-body">
-        <p><%= @donation_stats[:num_items] %></p>
+<div class="row2">
+  <div class="items col-sm-4">
+      <div class="stat-type">
+        <h4>Donations Received</h4>
+      </div>
+      <div class="stat">
+        <h4><%= @donation_stats[:num_items] %></h4>
       </div>
   </div>
-  <div class="money-raised col-sm-4 panel panel-info">
-    <div class="panel-heading">Money Raised</div>
-    <div class="panel-body">
-      <p><%= @donation_stats[:money_raised] %></p>
+  <div class="money-raised col-sm-4">
+    <div class="stat-type">
+      <h4>Money Raised</h4>
+      </div>
+    <div class="stat">
+      <h4><%= number_to_currency @donation_stats[:money_raised], :precision => 0 %></h4>
     </div>
   </div>
-  <div class="num-families col-sm-4 panel panel-info">
-    <div class="panel-heading">Number of Families Helped</div>
-    <div class="panel-body">
-      <p><%= @donation_stats[:num_families] %></p>
+  <div class="num-families col-sm-4 ">
+    <div class="stat-type">
+      <h4>Families Helped</h4>
+    </div>
+    <div class="stat">
+      <h4><%= @donation_stats[:num_families] %></h4>
     </div>
   </div>
 </div>
