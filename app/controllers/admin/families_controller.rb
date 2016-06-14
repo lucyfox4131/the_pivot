@@ -4,8 +4,32 @@ class Admin::FamiliesController < Admin::BaseController
   end
 
   def new
+    @family = Family.new
   end
 
   def create
+    @family = Family.new(family_params)
+    if @family.save
+      flash[:success] = "Family with last name, #{@family.last_name}, created!"
+      redirect_to family_path(@family)
+    else
+      flash.now[:warning] = @family.errors.full_messages.join(", ")
+      render :new
+    end
+  end
+
+  private
+
+  def family_params
+    params.require(:family).permit(:first_name,
+                                   :last_name,
+                                   :arrival_date,
+                                   :num_married_adults,
+                                   :num_unmarried_adults,
+                                   :num_children_over_two,
+                                   :num_children_under_two,
+                                   :donation_deadline,
+                                   :nationality_id,
+                                   :description)
   end
 end
