@@ -12,7 +12,8 @@
 
 </div>
 
-<h4 class="col-sm-6 details">Arrival Date:
+<h4 class="col-sm-6 details">
+  Arrival Date:
   <% if @family.retired? %>
     <h4>Family Arrived</h4></h4>
   <% else %>
@@ -41,7 +42,12 @@
 
     <div class="family-info">
         <table class="table">
-          <tr><td>Married Adults: <%= @family.num_married_adults %></td>
+          <tr>
+          <td>First Name: <%= @family.first_name %></td>
+          <td>Last Name: <%= @family.last_name %></td>
+        </tr>
+        <tr>
+          <td>Married Adults: <%= @family.num_married_adults %></td>
           <td>Unmarried Adults: <%= @family.num_unmarried_adults %></td></tr>
           <tr><td>Children Over Two: <%= @family.num_children_over_two %></td>
           <td>Children Under Two: <%= @family.num_children_under_two %></td></tr>
@@ -53,10 +59,8 @@
 </div>
 
 <div class="col-sm-10">
+  <h4>Date Family's Profile Was Created: <%= @family.created_at.to_formatted_s(:long) %></h4>
 
-  <h4>Welcome them to the United States.  Donate these items to help them set up their new home.</h4>
-
-  <h5>This family needs a total of <%= number_to_currency @supplies_needed_value %> in donations.</h5>
   <h5><%= number_to_currency @supplies_purchased_value %> has been donated.</h5>
   <div class="progress">
     <div class="progress-bar" role="progressbar" aria-valuemin="0"
@@ -83,20 +87,18 @@
           <td><%= supply_item.name %></br>
           <em><%= supply_item.description %></em></td>
           <td><%= number_to_currency supply_item.value %></td>
-          <td><%= f.hidden_field :id, :value => supply_item.id %>
-            <div class="form-group">
-              <%= f.select(:quantity, (1..supply_item.quantity_remaining), { :prompt => '0'}, { class: 'form-control' }) %>
-            </div>
-          </td>
-          <td><%= f.submit 'add to cart', class: "btn btn-warning"%></td>
+          <td><%= supply_item.quantity %></td>
         </tr>
         </div>
       <% end %>
       <% end %>
     <% end  %>
   </table>
+
+
 <% else %>
   <h4>This family was welcomed with the following donations:</h4>
+
     <table class="table">
       <tr>
         <th>Donated Item</th>

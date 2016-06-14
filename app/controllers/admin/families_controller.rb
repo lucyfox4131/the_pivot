@@ -6,6 +6,7 @@ class Admin::FamiliesController < Admin::BaseController
   end
 
   def show
+    @family = Family.find(params[:id])
   end
 
   def new
