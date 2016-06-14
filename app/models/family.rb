@@ -21,6 +21,7 @@ class Family < ActiveRecord::Base
     medium: '300x300>',
     large: '600x600>'
   }
+
   validates_attachment_content_type :family_photo, :content_type => /\Aimage\/.*\Z/
 
   scope :retired, -> {where("arrival_date < ?", Date.today)}

@@ -18,7 +18,7 @@ class Admin::FamiliesController < Admin::BaseController
     if @family.save
       @family.create_supply_items
       flash[:success] = "Family with last name, #{@family.last_name}, created!"
-      redirect_to family_path(@family)
+      redirect_to admin_family_path(@family)
     else
       flash.now[:warning] = @family.errors.full_messages.join(", ")
       render :new
