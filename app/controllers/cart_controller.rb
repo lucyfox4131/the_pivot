@@ -2,7 +2,8 @@ class CartController < ApplicationController
 
   def index
     if !session.exists? || !@cart.contents.empty?
-      @supply_items = SupplyItem.get_supply_items_from_cart(session[:cart])
+      @cart_items = @cart.get_supply_items
     end
   end
+  
 end

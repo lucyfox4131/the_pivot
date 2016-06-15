@@ -14,6 +14,16 @@
           </div>
 
           <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :cell %>
+            <%= f.telephone_field :cell, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
             <%= f.label :current_password %>
             <%= f.password_field :current_password, class: "form-control" %>
           </div>

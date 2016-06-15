@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe SupplyItem, type: :model do
   it { should belong_to(:supply) }
   it { should belong_to(:family) }
+  it { should have_many(:donation_items) }
 
   it "has gets correct name, value, and desctiption" do
     nationality1 = Nationality.create(photo_path: "x",
@@ -49,7 +50,7 @@ RSpec.describe SupplyItem, type: :model do
       multiplier_type: "child"  )
     supply_item = SupplyItem.create(family: fam1, supply: supply, quantity: 2)
 
-    user1 = User.create(username: "user1", password: "password")
+    user1 = User.create(username: "user1", password: "password", email: "email@example.com")
     donation = Donation.create(status: "Pledged", user: user1)
     DonationItem.create(quantity: 1,
       supply_item: fam1.supply_items.first,
@@ -57,5 +58,4 @@ RSpec.describe SupplyItem, type: :model do
 
     expect(supply_item.quantity_remaining).to eq(1)
   end
-
 end

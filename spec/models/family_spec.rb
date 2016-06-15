@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Family, type: :model do
-
-  it {should have_many :categories}
   it { should have_many(:categories) }
+  it { should have_many(:category_families) }
   it { should have_many(:supplies) }
   it { should belong_to(:nationality) }
+  it { should have_many(:supply_items) }
+  it { should have_many(:donation_items) }
 
   it { should validate_presence_of(:first_name) }
   it { should validate_presence_of(:last_name) }
@@ -241,5 +242,34 @@ RSpec.describe Family, type: :model do
     supply_item: past_family1.supply_items.first, donation: received_donation1)
 
     expect(past_family1.donations_received[0].donation_id).to eq(2)
+  end
+
+  it "outputs accurate percentage donated" do
+    Supply.create(name: "Kitchen Chair", value: 10.0,
+    description: "New or used.  Used must be in good condition.",
+    multiplier_type: "person")
+    Supply.create(name: "Silverware Set", value: 1.5,
+    description: "New or used. Set consists of fork, spoon and knife.",
+    multiplier_type: "person")
+    Supply.create(name: "Plate", value: 2.0, description: "New or used.",
+    multiplier_type: "person")
+
+    user1 = User.create(username: "user1", password: "password")
+    donation1 = Donation.create(status: "Pledged", user: user1)
+    received_donation1 = Donation.create(status: "Received", user: user1)
+    nationality1 = Nationality.create(photo_path: "somali_photo.jpeg", info_link: "http://www.rescue.org/blog/a-precarious-life-somali-refugees-nairobi",
+    greeting: "somali_greeting.png", name: "Somali")
+    past_family1 = Family.create(first_name: "TestFirst", last_name: "TestLast",
+    arrival_date: 10.days.ago, donation_deadline: 15.days.ago,
+    nationality_id: nationality1.id, num_married_adults: 2, num_unmarried_adults: 1,
+    num_children_over_two: 1, num_children_under_two: 0,
+    description: "This married couple fled Somalia in 2001 with their sone and"\
+    " the wife's elderly mother.  They have lived in Dadaab refugee camp for the"\
+    " past 15 years.")
+    past_family1.create_supply_items
+    received_donation_item1 = DonationItem.create(quantity: 1,
+    supply_item: past_family1.supply_items.first, donation: received_donation1)
+
+    expect(past_family1.percentage_donated).to eq(18)
   end
 end

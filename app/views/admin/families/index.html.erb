@@ -1,0 +1,23 @@
+<h1>Families Arriving Soon</h1>
+
+<div class="row nationality">
+<% @nationalities.each do |nationality| %>
+  <div class="col-md-6 <%=nationality.name%>">
+    <h4> <%= nationality.name %> Families Arriving Soon:</h4>
+
+    <%= render partial: 'family_list', locals: {families:nationality.families.active, current: true}%>
+
+  </div>
+<% end %>
+</div>
+
+<h1>Families Already Arrived</h1>
+
+<div class="row nationality">
+<% @nationalities.each do |nationality| %>
+  <div class="col-md-6 <%=nationality.name%>">
+    <h4> <%= nationality.name %> Families That Have Arrived:</h4>
+    <%= render partial: 'family_list', locals: {families:nationality.families.retired, current: false}%>
+  </div>
+<% end %>
+</div>

@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature  "family list show correct items needed when donations made" do
-
   scenario "item removed when fully donated" do
-    user = User.create(username: "user1", password: "password")
+    user = User.create(username: "user1", password: "password", email: "email@example.com")
     nationality1 = Nationality.create(photo_path: "x",
       info_link: "x",
       greeting: "x",
@@ -41,7 +40,7 @@ RSpec.feature  "family list show correct items needed when donations made" do
   end
 
   scenario "selector reduced when partially donated" do
-    user = User.create(username: "user1", password: "password")
+    user = User.create(username: "user1", password: "password", email: "email@example.com")
     nationality1 = Nationality.create(photo_path: "x",
       info_link: "x",
       greeting: "x",

@@ -1,4 +1,4 @@
-<h1 class='col-sm-10 col-sm-offset-1'>Help Welcome these Famililes to the United States</h1>
+<h1 class='col-sm-10 col-sm-offset-1'1>Help Welcome these Families to the United States</h1>
 
 <div class="well col-sm-10 col-sm-offset-1">
   <div class="container">
@@ -17,11 +17,7 @@
 <% @nationalities.each do |nationality| %>
   <div class="col-lg-5 col-sm-offset-1 <%=nationality.name%>">
     <h4> <%= nationality.name %> Families Arriving Soon:</h4>
-    <ul>
-      <% nationality.families.active.each do |family| %>
-        <li><%= link_to "Family of #{family.num_people}", family_path(family) %>: arriving on <%= format_date(family.arrival_date) %></li>
-      <% end %>
-    </ul>
+    <%= render partial: 'shared/confidential_family_list', locals: {families: nationality.families.active} %>
   </div>
 <% end %>
 </div>

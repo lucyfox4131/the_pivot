@@ -21,12 +21,6 @@
     </h4>
 <% end %>
 
-
-  <%# present @family do |family_presenter| %>
-    <%#= family_presenter.retired_or_active_header %>
-  <%# end %>
-
-
 <div class="profile">
 
   <div class="col-sm-6 col-sm-offset-1 photo">
@@ -53,12 +47,23 @@
           <td>Children Under Two: <%= @family.num_children_under_two %></td></tr>
         </table>
     </div>
-
   </div>
 
 </div>
 
 <div class="col-sm-10 col-sm-offset-1">
+
+  <% present @family do |family_presenter|  %>
+    <%= family_presenter.retired_or_active_progress_bar %>
+  <% end %>
+
+  <h5><%= currency @supplies_purchased_value %> has been donated.</h5>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuemin="0"
+        aria-valuemax="100" style="min-width: 2em; width: <%= @percentage_purchased %>%;">
+      <%= @percentage_purchased %>%
+    </div>
+  </div>
 
 <% if !@family.retired? %>
   <h4>Welcome this family with the following donations:</h4>
@@ -92,7 +97,6 @@
   </table>
 <% else %>
   <h4>This family was welcomed with the following donations:</h4>
-
     <table class="table">
       <tr>
         <th>Donated Item</th>
@@ -108,6 +112,5 @@
       <% end %>
     </table>
 <% end  %>
-
 
 </div>

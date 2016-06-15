@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     resource :dashboard, only: [:show]
+    resources :families, only: [:show, :new, :create, :index, :update]
   end
 
   resources :families, only: [:index, :show]
@@ -19,7 +20,9 @@ Rails.application.routes.draw do
 
   resources :donations, only: [:index, :show, :new, :create]
 
-  root to: "families#index"
+  resources :homes, only: [:show]
+
+  root to: "homes#show"
 
   resources :categories, only: [:show], path: ""
 end

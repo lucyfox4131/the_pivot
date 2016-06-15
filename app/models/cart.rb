@@ -27,10 +27,27 @@ class Cart
   end
 
   def total_price
-    total = 0
-    contents.map do |item_id, quantity|
-      total += SupplyItem.find(item_id).supply.value * quantity
+    contents.reduce(0) do |total, (item_id, quantity)|
+      total + SupplyItem.find(item_id).supply.value * quantity
+    end.to_f
+  end
+
+  def get_supply_items
+    contents.map do |supply_item_id, quantity|
+      CartItemHandler.new(supply_item_id, quantity)
     end
-    total.to_f
+  end
+
+  def get_supply_items_hash
+    get_supply_items.inject({}) do |hash, cart_item|
+      hash[cart_item.supply_item] = cart_item.quantity
+      hash
+    end
+  end
+
+  def get_supply_list_from_cart
+    get_supply_items.map do |cart_item|
+      cart_item.supply
+    end
   end
 end

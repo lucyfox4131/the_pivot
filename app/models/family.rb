@@ -12,7 +12,17 @@ class Family < ActiveRecord::Base
   has_many :categories, through: :category_families
   has_many :supply_items
   has_many :supplies, through: :supply_items
+  has_many :donation_items, through: :supply_items
   belongs_to :nationality
+
+  has_attached_file :family_photo, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>',
+    large: '600x600>'
+  }
+
+  validates_attachment_content_type :family_photo, :content_type => /\Aimage\/.*\Z/
 
   scope :retired, -> {where("arrival_date < ?", Date.today)}
   scope :active, -> {where("arrival_date > ?", Date.today)}
@@ -43,13 +53,31 @@ class Family < ActiveRecord::Base
     end
   end
 
+  def value_of_supplies_needed
+    supply_items.reduce(0) do |sum, supply_item|
+      sum + (supply_item.supply.value * supply_item.quantity)
+    end
+  end
+
+  def value_of_supplies_purchased
+    value = 0
+    supply_items.each do |supply_item|
+      supply_item.donation_items.each do |donation_item|
+        value += donation_item.quantity * supply_item.supply.value
+      end
+    end
+    value
+  end
+
+  def percentage_donated
+    ((value_of_supplies_purchased / value_of_supplies_needed) * 100).to_i
+  end
+
   def retired?
     arrival_date <= Date.today
   end
 
   def donations_received
-    supply_items.map do |supply_item|
-      DonationItem.where(supply_item: supply_item)
-    end.flatten.compact
+    donation_items
   end
 end

@@ -1,9 +1,6 @@
 require 'rails_helper'
-require 'database_cleaner'
 
 RSpec.describe Cart, type: :model do
-  DatabaseCleaner.cleaning do
-
   it "adds//deletes an item to and from the cart" do
     supply_item = Supply.create(name: "Twin Bedframe", value:  30.0, description: "New or used.  Used must be in good condition.", multiplier_type: "child")
     supply_item1 = Supply.create(name: "Twin Mattress", value:  100.0, description: "Must be new.", multiplier_type: "child")
@@ -56,7 +53,6 @@ RSpec.describe Cart, type: :model do
 
     family1.create_supply_items
 
-
     cart = Cart.new({})
     cart.add_cart_item(supply_item.id, 1)
     cart.add_cart_item(supply_item1.id, 2)
@@ -64,5 +60,23 @@ RSpec.describe Cart, type: :model do
     expect(cart.total_items).to eq(3)
     expect(cart.total_price).to eq(230.0)
   end
-end
+
+  it "finds supply items" do
+    nationality1 = Nationality.create(photo_path: "x",
+    info_link: "x",
+    greeting: "x", name: "Somali")
+    family1 = Family.create(first_name: "TestFirst", last_name: "TestLast",
+    arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now,
+    nationality_id: nationality1.id, num_married_adults: 2,
+    num_unmarried_adults: 1, num_children_over_two: 1, num_children_under_two: 0,
+    description: "x")
+    supply = Supply.create(name: "Twin Mattress", value:  100.0, description: "Must be new.", multiplier_type: "child")
+    supply_item = supply.supply_items.create(family: family1, quantity: 4)
+
+    cart = Cart.new({})
+    cart.add_cart_item(supply_item.id, 2)
+
+    expect(cart.get_supply_items.first.supply_item).to eq(supply_item)
+    expect(cart.get_supply_items.first.quantity).to eq(2)
+  end
 end

@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
+  before_action :check_for_correct_user, only: [:edit]
 
   def new
     @user = User.new
   end
 
   def show
+    if !current_user
+      flash[:warning] = "Please login to see your dashboard"
+      redirect_to login_path
+    end
   end
 
   def create
@@ -20,7 +25,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    redirect_to root_path if (!current_user || current_user.id != params[:id].to_i)
     @user = User.find(params[:id])
   end
 
@@ -38,6 +42,14 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :current_password)
+    params.require(:user).permit(:username, :password, :current_password, :email, :cell)
   end
+
+  def check_for_correct_user
+    if (!current_user || current_user.id != params[:id].to_i)
+      flash[:warning] = "Oops, you visited the wrong page."
+      redirect_to root_path
+    end
+  end
+
 end
