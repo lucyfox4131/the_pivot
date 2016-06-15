@@ -20,7 +20,6 @@
       <td><%= currency cart_item.value %></td>
       <td><%= currency cart_item.subtotal(cart_item.quantity) %></td>
 
-
       <%= form_for cart_item.supply_item, url: cart_item_path(cart_item.supply_item), method: :put do |f| %>
         <div class="<%= cart_item.supply.name %>">
           <td>
@@ -42,7 +41,6 @@
   <% present @cart do |cart_presenter| %>
     <%= cart_presenter.checkout_link %>
   <% end %>
-
 
 <% else %>
   <h3 class="text-center">There are no items in your cart</h3>

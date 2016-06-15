@@ -7,5 +7,4 @@ class CartPresenter < BasePresenter
       template.link_to "Login or Create Account to Checkout", template.login_path, class: "btn btn-primary"
     end
   end
-
 end

@@ -5,5 +5,4 @@ class CartController < ApplicationController
       @cart_items = @cart.get_supply_items
     end
   end
-  
 end

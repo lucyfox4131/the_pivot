@@ -26,5 +26,4 @@ class SupplyItem < ActiveRecord::Base
   def subtotal(quantity)
     supply.value * quantity
   end
-
 end

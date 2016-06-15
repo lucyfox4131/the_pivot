@@ -30,7 +30,6 @@
  .tags a:hover {
    text-decoration: none;
    color: white;
-
  }
 
  .tags {
@@ -42,7 +41,6 @@
   display: inline-block;
   max-width: 400px;
 }
-
 
 .learn-more {
   background-color: #1f1f14;
@@ -91,7 +89,8 @@
   color: white;
   font-size: 16px;
   padding-top: 10px;
-  padding-bottom: 18px;
+  padding-bottom: 2px;
+  margin-left: 15px;
 }
 
 .lead-text .pop {
@@ -101,11 +100,6 @@
 }
 
 .lead-text a {
-  color: #ffbf00;
-}
-
-.lead-text .btn{
-  margin-top: 8px;
   color: #ffbf00;
 }
 
@@ -132,12 +126,19 @@
   font-size: 28px;
 }
 
-.tweet{
-  font-size: 16px;
-}
-
 .tweets-div {
   margin-top: -20px;
+  color: white;
+  background: #2e2e2e;
+  margin-top: 0px;
+  margin-bottom: 60px;
+  max-height: 362px;
+  overflow: scroll;
+}
+
+.tweets-div blockquote {
+  font-size: 14px;
+  font-weight: normal;
 }
 
 .box {
@@ -152,19 +153,38 @@
 }
 
 .box h1 {
-  font-size: 60px;
-  font-size: 4vw;
+  font-size: 44px;
   color: #2e2e2e;
+  padding-top: 10px;
 }
 
 .box-grey {
   background: #2e2e2e;
+  min-height: 150px;
 }
+
 .box-yellow {
   background: #ffbf00;
   margin-left: -20px;
-  min-height: 136px;
+  min-height: 150px;
 }
+
 .custom-nav {
   padding-top: 20px;
+  font-size: 16px;
+}
+
+.twitter-image {
+  max-width: 50px;
+  display: block;
+  margin: auto;
+}
+
+.home-photo {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.home-photo img {
+  border: 2px solid #2e2e2e;
 }

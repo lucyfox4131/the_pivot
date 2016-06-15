@@ -6,7 +6,6 @@
 <h4>Updated on: <%= @donation.updated_at.to_date %></h4>
 <% end %>
 
-
 <table class="table">
   <tr>
     <th>Benefitting Families:</th>
@@ -16,7 +15,6 @@
     <th>Subtotal:</th>
   </tr>
 
-
   <% @donation.donation_items.each do |donation_item| %>
   <tr>
     <td><%= link_to donation_item.family_description, family_path(donation_item.supply_item.family) %></td>
@@ -24,9 +22,6 @@
     <td><%= donation_item.quantity %></td>
     <td><%= currency(donation_item.value) %></td>
     <td><%= currency(donation_item.subtotal) %></td>
-
   </tr>
-
   <% end %>
-
 </table>

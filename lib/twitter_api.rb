@@ -1,7 +1,7 @@
 class TwitterApi
 
   def self.get_tweets
-    client.user_timeline("Refugees", exclude_replies: true, include_rts: false, count: 20).take(2)
+    client.user_timeline("Refugees", exclude_replies: true, include_rts: false, count: 20).take(3)
   end
 
 

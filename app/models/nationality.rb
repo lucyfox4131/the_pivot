@@ -10,5 +10,4 @@ class Nationality < ActiveRecord::Base
     offset = rand(self.count)
     self.offset(offset).first
   end
-  
 end

@@ -10,5 +10,4 @@ class FamilyPresenter < BasePresenter
       template.content_tag(:h5, "This family received #{ template.currency family.value_of_supplies_purchased} in donations.")
     end
   end
-
 end

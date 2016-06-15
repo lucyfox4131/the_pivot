@@ -10,5 +10,4 @@ class BasePresenter
       @object
     end
   end
-
 end

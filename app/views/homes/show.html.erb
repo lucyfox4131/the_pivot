@@ -12,13 +12,14 @@
   </div>
 
   <div class="tweets-div col-sm-3">
-    <h2 class="tweet-heading">Latest Tweets from UNHCR</h2>
+    <h2 class="tweet-heading">Latest from UNHCR</h2>
+    <%= image_tag "twitter_logo.png", class:"twitter-image" %>
     <% @tweets.each do |tweet|  %>
     <blockquote class="tweet"><%= parsed_tweet tweet%></blockquote>
     <% end %>
+    <%= button_to "Follow UNHCR on Twitter", 'https://twitter.com/Refugees', class: "twitter-button btn btn-primary" %>
   </br>
 </div>
-
 
 <div>
     <div class="col-md-2 col-sm-3">
@@ -32,7 +33,6 @@
         </div>
     </div>
 
-
     <div class="col-md-2 col-sm-3">
         <div class="box box-grey">
             <h2 class="heading-md">Money Raised</h2>
@@ -44,11 +44,9 @@
         </div>
     </div>
 
-
     <div class="col-md-2 col-sm-3">
         <div class="box box-grey">
             <h2 class="heading-md">Families Helped</h2>
-
         </div>
     </div>
     <div class="col-md-2 col-sm-3">
