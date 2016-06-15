@@ -8,5 +8,4 @@ class Supply < ActiveRecord::Base
 
   has_many :supply_items
   has_many :families, through: :supply_items
-
 end

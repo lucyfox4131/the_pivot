@@ -18,5 +18,4 @@ class FamiliesController < ApplicationController
       @percentage_purchased = 0
     end
   end
-
 end

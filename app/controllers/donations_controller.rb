@@ -42,5 +42,4 @@ class DonationsController < ApplicationController
       render :new
     end
   end
-
 end

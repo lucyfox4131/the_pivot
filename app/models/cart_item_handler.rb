@@ -7,5 +7,4 @@ class CartItemHandler < SimpleDelegator
     @quantity = quantity
     super(@supply_item)
   end
-
 end
