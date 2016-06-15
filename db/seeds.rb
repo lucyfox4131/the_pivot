@@ -452,9 +452,9 @@ past_family8.create_supply_items
 past_family9.create_supply_items
 past_family10.create_supply_items
 
-user1 = User.create(username: "user1", password: "password", cell: "6825576617")
-user2 = User.create(username: "user2", password: "password", cell: "6197884990")
-user2 = User.create(username: "user2", password: "password", cell: "8472751703")
+user1 = User.create(username: "user1", password: "password", cell: "6825576617", email: "kerry.sheldon@gmail.com")
+user2 = User.create(username: "user2", password: "password", cell: "6197884990", email: "kerry.sheldon@gmail.com")
+user2 = User.create(username: "user2", password: "password", cell: "8472751703", email: "kerry.sheldon@gmail.com")
 user3 = User.create(username: "admin", password: "password", role: 1)
 
 donation1 = Donation.create(status: "Pledged", user: user1)

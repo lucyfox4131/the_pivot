@@ -7,7 +7,7 @@ RSpec.feature "user can login and logout" do
       greeting: "x",
       name: "x")
 
-    user = User.create(username: "Robbie", password: "password")
+    user = User.create(username: "Robbie", password: "password", email: "test@example.com")
 
     visit login_path
 
@@ -27,7 +27,7 @@ RSpec.feature "user can login and logout" do
       greeting: "x",
       name: "x")
 
-    user = User.create(username: "Robbie", password: "password")
+    user = User.create(username: "Robbie", password: "password", email: "test@example.com")
 
     visit login_path
 

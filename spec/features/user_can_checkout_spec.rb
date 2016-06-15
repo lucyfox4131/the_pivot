@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "user can checkout with items in cart" do
   scenario "they checkout and see the donations page with their donation" do
-    user = User.create(username: "test", password: "password")
+    user = User.create(username: "test", password: "password", email: "email@example.com")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
     nationality = Nationality.create(photo_path: "http://www.criticalthreats.org/sites/default/files/AEI_Somalia_Map_Political.gif",
@@ -35,7 +35,7 @@ RSpec.feature "user can checkout with items in cart" do
   end
 
   scenario "logged out user cannot checkout unless logged in" do
-    user = User.create(username: "test", password: "password")
+    user = User.create(username: "test", password: "password", email: "email@example.com")
 
     nationality = Nationality.create(photo_path: "http://www.criticalthreats.org/sites/default/files/AEI_Somalia_Map_Political.gif",
         info_link: "Somali", greeting: "most-critical", name: "Somali")

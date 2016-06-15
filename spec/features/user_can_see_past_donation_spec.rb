@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "user sees past donation" do
   scenario "donation page is shown for authenticated user" do
-    user = User.create(username: "test", password: "password")
+
+    user = User.create(username: "test", password: "password", email: "test@example.com")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
@@ -12,14 +13,11 @@ RSpec.feature "user sees past donation" do
     family1 = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality: nationality1, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 0, num_children_under_two: 0)
     family2 = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality: nationality2, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 0, num_children_under_two: 0)
 
-
     supply1 = Supply.create(name: "Small Pot", value: 3.0, description: "New or used.", multiplier_type: "household")
     supply2 = Supply.create(name: "Couch", value: 100.0, description: "New or used.  Used must be in good condition.", multiplier_type: "household")
 
-
     supply_item1 = SupplyItem.create(supply: supply1, quantity: 2, family: family1)
     supply_item2 = SupplyItem.create(supply: supply2, quantity: 2, family: family2)
-
 
     donation1 = Donation.create(status: "Received", user: user)
     donation2 = Donation.create(status: "Pledged", user: user)
@@ -46,8 +44,9 @@ RSpec.feature "user sees past donation" do
   end
 
   scenario "donation page is not shown if not user's donation" do
-    user = User.create(username: "test", password: "password")
-    other_user = User.create(username: "other", password: "password")
+
+    user = User.create(username: "test", password: "password", email: "test@example.com")
+    other_user = User.create(username: "other", password: "password", email: "test@example.com")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 

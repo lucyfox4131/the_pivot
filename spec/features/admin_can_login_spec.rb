@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "admin can login" do
   scenario "admin logs in and sees the admin dashboard" do
-    user = User.create(username: "admin", password: "password", role: 1)
+    user = User.create(username: "admin", password: "password", role: 1, email: "email@example.com")
 
     visit login_path
 
@@ -14,7 +14,7 @@ RSpec.feature "admin can login" do
   end
 
   scenario "admin can see the admin dashboard" do
-    user = User.create(username: "admin", password: "password", role: 1)
+    user = User.create(username: "admin", password: "password", role: 1, email: "email@example.com")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
     visit admin_dashboard_path
@@ -23,7 +23,7 @@ RSpec.feature "admin can login" do
   end
 
   scenario "regular user cannot access admin dashboard and sees 404" do
-    user = User.create(username: "user", password: "password")
+    user = User.create(username: "user", password: "password", email: "email@example.com")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
     visit admin_dashboard_path
