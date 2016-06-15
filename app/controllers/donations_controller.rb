@@ -34,7 +34,7 @@ class DonationsController < ApplicationController
         supplies: @cart.get_supply_list_from_cart,
         session: session,
         total_price: @cart.total_price,
-        dashboard_url: dashboard_url}).deliver
+        dashboard_url: dashboard_url}).deliver_now
       session[:cart] = {}
       redirect_to donations_path
     else
