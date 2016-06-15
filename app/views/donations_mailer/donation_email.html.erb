@@ -1,0 +1,29 @@
+<h1>Your Refugee Restore Donation Has Been Received</h1>
+
+<h3>Thank you, <%= @user.username %>!</h3>
+
+<table class="table">
+  <tr>
+    <th>Supply</th>
+    <th>Description</th>
+    <th>Value</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+  </tr>
+
+  <% @supplies.each_with_index do |supply, index| %>
+    <tr>
+      <td><%= supply.name %></td>
+      <td><%= supply.description %></td>
+      <td><%= number_to_currency supply.value %></td>
+      <td><%= @session[:cart].values[index] %></td>
+      <td><%= number_to_currency supply.value * @session[:cart].values[index]%></td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>Total: <%= number_to_currency @total_price %> </h2>
+
+<p>
+  To see your past orders, view your <%= link_to "Refugee Restore Dashboard", @dashboard_url %>.
+</p>
