@@ -1,12 +1,8 @@
 <div class="row-1">
   <div class="lead-text col-sm-3">
-    <p>Imagine <span class="pop"> <a href="https://medium.com/uprooted/what-s-in-my-bag-758d435f6e62#.yx166rox8">fleeing your home</a></span> with just a backpack</p>
+    <p>Imagine <span class="pop"> <a href="https://medium.com/uprooted/what-s-in-my-bag-758d435f6e62#.yx166rox8">fleeing your home</a></span> with just a backpack. Crossing an <span class="pop"> <a href="https://medium.com/uprooted/stranded-lives-3aedc80c1337#.jlsgtlysv">ocean in a raft, </a></span> only to find the borders closed</p>
 
-     <p>Crossing an <span class="pop"> <a href="https://medium.com/uprooted/stranded-lives-3aedc80c1337#.jlsgtlysv">ocean in a raft, </a></span> only to find the borders closed</p>
-
-     <p>Getting the chance to <span class="pop">start over in America</span></p>
-
-     <p> Arriving with sparse possessions, <span class="pop">no money</span>, little English, and few prospects.</p>
+     <p>Getting the chance to <span class="pop">start over in America</span>. Arriving with sparse possessions, <span class="pop">no money</span>, little English, and few prospects.</p>
 
      <h3>But welcomed by <span class="pop">safety, freedom and the generosity</span> of the American people.</h3>
   </div>
@@ -14,47 +10,50 @@
     <%= image_tag "cover_syria.jpeg", class:"img-responsive" %>
     <figcaption></br></figcaption>
   </div>
-  <div class="categories col-sm-3 btn-group-vertical btn">
-    <h2>Families </br>by Category</h2>
-    <% @categories.map do |category| %>
-      <%= link_to category.name, category_path(category), class: " categories btn btn-default" %>
-    <% end %>
-  </div>
-</div>
 
-<div class="row2">
-  <div class="items col-sm-4">
-      <div class="stat-type">
-        <h4>Donations Received</h4>
-      </div>
-      <div class="stat">
-        <h4><%= @donation_stats[:num_items] %></h4>
-      </div>
-  </div>
-  <div class="money-raised col-sm-4">
-    <div class="stat-type">
-      <h4>Money Raised</h4>
-      </div>
-    <div class="stat">
-      <h4><%= number_to_currency @donation_stats[:money_raised], :precision => 0 %></h4>
-    </div>
-  </div>
-  <div class="num-families col-sm-4 ">
-    <div class="stat-type">
-      <h4>Families Helped</h4>
-    </div>
-    <div class="stat">
-      <h4><%= @donation_stats[:num_families] %></h4>
-    </div>
-  </div>
-</div>
-
-<div class="tweets">
-  <ul>
+  <div class="tweets-div col-sm-3">
+    <h2 class="tweet-heading">Latest Tweets from UNHCR</h2>
     <% @tweets.each do |tweet|  %>
-    <li> <%= tweet.text %> </li>
+    <blockquote class="tweet"><%= parsed_tweet tweet%></blockquote>
     <% end %>
+  </br>
+</div>
 
-  </ul>
 
+<div>
+    <div class="col-md-2 col-sm-3">
+        <div class="box box-grey">
+            <h2 class="heading-md">Donations Received</h2>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-3">
+        <div class="box box-yellow">
+            <h1 class="heading-md"><%= @donation_stats[:num_items] %></h1>
+        </div>
+    </div>
+
+
+    <div class="col-md-2 col-sm-3">
+        <div class="box box-grey">
+            <h2 class="heading-md">Money Raised</h2>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-3">
+        <div class="box box-yellow">
+            <h1 class="heading-md"><%= number_to_currency @donation_stats[:money_raised], :precision => 0%></h1>
+        </div>
+    </div>
+
+
+    <div class="col-md-2 col-sm-3">
+        <div class="box box-grey">
+            <h2 class="heading-md">Families Helped</h2>
+
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-3">
+        <div class="box box-yellow">
+            <h1 class="heading-md"><%= @donation_stats[:num_families] %></h1>
+        </div>
+    </div>
 </div>
