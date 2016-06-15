@@ -87,9 +87,9 @@
 }
 
 .lead-text {
-  background-color: #1f1f14;
+  background-color: #2e2e2e;
   color: white;
-  font-size: 14px;
+  font-size: 16px;
   padding-top: 10px;
   padding-bottom: 18px;
 }
@@ -97,7 +97,7 @@
 .lead-text .pop {
   color: #ffbf00;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .lead-text a {
@@ -127,39 +127,41 @@
   text-align: center;
 }
 
-.stat-type {
-  background-color: #1f1f14;
-  color: white;
-  font-weight: bold;
+.tweet-heading {
   text-align: center;
-  float: left;
-  width: 50%;
-  height: 150px;
-  padding-top: 35px;
-  margin-left: -15px;
-}
-
-.stat {
-  background-color: #ffbf00;
-  text-align: center;
-  font-weight: bold;
-  float: left;
-  width: 49%;
-  height: 150px;
-  padding-top: 50px;
-  margin-left: -10px;
-}
-
-.stat-type h4 {
   font-size: 28px;
 }
 
-.stat h4 {
-  font-size: 36px;
+.tweet{
+  font-size: 16px;
 }
 
-/*.categories {
-  margin-top: -2px;
-  background-color: #1f1f14;
+.tweets-div {
+  margin-top: -20px;
+}
+
+.box {
+  padding: 20px 0px;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-right: -10px;
+}
+
+.box h2 {
   color: white;
-}*/
+}
+
+.box h1 {
+  font-size: 60px;
+  font-size: 4vw;
+  color: #2e2e2e;
+}
+
+.box-grey {
+  background: #2e2e2e;
+}
+.box-yellow {
+  background: #ffbf00;
+  margin-left: -20px;
+  min-height: 136px;
+}
