@@ -1,4 +1,4 @@
-class DonationsController<ApplicationController
+class DonationsController < ApplicationController
 
   def index
     if !current_user
@@ -29,6 +29,12 @@ class DonationsController<ApplicationController
         @donation.donation_items.create(quantity: quantity, supply_item: supply_item, donation: @donation)
       end
       flash[:success] = "Your donation (ID#: #{@donation.id}) was recieved. Thank you!"
+      DonationsMailer.donation_email({
+        current_user: current_user,
+        supplies: @cart.get_supply_list_from_cart,
+        session: session,
+        total_price: @cart.total_price,
+        dashboard_url: dashboard_url}).deliver
       session[:cart] = {}
       redirect_to donations_path
     else
