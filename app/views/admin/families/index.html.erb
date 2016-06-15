@@ -1,24 +1,23 @@
+<h1>Families Arriving Soon</h1>
+
 <div class="row nationality">
 <% @nationalities.each do |nationality| %>
   <div class="col-md-6 <%=nationality.name%>">
     <h4> <%= nationality.name %> Families Arriving Soon:</h4>
-    <ul>
-      <% nationality.families.active.each do |family| %>
-        <li><%= link_to "Family of #{family.num_people}", admin_family_path(family) %>: arriving on <%= family.arrival_date.to_formatted_s(:long) %></li>
-      <% end %>
-    </ul>
+
+    <%= render partial: 'family_list', locals: {families:nationality.families.active, current: true}%>
+
   </div>
 <% end %>
 </div>
+
+<h1>Families Already Arrived</h1>
+
 <div class="row nationality">
 <% @nationalities.each do |nationality| %>
   <div class="col-md-6 <%=nationality.name%>">
     <h4> <%= nationality.name %> Families That Have Arrived:</h4>
-    <ul>
-      <% nationality.families.retired.each do |family| %>
-        <li><%= link_to "Family of #{family.num_people}", admin_family_path(family) %>: arrived on <%= family.arrival_date.to_formatted_s(:long) %></li>
-      <% end %>
-    </ul>
+    <%= render partial: 'family_list', locals: {families:nationality.families.retired, current: false}%>
   </div>
 <% end %>
 </div>

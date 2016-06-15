@@ -1,43 +1,8 @@
-<div class="">
-
-  <h1 class="family-heading"><%= @family.nationality.name %> Family of <%= @family.num_people %></h1>
-
-  <div class="tags">
-    <% if @family.categories %>
-      <% @family.categories.take(2).each do |category| %>
-        <%= link_to category.name, category_path(category), class: "btn btn-inverse" %>
-      <% end %>
-    <% end %>
-  </div>
-
-</div>
-
-<h4 class="col-sm-6 details">Arrival Date:
-  <% if @family.retired? %>
-    <h4>Family Arrived</h4></h4>
-  <% else %>
-    <%= @family.arrival_date.to_formatted_s(:long)  %></h4>
-    <h4 class="col-sm-6 details">Donate by: <%= @family.donation_deadline.to_formatted_s(:long) %>
-    </h4>
-<% end %>
+<%= render partial: 'shared/family_show_headings'%>
 
 <div class="profile">
 
-  <div class="col-sm-6 photo">
-    <%= image_tag @family.nationality.photo_path, :class => "img-responsive center-block" %>
-    <p> <%=  @family.description %> </p>
-  </div>
-
-  <div class="col-sm-4 details">
-
-    <div class="greeting">
-      <%= image_tag @family.nationality.greeting, :class => "img-responsive center-block" %>
-      <p>Welcome to America</p>
-    </div>
-
-    <div class="learn-more">
-      <%= link_to "Learn more about the #{@family.nationality.name} conflict", @family.nationality.info_link %>
-    </div>
+  <%= render partial: 'shared/family_show_nationality_info', locals: {photo: @family.nationality.photo_path}%>
 
     <div class="family-info">
         <table class="table">
@@ -47,17 +12,17 @@
           <td>Children Under Two: <%= @family.num_children_under_two %></td></tr>
         </table>
     </div>
-
   </div>
 
 </div>
 
-<div class="col-sm-10">
+<div class="col-sm-10 col-sm-offset-1">
 
-  <h4>Welcome them to the United States.  Donate these items to help them set up their new home.</h4>
+  <% present @family do |family_presenter|  %>
+    <%= family_presenter.retired_or_active_progress_bar %>
+  <% end %>
 
-  <h5>This family needs a total of <%= number_to_currency @supplies_needed_value %> in donations.</h5>
-  <h5><%= number_to_currency @supplies_purchased_value %> has been donated.</h5>
+  <h5><%= currency @supplies_purchased_value %> has been donated.</h5>
   <div class="progress">
     <div class="progress-bar" role="progressbar" aria-valuemin="0"
         aria-valuemax="100" style="min-width: 2em; width: <%= @percentage_purchased %>%;">
@@ -82,7 +47,7 @@
         <tr>
           <td><%= supply_item.name %></br>
           <em><%= supply_item.description %></em></td>
-          <td><%= number_to_currency supply_item.value %></td>
+          <td><%= currency(supply_item.value) %></td>
           <td><%= f.hidden_field :id, :value => supply_item.id %>
             <div class="form-group">
               <%= f.select(:quantity, (1..supply_item.quantity_remaining), { :prompt => '0'}, { class: 'form-control' }) %>
@@ -107,7 +72,7 @@
         <tr>
           <td><%= donation_item.name %></td>
           <td><%= donation_item.quantity %></td>
-          <td><%= donation_item.created_at.to_formatted_s(:long) %></td>
+          <td><%= format_date donation_item.created_at %></td>
         </tr>
       <% end %>
     </table>

@@ -13,9 +13,9 @@
     <tr>
       <td><%= supply.name %></td>
       <td><%= supply.description %></td>
-      <td><%= number_to_currency supply.value %></td>
+      <td><%= currency(supply.value) %></td>
       <td><%= session[:cart].values[index] %></td>
-      <td><%= number_to_currency supply.value * session[:cart].values[index]%></td>
+      <td><%= currency(supply.value * session[:cart].values[index])%></td>
     </tr>
   <% end %>
 </table>

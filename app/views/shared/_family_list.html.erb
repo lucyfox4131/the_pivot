@@ -1,5 +1,0 @@
-<ul>
-  <% @families.each do |family| %>
-    <li><%= link_to "#{family.nationality.name} Family of #{family.num_people}", family_path(family) %>, arriving on <%= family.arrival_date.to_formatted_s(:long) %></li>
-  <% end %>
-</ul>

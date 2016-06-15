@@ -14,10 +14,12 @@
 
     <% @cart_items.each do |cart_item| %>
     <tr>
-      <td><%= link_to cart_item.supply_item.name, family_path(cart_item.family) %></td>
+
+      <td><%= link_to cart_item.name, family_path(cart_item.family) %></td>
       <td><%= cart_item.description %></td>
-      <td><%= number_to_currency cart_item.value %></td>
-      <td><%= number_to_currency cart_item.subtotal(cart_item.quantity) %></td>
+      <td><%= currency cart_item.value %></td>
+      <td><%= currency cart_item.subtotal(cart_item.quantity) %></td>
+
 
       <%= form_for cart_item.supply_item, url: cart_item_path(cart_item.supply_item), method: :put do |f| %>
         <div class="<%= cart_item.supply.name %>">
@@ -35,13 +37,12 @@
     <% end %>
   </table>
 
-  <h2>Total: <%= number_to_currency @cart.total_price %> </h2>
+  <h2>Total: <%= currency @cart.total_price %> </h2>
 
-  <% if current_user %>
-    <%= link_to "Checkout", new_donation_path, class: "btn btn-primary" %>
-  <% else %>
-    <%= link_to "Login or Create Account to Checkout", login_path, class: "btn btn-primary" %>
+  <% present @cart do |cart_presenter| %>
+    <%= cart_presenter.checkout_link %>
   <% end %>
+
 
 <% else %>
   <h3 class="text-center">There are no items in your cart</h3>
