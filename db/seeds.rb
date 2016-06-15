@@ -39,8 +39,8 @@ info_link: "http://www.rescue.org/us-program/united-states/welcoming-afghans",
 greeting: "afghan_greeting.png",
 name: "Afghan")
 
-family1 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family1 = Family.create(first_name: "Abshir",
+last_name: "Dalmar",
 arrival_date: 10.days.from_now,
 donation_deadline: 5.days.from_now,
 nationality_id: nationality1.id,
@@ -51,8 +51,8 @@ num_children_under_two: 0,
 description: "This married couple fled Somalia in 2001 with their son and"\
 " the wife's elderly mother.  They have lived in Dadaab refugee camp for"\
 " the past 15 years.")
-family2 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family2 = Family.create(first_name: "Adnan",
+last_name: "Zuabi",
 arrival_date: 10.days.from_now,
 donation_deadline: 5.days.from_now,
 nationality_id: nationality2.id,
@@ -62,8 +62,8 @@ num_children_over_two: 0,
 num_children_under_two: 1,
 description: "This elderly couple, their adult daughter and her three "\
 "children fled Allepo in 2012.")
-family3 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family3 = Family.create(first_name: "Zainab",
+last_name: "Awad",
 arrival_date: 10.days.from_now,
 donation_deadline: 5.days.from_now,
 nationality_id: nationality3.id,
@@ -73,8 +73,8 @@ num_children_over_two: 1,
 num_children_under_two: 1,
 description: "This family fled Fallujah in 2014.  The are reuniting with the"\
 " husband's brother, who was previously resettled in the US.")
-family4 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family4 = Family.create(first_name: "Maung",
+last_name: "San",
 arrival_date: 10.days.from_now,
 donation_deadline: 5.days.from_now,
 nationality_id: nationality4.id,
@@ -85,8 +85,8 @@ num_children_under_two: 0,
 description: "This single mother has spent her entire life in a refugee camp"\
 " on the Thai-Burma border.  She is reuniting with her mother who was"\
 " previously resettled in the US.")
-family5 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family5 = Family.create(first_name: "Abraham",
+last_name: "Nawabi",
 arrival_date: 10.days.from_now,
 donation_deadline: 5.days.from_now,
 nationality_id: nationality5.id,
@@ -98,8 +98,8 @@ description: "The husband in this family served as an interprter for the US"\
 
 
 
-family6 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family6 = Family.create(first_name: "Kafeeyo",
+last_name: "Mahad",
 arrival_date: 6.days.from_now,
 donation_deadline: 2.days.from_now,
 nationality_id: nationality1.id,
@@ -110,8 +110,8 @@ num_children_under_two: 0,
 description: "This married couple fled Somalia in 2001 with their sons and"\
 " the wife's elderly mother.  They have lived in Dadaab refugee camp for"\
 " the past 15 years.")
-family7 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family7 = Family.create(first_name: "Amena",
+last_name: "Azmeh",
 arrival_date: 18.days.from_now,
 donation_deadline: 10.days.from_now,
 nationality_id: nationality2.id,
@@ -121,8 +121,8 @@ num_children_over_two: 2,
 num_children_under_two: 1,
 description: "This elderly couple, their adult daughter and her three "\
 "children fled Allepo in 2012.")
-family8 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family8 = Family.create(first_name: "Ahmed",
+last_name: "Malaki",
 arrival_date: 24.days.from_now,
 donation_deadline: 12.days.from_now,
 nationality_id: nationality3.id,
@@ -132,8 +132,8 @@ num_children_over_two: 2,
 num_children_under_two: 2,
 description: "This family fled Tikrit in 2012.  The are reuniting with the"\
 " wife's mother, who was previously resettled in the US.")
-family9 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family9 = Family.create(first_name: "Daw",
+last_name: "Kyi",
 arrival_date: 17.days.from_now,
 donation_deadline: 14.days.from_now,
 nationality_id: nationality4.id,
@@ -144,8 +144,8 @@ num_children_under_two: 0,
 description: "This single mother has spent her entire life in a refugee camp"\
 " on the Thai-Burma border.  She is reuniting with her sister who was"\
 " previously resettled in the US.")
-family10 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family10 = Family.create(first_name: "Hajera",
+last_name: "Shahnawaz",
 arrival_date: 20.days.from_now,
 donation_deadline: 15.days.from_now,
 nationality_id: nationality5.id,
@@ -157,8 +157,8 @@ description: "The husband in this family served as an interprter for the US"\
 " Navy.  He is resettling in the US with his wife and adult sons.")
 
 
-family11 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family11 = Family.create(first_name: "Riyo",
+last_name: "Samatar",
 arrival_date: 12.days.from_now,
 donation_deadline: 7.days.from_now,
 nationality_id: nationality1.id,
@@ -169,8 +169,8 @@ num_children_under_two: 0,
 description: "These siblings couple fled Somalia in 2005"\
 "They have lived in Kakuma refugee camp for"\
 " the past 10 years.")
-family12 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family12 = Family.create(first_name: "Hayyan",
+last_name: "Tamer",
 arrival_date: 14.days.from_now,
 donation_deadline: 10.days.from_now,
 nationality_id: nationality2.id,
@@ -180,8 +180,8 @@ num_children_over_two: 1,
 num_children_under_two: 0,
 description: "This elderly couple and their grandaugter"\
 " fled Homs in 2014.")
-family13 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family13 = Family.create(first_name: "Sami",
+last_name: "Hassani",
 arrival_date: 16.days.from_now,
 donation_deadline: 12.days.from_now,
 nationality_id: nationality3.id,
@@ -191,8 +191,8 @@ num_children_over_two: 3,
 num_children_under_two: 1,
 description: "This family fled Baghdad in 2014.  The are reuniting with the"\
 " wife's uncle, who was previously resettled in the US.")
-family14 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family14 = Family.create(first_name: "Ma",
+last_name: "Pu",
 arrival_date: 18.days.from_now,
 donation_deadline: 14.days.from_now,
 nationality_id: nationality4.id,
@@ -203,8 +203,8 @@ num_children_under_two: 0,
 description: "This single mother has spent her entire life in a refugee camp"\
 " on the Thai-Burma border.  She is reuniting with her mother who was"\
 " previously resettled in the US.")
-family15 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+family15 = Family.create(first_name: "Nabil",
+last_name: "Ahmadi",
 arrival_date: 20.days.from_now,
 donation_deadline: 15.days.from_now,
 nationality_id: nationality5.id,
@@ -216,8 +216,8 @@ description: "The husband in this family served as an interprter for the US"\
 " Navy.  He is resettling in the US with his pregnant wife.")
 
 
-past_family1 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+past_family1 = Family.create(first_name: "Hibaaq",
+last_name: "Osman",
 arrival_date: 10.days.ago,
 donation_deadline: 15.days.ago,
 nationality_id: nationality1.id,
@@ -229,8 +229,8 @@ description: "This married couple fled Somalia in 2001 with their son and"\
 " the wife's elderly mother.  They have lived in Dadaab refugee camp "\
 " for the past 15 years.")
 
-past_family2 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+past_family2 = Family.create(first_name: "Ranim",
+last_name: "Ismat",
 arrival_date: 10.days.ago,
 donation_deadline: 15.days.ago,
 nationality_id: nationality2.id,
@@ -240,8 +240,8 @@ num_children_over_two: 0,
 num_children_under_two: 1,
 description: "This elderly couple, their adult daughter and her three "\
 "children fled Allepo in 2012.")
-past_family3 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+past_family3 = Family.create(first_name: "Telenaz",
+last_name: "Jamal",
 arrival_date: 10.days.ago,
 donation_deadline: 15.days.ago,
 nationality_id: nationality3.id,
@@ -251,8 +251,8 @@ num_children_over_two: 1,
 num_children_under_two: 1,
 description: "This family fled Fallujah in 2014.  The are reuniting with the"\
 " husband's brother, who was previously resettled in the US.")
-past_family4 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+past_family4 = Family.create(first_name: "Hayma",
+last_name: "Nay Win",
 arrival_date: 10.days.ago,
 donation_deadline: 15.days.ago,
 nationality_id: nationality4.id,
@@ -263,8 +263,8 @@ num_children_under_two: 0,
 description: "This single mother has spent her entire life in a refugee camp"\
 " on the Thai-Burma border.  She is reuniting with her mother who was"\
 " previously resettled in the US.")
-past_family5 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+past_family5 = Family.create(first_name: "Ramazan",
+last_name: "Karzai",
 arrival_date: 10.days.ago,
 donation_deadline: 15.days.ago,
 nationality_id: nationality5.id,
@@ -275,8 +275,8 @@ num_children_under_two: 0,
 description: "The husband in this family served as an interprter for the US"\
 " Army.  He is resettling in the US with his wife and adult son.")
 
-past_family6 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+past_family6 = Family.create(first_name: "Barre",
+last_name: "Jibril",
 arrival_date: 20.days.ago,
 donation_deadline: 25.days.ago,
 nationality_id: nationality1.id,
@@ -288,8 +288,8 @@ description: "This married couple fled Somalia in 2010."\
 " They have lived in Kakuma refugee camp "\
 " for the past 5 years.")
 
-past_family7 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+past_family7 = Family.create(first_name: "Elias",
+last_name: "Saqqal",
 arrival_date: 18.days.ago,
 donation_deadline: 20.days.ago,
 nationality_id: nationality2.id,
@@ -299,8 +299,8 @@ num_children_over_two: 0,
 num_children_under_two: 1,
 description: "This elderly couple, their adult daughter, her husband and three "\
 "children fled Damascus in 2012.")
-past_family8 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+past_family8 = Family.create(first_name: "Mohammed",
+last_name: "Mustafa",
 arrival_date: 16.days.ago,
 donation_deadline: 18.days.ago,
 nationality_id: nationality3.id,
@@ -310,8 +310,8 @@ num_children_over_two: 4,
 num_children_under_two: 1,
 description: "This family fled Fallujah in 2014.  The are reuniting with the"\
 " husband's mother, who was previously resettled in the US.")
-past_family9 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+past_family9 = Family.create(first_name: "U",
+last_name: "Thant",
 arrival_date: 14.days.ago,
 donation_deadline: 16.days.ago,
 nationality_id: nationality4.id,
@@ -322,8 +322,8 @@ num_children_under_two: 1,
 description: "This single father has spent his entire life in a refugee camp"\
 " on the Thai-Burma border.  He is reuniting with his brother who was"\
 " previously resettled in the US.")
-past_family10 = Family.create(first_name: "TestFirst",
-last_name: "TestLast",
+past_family10 = Family.create(first_name: "Tahib",
+last_name: "Aziz",
 arrival_date: 12.days.ago,
 donation_deadline: 14.days.ago,
 nationality_id: nationality5.id,
@@ -454,8 +454,8 @@ past_family10.create_supply_items
 
 user1 = User.create(username: "user1", password: "password", cell: "6825576617", email: "refugeerestore@gmail.com")
 user2 = User.create(username: "user2", password: "password", cell: "6197884990", email: "refugeerestore@gmail.com")
-user2 = User.create(username: "user3", password: "password", cell: "8472751703", email: "refugeerestore@gmail.com")
-user3 = User.create(username: "admin", password: "password", role: 1)
+user3 = User.create(username: "user3", password: "password", cell: "8472751703", email: "refugeerestore@gmail.com")
+user4 = User.create(username: "admin", password: "password", role: 1, email: "refugeerestore@gmail.com")
 
 donation1 = Donation.create(status: "Pledged", user: user1)
 donation2 = Donation.create(status: "Received", user: user1)
