@@ -50,8 +50,7 @@ num_children_over_two: 1,
 num_children_under_two: 0,
 description: "This married couple fled Somalia in 2001 with their son and"\
 " the wife's elderly mother.  They have lived in Dadaab refugee camp for"\
-" the past 15 years.",
-family_photo: "generic_family_photo.jpg")
+" the past 15 years.")
 family2 = Family.create(first_name: "Adnan",
 last_name: "Zuabi",
 arrival_date: 10.days.from_now,
@@ -62,8 +61,7 @@ num_unmarried_adults: 0,
 num_children_over_two: 0,
 num_children_under_two: 1,
 description: "This elderly couple, their adult daughter and her three "\
-"children fled Allepo in 2012.",
-family_photo: "generic_family_photo.jpg")
+"children fled Allepo in 2012.")
 family3 = Family.create(first_name: "Zainab",
 last_name: "Awad",
 arrival_date: 10.days.from_now,
@@ -74,8 +72,7 @@ num_unmarried_adults: 0,
 num_children_over_two: 1,
 num_children_under_two: 1,
 description: "This family fled Fallujah in 2014.  The are reuniting with the"\
-" husband's brother, who was previously resettled in the US.",
-family_photo: "generic_family_photo.jpg")
+" husband's brother, who was previously resettled in the US.")
 family4 = Family.create(first_name: "Maung",
 last_name: "San",
 arrival_date: 10.days.from_now,
@@ -87,8 +84,7 @@ num_children_over_two: 3,
 num_children_under_two: 0,
 description: "This single mother has spent her entire life in a refugee camp"\
 " on the Thai-Burma border.  She is reuniting with her mother who was"\
-" previously resettled in the US.",
-family_photo: "generic_family_photo.jpg")
+" previously resettled in the US.")
 family5 = Family.create(first_name: "Abraham",
 last_name: "Nawabi",
 arrival_date: 10.days.from_now,
@@ -97,8 +93,7 @@ nationality_id: nationality5.id,
 num_married_adults: 2,
 num_unmarried_adults: 1, num_children_over_two: 0, num_children_under_two: 0,
 description: "The husband in this family served as an interprter for the US"\
-" Army.  He is resettling in the US with his wife and adult son.",
-family_photo: "generic_family_photo.jpg")
+" Army.  He is resettling in the US with his wife and adult son.")
 
 
 
@@ -114,8 +109,7 @@ num_children_over_two: 4,
 num_children_under_two: 0,
 description: "This married couple fled Somalia in 2001 with their sons and"\
 " the wife's elderly mother.  They have lived in Dadaab refugee camp for"\
-" the past 15 years.",
-family_photo: "generic_family_photo.jpg")
+" the past 15 years.")
 family7 = Family.create(first_name: "Amena",
 last_name: "Azmeh",
 arrival_date: 18.days.from_now,
@@ -126,8 +120,7 @@ num_unmarried_adults: 1,
 num_children_over_two: 2,
 num_children_under_two: 1,
 description: "This elderly couple, their adult daughter and her three "\
-"children fled Allepo in 2012.",
-family_photo: "generic_family_photo.jpg")
+"children fled Allepo in 2012.")
 family8 = Family.create(first_name: "Ahmed",
 last_name: "Malaki",
 arrival_date: 24.days.from_now,
@@ -138,8 +131,7 @@ num_unmarried_adults: 0,
 num_children_over_two: 2,
 num_children_under_two: 2,
 description: "This family fled Tikrit in 2012.  The are reuniting with the"\
-" wife's mother, who was previously resettled in the US.",
-family_photo: "generic_family_photo.jpg")
+" wife's mother, who was previously resettled in the US.")
 family9 = Family.create(first_name: "Daw",
 last_name: "Kyi",
 arrival_date: 17.days.from_now,
@@ -151,8 +143,7 @@ num_children_over_two: 4,
 num_children_under_two: 0,
 description: "This single mother has spent her entire life in a refugee camp"\
 " on the Thai-Burma border.  She is reuniting with her sister who was"\
-" previously resettled in the US.",
-family_photo: "generic_family_photo.jpg")
+" previously resettled in the US.")
 family10 = Family.create(first_name: "Hajera",
 last_name: "Shahnawaz",
 arrival_date: 20.days.from_now,
@@ -163,8 +154,7 @@ num_unmarried_adults: 2,
 num_children_over_two: 0,
 num_children_under_two: 0,
 description: "The husband in this family served as an interprter for the US"\
-" Navy.  He is resettling in the US with his wife and adult sons.",
-family_photo: "generic_family_photo.jpg")
+" Navy.  He is resettling in the US with his wife and adult sons.")
 
 
 family11 = Family.create(first_name: "Riyo",
@@ -178,8 +168,7 @@ num_children_over_two: 1,
 num_children_under_two: 0,
 description: "These siblings couple fled Somalia in 2005"\
 "They have lived in Kakuma refugee camp for"\
-" the past 10 years.",
-family_photo: "generic_family_photo.jpg")
+" the past 10 years.")
 family12 = Family.create(first_name: "Hayyan",
 last_name: "Tamer",
 arrival_date: 14.days.from_now,
@@ -190,8 +179,7 @@ num_unmarried_adults: 0,
 num_children_over_two: 1,
 num_children_under_two: 0,
 description: "This elderly couple and their grandaugter"\
-" fled Homs in 2014.",
-family_photo: "generic_family_photo.jpg")
+" fled Homs in 2014.")
 family13 = Family.create(first_name: "Sami",
 last_name: "Hassani",
 arrival_date: 16.days.from_now,
@@ -202,8 +190,7 @@ num_unmarried_adults: 1,
 num_children_over_two: 3,
 num_children_under_two: 1,
 description: "This family fled Baghdad in 2014.  The are reuniting with the"\
-" wife's uncle, who was previously resettled in the US.",
-family_photo: "generic_family_photo.jpg")
+" wife's uncle, who was previously resettled in the US.")
 family14 = Family.create(first_name: "Ma",
 last_name: "Pu",
 arrival_date: 18.days.from_now,
@@ -215,8 +202,7 @@ num_children_over_two: 1,
 num_children_under_two: 0,
 description: "This single mother has spent her entire life in a refugee camp"\
 " on the Thai-Burma border.  She is reuniting with her mother who was"\
-" previously resettled in the US.",
-family_photo: "generic_family_photo.jpg")
+" previously resettled in the US.")
 family15 = Family.create(first_name: "Nabil",
 last_name: "Ahmadi",
 arrival_date: 20.days.from_now,
@@ -227,8 +213,7 @@ num_unmarried_adults: 0,
 num_children_over_two: 0,
 num_children_under_two: 0,
 description: "The husband in this family served as an interprter for the US"\
-" Navy.  He is resettling in the US with his pregnant wife.",
-family_photo: "generic_family_photo.jpg")
+" Navy.  He is resettling in the US with his pregnant wife.")
 
 
 past_family1 = Family.create(first_name: "Hibaaq",
@@ -242,8 +227,7 @@ num_children_over_two: 1,
 num_children_under_two: 0,
 description: "This married couple fled Somalia in 2001 with their son and"\
 " the wife's elderly mother.  They have lived in Dadaab refugee camp "\
-" for the past 15 years.",
-family_photo: "generic_family_photo.jpg")
+" for the past 15 years.")
 
 past_family2 = Family.create(first_name: "Ranim",
 last_name: "Ismat",
@@ -255,8 +239,7 @@ num_unmarried_adults: 0,
 num_children_over_two: 0,
 num_children_under_two: 1,
 description: "This elderly couple, their adult daughter and her three "\
-"children fled Allepo in 2012.",
-family_photo: "generic_family_photo.jpg")
+"children fled Allepo in 2012.")
 past_family3 = Family.create(first_name: "Telenaz",
 last_name: "Jamal",
 arrival_date: 10.days.ago,
@@ -267,8 +250,7 @@ num_unmarried_adults: 0,
 num_children_over_two: 1,
 num_children_under_two: 1,
 description: "This family fled Fallujah in 2014.  The are reuniting with the"\
-" husband's brother, who was previously resettled in the US.",
-family_photo: "generic_family_photo.jpg")
+" husband's brother, who was previously resettled in the US.")
 past_family4 = Family.create(first_name: "Hayma",
 last_name: "Nay Win",
 arrival_date: 10.days.ago,
@@ -280,8 +262,7 @@ num_children_over_two: 3,
 num_children_under_two: 0,
 description: "This single mother has spent her entire life in a refugee camp"\
 " on the Thai-Burma border.  She is reuniting with her mother who was"\
-" previously resettled in the US.",
-family_photo: "generic_family_photo.jpg")
+" previously resettled in the US.")
 past_family5 = Family.create(first_name: "Ramazan",
 last_name: "Karzai",
 arrival_date: 10.days.ago,
@@ -292,8 +273,7 @@ num_unmarried_adults: 1,
 num_children_over_two: 0,
 num_children_under_two: 0,
 description: "The husband in this family served as an interprter for the US"\
-" Army.  He is resettling in the US with his wife and adult son.",
-family_photo: "generic_family_photo.jpg")
+" Army.  He is resettling in the US with his wife and adult son.")
 
 past_family6 = Family.create(first_name: "Barre",
 last_name: "Jibril",
@@ -306,8 +286,7 @@ num_children_over_two: 0,
 num_children_under_two: 0,
 description: "This married couple fled Somalia in 2010."\
 " They have lived in Kakuma refugee camp "\
-" for the past 5 years.",
-family_photo: "generic_family_photo.jpg")
+" for the past 5 years.")
 
 past_family7 = Family.create(first_name: "Elias",
 last_name: "Saqqal",
@@ -319,8 +298,7 @@ num_unmarried_adults: 0,
 num_children_over_two: 0,
 num_children_under_two: 1,
 description: "This elderly couple, their adult daughter, her husband and three "\
-"children fled Damascus in 2012.",
-family_photo: "generic_family_photo.jpg")
+"children fled Damascus in 2012.")
 past_family8 = Family.create(first_name: "Mohammed",
 last_name: "Mustafa",
 arrival_date: 16.days.ago,
@@ -331,8 +309,7 @@ num_unmarried_adults: 0,
 num_children_over_two: 4,
 num_children_under_two: 1,
 description: "This family fled Fallujah in 2014.  The are reuniting with the"\
-" husband's mother, who was previously resettled in the US.",
-family_photo: "generic_family_photo.jpg")
+" husband's mother, who was previously resettled in the US.")
 past_family9 = Family.create(first_name: "U",
 last_name: "Thant",
 arrival_date: 14.days.ago,
@@ -344,8 +321,7 @@ num_children_over_two: 3,
 num_children_under_two: 1,
 description: "This single father has spent his entire life in a refugee camp"\
 " on the Thai-Burma border.  He is reuniting with his brother who was"\
-" previously resettled in the US.",
-family_photo: "generic_family_photo.jpg")
+" previously resettled in the US.")
 past_family10 = Family.create(first_name: "Tahib",
 last_name: "Aziz",
 arrival_date: 12.days.ago,
@@ -356,8 +332,7 @@ num_unmarried_adults: 2,
 num_children_over_two: 0,
 num_children_under_two: 0,
 description: "The husband in this family served as an interprter for the US"\
-" Army.  He is resettling in the US with his wife and two adult sons.",
-family_photo: "generic_family_photo.jpg")
+" Army.  He is resettling in the US with his wife and two adult sons.")
 
 family1.categories << [category1, category2, category3, category7]
 family2.categories << [category3, category2, category5]
