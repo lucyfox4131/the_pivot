@@ -50,7 +50,9 @@ num_children_over_two: 1,
 num_children_under_two: 0,
 description: "This married couple fled Somalia in 2001 with their son and"\
 " the wife's elderly mother.  They have lived in Dadaab refugee camp for"\
-" the past 15 years.")
+" the past 15 years.",
+family_photo: File.new("#{Rails.root}/app/assets/images/generic_family_photo.jpg"))
+
 family2 = Family.create(first_name: "Adnan",
 last_name: "Zuabi",
 arrival_date: 10.days.from_now,
