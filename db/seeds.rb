@@ -39,7 +39,7 @@ info_link: "http://www.rescue.org/us-program/united-states/welcoming-afghans",
 greeting: "afghan_greeting.png",
 name: "Afghan")
 
-generic_family_photo = File.open("#{Rails.root}/assets/images/generic_family_photo.jpg")
+generic_family_photo = "generic_family_photo.jpg"
 
 family1 = Family.create(first_name: "Abshir",
 last_name: "Dalmar",
