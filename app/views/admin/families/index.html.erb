@@ -1,5 +1,10 @@
 <h1>Families Arriving Soon</h1>
 
+<div class="filter">
+  <label>Filter By Last Name</label>
+  <input type="text" placeholder="Last Name" id="family_filter_name">
+</div>
+
 <div class="row nationality">
 <% @nationalities.each do |nationality| %>
   <div class="col-md-6 <%=nationality.name%>">

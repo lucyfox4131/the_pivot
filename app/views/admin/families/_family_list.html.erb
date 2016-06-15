@@ -1,9 +1,13 @@
-<ul>
-  <% families.each do |family| %>
+<div class="families">
+  <ul>
+    <% families.each do |family| %>
+    <div class="family" data-name="<%= family.last_name %>">
     <% if current %>
-      <li><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arriving in <%= days_from_today family.arrival_date %></li>
+    <li><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arriving in <%= days_from_today family.arrival_date %></li>
     <% else %>
-      <li><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arrived <%= days_from_today family.arrival_date %> ago</li>
+    <li><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arrived <%= days_from_today family.arrival_date %> ago</li>
     <% end %>
-  <% end %>
-</ul>
+    <% end %>
+    </div>
+  </ul>
+</div>
