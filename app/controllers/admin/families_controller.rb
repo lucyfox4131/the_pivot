@@ -1,4 +1,3 @@
-
 class Admin::FamiliesController < Admin::BaseController
 
   def index
