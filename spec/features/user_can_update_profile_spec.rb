@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "User can edit profile" do
   scenario "Updates when user enters correct current password" do
-
     nationality = Nationality.create(photo_path: "x",
       info_link: "x",
       greeting: "x",
@@ -36,11 +35,9 @@ RSpec.feature "User can edit profile" do
     click_on "Login to Account"
 
     expect(page).to have_content("Hi, #{new_username}")
-
   end
 
   scenario "Does not update when user enters incorrect current password" do
-
     nationality = Nationality.create(photo_path: "x",
       info_link: "x",
       greeting: "x",
@@ -63,7 +60,6 @@ RSpec.feature "User can edit profile" do
 
     expect(page).to have_content("password is incorrect")
     expect(current_path).to eq(user_path(user))
-
   end
 
   scenario "Other user cannot edit user info" do
@@ -87,7 +83,6 @@ RSpec.feature "User can edit profile" do
     user = User.create(username: "test2", password: "password")
     visit edit_user_path(user)
     expect(current_path).to eq(root_path)
-
   end
 
   scenario "Admin user cannot edit user info" do
@@ -101,7 +96,5 @@ RSpec.feature "User can edit profile" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( admin )
     visit edit_user_path(user)
     expect(current_path).to eq(root_path)
-
   end
-
 end
