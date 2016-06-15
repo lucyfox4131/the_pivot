@@ -48,3 +48,13 @@
     </div>
   </div>
 </div>
+
+<div class="tweets">
+  <ul>
+    <% @tweets.each do |tweet|  %>
+    <li> <%= tweet.text %> </li>
+    <% end %>
+
+  </ul>
+
+</div>
