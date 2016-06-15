@@ -1,9 +1,9 @@
-<ul>
+<ul class="list-group">
   <% families.each do |family| %>
     <% if current %>
-      <li><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arriving in <%= days_from_today family.arrival_date %></li>
+      <li class="list-group-item"><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arriving in <%= days_from_today family.arrival_date %></li>
     <% else %>
-      <li><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arrived <%= days_from_today family.arrival_date %> ago</li>
+      <li class="list-group-item"><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arrived <%= days_from_today family.arrival_date %> ago</li>
     <% end %>
   <% end %>
 </ul>
