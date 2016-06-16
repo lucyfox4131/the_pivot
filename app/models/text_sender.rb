@@ -3,7 +3,7 @@ require 'twilio-ruby'
 class TextSender
 
   def self.send_text_message(url)
-    numbers_to_send_to = User.pluck(:cell).compact
+    numbers_to_send_to = User.pluck(:cell).reject{|num| num.to_s.empty?}
     twilio_sid = ENV["live_twilio_account_sid"]
     twilio_token = ENV["live_twilio_auth_token"]
     twilio_phone_number = "7606542678"
