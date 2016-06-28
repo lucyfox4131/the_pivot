@@ -7,6 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
 require 'database_cleaner'
+require 'support/factory_girl'
 
 DatabaseCleaner.strategy = :truncation
 
