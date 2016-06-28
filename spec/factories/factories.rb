@@ -23,8 +23,8 @@ FactoryGirl.define do
   factory :family do
     first_name "x"
     last_name "x"
-    arrival_date 10.days.from_now
-    donation_deadline 5.days.from_now
+    arrival_date { 10.days.from_now }
+    donation_deadline { 5.days.from_now }
     nationality_id 1
     num_married_adults 2
     num_unmarried_adults 1
