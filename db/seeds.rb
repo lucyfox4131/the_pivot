@@ -6,8 +6,6 @@ class Seed
   end
 
   def create_categories
-    #10 categories
-    #eventually pull this out into a hash method
     Category.create(name: "Most Critical", slug: "most-critical")
     Category.create(name: "Elderly",       slug: "elderly")
     Category.create(name: "Children",      slug: "children")
@@ -47,19 +45,59 @@ class Seed
   end
 
   def create_charities
-    #20 charities
+    Charity.create!(
+                      name:        Faker::Company.name,
+                      description: Faker::Lorem.paragraph,
+                      status:      [0,1,2].sample
+                    )
   end
 
   def create_active_families
-    #40 families (per charity)
+    40.times do
+      category_ids = (1..10).to_a.sample(3)
+      Family.create!(
+                      first_name:             Faker::Name.first_name
+                      last_name:              Faker::Name.last_name,
+                      arrival_date:           rand(10..30).days.from_now,
+                      donation_deadline:      rand(1..10).days.from_now,
+                      nationality_id:         rand(1..5),
+                      charity_id:             rand(1..20),
+                      num_married_adults:     [1,2].sample,
+                      num_unmarried_adults:   [0,1,2].sample,
+                      num_children_over_two:  rand(0..5),
+                      num_children_under_two: rand(0..5),
+                      description:            Faker::Lorem.paragraph
+                    )
+    end
   end
 
   def create_past_families
-    #10 families (per charity)
+    10.times do
+      Family.create!(
+                      first_name:             Faker::Name.first_name
+                      last_name:              Faker::Name.last_name,
+                      arrival_date:           rand(10..30).days.ago,
+                      donation_deadline:      rand(1..10).days.ago,
+                      nationality_id:         rand(1..5),
+                      charity_id:             rand(1..20),
+                      num_married_adults:     [1,2].sample,
+                      num_unmarried_adults:   [0,1,2].sample,
+                      num_children_over_two:  rand(0..5),
+                      num_children_under_two: rand(0..5),
+                      description:            Faker::Lorem.paragraph
+                    )
+    end
   end
 
   def create_users
-    #100 users
+    100.times do
+      User.create!(
+                    username:  Faker::Internet.username
+                    password:  Faker::Internet.password
+                    cell:      Faker::PhoneNumber.cell_phone
+                    email:     Faker::Internet.email
+                  )
+    end
   end
 
   def create_donations
@@ -68,14 +106,87 @@ class Seed
   end
 
   def create_charity_admin
-    #1 (per charity)
+    CharityAdmin.create!()
   end
 
   def create_platform_admin
-    #at leat 1
+    PlatformAdmin.create!()
   end
 
-  def create_supply_items
+  def create_supplies
+    Supply.create(name: "Twin Bedframe",
+    value:  30.0,
+    description: "New or used.  Used must be in good condition.",
+    multiplier_type: "child")
+    Supply.create(name: "Twin Mattress",
+    value:  100.0,
+    description: "Must be new.",
+    multiplier_type: "child")
+    Supply.create(name: "Full Bedframe",
+    value: 50.0,
+    description: "New or used. Used must be in good condition.",
+    multiplier_type: "adult")
+    Supply.create(name: "Full Mattress",
+    value: 150.0,
+    description: "Must be new.",
+    multiplier_type: "adult")
+    Supply.create(name: "Dresser",
+    value: 50.0,
+    description: "New or used.  Used must be in good condition.",
+    multiplier_type: "adult")
+    Supply.create(name: "Couch",
+    value: 100.0,
+    description: "New or used.  Used must be in good condition.",
+    multiplier_type: "household")
+    Supply.create(name: "Kitchen Table",
+    value: 40.0,
+    description: "New or used.  Used must be in good condition.",
+    multiplier_type: "household")
+    Supply.create(name: "Large Pot",
+    value: 3.0,
+    description: "New or used.",
+    multiplier_type: "household")
+    Supply.create(name: "Small Pot",
+    value: 3.0,
+    description: "New or used.",
+    multiplier_type: "household")
+    Supply.create(name: "Kitchen Chair",
+    value: 10.0,
+    description: "New or used.  Used must be in good condition.",
+    multiplier_type: "person")
+    Supply.create(name: "Silverware Set",
+    value: 1.5,
+    description: "New or used. Set consists of fork, spoon and knife.",
+    multiplier_type: "person")
+    Supply.create(name: "Plate",
+    value: 2.0,
+    description: "New or used.",
+    multiplier_type: "person")
+    Supply.create(name: "Crib",
+    value: 50.0,
+    description:"New or used.  Used must be in good condition.",
+    multiplier_type: "baby")
+    Supply.create(name: "Car Seat",
+    value: 150.0,
+    description: "Must be new.",
+    multiplier_type: "baby")
+    Supply.create(name: "Stroller",
+    value: 50.0,
+    description: "New or used.  Used must be in good condition.",
+    multiplier_type: "baby")
+    Supply.create(name: "Diapers",
+    value: 15.0,
+    description: "Must be new.",
+    multiplier_type: "baby")
+    Supply.create(name: "Backpack",
+    value: 7.50,
+    description:"For school-aged child.  New or used.  Used must be in good"\
+    " condition.",
+    multiplier_type: "child")
+    Supply.create(name: "School Supplies",
+    value: 10.0,
+    description: "3 notebooks, set of pens, set of pencils. Must be new.",
+    multiplier_type: "child")
     #copy data from seed file(bc specific) and put it in separate class?(maybe module)
     #within that same class, create association between family and supply items(algorithm)
   end
