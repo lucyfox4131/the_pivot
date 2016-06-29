@@ -2,12 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "User can edit profile" do
   scenario "Updates when user enters correct current password" do
-    nationality = Nationality.create(photo_path: "x",
-      info_link: "x",
-      greeting: "x",
-      name: "x")
-
-    user = User.create(username: "test", password: "password", email: "test@example.com")
+    user = create(:user)
     new_username = "new_test"
     new_password = "new_password"
 
@@ -37,12 +32,7 @@ RSpec.feature "User can edit profile" do
   end
 
   scenario "Does not update when user enters incorrect current password" do
-    nationality = Nationality.create(photo_path: "x",
-      info_link: "x",
-      greeting: "x",
-      name: "x")
-
-    user = User.create(username: "test", password: "password", email: "test@example.com")
+    user = create(:user)
     new_username = "new_test"
     new_password = "new_password"
 
@@ -62,36 +52,25 @@ RSpec.feature "User can edit profile" do
   end
 
   scenario "Other user cannot edit user info" do
-    nationality = Nationality.create(photo_path: "x",
-      info_link: "x",
-      greeting: "x",
-      name: "x")
-
-    user = User.create(username: "test2", password: "password", email: "test@example.com")
-    other_user = User.create(username: "test2", password: "password", email: "test@example.com")
+    user = create(:user)
+    other_user = create(:other_user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
+
     visit edit_user_path(other_user)
+    
     expect(current_path).to eq(root_path)
   end
 
   scenario "guest cannot edit user info" do
-    nationality = Nationality.create(photo_path: "x",
-      info_link: "x",
-      greeting: "x",
-      name: "x")
-    user = User.create(username: "test2", password: "password", email: "test@example.com")
+    user = create(:user)
+
     visit edit_user_path(user)
     expect(current_path).to eq(root_path)
   end
 
   scenario "Admin user cannot edit user info" do
-    nationality = Nationality.create(photo_path: "x",
-      info_link: "x",
-      greeting: "x",
-      name: "x")
-
-    user = User.create(username: "test2", password: "password", email: "test@example.com")
-    admin = User.create(username: "test2", password: "password", role: 1, email: "test@example.com")
+    user = create(:user)
+    admin = create(:admin)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( admin )
     visit edit_user_path(user)
     expect(current_path).to eq(root_path)
