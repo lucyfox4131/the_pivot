@@ -40,6 +40,20 @@ FactoryGirl.define do
     name "Somali"
   end
 
+  factory :charity do
+    name {generate(:charity_name)}
+    description {generate(:charity_description)}
+    status 2
+  end
+
+  sequence :charity_name do |n|
+    "charity_#{n}"
+  end
+  
+  sequence :charity_description do |n|
+    "This is the charity description for our charity_#{n}"
+  end
+
   factory :family do
     first_name "x"
     last_name "x"
@@ -77,17 +91,4 @@ FactoryGirl.define do
     donation_id 1
   end
 
-  factory :charity do
-    name {generate(:charity_name)}
-    description {generate(:charity_description)}
-    status 2
-  end
-
-  sequence :charity_name do |n|
-    "charity_#{n}"
-  end
-
-  sequence :charity_description do |n|
-    "This is the charity description for our charity_#{n}"
-  end
 end

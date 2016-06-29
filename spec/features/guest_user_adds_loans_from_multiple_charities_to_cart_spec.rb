@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Guest user visits multiple charities" do
   scenario "multiple loans can be added to a user cart" do
+    pending
     family_1, family_2 = create(:family, 2)
 
     visit

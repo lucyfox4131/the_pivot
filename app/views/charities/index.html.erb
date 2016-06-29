@@ -1,0 +1,7 @@
+<h1>All Charities</h1>
+
+<ul>
+  <% @charities.each do |charity| %>
+    <li><%= link_to charity.name, charity_path(charity.slug) %></li>
+  <% end %>
+</ul>
