@@ -26,6 +26,10 @@ Rails.application.routes.draw do
   resources :charities, only: [:index]
   get ':charity_slug', to: 'charities#show', as: :charity
 
+  namespace :charity, path: ':charity_slug', as: :charity do
+    resources :families, only: [:index]
+  end
+
   resources :categories, only: [:show], path: ""
   #get rid of categories slug
   # get ':charity' #slug, show charity name as the url
