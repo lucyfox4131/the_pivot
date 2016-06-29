@@ -49,7 +49,7 @@ FactoryGirl.define do
   sequence :charity_name do |n|
     "charity_#{n}"
   end
-  
+
   sequence :charity_description do |n|
     "This is the charity description for our charity_#{n}"
   end
@@ -89,6 +89,18 @@ FactoryGirl.define do
     quantity 1
     supply_item_id 1
     donation_id 1
+  end
+
+  factory :loan do
+    requested_amount 1000
+    description "This loan is to start a bakery in the US"
+    family_id 1
+  end
+
+  factory :loan_item do
+    loan_id 1
+    donation_id 1
+    amount 100
   end
 
 end
