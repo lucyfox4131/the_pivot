@@ -2,29 +2,25 @@ require 'rails_helper'
 
 RSpec.feature "user sees past donation" do
   scenario "donation page is shown for authenticated user" do
-
-    user = User.create(username: "test", password: "password", email: "test@example.com")
+    user = create(:user)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
-    nationality1 = Nationality.create(photo_path: "http://www.criticalthreats.org/sites/default/files/AEI_Somalia_Map_Political.gif" ,info_link: "Somali", greeting: "most-critical", name: "Somali")
-    nationality2 = Nationality.create(photo_path: "http://www.criticalthreats.org/sites/default/files/AEI_Somalia_Map_Political.gif" ,info_link: "Somali", greeting: "most-critical", name: "Burmese")
+    family1 = create(:family)
+    family2 = create(:family, nationality: create(:nationality, name: "Burmese"))
 
-    family1 = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality: nationality1, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 0, num_children_under_two: 0)
-    family2 = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality: nationality2, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 0, num_children_under_two: 0)
+    supply1 = create(:supply, name: "Small Pot", value: 3.0, multiplier_type: "household")
+    supply2 = create(:supply, name: "Couch", value: 100.0, multiplier_type: "household")
 
-    supply1 = Supply.create(name: "Small Pot", value: 3.0, description: "New or used.", multiplier_type: "household")
-    supply2 = Supply.create(name: "Couch", value: 100.0, description: "New or used.  Used must be in good condition.", multiplier_type: "household")
+    supply_item1 = create(:supply_item, supply: supply1, quantity: 2, family: family1)
+    supply_item2 = create(:supply_item, supply: supply2, quantity: 2, family: family2)
 
-    supply_item1 = SupplyItem.create(supply: supply1, quantity: 2, family: family1)
-    supply_item2 = SupplyItem.create(supply: supply2, quantity: 2, family: family2)
+    donation1 = create(:donation, status: "Received", user: user)
+    donation2 = create(:donation)
 
-    donation1 = Donation.create(status: "Received", user: user)
-    donation2 = Donation.create(status: "Pledged", user: user)
-
-    donation_item = DonationItem.create(quantity: 2, supply_item: supply_item1, donation: donation1)
-    donation_item2 = DonationItem.create(quantity: 2, supply_item: supply_item2, donation: donation1)
-    donation_item3 = DonationItem.create(quantity: 1, supply_item: supply_item1, donation: donation2)
+    donation_item = create(:donation_item, quantity: 2, supply_item: supply_item1, donation: donation1)
+    donation_item2 = create(:donation_item, quantity: 2, supply_item: supply_item2, donation: donation1)
+    donation_item3 = create(:donation_item, quantity: 1, supply_item: supply_item1, donation: donation2)
 
     visit donations_path
     click_on(donation1.id)
@@ -44,23 +40,17 @@ RSpec.feature "user sees past donation" do
   end
 
   scenario "donation page is not shown if not user's donation" do
-
-    user = User.create(username: "test", password: "password", email: "test@example.com")
-    other_user = User.create(username: "other", password: "password", email: "test@example.com")
+    user = create(:user)
+    other_user = create(:other_user)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
-    nationality1 = Nationality.create(photo_path: "http://www.criticalthreats.org/sites/default/files/AEI_Somalia_Map_Political.gif" ,info_link: "Somali", greeting: "most-critical", name: "Somali")
+    family1 = create(:family)
+    supply1 = create(:supply, name: "Small Pot", value: 3.0)
+    supply_item1 = create(:supply_item, supply_id: supply1.id, quantity: 2, family_id: family1.id)
 
-    family1 = Family.create(first_name: "TestFirst", last_name: "TestLast", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality: nationality1, num_married_adults: 2, num_unmarried_adults: 1, num_children_over_two: 0, num_children_under_two: 0)
-
-    supply1 = Supply.create(name: "Small Pot", value: 3.0, description: "New or used.", multiplier_type: "household")
-
-    supply_item1 = SupplyItem.create(supply: supply1, quantity: 2, family: family1)
-
-    donation1 = Donation.create(status: "Received", user: other_user)
-
-    donation_item = DonationItem.create(quantity: 2, supply_item: supply_item1, donation: donation1)
+    donation1 = create(:donation, status: "Received", user: other_user)
+    donation_item = create(:donation_item, quantity: 2, supply_item_id: supply_item1.id, donation_id: donation1.id)
 
     visit donation_path(donation1)
 

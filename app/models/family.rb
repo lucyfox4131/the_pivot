@@ -13,7 +13,9 @@ class Family < ActiveRecord::Base
   has_many :supply_items
   has_many :supplies, through: :supply_items
   has_many :donation_items, through: :supply_items
+  has_one :loan
   belongs_to :nationality
+  belongs_to :charity
 
   has_attached_file :family_photo, styles: {
     thumb: '100x100>',

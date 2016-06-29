@@ -1,7 +1,6 @@
 class CategoriesController < ApplicationController
-
   def show
-    @category = Category.find_by(slug: params[:id])
+    @category = Category.find_by(slug: params[:categories_slug])
     if @category
       @families = @category.families.active
     else

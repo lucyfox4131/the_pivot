@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :donation_items, through: :donations
 
   enum role: ["default", "admin"]
-
+#[default, business_admin, platform_admin]
   attr_accessor :current_password
 
   def password_correct?

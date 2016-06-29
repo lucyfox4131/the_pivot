@@ -2,12 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "user can update item in cart" do
   scenario "items is updated" do
-    nationality = Nationality.create(photo_path: "x", info_link: "x", greeting: "x", name: "Somali")
 
-    family = Family.create(first_name: "First1", last_name: "Last1", arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now, nationality: nationality, num_married_adults: 2, num_unmarried_adults: 0, num_children_over_two: 2, num_children_under_two: 0)
-
-    Supply.create(name: "Dresser", value: 50.0, description: "New or used.  Used must be in good condition.", multiplier_type: "adult")
-
+    family = create(:family)
+    create(:supply, name: "Dresser", value: 50.0, multiplier_type: "adult")
     supply = family.create_supply_items
 
     visit family_path(family)

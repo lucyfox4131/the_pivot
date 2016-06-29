@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resource :dashboard, only: [:show]
     resources :families, only: [:show, :new, :create, :index, :update]
   end
-
+#this will be namspaced underneath the charity
   resources :families, only: [:index, :show]
 
   resources :users, only: [:new, :create, :edit, :update]
@@ -20,9 +20,18 @@ Rails.application.routes.draw do
 
   resources :donations, only: [:index, :show, :new, :create]
 
-  resources :homes, only: [:show]
+  resources :loans, only: [:show]
+  # resources :homes, only: [:show]
 
   root to: "homes#show"
+  resources :charities, only: [:index]
+  get ':charity_slug', to: 'charities#show', as: :charity
 
-  resources :categories, only: [:show], path: ""
+  namespace :charity, path: ':charity_slug', as: :charity do
+    resources :families, only: [:index]
+  end
+
+  scope :category do
+    get ':categories_slug', to: 'categories#show', as: :category
+  end
 end
