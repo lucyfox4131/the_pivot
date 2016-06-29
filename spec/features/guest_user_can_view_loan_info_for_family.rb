@@ -18,7 +18,3 @@ RSpec.feature "user can view loan info for family" do
     expect(page).to         have_content loan.name
   end
 end
-#as a guest user I can visit the family page
-#i can see that family has requested a loan
-#click to know more information about the loan request
-#a loan has a requested amount and description
