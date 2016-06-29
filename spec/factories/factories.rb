@@ -12,7 +12,6 @@ FactoryGirl.define do
     "slug-#{n}"
   end
 
-
   factory :user do
     username "user"
     password  "password"
@@ -51,6 +50,7 @@ FactoryGirl.define do
     num_unmarried_adults 0
     num_children_over_two 1
     num_children_under_two 0
+    charity
   end
 
   factory :supply do
@@ -77,4 +77,17 @@ FactoryGirl.define do
     donation_id 1
   end
 
+  factory :charity do
+    name {generate(:charity_name)}
+    description {generate(:charity_description)}
+    status 2
+  end
+
+  sequence :charity_name do |n|
+    "charity_#{n}"
+  end
+
+  sequence :charity_description do |n|
+    "This is the charity description for our charity_#{n}"
+  end
 end
