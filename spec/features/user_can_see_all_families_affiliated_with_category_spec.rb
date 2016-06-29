@@ -10,7 +10,7 @@ RSpec.feature "user can see all families affiliated w/ category" do
     family1.categories << [category1, category2]
     family2.categories << [category2, category3]
 
-    visit category_path(category2)
+    visit category_path(category2.slug)
 
     expect(page).to have_content "Somali"
     expect(page).to have_content "Syrian"

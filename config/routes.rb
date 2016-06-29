@@ -30,8 +30,7 @@ Rails.application.routes.draw do
     resources :families, only: [:index]
   end
 
-  resources :categories, only: [:show], path: ""
-  #get rid of categories slug
-  # get ':charity' #slug, show charity name as the url
-  # get ':charity/families', 'charities#index'
+  scope :category do
+    get ':categories_slug', to: 'categories#show', as: :category
+  end
 end
