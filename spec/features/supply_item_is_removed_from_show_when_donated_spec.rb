@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.feature  "family list show correct items needed when donations made" do
   scenario "item removed when fully donated" do
     user = create(:user)
-    nationality1 = create(:nationality)
     fam1 = create(:family)
     supply = create(:supply)
     supply_item = create(:supply_item)
@@ -27,8 +26,6 @@ RSpec.feature  "family list show correct items needed when donations made" do
 
   scenario "selector reduced when partially donated" do
     user = create(:user)
-    nationality1 = create(:nationality)
-
     fam1 = create(:family)
     supply = create(:supply)
     supply_item = create(:supply_item)

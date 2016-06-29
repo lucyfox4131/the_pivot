@@ -1,4 +1,18 @@
 FactoryGirl.define do
+  factory :category do
+    name
+    slug
+  end
+
+  sequence :name do |n|
+   "Category#{n}"
+  end
+
+  sequence :slug do |n|
+    "slug-#{n}"
+  end
+
+
   factory :user do
     username "user"
     password  "password"

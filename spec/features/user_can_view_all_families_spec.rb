@@ -15,7 +15,7 @@ RSpec.feature "user can view all families" do
                                    donation_deadline: 15.days.ago)
 
     visit families_path
-    
+
     expect(page).to have_content "#{family1.nationality.name} Families Arriving"
     expect(page).to have_content "#{family2.nationality.name} Families Arriving"
     expect(page).to have_content "#{family3.nationality.name} Families Arriving"

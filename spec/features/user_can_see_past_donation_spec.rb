@@ -6,10 +6,8 @@ RSpec.feature "user sees past donation" do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
-    nationality2 = create(:nationality, name: "Burmese")
-
     family1 = create(:family)
-    family2 = create(:family, nationality: nationality2)
+    family2 = create(:family, nationality: create(:nationality, name: "Burmese"))
 
     supply1 = create(:supply, name: "Small Pot", value: 3.0, multiplier_type: "household")
     supply2 = create(:supply, name: "Couch", value: 100.0, multiplier_type: "household")

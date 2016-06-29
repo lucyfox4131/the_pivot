@@ -2,28 +2,11 @@ require 'rails_helper'
 
 RSpec.feature "user sees correct info for current and past families" do
   scenario "they see a form for family that will arrive" do
-    nationality = Nationality.create(photo_path: "x",
-      info_link: "x",
-      greeting: "x",
-      name: "Somali")
-
-    family = Family.create(first_name: "First1",
-      last_name: "Last1",
-      arrival_date: 10.days.from_now,
-      donation_deadline: 5.days.from_now,
-      nationality: nationality,
-      num_married_adults: 2,
-      num_unmarried_adults: 0,
-      num_children_over_two: 2,
-      num_children_under_two: 0)
-
-    supply = Supply.create(name: "School Supplies",
-      value: 10.0,
-      description: "3 notebooks, set of pens, set of pencils. Must be new.",
-      multiplier_type: "child")
-
+    family = create(:family)
+    supply = create(:supply, name: "School Supplies",
+                             value: 10.0,
+                             multiplier_type: "child")
     family.supply_items.create(supply: supply, quantity: 2)
-
 
     visit family_path(family)
     expect(page).to_not have_content("Family Arrived")
@@ -33,34 +16,16 @@ RSpec.feature "user sees correct info for current and past families" do
   end
 
   scenario "they see list of donations for family that already arrived" do
-      nationality = Nationality.create(photo_path: "x",
-        info_link: "x",
-        greeting: "x",
-        name: "Somali")
+    family = create(:family, arrival_date: 10.days.ago,
+                             donation_deadline: 15.days.ago)
+    supply = create(:supply, name: "School Supplies",
+                             value: 10.0,
+                             multiplier_type: "child")
+    family.supply_items.create(supply: supply, quantity: 2)
 
-      family = Family.create(first_name: "TestFirst",
-        last_name: "TestLast",
-        arrival_date: 10.days.ago,
-        donation_deadline: 15.days.ago,
-        nationality: nationality,
-        num_married_adults: 2,
-        num_unmarried_adults: 1,
-        num_children_over_two: 1,
-        num_children_under_two: 0)
-
-        supply = Supply.create(name: "School Supplies",
-          value: 10.0,
-          description: "3 notebooks, set of pens, set of pencils. Must be new.",
-          multiplier_type: "child")
-
-        family.supply_items.create(supply: supply, quantity: 2)
-
-        user = User.create(username: "user1", password: "password")
-
-        donation = Donation.create(status: "Received", user: user)
-
-        donation_item1 = DonationItem.create(quantity: 1,
-          supply_item: family.supply_items.first,
+    user = create(:user)
+    donation = create(:donation, status: "Received", user: user)
+    donation_item1 = create(:donation_item, quantity: 1, supply_item_id: family.supply_items.first.id,
           donation: donation)
 
         visit family_path(family)
@@ -73,6 +38,4 @@ RSpec.feature "user sees correct info for current and past families" do
         expect(page).to have_content("School Supplies")
       end
 
-      scenario "" do
-      end
     end
