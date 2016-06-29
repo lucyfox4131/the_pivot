@@ -23,10 +23,11 @@ Rails.application.routes.draw do
   # resources :homes, only: [:show]
 
   root to: "homes#show"
+  resources :charities, only: [:index]
+  get ':charity_slug', to: 'charities#show', as: :charity
 
   resources :categories, only: [:show], path: ""
   #get rid of categories slug
-
   # get ':charity' #slug, show charity name as the url
-  # get ':charity/families', 'charities#index' 
+  # get ':charity/families', 'charities#index'
 end

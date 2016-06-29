@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-Rspec.feature "Guest User Sees Many Charities" do
+RSpec.feature "Guest User Sees Many Charities" do
   context "a guest user visits the root page" do
     scenario "they are able to successfully view charities" do
-      charity_1, charity_2, charity_3 = create(:charity, 3)
+      charity_1, charity_2, charity_3 = create_list(:charity, 3)
       visit root_path
 
       expect(page).to have_link("See All Charities")
@@ -15,7 +15,7 @@ Rspec.feature "Guest User Sees Many Charities" do
       expect(page).to have_link(charity_3.name)
 
       click_link charity_1.name
-      expect(current_path).to eq(charity_path(charity1.name))
+      expect(current_path).to eq(charity_path(charity_1.slug))
       expect(page).to have_content(charity_1.description)
     end
   end

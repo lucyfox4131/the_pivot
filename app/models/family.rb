@@ -14,6 +14,7 @@ class Family < ActiveRecord::Base
   has_many :supplies, through: :supply_items
   has_many :donation_items, through: :supply_items
   belongs_to :nationality
+  belongs_to :charity
 
   has_attached_file :family_photo, styles: {
     thumb: '100x100>',
