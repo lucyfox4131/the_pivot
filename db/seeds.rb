@@ -43,7 +43,6 @@ class Seed
     greeting: "afghan_greeting.png",
     name: "Afghan")
   end
-
   def create_charities
     Charity.create!(
                       name:        Faker::Company.name,

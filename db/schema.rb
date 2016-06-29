@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629192947) do
+ActiveRecord::Schema.define(version: 20160629205830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,28 @@ ActiveRecord::Schema.define(version: 20160629192947) do
   add_index "families", ["charity_id"], name: "index_families_on_charity_id", using: :btree
   add_index "families", ["nationality_id"], name: "index_families_on_nationality_id", using: :btree
 
+  create_table "loan_items", force: :cascade do |t|
+    t.integer  "amount"
+    t.integer  "loan_id"
+    t.integer  "donation_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "loan_items", ["donation_id"], name: "index_loan_items_on_donation_id", using: :btree
+  add_index "loan_items", ["loan_id"], name: "index_loan_items_on_loan_id", using: :btree
+
+  create_table "loans", force: :cascade do |t|
+    t.integer  "requested_amount"
+    t.text     "description"
+    t.string   "name"
+    t.integer  "family_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "loans", ["family_id"], name: "index_loans_on_family_id", using: :btree
+
   create_table "nationalities", force: :cascade do |t|
     t.string   "photo_path"
     t.string   "info_link"
@@ -143,6 +165,9 @@ ActiveRecord::Schema.define(version: 20160629192947) do
   add_foreign_key "donations", "users"
   add_foreign_key "families", "charities"
   add_foreign_key "families", "nationalities"
+  add_foreign_key "loan_items", "donations"
+  add_foreign_key "loan_items", "loans"
+  add_foreign_key "loans", "families"
   add_foreign_key "supply_items", "families"
   add_foreign_key "supply_items", "supplies"
 end

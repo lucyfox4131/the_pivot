@@ -30,6 +30,13 @@
     </div>
   </div>
 
+<% if @family.loan %>
+<ul>
+  <li>"This family has requested a loan."</li>
+  <li><%= link_to "View Loan", loan_path(@family.loan) %></li>
+</ul>
+<% end %>
+
 <% if !@family.retired? %>
   <h4>Welcome this family with the following donations:</h4>
   <table class="table">
