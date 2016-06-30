@@ -44,7 +44,8 @@ FactoryGirl.define do
   factory :charity do
     name {generate(:charity_name)}
     description {generate(:charity_description)}
-    status 2
+    status 1
+    slug "unhcr"
   end
 
   sequence :charity_name do |n|
