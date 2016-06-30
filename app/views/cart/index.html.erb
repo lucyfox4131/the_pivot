@@ -21,7 +21,7 @@
       <td><%= currency cart_item.value %></td>
       <td><%= currency cart_item.subtotal(cart_item.quantity) %></td>
 
-      <%= form_for cart_item.supply_item, url: cart_item_path(cart_item.supply_item), method: :put do |f| %>
+      <%= form_for cart_item, url: cart_item_path(cart_item.supply_item), method: :put do |f| %>
         <div class="<%= cart_item.supply.name %>">
           <td>
             <%= f.hidden_field :id, :value => cart_item.supply_item.id %>
