@@ -4,8 +4,10 @@
     <div >
     <% if current %>
       <li data-name="<%= family.last_name %>"class="list-group-item family"><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arriving in <%= days_from_today family.arrival_date %></li>
+      <%= render partial: "loan_information", locals: {family: family} %>
     <% else %>
       <li data-name="<%= family.last_name %>"class="list-group-item family"><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arrived <%= days_from_today family.arrival_date %> ago</li>
+      <%= render partial: "loan_information", locals: {family: family} %>
     <% end %>
   <% end %>
     </div>

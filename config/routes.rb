@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :donations, only: [:index, :show, :new, :create]
 
-  resources :loans, only: [:show]
+  resources :loans, only: [:show, :edit, :update, :new, :create]
   # resources :homes, only: [:show]
 
   root to: "homes#show"
