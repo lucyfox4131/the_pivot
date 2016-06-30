@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "user can update item in cart" do
   scenario "items is updated" do
-
     family = create(:family)
     create(:supply, name: "Dresser", value: 50.0, multiplier_type: "adult")
     supply = family.create_supply_items
