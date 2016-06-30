@@ -99,9 +99,9 @@ FactoryGirl.define do
 
   factory :loan do
     requested_amount 1000
-    family_id 1
-    name "Small Business Loan"
+    purpose "Bakery"
     description "This loan is to start a bakery in the US"
+    family_id 1
   end
 
   factory :loan_item do
