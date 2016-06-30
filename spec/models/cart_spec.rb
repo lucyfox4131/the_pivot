@@ -19,6 +19,14 @@ RSpec.describe Cart, type: :model do
     expect(cart.contents).to eq({"1"=>1})
   end
 
+  it "can add a loan to the cart" do
+    family = create(:family)
+    loan = create(:loan)
+    cart = Cart.new({})
+    cart.add_cart_item(loan, 15)
+    expect(cart.contents).to eq("#{loan.purpose}, #{loan.id}" => 15)
+  end
+
   it "changes item quantity from the cart" do
     supply_item1 = Supply.create(name: "Twin Mattress", value:  100.0, description: "Must be new.", multiplier_type: "child")
 

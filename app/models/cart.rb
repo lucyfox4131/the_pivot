@@ -5,9 +5,15 @@ class Cart
     @contents = initial_contents || {}
   end
 
-  def add_cart_item(supply_item_id, quantity)
-    contents[supply_item_id.to_s] ||= 0
-    contents[supply_item_id.to_s] += quantity.to_i
+  def add_cart_item(item, quantity)
+    if item.is_a? Integer
+      contents[item.to_s] ||= 0
+      contents[item.to_s] += quantity.to_i
+    else
+      #case where we are adding a loan to the cart
+      contents["#{item.purpose}, #{item.id}"] ||= 0
+      contents["#{item.purpose}, #{item.id}"] += quantity.to_i
+    end
   end
 
   def delete_cart_item(supply_item_id)
