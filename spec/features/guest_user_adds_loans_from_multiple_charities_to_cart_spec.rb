@@ -14,9 +14,9 @@ RSpec.feature "Guest user visits multiple charities" do
       select  1, from: "supply_item[quantity]"
       find(:button, "add to cart").click
     end
-
+save_and_open_page
     within(".#{loan.purpose}") do
-      select 15, from: "loan_item[quantity]"
+      select 15, from: "loan[]"
       find(:button, 'add to cart').click
     end
 

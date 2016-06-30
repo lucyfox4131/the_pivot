@@ -48,7 +48,7 @@
         <td><%= currency(@family.loan.requested_amount) %></td>
         <td><%= f.hidden_field :id, :value => @family.loan.id %>
           <div class="form-group">
-            <%= f.select(:quantity, (@family.loan.requested_amount.donation_range), { :prompt => '0'}, { class: 'form-control' }) %>
+            <%= f.select(:requested_amount, (@family.loan.donation_range), { :prompt => '0'}, { class: 'form-control' }) %>
           </div>
         </td>
         <td><%= f.submit 'add to cart', class: "btn btn-warning"%></td>
