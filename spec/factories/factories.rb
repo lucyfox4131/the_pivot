@@ -16,6 +16,7 @@ FactoryGirl.define do
     username "user"
     password  "password"
     email "email@example.com"
+    cell "7345678778"
     role 0
   end
 
@@ -43,7 +44,8 @@ FactoryGirl.define do
   factory :charity do
     name {generate(:charity_name)}
     description {generate(:charity_description)}
-    status 2
+    status 1
+    slug "unhcr"
   end
 
   sequence :charity_name do |n|
@@ -54,9 +56,13 @@ FactoryGirl.define do
     "This is the charity description for our charity_#{n}"
   end
 
+  sequence :last_name do |n|
+    "last_name#{n}"
+  end
+
   factory :family do
     first_name "x"
-    last_name "x"
+    last_name
     arrival_date { 10.days.from_now }
     donation_deadline { 5.days.from_now }
     nationality
@@ -93,8 +99,9 @@ FactoryGirl.define do
 
   factory :loan do
     requested_amount 1000
-    description "This loan is to start a bakery in the US"
     family_id 1
+    name "Small Business Loan"
+    description "This loan is to start a bakery in the US"
   end
 
   factory :loan_item do
