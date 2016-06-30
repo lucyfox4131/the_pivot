@@ -1,5 +1,4 @@
 class Seed
-
   def initialize
     create_categories
     create_nationalities
