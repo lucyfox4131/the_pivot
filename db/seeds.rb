@@ -10,6 +10,7 @@ class Seed
     create_roles
     create_admin_user_roles
     create_supplies
+    create_supply_items
     create_donation_items
   end
 
@@ -74,7 +75,8 @@ class Seed
                       num_unmarried_adults:   [0,1,2].sample,
                       num_children_over_two:  rand(0..5),
                       num_children_under_two: rand(0..5),
-                      description:            Faker::Lorem.paragraph
+                      description:            Faker::Lorem.paragraph,
+                      category_ids:           category_ids
                     )
     end
   end
@@ -209,11 +211,22 @@ class Seed
     multiplier_type: "child")
   end
 
+  def create_supply_items
+    supplies = Supply.all
+    supplies.each do |supply|
+      10.times do
+        SupplyItem.create!(supply_id: supply.id,
+                            family_id: rand(1..50),
+                            quantity: rand(1..4))
+      end
+    end
+  end
+
   def create_donation_items
     300.times do
       DonationItem.create!(
                           quantity: rand(1..4),
-                          supply_item_id: rand(1..18),
+                          supply_item_id: rand(1..180),
                           donation_id: rand(1..1000)
       )
     end
