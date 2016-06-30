@@ -1,17 +1,18 @@
 class Seed
-
   def initialize
     create_categories
     create_nationalities
     create_charities
     create_active_families
     create_past_families
+    create_loans
     create_users
     create_roles
     create_admin_user_roles
     create_supplies
     create_supply_items
     create_donation_items
+    create_loan_items
   end
 
   def create_categories
@@ -99,15 +100,40 @@ class Seed
     end
   end
 
+  def create_loans
+    Family.all.each do |family|
+      if family.category_ids.include?(9)
+        family.loan = Loan.create!(
+                                    requested_amount: rand(500..5000),
+                                    description:      Faker::Lorem.paragraph,
+                                    purpose:          Faker::Hipster.sentence(3)
+                                  )
+      end
+    end
+  end
+
   def create_users
     100.times do
       user = User.create!(
-                    username:  Faker::Internet.user_name,
-                    password:  Faker::Internet.password,
-                    cell:      1112223333,
-                    email:     Faker::Internet.email,
-                  )
+                            username:  Faker::Internet.user_name,
+                            password:  Faker::Internet.password,
+                            cell:      1112223333,
+                            email:     Faker::Internet.email,
+                          )
       create_donations(user)
+    end
+  end
+
+  def create_loan_items
+    loans = Loan.all
+    loans.each do |loan|
+      10.times do
+        LoanItem.create!(
+                          loan_id:     loan.id,
+                          donation_id: rand(1..1000),
+                          amount:      rand(10..50)
+                        )
+      end
     end
   end
 
@@ -130,8 +156,9 @@ class Seed
   def create_donations(user)
     10.times do
       Donation.create(
-                      status: ["Cancelled", "Pledged", "Received"].sample,
-                      user: user)
+                        status: ["Cancelled", "Pledged", "Received"].sample,
+                        user:   user
+                      )
     end
   end
 
@@ -215,9 +242,11 @@ class Seed
     supplies = Supply.all
     supplies.each do |supply|
       10.times do
-        SupplyItem.create!(supply_id: supply.id,
+        SupplyItem.create!(
+                            supply_id: supply.id,
                             family_id: rand(1..50),
-                            quantity: rand(1..4))
+                            quantity: rand(1..4)
+                          )
       end
     end
   end
@@ -225,12 +254,13 @@ class Seed
   def create_donation_items
     300.times do
       DonationItem.create!(
-                          quantity: rand(1..4),
-                          supply_item_id: rand(1..180),
-                          donation_id: rand(1..1000)
-      )
+                            quantity: rand(1..4),
+                            supply_item_id: rand(1..180),
+                            donation_id: rand(1..1000)
+                          )
     end
   end
+
 end
 
 Seed.new
