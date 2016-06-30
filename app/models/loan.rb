@@ -3,6 +3,8 @@ class Loan < ActiveRecord::Base
   validates :requested_amount, presence: true
   validates :description, presence: true
 
+  scope :active, -> { where(status: "active")}
+
   belongs_to :family
 
   def donation_range
@@ -20,4 +22,9 @@ class Loan < ActiveRecord::Base
       end
     end
   end
+
+  def retire_loan
+    update(status: "retired")
+  end
+
 end

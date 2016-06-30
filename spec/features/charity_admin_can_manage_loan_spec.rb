@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.feature "Charity admin manages loans" do
   context "logged in charity admin is able to see loan information" do
     scenario "succesfully views information necessary" do
-      user = create(:user)
+      charity_admin = create(:user)
       charity = create(:charity)
       role = Role.create(name: "charity_admin")
-      UserRole.create(user: user, charity: charity, role: role)
+      UserRole.create(user: charity_admin, charity: charity, role: role)
       family_1, family_2, family_3 = create_list(:family, 3, charity: charity)
       loan = create(:loan, family_id: family_1.id)
 
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( charity_admin )
 
       visit admin_dashboard_path
       expect(page).to have_link("All Families")
