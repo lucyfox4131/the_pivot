@@ -1,6 +1,7 @@
 <h1 class="text-center">Your Donations Cart</h1>
 
 <% if !session.exists? || !@cart.contents.empty? %>
+<h2>Supplies To Be Donated</h2>
   <table class="table table-hover">
     <tr class="active">
       <th>Family Supply</th>
@@ -32,6 +33,41 @@
         </div>
       <% end %>
       <td><%= button_to "Remove", cart_item_path(cart_item.supply_item), method: :delete, class: "btn btn-warning" %></td>
+    </tr>
+    <% end %>
+  </table>
+
+  <table class="table table-hover">
+    <tr class="active">
+      <th>Loan Purpose - Amount</th>
+      <th>Loan Description</th>
+      <th>Donated Amount</th>
+      <th>Change Amount?</th>
+      <th></th>
+      <th></th>
+    </tr>
+<br>
+  <h2>Loan Contributions</h2>
+
+    <% @cart_loan_items.each do |loan| %>
+    <tr>
+
+      <td><%= link_to "#{loan.purpose} - #{loan.requested_amount}", family_path(loan.family) %></td>
+      <td><%= loan.description %></td>
+      <td><%= currency loan.quantity_in_cart(@cart) %></td>
+
+      <%= form_for loan, url: cart_item_path(loan), method: :put do |f| %>
+        <div class="<%= loan.purpose %>">
+          <td>
+            <%= f.hidden_field :id, :value => loan.id %>
+            <div class="form-group">
+            <%= f.select :quantity, (loan.donation_range), selected: loan.donation_range, class: 'form-control' %>
+            </div>
+          </td>
+          <td><%= f.submit "Update Cart", class: "btn btn-default" %></td>
+        </div>
+      <% end %>
+      <td><%= button_to "Remove", cart_item_path(loan), method: :delete, class: "btn btn-warning" %></td>
     </tr>
     <% end %>
   </table>

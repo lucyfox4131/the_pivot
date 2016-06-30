@@ -75,4 +75,13 @@ class Cart
       cart_item.supply
     end
   end
+
+  def get_loan_items
+    contents.map do |key, quantity|
+      if key.to_i.to_s != key
+        loan_id = key.split(", ").last.to_i
+        Loan.find(loan_id)
+      end
+    end.compact
+  end
 end
