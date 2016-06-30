@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   has_many :donations
   has_many :donation_items, through: :donations
+  has_many :user_roles
+  has_many :roles, through: :user_roles
 
   enum role: ["default", "admin"]
 #[default, business_admin, platform_admin]
