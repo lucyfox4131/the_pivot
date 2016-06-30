@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Charity, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:family) }
+
+  it { should belong_to(:family) }
+
+  it "creates slug" do
+    charity = create(:charity)
+
+    expect(charity.create_slug).to eq("")
+  end
 end
