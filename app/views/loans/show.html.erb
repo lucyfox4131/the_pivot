@@ -1,7 +1,7 @@
-<h1><%= @loan.name %></h1>
+<h1>The purpose of this loan is to begin a : <%= @loan.purpose %></h1>
 <ul>
   <li><%= @loan.description %></li>
-  <li><%= @loan.requested_amount %></li>
+  <li>The family has requested <%= number_to_currency(@loan.requested_amount) %> to make this dream a reality.</li>
 </ul>
 
 <h3>Would you like to contribute to this loan?</h3>
