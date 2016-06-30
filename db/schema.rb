@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630162058) do
+ActiveRecord::Schema.define(version: 20160630211500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,16 +41,6 @@ ActiveRecord::Schema.define(version: 20160630162058) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  create_table "charity_admins", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "charity_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "charity_admins", ["charity_id"], name: "index_charity_admins_on_charity_id", using: :btree
-  add_index "charity_admins", ["user_id"], name: "index_charity_admins_on_user_id", using: :btree
 
   create_table "donation_items", force: :cascade do |t|
     t.integer  "quantity"
@@ -157,8 +147,10 @@ ActiveRecord::Schema.define(version: 20160630162058) do
     t.integer  "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "charity_id"
   end
 
+  add_index "user_roles", ["charity_id"], name: "index_user_roles_on_charity_id", using: :btree
   add_index "user_roles", ["role_id"], name: "index_user_roles_on_role_id", using: :btree
   add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id", using: :btree
 
@@ -174,8 +166,6 @@ ActiveRecord::Schema.define(version: 20160630162058) do
 
   add_foreign_key "category_families", "categories"
   add_foreign_key "category_families", "families"
-  add_foreign_key "charity_admins", "charities"
-  add_foreign_key "charity_admins", "users"
   add_foreign_key "donation_items", "donations"
   add_foreign_key "donation_items", "supply_items"
   add_foreign_key "donations", "users"
@@ -186,6 +176,7 @@ ActiveRecord::Schema.define(version: 20160630162058) do
   add_foreign_key "loans", "families"
   add_foreign_key "supply_items", "families"
   add_foreign_key "supply_items", "supplies"
+  add_foreign_key "user_roles", "charities"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end
