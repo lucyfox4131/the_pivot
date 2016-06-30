@@ -9,7 +9,7 @@ class CartItemsController < ApplicationController
       redirect_to family_path(supply_item.family)
     else
       loan = Loan.find(params[:loan][:id])
-      @cart.add_cart_item(loan.id, params[:loan][:requested_amount])
+      @cart.add_cart_item(loan, params[:loan][:requested_amount])
       session[:cart] = @cart.contents
       flash[:success] = "You added #{loan.purpose} loan to your cart"
       redirect_to family_path(loan.family)

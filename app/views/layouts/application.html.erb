@@ -48,7 +48,7 @@
         <% end %>
         <li class="custom-nav">
           <%= link_to cart_index_path do %>
-            Cart <span class="badge"><%= cart_item_count %></span>
+            Cart <span class="badge"><%= @cart.total_items %></span>
           <% end %>
         </li>
       </ul>

@@ -2,19 +2,19 @@ require 'rails_helper'
 
 RSpec.describe Cart, type: :model do
   it "adds//deletes an item to and from the cart" do
-    supply_item = Supply.create(name: "Twin Bedframe", value:  30.0, description: "New or used.  Used must be in good condition.", multiplier_type: "child")
-    supply_item1 = Supply.create(name: "Twin Mattress", value:  100.0, description: "Must be new.", multiplier_type: "child")
+    supply  = create(:supply)
+    supply2 = create(:supply, name: "Twin Mattress")
 
     cart = Cart.new({})
-    cart.add_cart_item(supply_item.id, 1)
+    cart.add_cart_item(supply.id, 1)
 
     expect(cart.contents).to eq({"1" => 1})
 
-    cart.add_cart_item(supply_item1.id, 2)
+    cart.add_cart_item(supply2.id, 2)
 
     expect(cart.contents).to eq({"1"=>1, "2"=>2})
 
-    cart.delete_cart_item(supply_item1.id)
+    cart.delete_cart_item(supply2.id)
 
     expect(cart.contents).to eq({"1"=>1})
   end
@@ -25,6 +25,14 @@ RSpec.describe Cart, type: :model do
     cart = Cart.new({})
     cart.add_cart_item(loan, 15)
     expect(cart.contents).to eq("#{loan.purpose}, #{loan.id}" => 15)
+  end
+
+  it "can delete a loan from the cart" do
+    family = create(:family)
+    loan = create(:loan)
+    cart = Cart.new({"#{loan.purpose}, #{loan.id}" => 15})
+    cart.delete_cart_item(loan)
+    expect(cart.contents).to eq({})
   end
 
   it "changes item quantity from the cart" do
@@ -42,6 +50,48 @@ RSpec.describe Cart, type: :model do
     cart.change_cart_item_quantity("1", 6)
 
     expect(cart.contents).to eq({"1"=>6})
+  end
+
+  it "changes loan quantity from cart" do
+    family = create(:family)
+    loan = create(:loan)
+
+    cart = Cart.new({})
+    cart.add_cart_item(loan, 30)
+
+    expect(cart.contents).to eq({"#{loan.purpose}, #{loan.id}"=> 30})
+
+    cart.change_cart_item_quantity("#{loan.purpose}, #{loan.id}", 15)
+
+    expect(cart.contents).to eq({"#{loan.purpose}, #{loan.id}"=> 15})
+
+    cart.change_cart_item_quantity("#{loan.purpose}, #{loan.id}", 65)
+
+    expect(cart.contents).to eq({"#{loan.purpose}, #{loan.id}"=> 65})
+  end
+
+  it "knows total items with supplies and loans in cart" do
+    supply_item = Supply.create(name: "Twin Bedframe", value:  30.0, description: "New or used.  Used must be in good condition.", multiplier_type: "child")
+    supply_item1 = Supply.create(name: "Twin Mattress", value:  100.0, description: "Must be new.", multiplier_type: "child")
+    nationality1 = create(:nationality)
+    family1 = create(:family)
+    loan = create(:loan)
+    family1.create_supply_items
+
+    cart = Cart.new({"#{supply_item.id}" => 1, "#{supply_item1.id}" => 2, "#{loan.purpose}, #{loan.id}" => 30})
+
+    expect(cart.total_items).to eq(4)
+  end
+
+  it "knows total price of cart with loans and supplies" do
+    supply_item = Supply.create(name: "Twin Bedframe", value:  30.0, description: "New or used.  Used must be in good condition.", multiplier_type: "child")
+    family1 = create(:family)
+    loan = create(:loan)
+    family1.create_supply_items
+
+    cart = Cart.new({"#{supply_item.id}" => 1, "#{loan.purpose}, #{loan.id}" => 30})
+
+    expect(cart.total_price).to eq(60.0)
   end
 
   it "outputs accurate number for total items//price in cart" do
@@ -80,8 +130,9 @@ RSpec.describe Cart, type: :model do
     description: "x")
     supply = Supply.create(name: "Twin Mattress", value:  100.0, description: "Must be new.", multiplier_type: "child")
     supply_item = supply.supply_items.create(family: family1, quantity: 4)
+    loan = create(:loan)
 
-    cart = Cart.new({})
+    cart = Cart.new({"#{loan.purpose}, #{loan.id}" => 30})
     cart.add_cart_item(supply_item.id, 2)
 
     expect(cart.get_supply_items.first.supply_item).to eq(supply_item)
