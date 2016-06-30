@@ -44,7 +44,8 @@ FactoryGirl.define do
   factory :charity do
     name {generate(:charity_name)}
     description {generate(:charity_description)}
-    status 2
+    status 1
+    slug "unhcr"
   end
 
   sequence :charity_name do |n|
@@ -98,8 +99,9 @@ FactoryGirl.define do
 
   factory :loan do
     requested_amount 1000
-    description "This loan is to start a bakery in the US"
     family_id 1
+    name "Small Business Loan"
+    description "This loan is to start a bakery in the US"
   end
 
   factory :loan_item do
