@@ -56,15 +56,17 @@ class Seed
 
   def create_charities
     30.times do
-      Charity.create!(name:        Faker::Company.name,
-                      description: Faker::Lorem.paragraph,
-                      status:      [0,1,2].sample)
+      Charity.create!(
+                        name:        Faker::Company.name,
+                        description: Faker::Lorem.paragraph,
+                        status:      [0,1,2].sample
+                      )
     end
   end
 
   def create_active_families
     40.times do
-      category_ids = (1..10).to_a.sample(3)
+      category_ids = (1..10).to_a.sample(2)
       Family.create!(
                       first_name:             Faker::Name.first_name,
                       last_name:              Faker::Name.last_name,
@@ -106,7 +108,7 @@ class Seed
         family.loan = Loan.create!(
                                     requested_amount: rand(500..5000),
                                     description:      Faker::Lorem.paragraph,
-                                    purpose:          Faker::Hipster.sentence(3)
+                                    purpose:          Faker::Company.name
                                   )
       end
     end
@@ -131,7 +133,7 @@ class Seed
         LoanItem.create!(
                           loan_id:     loan.id,
                           donation_id: rand(1..1000),
-                          amount:      rand(10..50)
+                          amount:      1
                         )
       end
     end
@@ -254,7 +256,7 @@ class Seed
   def create_donation_items
     300.times do
       DonationItem.create!(
-                            quantity: rand(1..4),
+                            quantity: 1,
                             supply_item_id: rand(1..180),
                             donation_id: rand(1..1000)
                           )
