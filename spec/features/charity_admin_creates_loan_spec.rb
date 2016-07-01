@@ -24,7 +24,6 @@ RSpec.feature "Admin creates loan for family" do
     click_on "Create Loan"
 
     expect(current_path).to eq(admin_families_path)
-    # expect(page).to have_content("1000.00")
-    # expect(page).to have_content("This is a purpose")
+    expect(page).to have_content("Loan Created Successfully")
   end
 end

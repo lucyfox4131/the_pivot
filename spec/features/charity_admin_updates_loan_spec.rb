@@ -23,6 +23,7 @@ RSpec.feature "Admin updates loan for family" do
     click_on "Update Loan"
 
     expect(current_path).to eq(admin_families_path)
+    expect(page).to have_content("Your updates have been saved")
 
     loan = Loan.find(loan.id)
 

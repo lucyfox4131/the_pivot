@@ -7,7 +7,7 @@ class LoansController < ApplicationController
   def create
     loan = Loan.new(loan_params)
     if loan.save
-      flash[:success] = "Loan Created Sucessfully"
+      flash[:success] = "Loan Created Successfully"
       redirect_to admin_families_path
     else
       flash[:error] = "Loan Creation Failed"
