@@ -93,7 +93,8 @@ FactoryGirl.define do
 
   factory :donation_item do
     quantity 1
-    supply_item_id 1
+    class_name "SupplyItem"
+    item_id 1
     donation_id 1
   end
 

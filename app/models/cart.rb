@@ -114,7 +114,7 @@ class Cart
 
   def get_supply_items_hash
     get_supply_items.inject({}) do |hash, cart_item|
-      hash[cart_item.supply_item] = cart_item.quantity
+      hash[cart_item] = cart_item.quantity
       hash
     end
   end

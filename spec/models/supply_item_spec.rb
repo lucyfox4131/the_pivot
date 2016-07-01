@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe SupplyItem, type: :model do
   it { should belong_to(:supply) }
   it { should belong_to(:family) }
-  it { should have_many(:donation_items) }
 
   it "has gets correct name, value, and desctiption" do
     nationality1 = Nationality.create(photo_path: "x",
