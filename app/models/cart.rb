@@ -112,6 +112,10 @@ class Cart
     end
   end
 
+  def get_cart_item_list
+    get_supply_items
+  end
+
   def get_supply_items_hash
     get_supply_items.inject({}) do |hash, cart_item|
       hash[cart_item] = cart_item.quantity

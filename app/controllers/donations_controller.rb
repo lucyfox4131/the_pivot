@@ -26,16 +26,16 @@ class DonationsController < ApplicationController
     @donation = Donation.new(user_id: current_user.id, status: "Pledged")
     if @donation.save
       cart_items.each do |cart_item|
-        @donation.create_donation_item(cart_item)
+        @donation.create_donation_item(cart_item, @donation)
       end
       flash[:success] = "Your donation (ID#: #{@donation.id}) was recieved. Thank you!"
       DonationsMailer.donation_email({
         current_user: current_user,
-        supplies: @cart.get_supply_list_from_cart,
+        supplies: @cart.get_cart_item_list,
         session: session,
         total_price: @cart.total_price,
         dashboard_url: dashboard_url}).deliver_now
-      session[:cart] = {}
+      session[:cart] = []
       redirect_to donations_path
     else
       flash.now[:warning] = "Something went wrong with your donation confirmation."

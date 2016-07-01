@@ -4,7 +4,7 @@
 
   <% @cart_items.each do |cart_item| %>
 
-    <% if cart_item[:class_type] != "Loan" %>
+    <% if cart_item.class != LoanDecorator %>
       <h2>Supplies To Be Donated</h2>
       <table class="table table-hover">
         <tr class="active">

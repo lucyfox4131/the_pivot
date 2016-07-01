@@ -23,15 +23,15 @@ class Donation < ActiveRecord::Base
     {num_items: num_items, num_families: num_families, money_raised: money_raised.to_f}
   end
 
-  def create_donation_item(cart_item)
+  def create_donation_item(cart_item, donation)
     if cart_item["class_type"] == "Loan"
       DonationItem.create(quantity: cart_item["quantity"],
                           loan: Loan.find(cart_item["id"]),
-                          donation: @donation)
+                          donation: donation)
     else
       DonationItem.create(quantity: cart_item["quantity"],
                           supply_item: SupplyItem.find(cart_item["id"]),
-                          donation: @donation)
+                          donation: donation)
     end
   end
 
