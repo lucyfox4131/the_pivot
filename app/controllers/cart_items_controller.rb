@@ -2,13 +2,13 @@ class CartItemsController < ApplicationController
 
   def create
     if params[:supply_item]
-      supply_item = SupplyItem.find(params[:supply_item][:id])
-      @cart.add_cart_item(supply_item.id, params[:supply_item][:quantity])
+      supply_item = SupplyItem.find(params[:supply_item][:id].to_i)
+      @cart.add_cart_item(supply_item, params[:supply_item][:quantity])
       session[:cart] = @cart.contents
       flash[:success] = "You added #{supply_item.name}"
       redirect_to family_path(supply_item.family)
     else
-      loan = Loan.find(params[:loan][:id])
+      loan = Loan.find(params[:loan][:id].to_i)
       @cart.add_cart_item(loan, params[:loan][:requested_amount])
       session[:cart] = @cart.contents
       flash[:success] = "You added #{loan.purpose} loan to your cart"
@@ -17,7 +17,13 @@ class CartItemsController < ApplicationController
   end
 
   def update
-    @cart.change_cart_item_quantity(params[:supply_item][:id], params[:supply_item][:quantity])
+    if params[:supply_item]
+      supply_item = SupplyItem.find(params[:supply_item][:id].to_i)
+      @cart.change_cart_item_quantity(supply_item, params[:supply_item][:quantity])
+    else
+      loan = Loan.find(params[:loan][:id].to_i)
+      @cart.change_cart_item_quantity(loan, params[:loan][:quantity])
+    end
     session[:cart] = @cart.contents
     redirect_to cart_index_path
   end
