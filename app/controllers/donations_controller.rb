@@ -22,18 +22,11 @@ class DonationsController < ApplicationController
   end
 
   def create
-    # binding.pry
-    @cart_items = @cart.contents
-    # @cart_supply_items = @cart.get_supply_items_hash
+    cart_items = @cart.contents
     @donation = Donation.new(user_id: current_user.id, status: "Pledged")
     if @donation.save
-      @cart_items.each do |cart_item|
-        # @donation.donation_items.create(quantity: quantity, supply_item: supply_item, donation: @donation)
-        # @donation.donation_items.create(quantity: cart_item[:quantity], )
-        DonationItem.create(quantity: cart_item["quantity"],
-                            class_name: cart_item["class_type"],
-                            item_id: cart_item["id"],
-                            donation: @donation)
+      cart_items.each do |cart_item|
+        @donation.create_donation_item(cart_item)
       end
       flash[:success] = "Your donation (ID#: #{@donation.id}) was recieved. Thank you!"
       DonationsMailer.donation_email({

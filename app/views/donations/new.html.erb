@@ -1,8 +1,6 @@
 <h1>Confirm Your Donation</h1>
 
-
-
-  <% @cart_items.each_with_index do |cart_item| %>
+  <% @cart_items.each do |cart_item| %>
   <% if cart_item["class_type"] != "Loan" %>
     <table class="table">
       <tr>

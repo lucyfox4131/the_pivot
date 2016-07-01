@@ -93,8 +93,7 @@ FactoryGirl.define do
 
   factory :donation_item do
     quantity 1
-    class_name "SupplyItem"
-    item_id 1
+    supply_item_id 1
     donation_id 1
   end
 
@@ -103,12 +102,6 @@ FactoryGirl.define do
     purpose "Bakery"
     description "This loan is to start a bakery in the US"
     family_id 1
-  end
-
-  factory :loan_item do
-    loan_id 1
-    donation_id 1
-    amount 100
   end
 
 end
