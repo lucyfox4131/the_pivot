@@ -19,20 +19,20 @@
       <td><%= link_to cart_item.name, family_path(cart_item.family) %></td>
       <td><%= cart_item.description %></td>
       <td><%= currency cart_item.value %></td>
-      <td><%= currency cart_item.subtotal(cart_item.quantity) %></td>
+      <td><%= currency cart_item.subtotal(cart_item.supply_item_quantity) %></td>
 
-      <%= form_for cart_item, url: cart_item_path(cart_item.supply_item), method: :put do |f| %>
+      <%= form_for cart_item, url: cart_item_path(cart_item), method: :put do |f| %>
         <div class="<%= cart_item.supply.name %>">
           <td>
-            <%= f.hidden_field :id, :value => cart_item.supply_item.id %>
+            <%= f.hidden_field :id, :value => cart_item.id %>
             <div class="form-group">
-            <%= f.select :quantity, (0..cart_item.supply_item.quantity), selected: cart_item.quantity, class: 'form-control' %>
+            <%= f.select :quantity, (0..cart_item.quantity), selected: cart_item.quantity, class: 'form-control' %>
             </div>
           </td>
           <td><%= f.submit "Update Cart", class: "btn btn-default" %></td>
         </div>
       <% end %>
-      <td><%= button_to "Remove", cart_item_path(cart_item.supply_item), method: :delete, class: "btn btn-warning" %></td>
+      <td><%= button_to "Remove", cart_item_path(cart_item), method: :delete, class: "btn btn-warning" %></td>
     </tr>
   </table>
 

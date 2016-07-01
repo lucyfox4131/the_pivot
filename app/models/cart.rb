@@ -8,17 +8,17 @@ class Cart
   def add_cart_item(item, quantity)
     if contents.empty?
       contents << {
-                    class_type: item.class.to_s,
-                    id: item.id,
-                    quantity: quantity
+                    "class_type"  => item.class.to_s,
+                    "id"          => item.id,
+                    "quantity"    => quantity
                   }
     else
       contents.each do |cart_item|
-        cart_item_exists = cart_item[:class_type] == item.class.to_s && cart_item[:id] == item.id
+        cart_item_exists = cart_item["class_type"] == item.class.to_s && cart_item["id"] == item.id
         if cart_item_exists
-          cart_item[:quantity] += quantity
+          cart_item["quantity"] += quantity
         else
-          contents << {class_type: item.class.to_s, id: item.id, quantity: quantity}
+          contents << {"class_type" => item.class.to_s, "id" => item.id, "quantity" => quantity}
           return contents
         end
       end
@@ -36,7 +36,7 @@ class Cart
 
   def delete_cart_item(item)
     contents.each do |cart_item|
-      if cart_item[:class_type] == item.class.to_s && cart_item[:id] == item.id
+      if cart_item["class_type"] == item.class.to_s && cart_item["id"] == item.id
         contents.delete(cart_item)
       end
     end
@@ -49,11 +49,11 @@ class Cart
 
   def change_cart_item_quantity(item, new_cart_item_quantity)
     contents.each do |cart_item|
-      if cart_item[:class_type] == item.class.to_s && cart_item[:id] == item.id
+      if cart_item["class_type"] == item.class.to_s && cart_item["id"] == item.id
         if new_cart_item_quantity.to_i == 0
           contents.delete(cart_item)
         else
-          cart_item[:quantity] = new_cart_item_quantity.to_i
+          cart_item["quantity"] = new_cart_item_quantity.to_i
         end
       end
     end
@@ -62,10 +62,10 @@ class Cart
   def total_items
     sum = 0
     contents.each do |cart_item|
-      if cart_item[:class_type] == "Loan"
+      if cart_item["class_type"] == "Loan"
         sum += 1
       else
-        sum += cart_item[:quantity].to_i
+        sum += cart_item["quantity"].to_i
       end
     end
     sum
@@ -83,10 +83,10 @@ class Cart
   def total_price
     total_price = 0
     contents.each do |cart_item|
-      if cart_item[:class_type] == "Loan"
-        total_price += cart_item[:quantity].to_i
+      if cart_item["class_type"] == "Loan"
+        total_price += cart_item["quantity"].to_i
       else
-        total_price += SupplyItem.find(cart_item[:id]).supply.value.to_i * cart_item[:quantity]
+        total_price += SupplyItem.find(cart_item["id"]).supply.value.to_i * cart_item["quantity"].to_i
       end
     end
     total_price.to_f
