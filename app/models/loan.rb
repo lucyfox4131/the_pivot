@@ -12,4 +12,12 @@ class Loan < ActiveRecord::Base
     end
     donation_range
   end
+
+  def quantity_in_cart(cart)
+    cart.contents.find do |key, value|
+      if key == "#{self.purpose}, #{self.id}"
+        return value
+      end
+    end
+  end
 end
