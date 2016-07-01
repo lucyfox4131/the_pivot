@@ -27,4 +27,12 @@ class Loan < ActiveRecord::Base
     update(status: "retired")
   end
 
+  def active?
+    status == "active"
+  end
+
+  def retired?
+    status == "retired"
+  end
+
 end
