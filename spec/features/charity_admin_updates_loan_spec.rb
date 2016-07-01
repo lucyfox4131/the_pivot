@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "Admin creates loan" do
-  scenario "new loan is added to family" do
+RSpec.feature "Admin updates loan for family" do
+  scenario "admin sees updated loan information" do
     charity_admin = create(:user)
     charity = create(:charity)
     role = Role.create(name: "charity_admin")
@@ -14,8 +14,19 @@ RSpec.feature "Admin creates loan" do
     visit admin_families_path
 
     click_button "Update Loan"
-  
+
     expect(current_path).to eq(edit_loan_path(loan))
 
+    fill_in "Requested amount", with: "2000.00"
+    fill_in "Purpose", with: "This is an updated purpose"
+
+    click_on "Update Loan"
+
+    expect(current_path).to eq(admin_families_path)
+
+    loan = Loan.find(loan.id)
+
+    expect(loan.requested_amount).to eq(2000.00)
+    expect(loan.purpose).to eq("This is an updated purpose")
   end
 end
