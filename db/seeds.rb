@@ -59,7 +59,7 @@ class Seed
     30.times do
       Charity.create!(
                         name:        Faker::Company.name,
-                        description: Faker::Lorem.paragraph(1, true, 1),
+                        description: Faker::Lorem.paragraph,
                         status:      [0,1,2].sample
                       )
     end
@@ -112,7 +112,7 @@ class Seed
         family.loan = Loan.create!(
                                     requested_amount: rand(500..5000),
                                     description:      Faker::Lorem.paragraph,
-                                    purpose:          Faker::Company.name
+                                    purpose:          Faker::Company.name,
                                     status:           "active"
                                   )
       end
@@ -272,8 +272,7 @@ class Seed
                             donation_id: rand(1..1000)
                           )
     end
+    puts "Donation items created successfullly"
   end
-  puts "Donation items created successfullly"
-end
 
 Seed.new
