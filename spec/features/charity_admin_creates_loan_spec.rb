@@ -26,4 +26,19 @@ RSpec.feature "Admin creates loan for family" do
     expect(current_path).to eq(admin_families_path)
     expect(page).to have_content("Loan Created Successfully")
   end
+
+  scenario "non-admin cannot create loan for family" do
+    user = create(:user)
+    charity = create(:charity)
+    role = Role.create(name: "registered_user")
+    UserRole.create(user: user, role: role)
+    family = create(:family)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
+    
+    visit admin_families_path
+
+    expect(current_path).to eq(families_path)
+  end
+
 end
