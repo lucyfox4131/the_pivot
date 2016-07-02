@@ -1,8 +1,9 @@
   <h1>Admin Dashboard</h1>
 
-<h2> <%= @charity.name %> <h2>
-
-<%= link_to "Update Charity", edit_charity_path(@charity), class: "btn btn-warning" %>
+<% if @charity %>
+  <h2> <%= @charity.name %> <h2>
+  <%= link_to "Update Charity", edit_charity_path(@charity), class: "btn btn-warning" %>
+<% end %>
 
 <%= link_to "All Families", admin_families_path, class: "btn btn-warning" %>
 

@@ -37,12 +37,4 @@ class User < ActiveRecord::Base
   def registered_user?
     roles.exists?(name: "registered_user")
   end
-
-  def admin_charity
-    if roles.exists?(name: "charity_admin")
-      role = Role.find_by(name: "charity_admin")
-      user_role = UserRole.find_by(role: role)
-      Charity.find(user_role.charity_id)
-    end
-  end
 end

@@ -1,6 +1,11 @@
 class Admin::DashboardsController < Admin::BaseController
 
   def show
-    @charity = current_user.admin_charity
+    if current_user.roles.exists?(name: "charity_admin")
+      id = current_user.user_roles.first.charity_id
+        if !id.nil?
+          @charity = Charity.find(id)
+        end
+    end
   end
 end
