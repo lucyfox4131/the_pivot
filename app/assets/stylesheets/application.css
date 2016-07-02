@@ -84,6 +84,10 @@
   text-align: center;
 }
 
+.white-text {
+  color: white;
+}
+
 .lead-text {
   background-color: #2e2e2e;
   color: white;
@@ -146,6 +150,19 @@
   text-align: center;
   margin-bottom: 20px;
   margin-right: -10px;
+}
+
+.boxx {
+  border-radius: 10px 50px;
+  background: #84b49b;
+  padding: 20px;
+  width: 200px;
+  max-height: 365px;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  overflow: scroll;
+  margin-top: 0px;
 }
 
 .box h2 {
