@@ -1,8 +1,17 @@
 class Seed
-
   def initialize
     create_categories
+    create_nationalities
     create_charities
+    create_active_families
+    create_past_families
+    create_loans
+    create_users
+    create_roles
+    create_admin_user_roles
+    create_supplies
+    create_supply_items
+    create_donation_items
   end
 
   def create_categories
@@ -16,6 +25,7 @@ class Seed
     Category.create(name: "Latin America", slug: "latin-america")
     Category.create(name: "Loans",         slug: "loans")
     Category.create(name: "Large Family",  slug: "large-family")
+    puts "Categories created successfullly"
   end
 
   def create_nationalities
@@ -42,43 +52,48 @@ class Seed
     info_link: "http://www.rescue.org/us-program/united-states/welcoming-afghans",
     greeting: "afghan_greeting.png",
     name: "Afghan")
+    puts "Nationalities created successfullly"
   end
+
   def create_charities
-    Charity.create!(
-                      name:        Faker::Company.name,
+    30.times do
+      Charity.create!(name:        Faker::Company.name,
                       description: Faker::Lorem.paragraph,
-                      status:      [0,1,2].sample
-                    )
+                      status:      [0,1,2].sample)
+    end
+    puts "Charities created successfullly"
   end
 
   def create_active_families
     40.times do
       category_ids = (1..10).to_a.sample(3)
       Family.create!(
-                      first_name:             Faker::Name.first_name
+                      first_name:             Faker::Name.first_name,
                       last_name:              Faker::Name.last_name,
                       arrival_date:           rand(10..30).days.from_now,
                       donation_deadline:      rand(1..10).days.from_now,
                       nationality_id:         rand(1..5),
-                      charity_id:             rand(1..20),
+                      charity_id:             rand(1..30),
                       num_married_adults:     [1,2].sample,
                       num_unmarried_adults:   [0,1,2].sample,
                       num_children_over_two:  rand(0..5),
                       num_children_under_two: rand(0..5),
-                      description:            Faker::Lorem.paragraph
+                      description:            Faker::Lorem.paragraph,
+                      category_ids:           category_ids
                     )
     end
+    puts "Active families created successfullly"
   end
 
   def create_past_families
     10.times do
       Family.create!(
-                      first_name:             Faker::Name.first_name
+                      first_name:             Faker::Name.first_name,
                       last_name:              Faker::Name.last_name,
                       arrival_date:           rand(10..30).days.ago,
                       donation_deadline:      rand(1..10).days.ago,
                       nationality_id:         rand(1..5),
-                      charity_id:             rand(1..20),
+                      charity_id:             rand(1..30),
                       num_married_adults:     [1,2].sample,
                       num_unmarried_adults:   [0,1,2].sample,
                       num_children_over_two:  rand(0..5),
@@ -86,30 +101,61 @@ class Seed
                       description:            Faker::Lorem.paragraph
                     )
     end
+    puts "Past families created successfullly"
+  end
+
+  def create_loans
+    Family.all.each do |family|
+      if family.category_ids.include?(9)
+        family.loan = Loan.create!(
+                                    requested_amount: rand(500..5000),
+                                    description:      Faker::Lorem.paragraph,
+                                    purpose:          Faker::Hipster.sentence(3),
+                                    status:           "active"
+                                  )
+      end
+    end
+    puts "Loans created successfullly"
   end
 
   def create_users
     100.times do
-      User.create!(
-                    username:  Faker::Internet.username
-                    password:  Faker::Internet.password
-                    cell:      Faker::PhoneNumber.cell_phone
-                    email:     Faker::Internet.email
-                  )
+      user = User.create!(
+                            username:  Faker::Internet.user_name,
+                            password:  Faker::Internet.password,
+                            cell:      1112223333,
+                            email:     Faker::Internet.email,
+                          )
+      create_donations(user)
     end
+    puts "Users & their donations created successfullly"
   end
 
-  def create_donations
-    #10 donations(per user)
-    #status either received cancelled or pledged
+  def create_roles
+    Role.create!(name: "platform_admin")
+    Role.create!(name: "charity_admin")
+    Role.create!(name: "charity_original_admin")
+    Role.create!(name: "registered_user")
+    puts "Roles created successfullly"
   end
 
-  def create_charity_admin
-    CharityAdmin.create!()
+  def create_admin_user_roles
+    30.times do
+      user = User.find(rand(1..100))
+      name = ["platform_admin", "charity_admin", "charity_original_admin", "registered_user"].sample
+      role = Role.find_by(name: name)
+      user.roles << role
+    end
+    puts "Admin Users created successfullly"
   end
 
-  def create_platform_admin
-    PlatformAdmin.create!()
+  def create_donations(user)
+    10.times do
+      Donation.create(
+                        status: ["Cancelled", "Pledged", "Received"].sample,
+                        user:   user
+                      )
+    end
   end
 
   def create_supplies
@@ -186,12 +232,33 @@ class Seed
     value: 10.0,
     description: "3 notebooks, set of pens, set of pencils. Must be new.",
     multiplier_type: "child")
-    #copy data from seed file(bc specific) and put it in separate class?(maybe module)
-    #within that same class, create association between family and supply items(algorithm)
+    puts "Supplies created successfullly"
+  end
+
+  def create_supply_items
+    supplies = Supply.all
+    supplies.each do |supply|
+      10.times do
+        SupplyItem.create!(
+                            supply_id: supply.id,
+                            family_id: rand(1..50),
+                            quantity: rand(1..4)
+                          )
+      end
+    end
+    puts "Supply Items created successfullly"
   end
 
   def create_donation_items
-    #
+    300.times do
+      DonationItem.create!(
+                            quantity: rand(1..4),
+                            supply_item_id: rand(1..180),
+                            donation_id: rand(1..1000)
+                          )
+    end
   end
+  puts "Donation items created successfullly"
 end
+
 Seed.new

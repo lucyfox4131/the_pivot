@@ -1,0 +1,26 @@
+<div class="panel-body">
+      <%= form_for(@loan) do |f| %>
+
+    <div class="form-group">
+      <%= f.label :requested_amount %>
+      <%= f.text_field :requested_amount, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :purpose %>
+      <%= f.text_field :purpose, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :status, "Status" %>
+      <%= f.select :status, options_for_select(["active", "retired"]), {}, class: "small-search", style: "margin-left: 64px;" %><br>
+    </div>
+
+    <%= f.submit "#{action}", class: "btn btn-primary" %>
+  <% end %>
+</div>

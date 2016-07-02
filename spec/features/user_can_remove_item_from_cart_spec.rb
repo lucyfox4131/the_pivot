@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 RSpec.feature "user can remove item from cart" do
@@ -27,5 +26,4 @@ RSpec.feature "user can remove item from cart" do
 
     expect(current_path).to eq(family_path(family))
   end
-
 end

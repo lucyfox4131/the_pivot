@@ -20,11 +20,14 @@ Rails.application.routes.draw do
 
   resources :donations, only: [:index, :show, :new, :create]
 
-  resources :loans, only: [:show]
+  resources :loans, only: [:show, :edit, :update, :new, :create]
   # resources :homes, only: [:show]
 
   root to: "homes#show"
-  resources :charities, only: [:index]
+
+  resources :charities, only: [:index, :edit]
+  patch '/charities/:id', to: "charities#update"
+
   get ':charity_slug', to: 'charities#show', as: :charity
 
   namespace :charity, path: ':charity_slug', as: :charity do

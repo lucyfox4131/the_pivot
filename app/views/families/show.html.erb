@@ -13,7 +13,6 @@
         </table>
     </div>
   </div>
-
 </div>
 
 <div class="col-sm-10 col-sm-offset-1">
@@ -30,11 +29,36 @@
     </div>
   </div>
 
-<% if @family.loan %>
+<% if @family.loan && @family.loan.active? %>
+<h4>This family has requested a Microloan to begin a business of their own</h4>
+<table class="table">
+  <tr>
+    <th>Loan Purpose</th>
+    <th>Loan Description</th>
+    <th>Amount</th>
+    <th></th>
+  </tr>
+
+    <%= form_for @family.loan, url: cart_items_path, method: :create do |f| %>
+      <div class='<%= @family.loan.purpose %> table-info' >
+      <tr>
+        <td><%= @family.loan.purpose %></br>
+        <em><%= @family.loan.description %></em></td>
+        <td><%= currency(@family.loan.requested_amount) %></td>
+        <td><%= f.hidden_field :id, :value => @family.loan.id %>
+          <div class="form-group">
+            <%= f.select(:requested_amount, (@family.loan.donation_range), { :prompt => '0'}, { class: 'form-control' }) %>
+          </div>
+        </td>
+        <td><%= f.submit 'add to cart', class: "btn btn-warning"%></td>
+      </tr>
+      </div>
+    <% end %>
+</table>
 <ul>
-  <li>"This family has requested a loan."</li>
   <li><%= link_to "View Loan", loan_path(@family.loan) %></li>
 </ul>
+
 <% end %>
 
 <% if !@family.retired? %>
@@ -50,7 +74,7 @@
     <% @family.supply_items.each do |supply_item| %>
     <% if supply_item.quantity_remaining > 0 %>
       <%= form_for supply_item, url: cart_items_path, method: :create do |f| %>
-        <div class='<%= supply_item.name %>' >
+        <div class='<%= supply_item.name %> table-info' >
         <tr>
           <td><%= supply_item.name %></br>
           <em><%= supply_item.description %></em></td>
