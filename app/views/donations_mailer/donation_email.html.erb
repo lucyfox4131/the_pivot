@@ -3,7 +3,7 @@
 <h3>Thank you, <%= @user.username %>!</h3>
 
   <% @supplies.each do |cart_item| %>
-  <% if cart_item["class_type"] != "Loan" %>
+  <% if cart_item.class != LoanDecorator %>
     <table class="table">
       <tr>
         <th>Supply</th>

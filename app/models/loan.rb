@@ -12,7 +12,7 @@ class Loan < ActiveRecord::Base
     (0..requested_amount).step(15) do |n|
       donation_range << n
     end
-    donation_range
+    donation_range.take(10)
   end
 
   def quantity_in_cart(cart)
