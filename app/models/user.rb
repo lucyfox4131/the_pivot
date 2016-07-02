@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
 
   def registered_user?
     roles.exists?(name: "registered_user")
+  end
 
   def admin_charity
     if roles.exists?(name: "charity_admin")
