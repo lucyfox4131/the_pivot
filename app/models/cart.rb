@@ -23,13 +23,6 @@ class Cart
         end
       end
     end
-    # if item.is_a? Integer
-    #   contents[item.to_s] ||= 0
-    #   contents[item.to_s] += quantity.to_i
-    # else
-    #   contents["#{item.purpose}, #{item.id}"] ||= 0
-    #   contents["#{item.purpose}, #{item.id}"] += quantity.to_i
-    # end
   end
 
 
@@ -40,11 +33,6 @@ class Cart
         contents.delete(cart_item)
       end
     end
-    # if cart_item.is_a? Loan
-    #   contents.delete("#{cart_item.purpose}, #{cart_item.id}")
-    # else
-    #   contents.delete(cart_item.to_s)
-    # end
   end
 
   def change_cart_item_quantity(item, new_cart_item_quantity)
@@ -69,15 +57,6 @@ class Cart
       end
     end
     sum
-    # sum = 0
-    # contents.keys.each do |key|
-    #   if key.to_i.to_s == key
-    #     sum += contents[key]
-    #   else
-    #     sum += 1
-    #   end
-    # end
-    # sum
   end
 
   def total_price
@@ -90,14 +69,6 @@ class Cart
       end
     end
     total_price.to_f
-    # contents.each do |item, amount|
-    #   if item.to_i.to_s == item
-    #     total_price += SupplyItem.find(item).supply.value * amount.to_i
-    #   else
-    #     total_price += amount
-    #   end
-    # end
-    # total_price.to_f
   end
 
   def get_supply_items

@@ -13,8 +13,6 @@ class User < ActiveRecord::Base
   has_many :user_roles
   has_many :roles, through: :user_roles
 
-  # enum role: ["default", "admin"]
-#[default, business_admin, platform_admin]
   attr_accessor :current_password
 
   def password_correct?

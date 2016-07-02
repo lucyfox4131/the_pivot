@@ -34,5 +34,4 @@ class Loan < ActiveRecord::Base
   def retired?
     status == "retired"
   end
-
 end
