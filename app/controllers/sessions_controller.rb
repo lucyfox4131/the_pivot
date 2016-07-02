@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:success] = "Hi, #{user.username}!"
-      if current_admin?
+      if user.charity_admin? || user.platform_admin?
         session.delete(:return_to)
         redirect_to admin_dashboard_path
       else
