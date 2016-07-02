@@ -1,7 +1,7 @@
 <h1>Confirm Your Donation</h1>
 
   <% @cart_items.each do |cart_item| %>
-  <% if cart_item["class_type"] != "Loan" %>
+  <% if cart_item.class != LoanDecorator %>
     <table class="table">
       <tr>
         <th>Supply</th>
