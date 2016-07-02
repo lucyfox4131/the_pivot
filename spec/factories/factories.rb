@@ -104,10 +104,4 @@ FactoryGirl.define do
     family_id 1
   end
 
-  factory :loan_item do
-    loan_id 1
-    donation_id 1
-    amount 100
-  end
-
 end

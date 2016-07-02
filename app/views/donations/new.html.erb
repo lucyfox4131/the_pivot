@@ -1,24 +1,44 @@
 <h1>Confirm Your Donation</h1>
 
-<table class="table">
-  <tr>
-    <th>Supply</th>
-    <th>Description</th>
-    <th>Value</th>
-    <th>Quantity</th>
-    <th>Subtotal</th>
-  </tr>
-
-  <% @supplies.each_with_index do |supply, index| %>
+  <% @cart_items.each do |cart_item| %>
+  <% if cart_item["class_type"] != "Loan" %>
+    <table class="table">
+      <tr>
+        <th>Supply</th>
+        <th>Description</th>
+        <th>Value</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+      <tr>
+        <td><%= cart_item.name %></td>
+        <td><%= cart_item.description %></td>
+        <td><%= currency(cart_item.value) %></td>
+        <td><%= cart_item.supply_item_quantity %></td>
+        <td><%= currency(cart_item.value * cart_item.supply_item_quantity.to_i)%></td>
+      </tr>
+    </table>
+  <% else %>
+  <table class="table">
     <tr>
-      <td><%= supply.name %></td>
-      <td><%= supply.description %></td>
-      <td><%= currency(supply.value) %></td>
-      <td><%= session[:cart].values[index] %></td>
-      <td><%= currency(supply.value * session[:cart].values[index])%></td>
+      <th>Loan</th>
+      <th>Description</th>
+      <th>Value</th>
+      <th>Amount Pledged</th>
+      <th>Subtotal</th>
     </tr>
+    <tr>
+      <td><%= cart_item.purpose %></td>
+      <td><%= cart_item.description %></td>
+      <td><%= currency(cart_item.requested_amount) %></td>
+      <td><%= cart_item.quantity %></td>
+      <td><%= currency(cart_item.quantity.to_i)%></td>
+    </tr>
+  </table>
   <% end %>
-</table>
+<% end %>
+
+
 
 <h2>Total: <%= number_to_currency @cart.total_price %> </h2>
 
