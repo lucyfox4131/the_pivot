@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CartItemHandler, type: :model do
+RSpec.describe SupplyItemDecorator, type: :model do
   it "initializes correctly" do
     family = create(:family)
 
@@ -10,9 +10,9 @@ RSpec.describe CartItemHandler, type: :model do
       multiplier_type: "child")
     supply_item = SupplyItem.create(family: family, supply: supply, quantity: 2)
 
-    handler = CartItemHandler.new(supply_item.id, 1)
+    handler = SupplyItemDecorator.new(supply_item, 1)
 
-    expect(handler.supply_item.name).to eq("Twin Bedframe")
-    expect(handler.quantity).to eq(1)
+    expect(handler.name).to eq("Twin Bedframe")
+    expect(handler.supply_item_quantity).to eq(1)
   end
 end

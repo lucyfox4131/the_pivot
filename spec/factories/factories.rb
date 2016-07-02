@@ -101,13 +101,8 @@ FactoryGirl.define do
     requested_amount 1000
     purpose "Bakery"
     description "This loan is to start a bakery in the US"
+    status "active"
     family_id 1
-  end
-
-  factory :loan_item do
-    loan_id 1
-    donation_id 1
-    amount 100
   end
 
 end

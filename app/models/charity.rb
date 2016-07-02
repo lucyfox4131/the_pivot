@@ -5,6 +5,9 @@ class Charity < ActiveRecord::Base
 
   before_create :create_slug
   has_many :families
+  has_many :user_roles
+  has_many :users, through: :user_roles
+  has_many :roles, through: :user_roles
 
   def create_slug
     self.slug = self.name.parameterize
