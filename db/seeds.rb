@@ -12,7 +12,6 @@ class Seed
     create_supplies
     create_supply_items
     create_donation_items
-    create_loan_items
   end
 
   def create_categories
@@ -26,6 +25,7 @@ class Seed
     Category.create(name: "Latin America", slug: "latin-america")
     Category.create(name: "Loans",         slug: "loans")
     Category.create(name: "Large Family",  slug: "large-family")
+    puts "Categories created successfullly"
   end
 
   def create_nationalities
@@ -52,6 +52,7 @@ class Seed
     info_link: "http://www.rescue.org/us-program/united-states/welcoming-afghans",
     greeting: "afghan_greeting.png",
     name: "Afghan")
+    puts "Nationalities created successfullly"
   end
 
   def create_charities
@@ -60,6 +61,7 @@ class Seed
                       description: Faker::Lorem.paragraph,
                       status:      [0,1,2].sample)
     end
+    puts "Charities created successfullly"
   end
 
   def create_active_families
@@ -71,7 +73,7 @@ class Seed
                       arrival_date:           rand(10..30).days.from_now,
                       donation_deadline:      rand(1..10).days.from_now,
                       nationality_id:         rand(1..5),
-                      charity_id:             rand(1..20),
+                      charity_id:             rand(1..30),
                       num_married_adults:     [1,2].sample,
                       num_unmarried_adults:   [0,1,2].sample,
                       num_children_over_two:  rand(0..5),
@@ -80,6 +82,7 @@ class Seed
                       category_ids:           category_ids
                     )
     end
+    puts "Active families created successfullly"
   end
 
   def create_past_families
@@ -90,7 +93,7 @@ class Seed
                       arrival_date:           rand(10..30).days.ago,
                       donation_deadline:      rand(1..10).days.ago,
                       nationality_id:         rand(1..5),
-                      charity_id:             rand(1..20),
+                      charity_id:             rand(1..30),
                       num_married_adults:     [1,2].sample,
                       num_unmarried_adults:   [0,1,2].sample,
                       num_children_over_two:  rand(0..5),
@@ -98,6 +101,7 @@ class Seed
                       description:            Faker::Lorem.paragraph
                     )
     end
+    puts "Past families created successfullly"
   end
 
   def create_loans
@@ -106,11 +110,12 @@ class Seed
         family.loan = Loan.create!(
                                     requested_amount: rand(500..5000),
                                     description:      Faker::Lorem.paragraph,
-                                    purpose:          Faker::Hipster.sentence(3)
+                                    purpose:          Faker::Hipster.sentence(3),
                                     status:           "active"
                                   )
       end
     end
+    puts "Loans created successfullly"
   end
 
   def create_users
@@ -123,19 +128,7 @@ class Seed
                           )
       create_donations(user)
     end
-  end
-
-  def create_loan_items
-    loans = Loan.all
-    loans.each do |loan|
-      10.times do
-        LoanItem.create!(
-                          loan_id:     loan.id,
-                          donation_id: rand(1..1000),
-                          amount:      rand(10..50)
-                        )
-      end
-    end
+    puts "Users & their donations created successfullly"
   end
 
   def create_roles
@@ -143,6 +136,7 @@ class Seed
     Role.create!(name: "charity_admin")
     Role.create!(name: "charity_original_admin")
     Role.create!(name: "registered_user")
+    puts "Roles created successfullly"
   end
 
   def create_admin_user_roles
@@ -152,6 +146,7 @@ class Seed
       role = Role.find_by(name: name)
       user.roles << role
     end
+    puts "Admin Users created successfullly"
   end
 
   def create_donations(user)
@@ -237,6 +232,7 @@ class Seed
     value: 10.0,
     description: "3 notebooks, set of pens, set of pencils. Must be new.",
     multiplier_type: "child")
+    puts "Supplies created successfullly"
   end
 
   def create_supply_items
@@ -250,6 +246,7 @@ class Seed
                           )
       end
     end
+    puts "Supply Items created successfullly"
   end
 
   def create_donation_items
@@ -261,7 +258,7 @@ class Seed
                           )
     end
   end
-
+  puts "Donation items created successfullly"
 end
 
 Seed.new
