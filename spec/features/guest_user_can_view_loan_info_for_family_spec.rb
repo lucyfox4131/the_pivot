@@ -18,4 +18,15 @@ RSpec.feature "user can view loan info for family" do
     expect(page).to have_content "Would you like to contribute to this loan?"
     expect(page).to have_content "Add To Cart"
   end
+
+  scenario "user does not see retired loans" do
+    family = create(:family)
+    loan = create(:loan)
+    loan.retire_loan
+
+    visit family_path(family)
+
+    expect(page).to_not have_content "This family has requested a Microloan to begin a business of their own"
+    
+  end
 end
