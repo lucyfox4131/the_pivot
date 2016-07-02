@@ -13,7 +13,9 @@ RSpec.feature "Admin updates loan for family" do
 
     visit admin_families_path
 
-    click_button "Update Loan"
+    within(".admin-families-list-item:first") do
+      click_button "Update Loan"
+    end
 
     expect(current_path).to eq(edit_loan_path(loan))
 
