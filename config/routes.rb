@@ -24,7 +24,10 @@ Rails.application.routes.draw do
   # resources :homes, only: [:show]
 
   root to: "homes#show"
-  resources :charities, only: [:index]
+
+  resources :charities, only: [:index, :edit]
+  patch '/charities/:id', to: "charities#update"
+
   get ':charity_slug', to: 'charities#show', as: :charity
 
   namespace :charity, path: ':charity_slug', as: :charity do
