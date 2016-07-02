@@ -48,8 +48,8 @@ group :development, :test do
   gem 'pry'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
-  gem 'faker'
 end
+gem 'faker'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
