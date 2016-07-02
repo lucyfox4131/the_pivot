@@ -28,11 +28,15 @@ class DonationItem < ActiveRecord::Base
   end
 
   def value
-    supply_item.supply.value
+    supply_item ? supply_item.supply.value : loan.requested_amount
   end
 
   def subtotal
-    value * quantity
+    if supply_item
+      value * quantity
+    else
+      quantity
+    end
   end
 
   def self.total_items
