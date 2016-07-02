@@ -9,7 +9,13 @@ class Charity < ActiveRecord::Base
   has_many :users, through: :user_roles
   has_many :roles, through: :user_roles
 
+  enum status: %w(pending online offline)
+  
   def create_slug
     self.slug = self.name.parameterize
+  end
+
+  def self.online_charities
+    where(status: 1)
   end
 end

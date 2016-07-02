@@ -1,7 +1,7 @@
 class CharitiesController < ApplicationController
 
   def index
-    @charities = Charity.all
+    @charities = Charity.online_charities
   end
 
   def show
@@ -35,16 +35,16 @@ class CharitiesController < ApplicationController
   end
 
   def create
-    #staus will be default 0 --> pending, 1 --> online, 2 --> offline
-    charity = Charity.new(name: params[:charity][:name],
+    @charity = Charity.new(name: params[:charity][:name],
                           description: params[:charity][:description],
                           status: 0)
-    if charity.save
+    if @charity.save
       flash[:success] = "Your charity request has been recieved.
         Once it has been approved it will be visible on our site."
       redirect_to charities_path
     else
-      #sad path here --> write a new test for this
+      flash[:error] = "Make sure you have filled in both name and description."
+      redirect_to new_charity_path
     end
   end
 
