@@ -27,6 +27,6 @@ RSpec.feature "user can view loan info for family" do
     visit family_path(family)
 
     expect(page).to_not have_content "This family has requested a Microloan to begin a business of their own"
-    
+
   end
 end
