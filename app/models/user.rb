@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true
   validates :email, presence: true
-  validates :password, presence: true
+  validates :password_digest, presence: true
   validates :role, presence: true
   validate :password_correct?, on: :update
   validates :cell, format: { with: /\d{10}/, message: "was not in correct format of 1112223333" }, :allow_blank => true

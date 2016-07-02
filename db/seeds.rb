@@ -122,7 +122,7 @@ class Seed
     100.times do
       user = User.create!(
                             username:  Faker::Internet.user_name,
-                            password:  Faker::Internet.password,
+                            password_digest:  Faker::Team.state,
                             cell:      1112223333,
                             email:     Faker::Internet.email,
                           )
@@ -140,11 +140,11 @@ class Seed
   end
 
   def create_admin_user_roles
-    30.times do
-      user = User.find(rand(1..100))
-      name = ["platform_admin", "charity_admin", "charity_original_admin", "registered_user"].sample
-      role = Role.find_by(name: name)
-      user.roles << role
+      User.all.each do |user|
+        name = ["platform_admin", "charity_admin", "charity_original_admin", "registered_user"].sample
+        role = Role.find_by(name: name)
+        user.roles << role
+      end
     end
     puts "Admin Users created successfullly"
   end
