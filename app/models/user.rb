@@ -32,7 +32,12 @@ class User < ActiveRecord::Base
     roles.exists?(name: "charity_admin")
   end
 
-  def registered_user?
-    roles.exists?(name: "registered_user")
+  def primary_charity_admin?
+    roles.exists?(name: "primary_charity_admin")
   end
+
+  def other_user?
+    !charity_admin? && !platform_admin? && !primary_charity_admin?
+  end
+
 end
