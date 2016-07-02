@@ -24,12 +24,12 @@
           <th>Donation Amount</th>
           <th></th>
         </tr>
-        <%= form_for @family.loan, url: cart_items_path, method: :create do |f| %>
-          <div class='<%= @family.loan.purpose %> table-info' >
-        <tr><td><%= currency(@family.loan.requested_amount) %></td>
-          <td><%= f.hidden_field :id, :value => @family.loan.id %>
+        <%= form_for @loan, url: cart_items_path, method: :create do |f| %>
+          <div class='<%= @loan.purpose %> table-info' >
+        <tr><td><%= currency(@loan.requested_amount) %></td>
+          <td><%= f.hidden_field :id, :value => @loan.id %>
             <div class="form-group">
-              <%= f.select(:requested_amount, (@family.loan.donation_range), { :prompt => '0'}, { class: 'form-control' }) %>
+              <%= f.select(:requested_amount, (@loan.donation_range), { :prompt => '0'}, { class: 'form-control' }) %>
             </div>
           </td></tr>
         </div>
