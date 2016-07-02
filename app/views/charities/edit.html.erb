@@ -1,0 +1,26 @@
+<h1>Create a New Charity</h1>
+
+<%= form_for @charity, url: "/charities/#{@charity.id}" do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :status %>
+    <%= f.file_field :status %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :status, "Status" %>
+    <%= f.select :status, options_for_select(["active", "retired"]), {}, class: "small-search", style: "margin-left: 64px;" %><br>
+  </div>
+
+  <%= f.submit "Update Charity", class: "btn btn-warning" %>
+
+<% end %>
