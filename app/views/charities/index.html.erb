@@ -5,3 +5,7 @@
     <li><%= link_to charity.name, charity_path(charity.slug) %></li>
   <% end %>
 </ul>
+
+<% if current_user %>
+  <%= button_to "Apply To Be One of Our Charities", new_charity_path, method: :get %>
+<% end %>
