@@ -1,7 +1,7 @@
 class SupplyItem < ActiveRecord::Base
-  belongs_to :supply
-  belongs_to :family
-  has_many :donation_items
+  belongs_to  :supply
+  belongs_to  :family
+  has_many    :donation_items
 
   def self.find_family(id)
     find(id).family
@@ -24,6 +24,6 @@ class SupplyItem < ActiveRecord::Base
   end
 
   def subtotal(quantity)
-    supply.value * quantity
+    supply.value * quantity.to_i
   end
 end
