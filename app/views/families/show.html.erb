@@ -29,7 +29,7 @@
     </div>
   </div>
 
-<% if @family.loan %>
+<% if @family.loan && @family.loan.active? %>
 <h4>This family has requested a Microloan to begin a business of their own</h4>
 <table class="table">
   <tr>

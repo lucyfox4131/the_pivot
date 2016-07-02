@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :user_roles
   has_many :roles, through: :user_roles
 
-  enum role: ["default", "admin"]
+  # enum role: ["default", "admin"]
 #[default, business_admin, platform_admin]
   attr_accessor :current_password
 
@@ -23,6 +23,26 @@ class User < ActiveRecord::Base
       if !user.authenticate(current_password)
         errors.add(:current_password, "is incorrect.")
       end
+    end
+  end
+
+  def platform_admin?
+    roles.exists?(name: "platform_admin")
+  end
+
+  def charity_admin?
+    roles.exists?(name: "charity_admin")
+  end
+
+  def registered_user?
+    roles.exists?(name: "registered_user")
+  end
+
+  def admin_charity
+    if roles.exists?(name: "charity_admin")
+      role = Role.find_by(name: "charity_admin")
+      user_role = UserRole.find_by(role: role)
+      Charity.find(user_role.charity_id)
     end
   end
 end

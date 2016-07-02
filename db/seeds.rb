@@ -107,6 +107,7 @@ class Seed
                                     requested_amount: rand(500..5000),
                                     description:      Faker::Lorem.paragraph,
                                     purpose:          Faker::Hipster.sentence(3)
+                                    status:           "active"
                                   )
       end
     end
