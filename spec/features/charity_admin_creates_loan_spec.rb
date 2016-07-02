@@ -35,10 +35,15 @@ RSpec.feature "Admin creates loan for family" do
     family = create(:family)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
-    
+
     visit admin_families_path
 
-    expect(current_path).to eq(families_path)
+    expect(page).to have_content("404")
+
+    visit new_loan_path
+
+    expect(page).to_not have_content("Add Loan")
+    expect(current_path).to eq(root_path)
   end
 
 end
