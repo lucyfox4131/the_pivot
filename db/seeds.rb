@@ -124,7 +124,7 @@ class Seed
     100.times do
       user = User.create!(
                             username:  Faker::Internet.user_name,
-                            password_digest:  Faker::Team.state,
+                            password:  Faker::Team.state,
                             cell:      1112223333,
                             email:     Faker::Internet.email,
                           )
