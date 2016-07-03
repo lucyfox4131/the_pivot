@@ -1,0 +1,14 @@
+
+  <% if charity_type %>
+    <div class = "<%= charity_type %>">
+      <ul>
+        <% charity_type.each do |charity| %>
+          <div class = "<%= charity.name %>">
+            <li><%= link_to charity.name, charity_path(charity.slug) %> <%= button_to "Update Charity", edit_charity_path(charity), method: :get, class: "btn btn-warning"  %></li>
+              <%= render partial: 'admin/families/family_list', locals: {families: charity.families.active, current: true}%>
+              <%= render partial: 'admin/families/family_list', locals: {families: charity.families.retired, current: false}%>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>

@@ -44,7 +44,7 @@ class Admin::FamiliesController < Admin::BaseController
     family = Family.find(params[:id])
     if family.update(family_params)
      flash[:success] = "Your updates have been saved"
-     redirect_to admin_families_path(family)
+     redirect_to admin_dashboard_path
    else
      flash.now[:warning] = @family.errors.full_messages.join(", ")
      render :edit

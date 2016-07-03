@@ -21,7 +21,7 @@ RSpec.feature "Platform admin updates charity information" do
     expect(page).to have_content("Online Charities")
     expect(page).to have_content("Offline Charities")
 
-    within(".online-charity") do
+    within(".#{online_charity.name}") do
       click_button "Update Charity"
     end
 
@@ -33,7 +33,7 @@ RSpec.feature "Platform admin updates charity information" do
 
     expect(page).to have_content("Your updates have been saved")
 
-    within(".online-charity") do
+    within(".New") do
       expect(page).to have_content("New Name")
     end
   end
