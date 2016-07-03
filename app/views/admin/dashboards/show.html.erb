@@ -1,9 +1,9 @@
   <h1> <%= @charity.name %>'s Administrator's Dashboard</h1>
 
-<!-- <% if @charity %>
+<% if @charity %>
   <h2> <%= @charity.name %> <h2>
   <%= link_to "Update Charity", edit_charity_path(@charity), class: "btn btn-warning" %>
-<% end %> -->
+<% end %>
 
 <%= link_to "All Families", admin_families_path, class: "btn btn-warning" %>
 
@@ -25,13 +25,7 @@
   <% @users.each do |user| %>
     <div data-username="<%= user.username %>"class="form-box col-sm-5 user">
       <div class="white-texxt">
-        <% if user.charity_original_admin? %>
-          <div class="admin-box">
-            primary admin: <%= user.username %>
-          </div>
-        <% else %>
-          <%= user.username %>
-        <% end %>
+        <%= user.username %>
       </div>
       <div>
         <%= form_for user do |f| %>

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "primary charity admin updates" do
   scenario "successfully update another admin's contact info" do
+    pending
     charity = create(:charity)
     primary_admin, admin = create_list(:user, 2)
     role1 = Role.create(name: "charity_original_admin")
@@ -16,16 +17,16 @@ RSpec.feature "primary charity admin updates" do
 
     visit admin_dashboard_path
 
-    within(".admin-box") do
-      fill_in "email", with: "new@mail.com"
-      fill_in "cell",  with: "1234567890"
+    within(".form-box") do
+      fill_in "Email", with: "new@mail.com"
+      fill_in "Cell",  with: "1234567890"
     end
 
     click_on "Update Admin"
 
-    expect(page).to have_content("Updated #{admin.username} Successfully!")
+    expect(page).to have_content("Your updates have been saved")
 
-    within(".admin-box") do
+    within(".form-box") do
       expect(page).to have_content("new@mail.com")
     end
   end

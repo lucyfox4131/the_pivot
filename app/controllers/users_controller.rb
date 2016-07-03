@@ -18,27 +18,27 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if current_user.charity_original_admin?
+    # if current_user.charity_original_admin?
+    #   if @user.save
+    #     session[:user_id] = @user.id
+    #     @user.charities << current_user.charities.first
+    #     @user.roles << Role.find_by(name: "charity_admin")
+    #     flash[:success] = "Welcome, #{@user.username}!"
+    #     redirect_to dashboard_path
+    #   else
+    #     flash.now[:warning] = @user.errors.full_messages.join(", ")
+    #     render :new
+    #   end
+    # else
       if @user.save
         session[:user_id] = @user.id
-        @user.charities << current_user.charities.first
-        @user.roles << Role.find_by(name: "charity_admin")
         flash[:success] = "Welcome, #{@user.username}!"
         redirect_to dashboard_path
       else
         flash.now[:warning] = @user.errors.full_messages.join(", ")
         render :new
       end
-    else
-      if @user.save
-        session[:user_id] = @user.id
-        flash[:success] = "Welcome, #{@user.username}!"
-        redirect_to dashboard_path
-      else
-        flash.now[:warning] = @user.errors.full_messages.join(", ")
-        render :new
-      end
-    end
+    # end
   end
 
   def edit
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       flash[:success] = "Your updates have been saved"
       redirect_to dashboard_path
     else
