@@ -18,65 +18,40 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    # if current_user.charity_original_admin?
-    #   if @user.save
-    #     session[:user_id] = @user.id
-    #     @user.charities << current_user.charities.first
-    #     @user.roles << Role.find_by(name: "charity_admin")
-    #     flash[:success] = "Welcome, #{@user.username}!"
-    #     redirect_to dashboard_path
-    #   else
-    #     flash.now[:warning] = @user.errors.full_messages.join(", ")
-    #     render :new
-    #   end
-    # else
-      if @user.save
-        session[:user_id] = @user.id
-        flash[:success] = "Welcome, #{@user.username}!"
-        redirect_to dashboard_path
-      else
-        flash.now[:warning] = @user.errors.full_messages.join(", ")
-        render :new
-      end
-    # end
+    if @user.save
+      session[:user_id] = @user.id
+      flash[:success] = "Welcome, #{@user.username}!"
+      redirect_to dashboard_path
+    else
+      flash.now[:warning] = @user.errors.full_messages.join(", ")
+      render :new
+    end
   end
 
   def edit
     @user = User.find(params[:id])
   end
 
-  def destroy
-    @user = User.find(params[:id])
-      @user.demote_user
-      @user.charities.clear
-    redirect_to users_path
-  end
-
   def update
-    @user = User.find(params[:id])
-    if @user.update_attribute('email', user_params[:email]) && @user.update_attribute('cell', user_params[:cell])
-      flash[:success] = "Your updates have been saved"
-      if @user.admin?
-        redirect_to admin_dashboard_path
-      else
-        redirect_to dashboard_path
-      end
-    else
-      flash.now[:warning] = @user.errors.full_messages.join(", ")
-      render :edit
-    end
-  end
+     @user = User.find(params[:id])
+     if @user.update_attributes(user_params)
+       flash[:success] = "Your updates have been saved"
+       redirect_to dashboard_path
+     else
+       flash.now[:warning] = @user.errors.full_messages.join(", ")
+       render :edit
+     end
+   end
 
-  private
+   private
 
-  def user_params
-    params.require(:user).permit(:username, :password, :current_password, :email, :cell, :charity)
-  end
+   def user_params
+     params.require(:user).permit(:username, :password, :current_password, :email, :cell)
+   end
 
-  def check_for_correct_user
-    if (!current_user || current_user.id != params[:id].to_i)
-      flash[:warning] = "Oops, you visited the wrong page."
-      redirect_to root_path
-    end
-  end
-end
+   def check_for_correct_user
+     if !current_user || current_user.id != params[:id].to_i
+       flash[:warning] = "Oops, you visited the wrong page."
+       redirect_to root_path
+     end
+   end

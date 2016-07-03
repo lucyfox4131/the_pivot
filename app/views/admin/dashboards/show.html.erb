@@ -18,7 +18,7 @@
 </div>
 
 <div class="box">
-  <%= link_to "Create New Admin", new_user_path, class: "btn button-indigo" %>
+  <%= link_to "Create New Admin", new_admin_user_path, class: "btn button-indigo" %>
 </div>
 
 <div class="col-sm-12 col-sm-offset-1 users">
@@ -46,7 +46,7 @@
 
         <%= f.submit "Update Admin", class: "btn btn-info active" %>
         <% end %>
-        <%= button_to "Remove Admin Status", user_path(user, action: "demote"), method: :delete, class: "btn btn-warning active" %>
+        <%= button_to "Remove Admin Status", user_path(user), method: :delete, class: "btn btn-warning active" %>
       </div>
     </div>
       <% end %>
