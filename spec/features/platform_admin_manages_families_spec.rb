@@ -9,7 +9,6 @@ RSpec.feature "platform admin manages families" do
     role = Role.create(name: "platform_admin")
     UserRole.create(user: platform_admin, role: role)
     family_1 = create(:family, charity: charity_1)
-    family_2 = create(:family, charity: charity_2)
     family_3 = create(:family, charity: charity_3)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( platform_admin )

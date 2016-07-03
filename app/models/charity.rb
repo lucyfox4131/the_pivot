@@ -26,4 +26,17 @@ class Charity < ActiveRecord::Base
   def self.offline_charities
     where(status: 2)
   end
+
+  def pending
+    status == "pending"
+  end
+
+  def online
+    status == "online"
+  end
+
+  def offline
+    status == "offline"
+  end
+
 end

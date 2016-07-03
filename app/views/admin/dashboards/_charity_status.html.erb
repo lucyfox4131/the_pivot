@@ -1,0 +1,12 @@
+<% if charity.online || charity.offline %>
+
+
+<%= form_for charity, url: "/charities/#{charity.id}" do |f| %>
+  <div class="row">
+    <%= f.label :status, "Status" %>
+    <%= f.select :status, options_for_select(["online", "offline"], "#{charity.status}"), {}, class: "small-search" %>
+    <%= f.submit "Update Status", class: "btn btn-default btn-xs" %>
+ </div>
+<% end %>
+
+<% end %>
