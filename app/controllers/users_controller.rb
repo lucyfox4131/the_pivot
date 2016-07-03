@@ -33,15 +33,15 @@ class UsersController < ApplicationController
   end
 
   def update
-     @user = User.find(params[:id])
-     if @user.update_attributes(user_params)
-       flash[:success] = "Your updates have been saved"
-       redirect_to dashboard_path
-     else
-       flash.now[:warning] = @user.errors.full_messages.join(", ")
-       render :edit
-     end
-   end
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "Your updates have been saved"
+      redirect_to dashboard_path
+    else
+      flash.now[:warning] = @user.errors.full_messages.join(", ")
+      render :edit
+    end
+  end
 
    private
 
@@ -55,3 +55,4 @@ class UsersController < ApplicationController
        redirect_to root_path
      end
    end
+end

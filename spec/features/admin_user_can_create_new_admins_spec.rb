@@ -18,6 +18,6 @@ RSpec.feature "primary charity admin updates" do
 
     click_on "Create New Admin"
 
-    expect(page).to have_content("Create New Admin For #{@chariry.name}")
+    expect(page).to have_content("Create New Admin For #{charity.name}")
   end
 end

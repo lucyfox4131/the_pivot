@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resource  :dashboard, only: [:show]
-    resource  :users,     only: [:update, :destroy, :create, :new, :edit]
+    resources :users,     only: [:update, :destroy, :create, :new, :edit]
     resources :families,  only: [:show, :new, :create, :index, :update]
   end
 

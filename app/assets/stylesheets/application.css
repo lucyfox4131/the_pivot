@@ -132,6 +132,10 @@
   text-align: center;
 }
 
+.details h2 {
+  text-align: center;
+}
+
 .tweet-heading {
   text-align: center;
   font-size: 28px;
