@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    @current_user_charity = current_user.charities.first.name
     @users = User.all
   end
 
