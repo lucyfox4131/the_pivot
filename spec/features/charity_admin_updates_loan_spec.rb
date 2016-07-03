@@ -13,7 +13,7 @@ RSpec.feature "Admin updates loan for family" do
 
     visit admin_families_path
 
-    within(".admin-families-list-item:first") do
+    within(".#{family_1.last_name}") do
       click_button "Update Loan"
     end
 

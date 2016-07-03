@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "Platform admin updates charity information" do
   context "user is logged in as platform admin" do
-    scenario "platform successfully creates updates charity" do
+    scenario "platform successfully updates charity" do
 
     platform_admin = create(:user)
     pending_charity = create(:charity, status: 0)
@@ -21,8 +21,8 @@ RSpec.feature "Platform admin updates charity information" do
     expect(page).to have_content("Online Charities")
     expect(page).to have_content("Offline Charities")
 
-    within(".online") do
-      click_on "Update Charity"
+    within(".online-charity") do
+      click_button "Update Charity"
     end
 
     expect(current_path).to eq(edit_charity_path(online_charity))
@@ -32,8 +32,10 @@ RSpec.feature "Platform admin updates charity information" do
     click_on "Update Charity"
 
     expect(page).to have_content("Your updates have been saved")
-    expect(page).to have_content("New Name")
-    expect(page).to have_content("Update Charity")
+
+    within(".online-charity") do
+      expect(page).to have_content("New Name")
+    end
   end
 end
 
