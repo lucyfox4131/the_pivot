@@ -28,7 +28,7 @@
         <%= user.username %>
       </div>
       <div>
-        <%= form_for user do |f| %>
+        <%= form_for [:admin, user], multipart: true do |f|  %>
           <div class="form-group">
             <%= f.label :username %>
             <%= f.text_field :username, class: "form-control" %>
@@ -46,8 +46,8 @@
 
         <%= f.submit "Update Admin", class: "btn btn-info active" %>
         <% end %>
-        <%= button_to "Remove Admin Status", user_path(user), method: :delete, class: "btn btn-warning active" %>
+        <%= button_to "Remove Admin Status", admin_user_path(user), method: :delete, class: "btn btn-warning active" %>
       </div>
     </div>
-      <% end %>
+  <% end %>
 </div>
