@@ -54,9 +54,13 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if @user.update_attribute('email', user_params[:email]) && @user.update_attribute('cell', user_params[:cell])
       flash[:success] = "Your updates have been saved"
-      redirect_to dashboard_path
+      if @user.admin?
+        redirect_to admin_dashboard_path
+      else
+        redirect_to dashboard_path
+      end
     else
       flash.now[:warning] = @user.errors.full_messages.join(", ")
       render :edit
