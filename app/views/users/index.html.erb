@@ -1,16 +1,27 @@
-
 <div class="search-font filter">
     <label>Filter By Username  </label>
     <input type="text" placeholder="Username" id="user_filter_username">
 </div>
 
+<div class="box">
+  <%= link_to "Create New Admin", new_user_path, class: "btn button-indigo" %>
+</div>
+
 <div class="col-sm-12 col-sm-offset-1 users">
   <% @users.each do |user| %>
+    <% if !user.charities.empty? %>
+    <% if user.charities.first.name == @current_user_charity %>
     <% if !user.roles.empty? %>
       <% if user.roles.first.name == "charity_original_admin" || "charity_admin" %>
         <div data-username="<%= user.username %>"class="form-box col-sm-5 user">
           <div class="white-texxt">
-            <%= user.username %>
+            <% if user.charity_original_admin? %>
+              <div class="admin-box">
+                primary admin: <%= user.username %>
+              </div>
+            <% else %>
+              <%= user.username %>
+            <% end %>
           </div>
           <div>
             <%= form_for user do |f| %>
@@ -39,12 +50,14 @@
                 <%= f.password_field :password, class: "form-control" %>
               </div>
 
-              <%= f.submit "Update profile", class: "btn btn-primary" %>
-              <%= button_to "Remove", user_path(user), method: :delete, class: "btn btn-danger" %>
+            <%= f.submit "Update profile", class: "btn btn-info active" %>
+            <%= button_to "Remove", user_path(user, action: "demote"), method: :delete, class: "btn btn-warning active" %>
             <% end %>
           </div>
         </div>
       <% end %>
     <% end %>
+  <% end %>
+  <% end %>
   <% end %>
 </div>

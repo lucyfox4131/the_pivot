@@ -159,6 +159,20 @@
   margin-right: -10px;
 }
 
+.button-green {
+  background-color: #557e24;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.button-indigo {
+  background-color: #87b7b8;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .boxx {
   border-radius: 10px 50px;
   background: #177490;
@@ -169,6 +183,13 @@
   margin-bottom: 20px;
   margin-left: 20px;
   overflow: scroll;
+}
+
+.admin-box {
+    border-radius: 20px;
+    border: 8px solid #eed8d8;
+    padding: 10px;
+    color: white;
 }
 
 .form-box {

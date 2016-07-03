@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @current_user_charity = current_user.charities.first.name
     @users = User.all
   end
 
@@ -18,13 +19,26 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      flash[:success] = "Welcome, #{@user.username}!"
-      redirect_to dashboard_path
+    if current_user.charity_original_admin?
+      if @user.save
+        session[:user_id] = @user.id
+        @user.charities << current_user.charities.first
+        @user.roles << Role.find_by(name: "charity_admin")
+        flash[:success] = "Welcome, #{@user.username}!"
+        redirect_to dashboard_path
+      else
+        flash.now[:warning] = @user.errors.full_messages.join(", ")
+        render :new
+      end
     else
-      flash.now[:warning] = @user.errors.full_messages.join(", ")
-      render :new
+      if @user.save
+        session[:user_id] = @user.id
+        flash[:success] = "Welcome, #{@user.username}!"
+        redirect_to dashboard_path
+      else
+        flash.now[:warning] = @user.errors.full_messages.join(", ")
+        render :new
+      end
     end
   end
 
@@ -34,8 +48,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    flash[:success] = "Successfully deleted user."
+      @user.demote_user
+      @user.charities.clear
     redirect_to users_path
   end
 
@@ -53,7 +67,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :current_password, :email, :cell)
+    params.require(:user).permit(:username, :password, :current_password, :email, :cell, :charity)
   end
 
   def check_for_correct_user

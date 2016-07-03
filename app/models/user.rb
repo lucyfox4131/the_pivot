@@ -41,4 +41,16 @@ class User < ActiveRecord::Base
     !charity_admin? && !platform_admin? && !charity_original_admin?
   end
 
+  def demote_user
+    if charity_admin? && charity_original_admin?
+      roles.delete(2)
+      roles.delete(3)
+    elsif charity_admin?
+      roles.delete(2)
+    else charity_original_admin?
+      roles.delete(name: "charity_original_admin")
+    end
+  end
+
+
 end
