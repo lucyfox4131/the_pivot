@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    @users = User.all
+  end
+
   def show
     if !current_user
       flash[:warning] = "Please login to see your dashboard"
@@ -26,6 +30,13 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:success] = "Successfully deleted user."
+    redirect_to users_path
   end
 
   def update

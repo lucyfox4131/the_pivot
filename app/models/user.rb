@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :donation_items, through: :donations
   has_many :user_roles
   has_many :roles, through: :user_roles
+  has_many :charities, through: :user_roles
 
   attr_accessor :current_password
 
@@ -32,12 +33,12 @@ class User < ActiveRecord::Base
     roles.exists?(name: "charity_admin")
   end
 
-  def primary_charity_admin?
-    roles.exists?(name: "primary_charity_admin")
+  def charity_original_admin?
+    roles.exists?(name: "charity_original_admin")
   end
 
   def other_user?
-    !charity_admin? && !platform_admin? && !primary_charity_admin?
+    !charity_admin? && !platform_admin? && !charity_original_admin?
   end
 
 end

@@ -1,0 +1,50 @@
+
+<div class="search-font filter">
+    <label>Filter By Username  </label>
+    <input type="text" placeholder="Username" id="user_filter_username">
+</div>
+
+<div class="col-sm-12 col-sm-offset-1 users">
+  <% @users.each do |user| %>
+    <% if !user.roles.empty? %>
+      <% if user.roles.first.name == "charity_original_admin" || "charity_admin" %>
+        <div data-username="<%= user.username %>"class="form-box col-sm-5 user">
+          <div class="white-texxt">
+            <%= user.username %>
+          </div>
+          <div>
+            <%= form_for user do |f| %>
+              <div class="form-group">
+                <%= f.label :username %>
+                <%= f.text_field :username, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :email %>
+                <%= f.email_field :email, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :cell %>
+                <%= f.telephone_field :cell, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :current_password %>
+                <%= f.password_field :current_password, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :new_password %>
+                <%= f.password_field :password, class: "form-control" %>
+              </div>
+
+              <%= f.submit "Update profile", class: "btn btn-primary" %>
+              <%= button_to "Remove", user_path(user), method: :delete, class: "btn btn-danger" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

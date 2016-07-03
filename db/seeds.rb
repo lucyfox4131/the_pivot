@@ -143,7 +143,7 @@ class Seed
                         )
       end
     end
-    puts "Users & their donations created successfullly"
+    puts "loan items created successfullly"
   end
 
   def create_roles
