@@ -1,10 +1,45 @@
   <h1>Admin Dashboard</h1>
 
-<% if @charity %>
-  <h2> <%= @charity.name %> <h2>
-  <%= link_to "Update Charity", edit_charity_path(@charity), class: "btn btn-warning" %>
+<% if current_user.charity_admin? %>
+  <% if @charity %>
+    <h2> <%= @charity.name %> <h2>
+    <%= link_to "Update Charity", edit_charity_path(@charity), class: "btn btn-warning" %>
+  <% end %>
 <% end %>
 
-<%= link_to "All Families", admin_families_path, class: "btn btn-warning" %>
+<% if current_user.platform_admin? %>
+  <h2>Pending Charities</h2>
+    <% if @pending_charities %>
+      <ul class = "pending">
+        <% @pending_charities.each do |charity| %>
+          <li><%= link_to charity.name, charity_path(charity.slug) %></li>
+          <%= link_to "Update Charity", edit_charity_path(charity), class: "btn btn-warning" %>
+        <% end %>
+      </ul>
+    <% end %>
 
-<%= link_to "Create a New Family", new_admin_family_path, class: "btn btn-primary" %>
+  <h2>Online Charities</h2>
+  <% if @online_charities %>
+    <ul class = "online">
+      <% @online_charities.each do |charity| %>
+        <li><%= link_to charity.name, charity_path(charity.slug) %></li>
+        <%= link_to "Update Charity", edit_charity_path(charity), class: "btn btn-warning" %>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <h2>Offline Charities</h2>
+  <% if @offline_charities %>
+    <ul class = "offline">
+      <% @offline_charities.each do |charity| %>
+        <li><%= link_to charity.name, charity_path(charity.slug) %></li>
+        <%= link_to "Update Charity", edit_charity_path(charity), class: "btn btn-warning" %>
+      <% end %>
+    </ul>
+  <% end %>
+
+<% end %>
+
+  <%= link_to "All Families", admin_families_path, class: "btn btn-warning" %>
+
+  <%= link_to "Create a New Family", new_admin_family_path, class: "btn btn-primary" %>
