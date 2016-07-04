@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature "Platform admin changes charity status" do
   context "user is logged in as platform admin" do
     scenario "platform admin succcessfully changes status from online to offline" do
-      charity_1 = create(:charity, status: 1)
+      charity = create(:charity, status: 1)
       platform_admin = create(:user)
       role = Role.create(name: "platform_admin")
       UserRole.create(user: platform_admin, role: role)
@@ -12,7 +12,7 @@ RSpec.feature "Platform admin changes charity status" do
 
       visit admin_dashboard_path
 
-      within(".#{charity_1.name}") do
+      within(".#{charity.name}") do
         select "offline", from: "Status"
         click_on "Update Status"
       end
@@ -21,13 +21,13 @@ RSpec.feature "Platform admin changes charity status" do
 
       visit charities_path
 
-      expect(page).to_not have_content("#{charity_1.name}")
+      expect(page).to_not have_content("#{charity.name}")
     end
   end
 
   context "user is logged in as platform admin" do
     scenario "platform admin succcessfully changes status from pending to online" do
-      charity_1 = create(:charity, status: 0)
+      charity = create(:charity, status: 0)
       platform_admin = create(:user)
       role = Role.create(name: "platform_admin")
       UserRole.create(user: platform_admin, role: role)
@@ -38,7 +38,7 @@ RSpec.feature "Platform admin changes charity status" do
 
       visit admin_dashboard_path
 
-      within(".#{charity_1.name}") do
+      within(".#{charity.name}") do
         select "online", from: "Status"
         click_on "Update Status"
       end
@@ -47,7 +47,7 @@ RSpec.feature "Platform admin changes charity status" do
 
       visit charities_path
 
-      expect(page).to have_content("#{charity_1.name}")
+      expect(page).to have_content("#{charity.name}")
     end
   end
 end

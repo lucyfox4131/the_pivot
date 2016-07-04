@@ -3,7 +3,6 @@ require "rails_helper"
 RSpec.feature "Platform admin manages loan information" do
   context "user is logged in as platform admin" do
     scenario "platform admin successfully updates loan" do
-
       platform_admin = create(:user)
       charity_1, charity_2 = create_list(:charity, 2)
       role = Role.create(name: "platform_admin")
