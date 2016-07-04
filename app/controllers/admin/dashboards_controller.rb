@@ -12,6 +12,7 @@ class Admin::DashboardsController < Admin::BaseController
       end
     end
     if current_user.platform_admin?
+
       @pending_charities = Charity.pending_charities
       @online_charities = Charity.online_charities
       @offline_charities = Charity.offline_charities

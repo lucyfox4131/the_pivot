@@ -25,7 +25,11 @@
 
 
 <div class="details">
-  <h2>Administrators for <%= @charity.name %></h2>
+  <% if @charity %>
+    <h2>Administrators for <%= @charity.name %></h2>
+  <% else %>
+    <h2>All Charity Administrators</h2>
+  <% end %>
 </div>
 
 <div class="search-font filter">
