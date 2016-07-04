@@ -33,16 +33,16 @@ class User < ActiveRecord::Base
     roles.exists?(name: "charity_admin")
   end
 
-  def charity_original_admin?
-    roles.exists?(name: "charity_original_admin")
+  def primary_charity_admin?
+    roles.exists?(name: "primary_charity_admin")
   end
 
   def admin?
-    platform_admin? || charity_admin? || charity_original_admin?
+    platform_admin? || charity_admin? || primary_charity_admin?
   end
 
   def other_user?
-    !charity_admin? && !platform_admin? && !charity_original_admin?
+    !charity_admin? && !platform_admin? && !primary_charity_admin?
   end
 
   def demote_user
