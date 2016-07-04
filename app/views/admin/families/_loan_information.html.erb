@@ -1,5 +1,5 @@
 <% if family.loan %>
-  <%= button_to "Update Loan", edit_loan_path(family.loan) , method: :get, class: "btn btn-warning" %>
+  <%= button_to "Update Loan", edit_loan_path(family.loan) , method: :get, class: "btn btn-warning btn-xs" %>
 <% else %>
-  <%= button_to "Add Loan", new_loan_path, method: :get, class: "btn btn-primary" %>
+  <%= button_to "Add Loan", new_loan_path, method: :get, class: "btn btn-primary btn-xs" %>
 <% end %>

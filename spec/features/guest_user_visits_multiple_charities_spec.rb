@@ -4,6 +4,7 @@ RSpec.feature "Guest User Sees Many Charities" do
   context "a guest user visits the root page" do
     scenario "they are able to successfully view charities" do
       charity_1, charity_2, charity_3 = create_list(:charity, 3)
+      family_1, family_2 = create_list(:family, 2)
       visit root_path
 
       expect(page).to have_link("See All Charities")

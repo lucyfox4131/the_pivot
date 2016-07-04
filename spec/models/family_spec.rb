@@ -18,55 +18,29 @@ RSpec.describe Family, type: :model do
   it { should validate_presence_of(:donation_deadline) }
 
   it "returns correct number of people" do
-    nationality = Nationality.create(photo_path: "x",
-      info_link: "x",
-      greeting: "x",
-      name: "Syrian")
-    family = Family.create(first_name: "TestFirst",
-      last_name: "TestLast",
-      arrival_date: 10.days.from_now,
-      donation_deadline: 5.days.from_now,
-      nationality_id: nationality.id,
-      num_married_adults: 2,
-      num_unmarried_adults: 1,
-      num_children_over_two: 2,
-      num_children_under_two: 1)
+    family = create(:family,  num_married_adults: 2,
+                              num_unmarried_adults: 1,
+                              num_children_over_two: 2,
+                              num_children_under_two: 1)
 
     expect(family.num_people).to eq(6)
   end
 
   it "returns correct number of adults" do
-    nationality = Nationality.create(photo_path: "x",
-      info_link: "x",
-      greeting: "x",
-      name: "Syrian")
-    family = Family.create(first_name: "TestFirst",
-      last_name: "TestLast",
-      arrival_date: 10.days.from_now,
-      donation_deadline: 5.days.from_now,
-      nationality_id: nationality.id,
-      num_married_adults: 2,
-      num_unmarried_adults: 1,
-      num_children_over_two: 2,
-      num_children_under_two: 1)
+    family = create(:family,  num_married_adults: 2,
+                              num_unmarried_adults: 1,
+                              num_children_over_two: 2,
+                              num_children_under_two: 1)
+
 
     expect(family.num_adults).to eq(3)
   end
 
   it "generates correct supply hash for famililes with all features" do
-    nationality = Nationality.create(photo_path: "x",
-      info_link: "x",
-      greeting: "x",
-      name: "Syrian")
-    family = Family.create(first_name: "TestFirst",
-      last_name: "TestLast",
-      arrival_date: 10.days.from_now,
-      donation_deadline: 5.days.from_now,
-      nationality_id: nationality.id,
-      num_married_adults: 2,
-      num_unmarried_adults: 1,
-      num_children_over_two: 2,
-      num_children_under_two: 1)
+    family = create(:family,  num_married_adults: 2,
+                              num_unmarried_adults: 1,
+                              num_children_over_two: 2,
+                              num_children_under_two: 1)
 
     expected = {"adult" => 3,
                 "person" => 6,
@@ -79,40 +53,16 @@ RSpec.describe Family, type: :model do
   end
 
   it "generates correct supply hash for famililes with all features" do
-    nationality = Nationality.create(photo_path: "x",
-      info_link: "x",
-      greeting: "x",
-      name: "Syrian")
+    family = create(:family,  num_married_adults: 2,
+                              num_unmarried_adults: 1,
+                              num_children_over_two: 2,
+                              num_children_under_two: 1)
 
-    family = Family.create(first_name: "TestFirst",
-      last_name: "TestLast",
-      arrival_date: 10.days.from_now,
-      donation_deadline: 5.days.from_now,
-      nationality_id: nationality.id,
-      num_married_adults: 2,
-      num_unmarried_adults: 1,
-      num_children_over_two: 2,
-      num_children_under_two: 1)
-
-    supply1 =Supply.create(name: "Full Bedframe",
-      value: 50.0, description: "New or used.  Used must be in good condition.",
-      multiplier_type: "adult" )
-    supply2 =Supply.create(name: "Couch",
-      value: 100.0,
-      description: "New or used.  Used must be in good condition.",
-      multiplier_type: "household")
-    supply3 =Supply.create(name: "Kitchen Chair",
-      value: 10.0,
-      description: "New or used.  Used must be in good condition.",
-      multiplier_type: "person")
-    supply4 =Supply.create(name: "Crib",
-      value: 50.0, description:"New or used.  Used must be in good condition.",
-      multiplier_type: "baby")
-    supply5 =Supply.create(name: "Backpack",
-      value: 7.50,
-      description:"For school-aged child.  New or used.  Used must be in"\
-        "good condition.",
-      multiplier_type: "child")
+    supply1 = create(:supply, multiplier_type: "adult")
+    supply2 = create(:supply, multiplier_type: "household")
+    supply3 = create(:supply, multiplier_type: "person")
+    supply4 = create(:supply, multiplier_type: "baby")
+    supply5 = create(:supply, multiplier_type: "child")
 
     family.create_supply_items
 
@@ -125,61 +75,24 @@ RSpec.describe Family, type: :model do
   end
 
   it "returns true if retired and false if not" do
-    nationality1 = Nationality.create(photo_path: "somali_photo.jpeg", info_link: "http://www.rescue.org/blog/a-precarious-life-somali-refugees-nairobi",
-    greeting: "somali_greeting.png", name: "Somali")
-    past_family1 = Family.create(first_name: "TestFirst", last_name: "TestLast",
-    arrival_date: 10.days.ago, donation_deadline: 15.days.ago,
-    nationality_id: nationality1.id, num_married_adults: 2, num_unmarried_adults: 1,
-    num_children_over_two: 1, num_children_under_two: 0,
-    description: "This married couple fled Somalia in 2001 with their sone and"\
-    " the wife's elderly mother.  They have lived in Dadaab refugee camp for the"\
-    " past 15 years.")
-    family1 = Family.create(first_name: "Apple", last_name: "TestLast",
-    arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now,
-    nationality_id: nationality1.id, num_married_adults: 2,
-    num_unmarried_adults: 1, num_children_over_two: 1, num_children_under_two: 0,
-    description: "This married couple fled Somalia in 2001 with their sone and the"\
-    " wife's elderly mother.  They have lived in Dadaab refugee camp for the past"\
-    " 15 years.")
+    past_family = create(:family, arrival_date: 10.days.ago)
+    current_family = create(:family, arrival_date: 10.days.from_now)
 
-    expect(family1.retired?).to eq(false)
-    expect(past_family1.retired?).to eq(true)
+    expect(current_family.retired?).to eq(false)
+    expect(past_family.retired?).to eq(true)
   end
 
   it "generates correct supply hash for famililes with some features" do
-    nationality = Nationality.create(photo_path: "x",
-      info_link: "x",
-      greeting: "x",
-      name: "Somali")
-    family = Family.create(first_name: "TestFirst",
-      last_name: "TestLast",
-      arrival_date: 10.days.from_now,
-      donation_deadline: 5.days.from_now,
-      nationality_id: nationality.id,
-      num_married_adults: 2,
-      num_unmarried_adults: 1,
-      num_children_over_two: 0,
-      num_children_under_two: 0)
+    family = create(:family,  num_married_adults: 2,
+                              num_unmarried_adults: 1,
+                              num_children_over_two: 0,
+                              num_children_under_two: 0)
 
-      supply1 =Supply.create(name: "Full Bedframe",
-        value: 50.0, description: "New or used.  Used must be in good condition.",
-        multiplier_type: "adult" )
-      supply2 =Supply.create(name: "Couch",
-        value: 100.0,
-        description: "New or used.  Used must be in good condition.",
-        multiplier_type: "household")
-      supply3 =Supply.create(name: "Kitchen Chair",
-        value: 10.0,
-        description: "New or used.  Used must be in good condition.",
-        multiplier_type: "person")
-      supply4 =Supply.create(name: "Crib",
-        value: 50.0, description:"New or used.  Used must be in good condition.",
-        multiplier_type: "baby")
-      supply5 =Supply.create(name: "Backpack",
-        value: 7.50,
-        description:"For school-aged child.  New or used.  Used must be in"\
-          "good condition.",
-        multiplier_type: "child")
+    supply1 = create(:supply, multiplier_type: "adult")
+    supply2 = create(:supply, multiplier_type: "household")
+    supply3 = create(:supply, multiplier_type: "person")
+    supply4 = create(:supply, multiplier_type: "baby")
+    supply5 = create(:supply, multiplier_type: "child")
 
     family.create_supply_items
 
@@ -192,84 +105,52 @@ RSpec.describe Family, type: :model do
   end
 
   describe "scopes" do
-    it ".retired returns all votes with an arrival date < today// > today" do
-      nationality1 = Nationality.create(photo_path: "somali_photo.jpeg", info_link: "http://www.rescue.org/blog/a-precarious-life-somali-refugees-nairobi",
-      greeting: "somali_greeting.png", name: "Somali")
-      past_family1 = Family.create(first_name: "TestFirst", last_name: "TestLast",
-      arrival_date: 10.days.ago, donation_deadline: 15.days.ago,
-      nationality_id: nationality1.id, num_married_adults: 2, num_unmarried_adults: 1,
-      num_children_over_two: 1, num_children_under_two: 0,
-      description: "This married couple fled Somalia in 2001 with their sone and"\
-      " the wife's elderly mother.  They have lived in Dadaab refugee camp for the"\
-      " past 15 years.")
-      family1 = Family.create(first_name: "Apple", last_name: "TestLast",
-      arrival_date: 10.days.from_now, donation_deadline: 5.days.from_now,
-      nationality_id: nationality1.id, num_married_adults: 2,
-      num_unmarried_adults: 1, num_children_over_two: 1, num_children_under_two: 0,
-      description: "This married couple fled Somalia in 2001 with their sone and the"\
-      " wife's elderly mother.  They have lived in Dadaab refugee camp for the past"\
-      " 15 years.")
+    it "retired returns all families with an arrival date < today// > today" do
+      past_family = create(:family, first_name: "TestFirst",
+                                    arrival_date: 10.days.ago)
+
+      current_family = create(:family, first_name: "Apple",
+                                       arrival_date: 10.days.from_now)
 
       expect(Family.retired.first.first_name).to eq("TestFirst")
       expect(Family.active.first.first_name).to eq("Apple")
     end
   end
 
-  it "outputs donations received" do
-    Supply.create(name: "Kitchen Chair", value: 10.0,
-    description: "New or used.  Used must be in good condition.",
-    multiplier_type: "person")
-    Supply.create(name: "Silverware Set", value: 1.5,
-    description: "New or used. Set consists of fork, spoon and knife.",
-    multiplier_type: "person")
-    Supply.create(name: "Plate", value: 2.0, description: "New or used.",
-    multiplier_type: "person")
+  it "returns donations received" do
+    supply_1, supply_2, supply_3 = create_list(:supply, 3)
+    user = create(:user)
+    donation = create(:donation, status: "Pledged", user: user)
+    received_donation = create(:donation, status: "Received", user: user)
+    past_family = create(:family, arrival_date: 10.days.ago)
+    past_family.create_supply_items
 
-    user1 = User.create(username: "user1", password: "password")
-    donation1 = Donation.create(status: "Pledged", user: user1)
-    received_donation1 = Donation.create(status: "Received", user: user1)
-    nationality1 = Nationality.create(photo_path: "somali_photo.jpeg", info_link: "http://www.rescue.org/blog/a-precarious-life-somali-refugees-nairobi",
-    greeting: "somali_greeting.png", name: "Somali")
-    past_family1 = Family.create(first_name: "TestFirst", last_name: "TestLast",
-    arrival_date: 10.days.ago, donation_deadline: 15.days.ago,
-    nationality_id: nationality1.id, num_married_adults: 2, num_unmarried_adults: 1,
-    num_children_over_two: 1, num_children_under_two: 0,
-    description: "This married couple fled Somalia in 2001 with their sone and"\
-    " the wife's elderly mother.  They have lived in Dadaab refugee camp for the"\
-    " past 15 years.")
-    past_family1.create_supply_items
-    received_donation_item1 = DonationItem.create(quantity: 1,
-    supply_item: past_family1.supply_items.first, donation: received_donation1)
+    create(:donation_item, quantity: 1,
+                           supply_item: past_family.supply_items.first,
+                           donation: received_donation)
 
-    expect(past_family1.donations_received[0].donation_id).to eq(2)
+    expect(past_family.donations_received[0].donation_id).to eq(2)
   end
 
   it "outputs accurate percentage donated" do
-    Supply.create(name: "Kitchen Chair", value: 10.0,
-    description: "New or used.  Used must be in good condition.",
-    multiplier_type: "person")
-    Supply.create(name: "Silverware Set", value: 1.5,
-    description: "New or used. Set consists of fork, spoon and knife.",
-    multiplier_type: "person")
-    Supply.create(name: "Plate", value: 2.0, description: "New or used.",
-    multiplier_type: "person")
+    create(:supply, value: 10.0, multiplier_type: "person")
+    create(:supply, value: 1.5, multiplier_type: "person")
+    create(:supply, value: 2.0, multiplier_type: "person")
 
-    user1 = User.create(username: "user1", password: "password")
-    donation1 = Donation.create(status: "Pledged", user: user1)
-    received_donation1 = Donation.create(status: "Received", user: user1)
-    nationality1 = Nationality.create(photo_path: "somali_photo.jpeg", info_link: "http://www.rescue.org/blog/a-precarious-life-somali-refugees-nairobi",
-    greeting: "somali_greeting.png", name: "Somali")
-    past_family1 = Family.create(first_name: "TestFirst", last_name: "TestLast",
-    arrival_date: 10.days.ago, donation_deadline: 15.days.ago,
-    nationality_id: nationality1.id, num_married_adults: 2, num_unmarried_adults: 1,
-    num_children_over_two: 1, num_children_under_two: 0,
-    description: "This married couple fled Somalia in 2001 with their sone and"\
-    " the wife's elderly mother.  They have lived in Dadaab refugee camp for the"\
-    " past 15 years.")
-    past_family1.create_supply_items
-    received_donation_item1 = DonationItem.create(quantity: 1,
-    supply_item: past_family1.supply_items.first, donation: received_donation1)
+    user = create(:user)
+    donation = create(:donation, status: "Pledged", user: user)
+    received_donation = create(:donation, status: "Received", user: user)
+    past_family = create(:family, arrival_date: 10.days.ago,
+                                  num_married_adults: 2,
+                                  num_unmarried_adults: 1,
+                                  num_children_over_two: 1,
+                                  num_children_under_two: 0)
 
-    expect(past_family1.percentage_donated).to eq(18)
+    past_family.create_supply_items
+
+    received_donation_item = create(:donation_item, quantity: 1,
+    supply_item: past_family.supply_items.first, donation: received_donation)
+
+    expect(past_family.percentage_donated).to eq(18)
   end
 end

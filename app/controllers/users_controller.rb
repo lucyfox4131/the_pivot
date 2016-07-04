@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    @users = User.all
+  end
+
   def show
     if !current_user
       flash[:warning] = "Please login to see your dashboard"
@@ -39,16 +43,16 @@ class UsersController < ApplicationController
     end
   end
 
-  private
+   private
 
-  def user_params
-    params.require(:user).permit(:username, :password, :current_password, :email, :cell)
-  end
+   def user_params
+     params.require(:user).permit(:username, :password, :current_password, :email, :cell)
+   end
 
-  def check_for_correct_user
-    if (!current_user || current_user.id != params[:id].to_i)
-      flash[:warning] = "Oops, you visited the wrong page."
-      redirect_to root_path
-    end
-  end
+   def check_for_correct_user
+     if !current_user || current_user.id != params[:id].to_i
+       flash[:warning] = "Oops, you visited the wrong page."
+       redirect_to root_path
+     end
+   end
 end
