@@ -67,7 +67,7 @@ class Seed
   end
 
   def create_active_families
-    40.times do
+    60.times do
       category_ids = (1..10).to_a.sample(2)
       Family.create!(
                       first_name:             Faker::Name.first_name,
@@ -88,7 +88,7 @@ class Seed
   end
 
   def create_past_families
-    10.times do
+    20.times do
       Family.create!(
                       first_name:             Faker::Name.first_name,
                       last_name:              Faker::Name.last_name,
@@ -256,7 +256,7 @@ class Seed
       10.times do
         SupplyItem.create!(
                             supply_id: supply.id,
-                            family_id: rand(1..50),
+                            family_id: rand(1..80),
                             quantity: rand(1..4)
                           )
       end
