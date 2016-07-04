@@ -1,10 +1,11 @@
+
 <h1 class='col-sm-10 col-sm-offset-2'1>A Home for Organizations that Build Homes</h1>
 
-<ul>
-  <% @charities.each do |charity| %>
-    <li><%= link_to charity.name, charity_path(charity.slug) %></li>
+<div class="box">
+  <% if current_user %>
+  <%= button_to "Apply To Be One of Our Charities", new_charity_path, method: :get, class: "btn button-green active" %>
   <% end %>
-</ul>
+</div>
 
 <div class="col-sm-12 col-sm-offset-1">
 <% @charities.each do |charity| %>
@@ -12,7 +13,7 @@
     <div class="container">
       <div class="col-sm-5 photo">
         <%= image_tag "reSTORE.png", :class => "img-responsive center-block" %>
-        <p><%= link_to "Learn more about #{charity.name}", charity_path(charity), class: "center-block learn-more" %></p>
+        <p><%= link_to "Learn more about #{charity.name}", charity_path(charity.slug), class: "center-block learn-more" %></p>
         <p>
           <div class="white-text">
             <%= charity.description %>
@@ -23,7 +24,3 @@
   </div>
 <% end %>
 </div>
-
-<% if current_user %>
-  <%= button_to "Apply To Be One of Our Charities", new_charity_path, method: :get %>
-<% end %>

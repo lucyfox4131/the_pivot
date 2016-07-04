@@ -59,7 +59,7 @@ class Seed
     30.times do
       Charity.create!(
                         name:        Faker::Company.name,
-                        description: Faker::Lorem.paragraph(1, true, 1),
+                        description: Faker::Lorem.paragraph,
                         status:      [0,1,2].sample
                       )
     end
@@ -67,7 +67,7 @@ class Seed
   end
 
   def create_active_families
-    40.times do
+    60.times do
       category_ids = (1..10).to_a.sample(2)
       Family.create!(
                       first_name:             Faker::Name.first_name,
@@ -88,7 +88,7 @@ class Seed
   end
 
   def create_past_families
-    10.times do
+    20.times do
       Family.create!(
                       first_name:             Faker::Name.first_name,
                       last_name:              Faker::Name.last_name,
@@ -112,7 +112,7 @@ class Seed
         family.loan = Loan.create!(
                                     requested_amount: rand(500..5000),
                                     description:      Faker::Lorem.paragraph,
-                                    purpose:          Faker::Company.name
+                                    purpose:          Faker::Company.name,
                                     status:           "active"
                                   )
       end
@@ -124,7 +124,7 @@ class Seed
     100.times do
       user = User.create!(
                             username:  Faker::Internet.user_name,
-                            password:  Faker::Internet.password,
+                            password:  Faker::Team.state,
                             cell:      1112223333,
                             email:     Faker::Internet.email,
                           )
@@ -143,7 +143,7 @@ class Seed
                         )
       end
     end
-    puts "Users & their donations created successfullly"
+    puts "loan items created successfullly"
   end
 
   def create_roles
@@ -155,11 +155,11 @@ class Seed
   end
 
   def create_admin_user_roles
-    30.times do
-      user = User.find(rand(1..100))
-      name = ["platform_admin", "charity_admin", "charity_original_admin", "registered_user"].sample
-      role = Role.find_by(name: name)
-      user.roles << role
+      User.all.each do |user|
+        name = ["platform_admin", "charity_admin", "charity_original_admin", "registered_user"].sample
+        role = Role.find_by(name: name)
+        user.roles << role
+      end
     end
     puts "Admin Users created successfullly"
   end
@@ -256,7 +256,7 @@ class Seed
       10.times do
         SupplyItem.create!(
                             supply_id: supply.id,
-                            family_id: rand(1..50),
+                            family_id: rand(1..80),
                             quantity: rand(1..4)
                           )
       end
@@ -272,8 +272,7 @@ class Seed
                             donation_id: rand(1..1000)
                           )
     end
+    puts "Donation items created successfullly"
   end
-  puts "Donation items created successfullly"
-end
 
 Seed.new
