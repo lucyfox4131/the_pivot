@@ -34,8 +34,9 @@
 <table class="table">
   <tr>
     <th>Loan Purpose</th>
-    <th>Loan Description</th>
-    <th>Amount</th>
+    <th>Requested Amount</th>
+    <th>Donation Amount</th>
+    <th></th>
     <th></th>
   </tr>
 
@@ -43,7 +44,6 @@
       <div class='<%= @family.loan.purpose %> table-info' >
       <tr>
         <td><%= @family.loan.purpose %></br>
-        <em><%= @family.loan.description %></em></td>
         <td><%= currency(@family.loan.requested_amount) %></td>
         <td><%= f.hidden_field :id, :value => @family.loan.id %>
           <div class="form-group">
@@ -51,13 +51,15 @@
           </div>
         </td>
         <td><%= f.submit 'add to cart', class: "btn btn-warning"%></td>
+        <td>
+          <div class="tags">
+            <%= link_to "View Loan", loan_path(@family.loan), class: "btn btn-inverse" %>
+          </div>
+        </td>
       </tr>
       </div>
     <% end %>
 </table>
-<ul>
-  <li><%= link_to "View Loan", loan_path(@family.loan) %></li>
-</ul>
 
 <% end %>
 

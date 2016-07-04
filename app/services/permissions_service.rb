@@ -11,10 +11,10 @@ class PermissionsService
       platform_admin_permissions
     elsif user.charity_admin?
       charity_admin_permissions
-    elsif user.registered_user?
-      registered_user_permissions
-    else
-      guest_user_permissions
+    elsif user.charity_original_admin?
+      charity_original_admin_permissions
+    else user.other_user?
+      other_user_permissions
     end
   end
 
@@ -39,21 +39,15 @@ class PermissionsService
       true
     end
 
-    def registered_user_permissions
+    def charity_original_admin_permissions
       if controller == "admin/dashboards"
-        return false
-      elsif controller == "admin/families"
-        return false
-      elsif controller == "admin/base"
-        return false
-      elsif controller == "loans" && action.in?(%w(new create edit update))
-        return false
-      else
         return true
+      else
+        true
       end
     end
 
-    def guest_user_permissions
+    def other_user_permissions
       if controller == "admin/dashboards"
         return false
       elsif controller == "admin/families"
