@@ -289,4 +289,21 @@ RSpec.describe DonationItem, type: :model do
 
     expect(donation_item.family.first_name).to eq("TestFirst")
   end
+
+  it "returns correct total items" do
+    supply = create(:supply)
+    family = create(:family)
+    supply_item = create(:supply_item)
+    donation = create(:donation)
+
+    donation_item_1 = create(:donation_item, quantity: 2,
+      supply_item: supply_item,
+      donation: donation)
+
+    donation_item_2 = create(:donation_item, quantity: 3,
+      supply_item: supply_item,
+      donation: donation)
+
+    expect(DonationItem.total_items).to eq(5)
+  end
 end
