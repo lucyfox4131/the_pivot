@@ -1,6 +1,5 @@
 
   <% if charity_type %>
-    <div class = "">
         <% charity_type.each do |charity| %>
           <div class = "well">
             <div class = "<%= charity.name %>">
@@ -10,6 +9,5 @@
                   <%= render partial: 'padmin_family_list', locals: {families: charity.families.retired, current: false}%>
             </div>
           </div>
-        <% end %>
-    </div>
+        <% end %>    
   <% end %>

@@ -5,12 +5,12 @@
   <input type="text" placeholder="Last Name" id="family_filter_name">
 </div>
 
-<div class="row nationality">
+<div class="row-nationality-active">
     <%= render partial: 'family_list', locals: {families:@families.active, current: true}%>
 </div>
 
 <h1>Families Already Arrived</h1>
 
-<div class="row nationality">
+<div class="row-nationality-retired">
     <%= render partial: 'family_list', locals: {families:@families.retired, current: false}%>
 </div>
