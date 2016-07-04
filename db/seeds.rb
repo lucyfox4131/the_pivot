@@ -9,6 +9,8 @@ class Seed
     create_users
     create_roles
     create_admin_user_roles
+    create_primary_charity_admins
+    create_a_platform_admin
     create_supplies
     create_supply_items
     create_donation_items
@@ -149,19 +151,40 @@ class Seed
   def create_roles
     Role.create!(name: "platform_admin")
     Role.create!(name: "charity_admin")
-    Role.create!(name: "charity_original_admin")
-    Role.create!(name: "registered_user")
+    Role.create!(name: "primary_charity_admin")
     puts "Roles created successfullly"
   end
 
   def create_admin_user_roles
-      User.all.each do |user|
-        name = ["platform_admin", "charity_admin", "charity_original_admin", "registered_user"].sample
-        role = Role.find_by(name: name)
+      Charity.all.each do |charity|
+        user = User.find(Random.new.rand(1..100))
+        role = Role.find_by(name: "charity_admin")
         user.roles << role
       end
     end
     puts "Admin Users created successfullly"
+  end
+
+  def create_primary_charity_admins
+    Charity.all.each do |charity|
+      role = Role.find_by(name: "primary_charity_admin")
+      user = User.create!(
+                            username:  Faker::Internet.user_name,
+                            password:  "password",
+                            cell:      1112223333,
+                            email:     "nate@turing.io",
+                          )
+      user.roles << role
+    end
+  end
+
+  def create_a_platform_admin
+    User.create!(
+                  username:  "platform_admin_jorge",
+                  password:  "password",
+                  cell:      1112223333,
+                  email:     "jorge@turing.io",
+                )
   end
 
   def create_donations(user)
@@ -251,9 +274,8 @@ class Seed
   end
 
   def create_supply_items
-    supplies = Supply.all
-    supplies.each do |supply|
-      10.times do
+    Supply.all.each do |supply|
+      30.times do
         SupplyItem.create!(
                             supply_id: supply.id,
                             family_id: rand(1..80),
@@ -265,7 +287,7 @@ class Seed
   end
 
   def create_donation_items
-    300.times do
+    200.times do
       DonationItem.create!(
                             quantity: 1,
                             supply_item_id: rand(1..180),
