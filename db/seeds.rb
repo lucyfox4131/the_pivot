@@ -27,7 +27,7 @@ class Seed
     Category.create(name: "Latin America", slug: "latin-america")
     Category.create(name: "Loans",         slug: "loans")
     Category.create(name: "Large Family",  slug: "large-family")
-    puts "Categories created successfullly"
+    puts "Categories created successfully"
   end
 
   def create_nationalities
@@ -54,138 +54,140 @@ class Seed
     info_link: "http://www.rescue.org/us-program/united-states/welcoming-afghans",
     greeting: "afghan_greeting.png",
     name: "Afghan")
-    puts "Nationalities created successfullly"
+    puts "Nationalities created successfully"
   end
 
   def create_charities
     30.times do
       Charity.create!(
-                        name:        Faker::Company.name,
-                        description: Faker::Lorem.paragraph,
-                        status:      [0,1,2].sample
-                      )
+      name:        Faker::Company.name,
+      description: Faker::Lorem.paragraph,
+      status:      [0,1,2].sample
+      )
     end
-    puts "Charities created successfullly"
+    puts "Charities created successfully"
   end
 
   def create_active_families
     60.times do
       category_ids = (1..10).to_a.sample(2)
       Family.create!(
-                      first_name:             Faker::Name.first_name,
-                      last_name:              Faker::Name.last_name,
-                      arrival_date:           rand(10..30).days.from_now,
-                      donation_deadline:      rand(1..10).days.from_now,
-                      nationality_id:         rand(1..5),
-                      charity_id:             rand(1..30),
-                      num_married_adults:     [1,2].sample,
-                      num_unmarried_adults:   [0,1,2].sample,
-                      num_children_over_two:  rand(0..5),
-                      num_children_under_two: rand(0..5),
-                      description:            Faker::Lorem.paragraph,
-                      category_ids:           category_ids
-                    )
+      first_name:             Faker::Name.first_name,
+      last_name:              Faker::Name.last_name,
+      arrival_date:           rand(10..30).days.from_now,
+      donation_deadline:      rand(1..10).days.from_now,
+      nationality_id:         rand(1..5),
+      charity_id:             rand(1..30),
+      num_married_adults:     [1,2].sample,
+      num_unmarried_adults:   [0,1,2].sample,
+      num_children_over_two:  rand(0..5),
+      num_children_under_two: rand(0..5),
+      description:            Faker::Lorem.paragraph,
+      category_ids:           category_ids
+      )
     end
-    puts "Active families created successfullly"
+    puts "Active families created successfully"
   end
 
   def create_past_families
     20.times do
       Family.create!(
-                      first_name:             Faker::Name.first_name,
-                      last_name:              Faker::Name.last_name,
-                      arrival_date:           rand(10..30).days.ago,
-                      donation_deadline:      rand(1..10).days.ago,
-                      nationality_id:         rand(1..5),
-                      charity_id:             rand(1..30),
-                      num_married_adults:     [1,2].sample,
-                      num_unmarried_adults:   [0,1,2].sample,
-                      num_children_over_two:  rand(0..5),
-                      num_children_under_two: rand(0..5),
-                      description:            Faker::Lorem.paragraph
-                    )
+      first_name:             Faker::Name.first_name,
+      last_name:              Faker::Name.last_name,
+      arrival_date:           rand(10..30).days.ago,
+      donation_deadline:      rand(1..10).days.ago,
+      nationality_id:         rand(1..5),
+      charity_id:             rand(1..30),
+      num_married_adults:     [1,2].sample,
+      num_unmarried_adults:   [0,1,2].sample,
+      num_children_over_two:  rand(0..5),
+      num_children_under_two: rand(0..5),
+      description:            Faker::Lorem.paragraph
+      )
     end
-    puts "Past families created successfullly"
+    puts "Past families created successfully"
   end
 
   def create_loans
+    loan_category = Category.find_by(name: "Loans")
     Family.all.each do |family|
-      if family.category_ids.include?(9)
+      if family.category_ids.include?(loan_category.id)
         family.loan = Loan.create!(
-                                    requested_amount: rand(500..5000),
-                                    description:      Faker::Lorem.paragraph,
-                                    purpose:          Faker::Company.name,
-                                    status:           "active"
-                                  )
+        requested_amount: rand(500..5000),
+        description:      Faker::Lorem.paragraph,
+        purpose:          Faker::Company.name,
+        status:           "active"
+        )
       end
     end
-    puts "Loans created successfullly"
+    puts "Loans created successfully"
   end
 
   def create_users
-    100.times do
+    200.times do
       user = User.create!(
-                            username:  Faker::Internet.user_name,
-                            password:  Faker::Team.state,
-                            cell:      1112223333,
-                            email:     Faker::Internet.email,
-                          )
+      username:  Faker::Internet.user_name,
+      password:  Faker::Team.state,
+      cell:      1112223333,
+      email:     Faker::Internet.email,
+      )
       create_donations(user)
     end
+    puts "Users with donations created successfully"
   end
 
   def create_loan_items
-    loans = Loan.all
-    loans.each do |loan|
+    Loan.all.each do |loan|
       10.times do
         LoanItem.create!(
-                          loan_id:     loan.id,
-                          donation_id: rand(1..1000),
-                          amount:      1
-                        )
+        loan_id:     loan.id,
+        donation_id: rand(1..1000),
+        amount:      15
+        )
       end
     end
-    puts "loan items created successfullly"
+    puts "loan items created successfully"
   end
 
   def create_roles
     Role.create!(name: "platform_admin")
     Role.create!(name: "charity_admin")
     Role.create!(name: "primary_charity_admin")
-    puts "Roles created successfullly"
+    puts "Roles created successfully"
   end
 
   def create_admin_user_roles
-      Charity.all.each do |charity|
-        role = Role.find_by(name: "charity_admin")
-        5.times do
-          user = User.find(Random.new.rand(1..100))
-          UserRole.create!(
-                            user: user,
-                            role: role
-                            charity: charity
-                          )
-        end
+    role = Role.find_by(name: "charity_admin")
+    Charity.all.each do |charity|
+      3.times do
+        user = User.find(Random.new.rand(1..200))
+        UserRole.create!(
+        user: user,
+        role: role,
+        charity: charity
+        )
       end
     end
-    puts "Admin Users created successfullly"
+    puts "Admin Users created successfully"
   end
 
   def create_primary_charity_admins
+    role = Role.find_by(name: "primary_charity_admin")
     Charity.all.each do |charity|
-      role = Role.find_by(name: "primary_charity_admin")
       user = User.create!(
-                            username:  "primary_ca_#{charity.id}",
-                            password:  "password",
-                            cell:      1112223333,
-                            email:     "nate@turing.io",
+                          username:  "primary_ca_#{charity.id}",
+                          password:  "password",
+                          cell:      1112223333,
+                          email:     "nate@turing.io"
                           )
-      UserRole.create! (
-                        user: user,
-                        role: role,
-                        charity: charity
-                        )
+
+      UserRole.create!(
+                      user_id: user.id,
+                      role_id: role.id,
+                      charity_id: charity.id
+                      )
     end
+    puts "Primary charity admins created successfully"
   end
 
   def create_a_platform_admin
@@ -193,16 +195,17 @@ class Seed
                   username:  "platform_admin_jorge",
                   password:  "password",
                   cell:      1112223333,
-                  email:     "jorge@turing.io",
-                )
+                  email:     "jorge@turing.io"
+                  )
+    puts "Platform admin created successfully"
   end
 
   def create_donations(user)
     10.times do
-      Donation.create(
-                        status: ["Cancelled", "Pledged", "Received"].sample,
-                        user:   user
-                      )
+      Donation.create!(
+      status: ["Cancelled", "Pledged", "Received"].sample,
+      user:   user
+      )
     end
   end
 
@@ -280,7 +283,7 @@ class Seed
     value: 10.0,
     description: "3 notebooks, set of pens, set of pencils. Must be new.",
     multiplier_type: "child")
-    puts "Supplies created successfullly"
+    puts "Supplies created successfully"
   end
 
   def create_supply_items
@@ -290,10 +293,10 @@ class Seed
                             supply_id: supply.id,
                             family_id: rand(1..80),
                             quantity: rand(1..4)
-                          )
+                            )
       end
     end
-    puts "Supply Items created successfullly"
+    puts "Supply Items created successfully"
   end
 
   def create_donation_items
@@ -302,9 +305,10 @@ class Seed
                             quantity: 1,
                             supply_item_id: rand(1..180),
                             donation_id: rand(1..1000)
-                          )
+                            )
     end
-    puts "Donation items created successfullly"
+    puts "Donation items created successfully"
   end
+end
 
 Seed.new
