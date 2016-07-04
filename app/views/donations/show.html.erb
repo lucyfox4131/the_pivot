@@ -30,3 +30,9 @@
   </tr>
   <% end %>
 </table>
+
+<% if current_admin? %>
+  <%= link_to "Back to my Dashboard", admin_dashboard_path(current_user) %>
+<% else %>
+  <%= link_to "Back to my Dashboard", dashboard_path(current_user) %>
+<% end %>
