@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "Admin updates charity" do
   scenario "sees 'successfully updated' message" do
-    charity_admin = create(:user)
     charity = create(:charity)
+    charity_admin = create(:user)
     role = Role.create(name: "charity_admin")
     UserRole.create(user: charity_admin, charity: charity, role: role)
     family_1, family_2, family_3 = create_list(:family, 3, charity: charity)
@@ -13,9 +13,13 @@ RSpec.feature "Admin updates charity" do
 
     visit admin_dashboard_path
 
-    expect(page).to have_content(charity.name)
+    within(".charity-admin-charity") do
+      expect(page).to have_content(charity.name)
+    end
 
-    click_on "Update Charity"
+    within(".charity-admin-charity") do
+      click_link "Update Charity"
+    end
 
     expect(current_path).to eq(edit_charity_path(charity))
 
@@ -24,7 +28,11 @@ RSpec.feature "Admin updates charity" do
     click_on "Update Charity"
 
     expect(page).to have_content("Your updates have been saved")
-    expect(page).to have_content("New Name")
-    expect(page).to have_content("Update Charity")
+
+    within(".charity-admin-charity") do
+      expect(page).to have_content("New Name")
+      expect(page).to have_content("Update Charity")
+    end
+    
   end
 end

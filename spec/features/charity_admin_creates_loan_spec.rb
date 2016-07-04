@@ -12,18 +12,22 @@ RSpec.feature "Admin creates loan for family" do
 
     visit admin_families_path
 
-    click_button "Add Loan"
+    within(".row-nationality-active") do
+      click_button "Add Loan"
+    end
 
     expect(current_path).to eq(new_loan_path)
 
-    fill_in "Requested amount", with: "1000.00"
-    fill_in "Purpose", with: "This is a purpose"
-    fill_in "Description", with: "This is a loan description"
-    select "active", from: "Status"
-
-    click_on "Create Loan"
+    within(".panel-body") do
+      fill_in "Requested amount", with: "1000.00"
+      fill_in "Purpose", with: "This is a purpose"
+      fill_in "Description", with: "This is a loan description"
+      select "active", from: "Status"
+      click_on "Create Loan"
+    end
 
     expect(current_path).to eq(admin_families_path)
+
     expect(page).to have_content("Loan Created Successfully")
   end
 

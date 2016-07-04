@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
     resource :dashboard, only: [:show]
-    resources :families, only: [:show, :new, :create, :index, :update]
+    resources :families, only: [:show, :new, :create, :index, :edit, :update]
   end
-#this will be namspaced underneath the charity
+
   resources :families, only: [:index, :show]
 
   resources :users, only: [:new, :create, :edit, :update]
@@ -21,11 +21,10 @@ Rails.application.routes.draw do
   resources :donations, only: [:index, :show, :new, :create]
 
   resources :loans, only: [:show, :edit, :update, :new, :create]
-  # resources :homes, only: [:show]
 
   root to: "homes#show"
 
-  resources :charities, only: [:index, :edit]
+  resources :charities, only: [:index, :edit, :new, :create]
   patch '/charities/:id', to: "charities#update"
 
   get ':charity_slug', to: 'charities#show', as: :charity

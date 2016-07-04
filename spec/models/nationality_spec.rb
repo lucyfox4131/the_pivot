@@ -9,10 +9,7 @@ RSpec.describe Nationality, type: :model do
   it { should have_many(:families) }
 
   it "returns a nationality object" do
-    nationality = Nationality.create(photo_path: "x",
-      info_link: "x",
-      greeting: "x",
-      name: "Somali")
+    nationality = create(:nationality)
 
     expect(Nationality.get_random.class).to eq(Nationality)
   end
