@@ -28,7 +28,7 @@
               <td>
                 <%= f.hidden_field :id, :value => cart_item.id %>
                 <div class="form-group">
-                <%= f.select :quantity, (0..cart_item.quantity), selected: cart_item.quantity, class: 'form-control' %>
+                <%= f.select :quantity, (0..cart_item.quantity), selected: cart_item.supply_item_quantity, class: 'form-control' %>
                 </div>
               </td>
               <td><%= f.submit "Update Cart", class: "btn btn-default" %></td>
@@ -61,7 +61,7 @@
               <td>
                 <%= f.hidden_field :id, :value => cart_item.id %>
                 <div class="form-group">
-                <%= f.select :quantity, (cart_item.donation_range), selected: cart_item.donation_range, class: 'form-control' %>
+                <%= f.select :quantity, (cart_item.donation_range), selected: cart_item.quantity, class: 'form-control' %>
                 </div>
               </td>
               <td><%= f.submit "Update Cart", class: "btn btn-default" %></td>
