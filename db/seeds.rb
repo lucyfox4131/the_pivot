@@ -159,7 +159,11 @@ class Seed
       Charity.all.each do |charity|
         user = User.find(Random.new.rand(1..100))
         role = Role.find_by(name: "charity_admin")
-        user.roles << role
+        UserRole.create!(
+                          user: user,
+                          role: role
+                          charity: charity
+                        )
       end
     end
     puts "Admin Users created successfullly"
@@ -169,12 +173,16 @@ class Seed
     Charity.all.each do |charity|
       role = Role.find_by(name: "primary_charity_admin")
       user = User.create!(
-                            username:  Faker::Internet.user_name,
+                            username:  "primary_ca_#{charity.id}",
                             password:  "password",
                             cell:      1112223333,
                             email:     "nate@turing.io",
                           )
-      user.roles << role
+      UserRole.create! (
+                        user: user,
+                        role: role,
+                        charity: charity
+                        )
     end
   end
 
