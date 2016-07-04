@@ -1,12 +1,12 @@
-  <h1> <%= @charity.name %>'s Administrator's Dashboard</h1>
+<h1> <%= @charity.name %>'s Administrator's Dashboard</h1>
 
 <% if @charity %>
-  <%= link_to "Update Charity", edit_charity_path(@charity), class: "btn btn-warning" %>
+  <%= link_to "Update Charity", edit_charity_path(@charity), class: "btn button-maroon" %>
 <% end %>
 
-<%= link_to "All Families", admin_families_path, class: "btn btn-warning" %>
+<%= link_to "All Families", admin_families_path, class: "btn button-green" %>
 
-<%= link_to "Create a New Family", new_admin_family_path, class: "btn btn-info active" %>
+<%= link_to "Create a New Family", new_admin_family_path, class: "btn button-green active" %>
 
 <div class="details">
   <h2>Administrators for <%= @charity.name %></h2>

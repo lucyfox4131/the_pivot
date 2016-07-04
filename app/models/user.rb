@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   def charity_original_admin?
     roles.exists?(name: "charity_original_admin")
   end
-  
+
   def admin?
     platform_admin? || charity_admin? || charity_original_admin?
   end
@@ -46,7 +46,9 @@ class User < ActiveRecord::Base
   end
 
   def demote_user
-    roles.delete(name: "charity_admin")
+    if admin?
+      roles.delete(name: "charity_admin")
+    end
   end
 
   def self.charity_admins(current_user_charity)

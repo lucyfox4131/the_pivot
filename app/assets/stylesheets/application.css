@@ -170,6 +170,26 @@
   font-size: 20px;
 }
 
+.button-khaki {
+  background-color: #b3b887;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.label {
+  color: blue;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.button-maroon {
+  background-color: #7e1c3e;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .button-indigo {
   background-color: #87b7b8;
   color: white;
