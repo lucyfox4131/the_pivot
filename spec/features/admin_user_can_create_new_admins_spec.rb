@@ -4,7 +4,7 @@ RSpec.feature "admin creates admin" do
   scenario "successfully creates//deletes admin for corresponding charity" do
     charity = create(:charity)
     primary_admin, admin = create_list(:user, 2)
-    role1 = Role.create(name: "charity_original_admin")
+    role1 = Role.create(name: "primary_charity_admin")
     role2 = Role.create(name: "charity_admin")
 
     primary_admin.roles << role1

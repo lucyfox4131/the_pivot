@@ -2,6 +2,7 @@
   <% charity_type.each do |charity| %>
   <div class="well col-sm-10 col-sm-offset-1">
     <div class="container">
+       <div class = "<%= charity.name %>">
       <div class="col-sm-4 details">
         <p><%= link_to charity.name, charity_path(charity.slug), class: "center-block learn-more" %></p>
         <p><%= button_to "Update Charity", edit_charity_path(charity), method: :get, class: "center-block btn update-charity" %></p>
@@ -11,9 +12,12 @@
         <div class="grey-texxt">
           Families
         </div>
-        <%= render partial: 'padmin_family_list', locals: {families: charity.families.active, current: true}%>
+        <div class="active-families">
+          <%= render partial: 'padmin_family_list', locals: {families: charity.families.active, current: true}%>
+        </div>
         <%= render partial: 'padmin_family_list', locals: {families: charity.families.retired, current: false}%>
       </div>
+    </div>
       </div>
     </div>
   <% end %>

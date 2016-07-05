@@ -22,10 +22,12 @@
   <% if user.charity_original_admin? %>
     <div class="original-admin">
       Primary Admin: <%= user.username %>
+      <%= user.charities.first.name %>
     </div>
   <% else %>
     <div class="white-texxt">
       <%= user.username %>
+      <%= user.charities.first.name %>
     </div>
   <% end %>
   <div>

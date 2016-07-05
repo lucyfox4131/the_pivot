@@ -1,6 +1,10 @@
 <h1>Admin Dashboard</h1>
 
-<% if current_user.charity_admin? %>
+<%= link_to "See my donations", donations_path, class: "btn btn-warning" %>
+
+<%= link_to "Update my profile", edit_user_path(current_user), class: "btn btn-warning" %>
+
+<% if current_user.charity_admin?  %>
   <% if @charity %>
     <div class = "charity-admin-charity">
       <h2> <%= @charity.name %> <h2>
