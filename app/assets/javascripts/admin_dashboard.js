@@ -1,12 +1,13 @@
 $(document).ready(function () {
 
-  function toggleSong (statusID, charitiesID){
+  function toggleView (statusID, charitiesID){
     $(statusID).on("click", function(){
       $(charitiesID).toggleClass("hidden")
     });
   };
 
-  toggleSong("#pending", "#padmin-pending")
-  toggleSong("#online", "#padmin-online")
-  toggleSong("#offline", "#padmin-offline")
+  toggleView("#pending", "#padmin-pending")
+  toggleView("#online", "#padmin-online")
+  toggleView("#offline", "#padmin-offline")
+  toggleView("#administrators", "#all-admins")
 });

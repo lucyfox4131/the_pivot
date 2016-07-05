@@ -3,13 +3,13 @@
 
 <div class="box">
   <% if current_user %>
-  <%= button_to "Apply To Be One of Our Charities", new_charity_path, method: :get, class: "btn button-green active" %>
+  <%= button_to "Apply To Be One of Our Charities", new_charity_path, method: :get, class: "btn button-indigo active" %>
   <% end %>
 </div>
 
 <div class="col-sm-12 col-sm-offset-1">
 <% @charities.each do |charity| %>
-  <div class="boxx col-sm-5">
+  <div class="form-box col-sm-5">
     <div class="container">
       <div class="col-sm-5 photo">
         <%= image_tag "reSTORE.png", :class => "img-responsive center-block" %>

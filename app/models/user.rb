@@ -47,8 +47,18 @@ class User < ActiveRecord::Base
 
   def demote_user
     if admin?
-      roles.delete(name: "charity_admin")
+      roles.delete(name: "charity_admin") || roles.delete(name: "charity_original_admin")
     end
+  end
+
+  def self.all_admins
+    User.all.map do |user|
+      if !user.charities.empty?
+        if !user.roles.empty? && user.roles.first.name == "charity_admin" || "charity_original_admin"
+          user
+        end
+      end
+    end.compact
   end
 
   def self.charity_admins(current_user_charity)
