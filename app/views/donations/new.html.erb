@@ -19,8 +19,8 @@
       </tr>
   <% else %>
     <tr>
-      <td><%= cart_item.purpose %></td>
-      <td><%= truncate(cart_item.description, length: 30) %></td>
+      <td><%= "#{cart_item.purpose} loan"%></td>
+      <td><%= truncate(cart_item.description, length: 40) %></td>
       <td><%= currency(cart_item.requested_amount) %></td>
       <td><%= currency(cart_item.quantity) %></td>
       <td><%= currency(cart_item.quantity.to_i)%></td>
