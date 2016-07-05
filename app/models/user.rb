@@ -51,6 +51,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def any_charity_admin?
+    primary_charity_admin? || charity_admin?
+  end
+
+  def self.all_admins
+    User.all.map do |user|
+      user if user.any_charity_admin?
+    end.compact
+  end
+
   def self.charity_admins(current_user_charity)
     User.all.map do |user|
       if !user.charities.empty? && user.charities.first == current_user_charity

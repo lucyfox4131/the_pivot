@@ -42,7 +42,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(params[:id])
       @user.demote_user
       @user.charities.clear
-      flash[:success] = "Successfully removed #{@user}"
+      flash[:success] = "Successfully removed admin status of #{@user.username}"
     redirect_to admin_dashboard_path
   end
 

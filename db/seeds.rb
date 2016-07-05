@@ -191,12 +191,14 @@ class Seed
   end
 
   def create_a_platform_admin
-    User.create!(
+    role = Role.find_by(name: "platform_admin")
+    user = User.create!(
                   username:  "platform_admin_jorge",
                   password:  "password",
                   cell:      1112223333,
                   email:     "jorge@turing.io"
                   )
+    UserRole.create!(user_id: user.id, role_id: role.id)
     puts "Platform admin created successfully"
   end
 
