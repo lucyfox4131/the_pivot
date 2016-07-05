@@ -1,5 +1,4 @@
 class Admin::DashboardsController < Admin::BaseController
-  respond_to :html, :json
 
   def show
     #charity being passed in needs to be versatile
