@@ -5,8 +5,7 @@ RSpec.feature "Platform admin changes charity status" do
     scenario "platform admin succcessfully changes status from online to offline" do
       charity = create(:charity, status: 1)
       platform_admin = create(:user)
-      role = Role.create(name: "platform_admin")
-      UserRole.create(user: platform_admin, role: role)
+      create(:platform_admin_user_role, user: platform_admin)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( platform_admin )
 
@@ -29,12 +28,9 @@ RSpec.feature "Platform admin changes charity status" do
     scenario "platform admin succcessfully changes status from pending to online" do
       charity = create(:charity, status: 0)
       platform_admin = create(:user)
-      role = Role.create(name: "platform_admin")
-      UserRole.create(user: platform_admin, role: role)
+      create(:platform_admin_user_role, user: platform_admin, charity: charity)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( platform_admin )
-
-      visit admin_dashboard_path
 
       visit admin_dashboard_path
 
