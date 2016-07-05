@@ -21,13 +21,13 @@
 <div data-username="<%= user.username %>"class="form-box col-sm-5 user">
   <% if user.primary_charity_admin? %>
     <div class="original-admin">
-      Primary Admin: <%= user.username %>
-      <%= user.charities.name %>
+      Primary Admin: <%= user.username %>:
+      <%= @charity.name%>
     </div>
   <% else %>
     <div class="white-texxt">
-      <%= user.username %>
-      <%= user.charities.name %>
+      <%= user.username %>:
+      <%= @charity.name %>
     </div>
   <% end %>
   <div>
