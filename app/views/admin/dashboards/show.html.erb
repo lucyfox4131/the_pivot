@@ -91,9 +91,12 @@
             <%= f.telephone_field :cell, class: "form-control" %>
           </div>
 
-        <%= f.submit "Update Admin", class: "btn btn-info active" %>
-        <% end %>
-        <%= button_to "Remove Admin Status", admin_user_path(user), method: :delete, class: "btn btn-warning active" %>
+          <%= f.submit "Update Admin", class: "btn btn-info active" %>
+          <% end %>
+
+          <div class="col-sm-2">
+            <%= button_to "Demote Status", admin_user_path(user), method: :delete,  class: "btn btn-danger active btn-xs" %>
+          </div>
       </div>
     </div>
   <% end %>
