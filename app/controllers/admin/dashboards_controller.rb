@@ -20,9 +20,4 @@ class Admin::DashboardsController < Admin::BaseController
     end
   end
 
-  private
-
-  def charity_params
-    params.require(:charity).permit(:name, :description, :status)
-  end
 end
