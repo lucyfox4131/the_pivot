@@ -20,13 +20,21 @@
     <td>
       <% if donation_item.supply_item %>
         <%= link_to donation_item.family_description, family_path(donation_item.supply_item.family) %>
+        <td><%= donation_item.name %></td>
+        <td><%= donation_item.quantity %></td>
       <% else %>
         <%= link_to donation_item.family_description, family_path(donation_item.loan.family) %>
+        <td><%="#{donation_item.name} loan"%></td>
+        <td><%= currency(donation_item.quantity) %></td>
       <% end %></td>
-    <td><%= donation_item.name %></td>
-    <td><%= donation_item.quantity %></td>
     <td><%= currency(donation_item.value) %></td>
     <td><%= currency(donation_item.subtotal) %></td>
   </tr>
   <% end %>
 </table>
+
+<% if current_admin? %>
+  <%= link_to "Back to my Dashboard", admin_dashboard_path(current_user) %>
+<% else %>
+  <%= link_to "Back to my Dashboard", dashboard_path(current_user) %>
+<% end %>

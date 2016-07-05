@@ -33,22 +33,32 @@ class User < ActiveRecord::Base
     roles.exists?(name: "charity_admin")
   end
 
-  def charity_original_admin?
-    roles.exists?(name: "charity_original_admin")
+  def primary_charity_admin?
+    roles.exists?(name: "primary_charity_admin")
   end
 
   def admin?
-    platform_admin? || charity_admin? || charity_original_admin?
+    platform_admin? || charity_admin? || primary_charity_admin?
   end
 
   def other_user?
-    !charity_admin? && !platform_admin? && !charity_original_admin?
+    !charity_admin? && !platform_admin? && !primary_charity_admin?
   end
 
   def demote_user
     if admin?
       roles.delete(name: "charity_admin")
     end
+  end
+
+  def any_charity_admin?
+    primary_charity_admin? || charity_admin?
+  end
+
+  def self.all_admins
+    User.all.map do |user|
+      user if user.any_charity_admin?
+    end.compact
   end
 
   def self.charity_admins(current_user_charity)

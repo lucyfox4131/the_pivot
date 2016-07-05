@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_cart
   before_action :authorize!
-  helper_method :current_user, :cart_item_count
+  helper_method :current_user, :cart_item_count, :current_admin?
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
 
   def cart_item_count
     @cart_item_count ||= session[:cart].values.sum if session[:cart]
+  end
+
+  def current_admin?
+    current_user && current_user.admin?
   end
 
   private

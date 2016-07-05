@@ -4,7 +4,7 @@ RSpec.feature "primary charity admin updates" do
   scenario "successfully update another admin's contact info" do
     charity = create(:charity)
     primary_admin, admin = create_list(:user, 2)
-    role1 = Role.create(name: "charity_original_admin")
+    role1 = Role.create(name: "primary_charity_admin")
     role2 = Role.create(name: "charity_admin")
 
     primary_admin.roles << role1
