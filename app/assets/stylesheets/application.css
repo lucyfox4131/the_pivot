@@ -55,6 +55,19 @@
   font-size: 16px;
 }
 
+.update-charity {
+  background-color: grey;
+  height: 30px;
+  padding: 12px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  text-align: center;
+  color: #ffbf00;
+  font-weight: bold;
+  font-size: 14px;
+}
+
 .learn-more a:visited {
   color: #ffbf00;
 }
@@ -93,6 +106,11 @@
 .white-texxt {
   font-size: 22px;
   color: white;
+}
+
+.grey-texxt {
+  font-size: 22px;
+  color: #454545;
 }
 
 .lead-text {
@@ -222,6 +240,18 @@
   padding: 20px;
   width: 200px;
   max-height: 365px;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  overflow: scroll;
+}
+
+.families-box {
+  border-radius: 10px;
+  background: #eaeaea;
+  padding: 20px;
+  width: 200px;
+  max-height: 150px;
   text-align: center;
   margin-bottom: 20px;
   margin-left: 20px;
