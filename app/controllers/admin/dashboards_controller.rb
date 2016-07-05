@@ -1,8 +1,9 @@
 class Admin::DashboardsController < Admin::BaseController
+  respond_to :html, :json
 
   def show
     #charity being passed in needs to be versatile
-    @users = User.charity_admins(current_user.charities.first)
+    @users   = User.charity_admins(current_user.charities.first)
     @charity = current_user.charities.first
 
     if current_user.charity_admin?
@@ -11,11 +12,17 @@ class Admin::DashboardsController < Admin::BaseController
         @charity = Charity.find(charity_id)
       end
     end
-    if current_user.platform_admin?
 
+    if current_user.platform_admin?
       @pending_charities = Charity.pending_charities
-      @online_charities = Charity.online_charities
+      @online_charities  = Charity.online_charities
       @offline_charities = Charity.offline_charities
     end
+  end
+
+  private
+
+  def charity_params
+    params.require(:charity).permit(:name, :description, :status)
   end
 end
