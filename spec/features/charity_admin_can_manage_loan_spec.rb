@@ -12,7 +12,7 @@ RSpec.feature "Charity admin manages loans" do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( charity_admin )
 
-      visit admin_dashboard_path
+      visit charity_dashboard_path(charity.slug, charity.id)
 
       expect(page).to have_link("All Families")
 

@@ -36,8 +36,6 @@ RSpec.feature "Platform admin changes charity status" do
 
       visit admin_dashboard_path
 
-      visit admin_dashboard_path
-
       within(".#{charity.name}") do
         select "online", from: "Status"
         click_on "Update Status"
