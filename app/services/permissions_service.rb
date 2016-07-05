@@ -11,8 +11,8 @@ class PermissionsService
       platform_admin_permissions
     elsif user.charity_admin?
       charity_admin_permissions
-    elsif user.charity_original_admin?
-      charity_original_admin_permissions
+    elsif user.primary_charity_admin?
+      primary_charity_admin_permissions
     else user.other_user?
       other_user_permissions
     end
@@ -39,7 +39,7 @@ class PermissionsService
       true
     end
 
-    def charity_original_admin_permissions
+    def primary_charity_admin_permissions
       if controller == "admin/dashboards"
         return true
       else

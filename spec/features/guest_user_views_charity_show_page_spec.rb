@@ -15,7 +15,7 @@ RSpec.feature "Guest Views Charity" do
       expect(page).to have_content "Families Helped"
 
       click_link "#{family_1.nationality.name} Family of #{family_1.num_people}"
-      expect(current_path).to eq(charity_families_path(charity.slug, family_1.id))
+      expect(current_path).to eq(family_path(family_1.id))
     end
   end
 end
