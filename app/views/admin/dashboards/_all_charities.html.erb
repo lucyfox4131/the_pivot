@@ -19,15 +19,15 @@
 <div class="col-sm-12 col-sm-offset-1 users">
 <% @users.each do |user| %>
 <div data-username="<%= user.username %>"class="form-box col-sm-5 user">
-  <% if user.charity_original_admin? %>
+  <% if user.primary_charity_admin? %>
     <div class="original-admin">
       Primary Admin: <%= user.username %>
-      <%= user.charities.first.name %>
+      <%= user.charities.name %>
     </div>
   <% else %>
     <div class="white-texxt">
       <%= user.username %>
-      <%= user.charities.first.name %>
+      <%= user.charities.name %>
     </div>
   <% end %>
   <div>
