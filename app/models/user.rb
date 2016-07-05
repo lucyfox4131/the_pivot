@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def charity_admin?
-    roles.exists?(name: "charity_admin")
+    roles.exists?(name: "charity_admin") || roles.exists?(name: "charity_original_admin")
   end
 
   def charity_original_admin?

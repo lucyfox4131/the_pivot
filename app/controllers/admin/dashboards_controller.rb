@@ -3,9 +3,9 @@ class Admin::DashboardsController < Admin::BaseController
   def show
     #charity being passed in needs to be versatile
     @charity = current_user.charities.first
+    @users     = User.charity_admins(current_user.charities.first)
 
     if current_user.charity_admin?
-      @users     = User.charity_admins(current_user.charities.first)
       charity_id = current_user.user_roles.first.charity_id
       if !charity_id.nil?
         @charity = Charity.find(charity_id)

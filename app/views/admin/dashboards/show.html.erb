@@ -4,11 +4,12 @@
   <% if @charity %>
     <div class = "charity-admin-charity">
       <h2> <%= @charity.name %> <h2>
-        <%= link_to "Update Charity", edit_charity_path(@charity), class: "btn btn-warning" %>
-    </div>
+        <%= link_to "Update Charity", edit_charity_path(@charity), class: "btn btn-default" %>
   <% end %>
-      <%= link_to "All Families", admin_families_path, class: "btn btn-warning" %>
-      <%= link_to "Create a New Family", new_admin_family_path, class: "btn btn-primary" %>
+      <%= link_to "All Families", admin_families_path, class: "btn btn-default" %>
+      <%= link_to "Create a New Family", new_admin_family_path, class: "btn btn-default" %>
+      <button type="button" class="btn button-indigo active" id="administrators">Manage Administrators</button>
+    </div>
 <% end %>
 
 
@@ -54,61 +55,6 @@
 
 <div class="charities hidden" id="all-admins">
   <div class="details">
-    <% if @platform_admin %>
-      <h2>All Charity Administrators</h2>
-    <% else %>
-      <% if @charity %>
-        <h2>Administrators for <%= @charity.name %></h2>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div class="search-font filter">
-    <label>Filter By Username  </label>
-    <input type="text" placeholder="Username" id="user_filter_username">
-  </div>
-
-  <div class="box">
-    <%= link_to "Create New Admin", new_admin_user_path, class: "btn button-indigo" %>
-  </div>
-
-  <div class="col-sm-12 col-sm-offset-1 users">
-    <% @users.each do |user| %>
-    <div data-username="<%= user.username %>"class="form-box col-sm-5 user">
-      <% if user.charity_original_admin? %>
-        <div class="original-admin">
-          Primary Admin: <%= user.username %>
-        </div>
-      <% else %>
-        <div class="white-texxt">
-          <%= user.username %>
-        </div>
-      <% end %>
-      <div>
-        <%= form_for [:admin, user], multipart: true do |f|  %>
-        <div class="form-group">
-          <%= f.label :username %>
-          <%= f.text_field :username, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :email %>
-          <%= f.email_field :email, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :cell %>
-          <%= f.telephone_field :cell, class: "form-control" %>
-        </div>
-
-        <%= f.submit "Update Admin", class: "btn btn-info active" %>
-        <% end %>
-
-        <div class="col-sm-2">
-          <%= button_to "Demote Status", admin_user_path(user), method: :delete,  class: "btn btn-warning active btn-xs" %>
-        </div>
-      </div>
-    </div>
-    <% end %>
+    <%= render partial: 'all_charities' %>
   </div>
 </div>
