@@ -13,7 +13,7 @@
     <div class="container">
       <div class="col-sm-5 photo">
         <%= image_tag "reSTORE.png", :class => "img-responsive center-block" %>
-        <p><%= link_to "Learn more about #{charity.name}", charity_path(charity.slug), class: "center-block learn-more" %></p>
+        <p class= '<%= charity.slug %>'> <%= link_to "Learn more about #{charity.name}", charity_path(charity.slug), class: "center-block learn-more" %></p>
         <p>
           <div class="white-text">
             <%= charity.description %>

@@ -5,6 +5,7 @@ RSpec.feature "Guest Views Charity" do
     scenario "guest sees all families and details of that charity" do
       family_1, family_2, family_3 = create_list(:family, 3)
       charity = family_1.charity
+      
       visit charity_path(charity.slug)
 
       expect(page).to have_content(charity.name)

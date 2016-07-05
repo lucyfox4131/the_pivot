@@ -41,7 +41,7 @@
   </tr>
 
     <%= form_for @family.loan, url: cart_items_path, method: :create do |f| %>
-      <div class='<%= @family.loan.purpose %> table-info' >
+      <div class='<%= @family.last_name%>-loan-info table-info' >
       <tr>
         <td><%= @family.loan.purpose %></br>
         <td><%= currency(@family.loan.requested_amount) %></td>
