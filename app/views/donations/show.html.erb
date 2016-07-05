@@ -17,7 +17,12 @@
 
   <% @donation.donation_items.each do |donation_item| %>
   <tr>
-    <td><%= link_to donation_item.family_description, family_path(donation_item.supply_item.family) %></td>
+    <td>
+      <% if donation_item.supply_item %>
+        <%= link_to donation_item.family_description, family_path(donation_item.supply_item.family) %>
+      <% else %>
+        <%= link_to donation_item.family_description, family_path(donation_item.loan.family) %>
+      <% end %></td>
     <td><%= donation_item.name %></td>
     <td><%= donation_item.quantity %></td>
     <td><%= currency(donation_item.value) %></td>
