@@ -30,7 +30,7 @@ RSpec.feature "Guest user visits multiple charities" do
     visit cart_index_path
 
     expect(page).to have_content("Twin Bedframe")
-    expect(page).to have_content("Loan")
+    expect(page).to have_content(loan.description)
     expect(page).to have_link("Login or Create Account to Checkout")
   end
 end
