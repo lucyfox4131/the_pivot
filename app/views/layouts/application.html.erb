@@ -66,5 +66,17 @@
   <% end %>
 
   <%= yield %>
+
+  <meta charset=utf-8 />
+  <title>A simple map</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+
+<script type='text/javascript'>
+  L.mapbox.accessToken = 'pk.eyJ1IjoianVseXl0cmFuIiwiYSI6ImNpbXMzbmtrYzAxYzh3Ymx1aGU5bWZuMzAifQ.DjfzN_9iu_oXX2TnI_-r4g';
+
+  var map = L.mapbox.map('map-container').setView([39.737074, -104.953460], 12);
+</script>
+
 </body>
-</html>
