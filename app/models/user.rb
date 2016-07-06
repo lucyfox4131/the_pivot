@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def charity_admin?
-    roles.exists?(name: "charity_admin")
+    roles.exists?(name: "charity_admin") || roles.exists?(name: "charity_original_admin")
   end
 
   def primary_charity_admin?
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
 
   def demote_user
     if admin?
-      roles.delete(name: "charity_admin")
+      roles.delete(name: "charity_admin") || roles.delete(name: "charity_original_admin")
     end
   end
 
