@@ -10,7 +10,7 @@
   </tr>
   <% @cart_items.each do |cart_item| %>
   <% if cart_item.class != LoanDecorator %>
-      <tr>
+      <tr class= '<%=cart_item.name%>'>
         <td><%= cart_item.name %></td>
         <td><%= cart_item.description %></td>
         <td><%= currency(cart_item.value) %></td>

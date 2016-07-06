@@ -5,16 +5,13 @@ RSpec.feature "Charity admin manages loans" do
     scenario "succesfully views information necessary" do
       charity_admin = create(:user)
       charity = create(:charity)
-      role = Role.create(name: "charity_admin")
-      UserRole.create(user: charity_admin, charity: charity, role: role)
+      create(:charity_admin_user_role, user: charity_admin, charity: charity)
       family_1, family_2 = create_list(:family, 2, charity: charity)
       loan = create(:loan, family_id: family_1.id)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( charity_admin )
 
       visit admin_dashboard_path
-
-      expect(page).to have_link("All Families")
 
       click_link "All Families"
 
