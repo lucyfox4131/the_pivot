@@ -30,27 +30,19 @@
 </div>
 
 <div class="charities hidden" id="padmin-pending">
-  <div class="details">
-    <h2>Pending Charities</h2>
-  </div>
   <div class = "pending">
     <%= render partial: 'padmin', locals: {charity_type: @pending_charities} %>
   </div>
 </div>
 
 <div class="charities hidden" id="padmin-online">
-  <div class="details">
-    <h2>Online Charities</h2>
-  </div>
   <div class = "online">
     <%= render partial: 'padmin', locals: {charity_type: @online_charities} %>
   </div>
 </div>
 
 <div class="charities hidden" id="padmin-offline">
-  <div class="details">
-    <h2>Offline Charities</h2>
-  </div>  <div class = "offline">
+<div class = "offline">
     <%= render partial: 'padmin', locals: {charity_type: @offline_charities} %>
   </div>
 </div>

@@ -1,4 +1,18 @@
 <% if charity_type %>
+<div class="container">
+  <% if charity_type == @pending_charities %>
+    <div class="details">
+      <h2>Pending Charities</h2>
+    </div>
+  <% elsif charity_type == @online_charities %>
+    <div class="details">
+      <h2>Online Charities</h2>
+    </div>
+  <% else charity_type == @offline_charities %>
+    <div class="details">
+      <h2>Offline Charities</h2>
+    </div>
+  <% end %>
   <% charity_type.each do |charity| %>
   <div class="well col-sm-10 col-sm-offset-1">
     <div class="container">
@@ -21,4 +35,5 @@
       </div>
     </div>
   <% end %>
+</div>
 <% end %>
