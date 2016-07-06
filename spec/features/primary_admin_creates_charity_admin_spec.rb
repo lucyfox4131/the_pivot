@@ -1,16 +1,13 @@
 require 'rails_helper'
 
-RSpec.feature "admin creates admin" do
-  scenario "successfully creates//deletes admin for corresponding charity" do
+RSpec.feature "Primary charity admin creates charity admin" do
+  scenario "successfully creates admin for corresponding charity" do
+    create(:charity_admin_role)
     charity = create(:charity)
-    primary_admin, admin = create_list(:user, 2)
-    role1 = Role.create(name: "primary_charity_admin")
-    role2 = Role.create(name: "charity_admin")
+    primary_admin = create(:user)
 
-    primary_admin.roles << role1
-    admin.roles << role2
+    primary_admin.roles << create(:primary_charity_admin_role)
     primary_admin.charities << charity
-    admin.charities << charity
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( primary_admin )
 
@@ -25,10 +22,9 @@ RSpec.feature "admin creates admin" do
       fill_in "Cell",      with: "1234567890"
       fill_in "Username",  with: "apple"
       fill_in "Password",  with: "password"
+      click_on "Create Charity Admin Account"
     end
 
-    click_on "Create Charity Admin Account"
-
-    expect(page).to have_content("Welcome, apple!")
+    expect(page).to have_content("New admin 'apple' successfully created!")
   end
 end

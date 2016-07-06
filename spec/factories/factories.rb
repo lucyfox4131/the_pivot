@@ -17,21 +17,48 @@ FactoryGirl.define do
     password  "password"
     email "email@example.com"
     cell "7345678778"
-    role 0
   end
 
   factory :other_user, class: User do
     username "other"
     password  "password"
     email "other@example.com"
-    role 0
   end
 
   factory :admin, class: User do
     username "admin"
     password  "password"
     email "email@example.com"
-    role 1
+  end
+
+  factory :platform_admin_role, class: Role do
+    name "platform_admin"
+  end
+
+  factory :charity_admin_role, class: Role do
+    name "charity_admin"
+  end
+
+  factory :primary_charity_admin_role, class: Role do
+    name "primary_charity_admin"
+  end
+
+  factory :platform_admin_user_role, class: UserRole do
+    user
+    charity
+    role {create(:platform_admin_role)}
+  end
+
+  factory :primary_charity_admin_user_role, class: UserRole do
+    user
+    charity
+    role {create(:primary_charity_admin_role)}
+  end
+
+  factory :charity_admin_user_role, class: UserRole do
+    user
+    charity
+    role {create(:charity_admin_role)}
   end
 
   factory :nationality do

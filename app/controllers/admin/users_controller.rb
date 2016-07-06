@@ -15,7 +15,7 @@ class Admin::UsersController < Admin::BaseController
       session[:user_id] = @user.id
       @user.charities << current_user.charities.first
       @user.roles << Role.find_by(name: "charity_admin")
-      flash[:success] = "Welcome, #{@user.username}!"
+      flash[:success] = "New admin '#{@user.username}' successfully created!"
       redirect_to admin_dashboard_path
     else
       flash.now[:warning] = @user.errors.full_messages.join(", ")
