@@ -16,7 +16,7 @@ RSpec.feature "Platform admin manages loan information" do
       visit admin_dashboard_path
 
       within(".#{family_1.last_name}") do
-        click_button "Update Loan"
+        click_link "Update Loan"
       end
 
       expect(current_path).to eq(edit_loan_path(loan))

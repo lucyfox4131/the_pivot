@@ -60,10 +60,10 @@ class Seed
   def create_charities
     30.times do
       Charity.create!(
-      name:        Faker::Company.name,
-      description: Faker::Lorem.paragraph,
-      status:      [0,1,2].sample
-      )
+                        name:        Faker::Name.name,
+                        description: Faker::Lorem.paragraph,
+                        status:      [0,1,2].sample
+                      )
     end
     puts "Charities created successfully"
   end
