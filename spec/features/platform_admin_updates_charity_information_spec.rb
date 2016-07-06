@@ -49,7 +49,7 @@ end
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( charity_admin )
 
-      visit admin_dashboard_path
+      visit charity_dashboard_path(online_charity.slug, online_charity.id)
 
       within(".charity-admin-charity") do
         expect(page).to have_content("#{online_charity.slug}")

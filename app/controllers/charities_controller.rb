@@ -18,7 +18,11 @@ class CharitiesController < ApplicationController
     charity = Charity.find(params[:id])
     if charity.update(charity_params)
       flash[:success] = "Your updates have been saved"
-      redirect_to admin_dashboard_path
+      if current_user.platform_admin?
+        redirect_to admin_dashboard_path
+      else
+        redirect_to charity_dashboard_path(charity.slug, charity.id)
+      end
     else
       flash.now[:warning] = @user.errors.full_messages.join(", ")
       render :edit

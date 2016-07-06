@@ -11,7 +11,7 @@ RSpec.feature "Charity admin manages loans" do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( charity_admin )
 
-      visit admin_dashboard_path
+      visit charity_dashboard_path(charity.slug, charity.id)
 
       click_link "All Families"
 
@@ -27,7 +27,6 @@ RSpec.feature "Charity admin manages loans" do
       within(".#{family_2.last_name}") do
         expect(page).to have_button("Add Loan")
       end
-
     end
   end
 end

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   namespace :charity, path: ':charity_slug', as: :charity do
     resources :families, only: [:index]
+    resources :dashboard, only: [:show]
   end
 
   scope :category do
