@@ -1,5 +1,5 @@
 <% if family.loan %>
-  <%= button_to "Update Loan", edit_loan_path(family.loan) , method: :get, class: "btn btn-warning btn-xs" %>
+  <%= link_to "Update Loan", edit_loan_path(family.loan) , method: :get, class: "btn button-indigo btn-xs active" %>
 <% else %>
-  <%= button_to "Add Loan", new_loan_path, method: :get, class: "btn btn-info btn-xs active" %>
+  <%= link_to "Add Loan", new_loan_path, method: :get, class: "btn btn-info btn-xs active" %>
 <% end %>

@@ -1,16 +1,19 @@
-<h1>Families Arriving Soon</h1>
-
 <div class="filter">
   <label>Filter By Last Name</label>
   <input type="text" placeholder="Last Name" id="family_filter_name">
 </div>
 
 <div class="row-nationality-active">
+  <div class="details">
+    <h2>Families Arriving Soon</h2>
+  </div>
     <%= render partial: 'family_list', locals: {families:@families.active, current: true}%>
 </div>
 
-<h1>Families Already Arrived</h1>
 
 <div class="row-nationality-retired">
+  <div class="details">
+    <h2>Families Already Arrived</h2>
+  </div>
     <%= render partial: 'family_list', locals: {families:@families.retired, current: false}%>
 </div>
