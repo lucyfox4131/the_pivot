@@ -11,10 +11,9 @@
 <% @charities.each do |charity| %>
   <div class="form-box col-sm-5">
     <div class="container">
-      <div class="col-sm-5 photo">
+      <div class="col-sm-4 photo">
         <%= image_tag "reSTORE.png", :class => "img-responsive center-block" %>
-        <p><%= link_to "Learn more about #{charity.name}", charity_path(charity.slug), class: "center-block learn-more" %></p>
-        <p>
+        <%= link_to "Learn more about #{charity.name}", charity_path(charity.slug), class: "center-block learn-more" %></p>
           <div class="white-text">
             <%= charity.description %>
           </div>
