@@ -1,6 +1,6 @@
 <h1>Admin Dashboard</h1>
 
-<% if current_user.charity_admin?  %>
+<% if current_user.any_charity_admin?  %>
   <% if @charity %>
     <div class = "charity-admin-charity">
       <h2> <%= @charity.name %> <h2>
