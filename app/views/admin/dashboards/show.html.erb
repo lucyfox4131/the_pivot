@@ -1,27 +1,39 @@
 <h1>Admin Dashboard</h1>
 
-<%= link_to "See my donations", donations_path, class: "btn btn-warning" %>
+<div class="container">
 
-<%= link_to "Update my profile", edit_user_path(current_user), class: "btn btn-warning" %>
+<div class="btn-group">
+  <%= link_to "See my donations", donations_path, class: "btn btn-warning" %>
+  <%= link_to "Update my profile", edit_user_path(current_user), class: "btn btn-warning" %>
+  <button type="button" class="btn btn-default" id="pending">Pending Charities</button>
+  <button type="button" class="btn btn-default" id="online">Online Charities</button>
+  <button type="button" class="btn btn-default" id="offline">Offline Charities</button>
+  <button type="button" class="btn button-indigo active" id="administrators">Manage Administrators</button>
+</div>
 
-  <h2>Pending Charities</h2>
-    <div class = "pending">
-      <%= render partial: 'padmin', locals: {charity_type: @charities.pending_charities} %>
-    </div>
+<div class="charities hidden" id="padmin-pending">
+  <div class = "pending">
+    <%= render partial: 'padmin', locals: {charity_type: @charities.pending_charities} %>
+  </div>
+</div>
 
-  <h2>Online Charities</h2>
-    <div class = "online">
-      <%= render partial: 'padmin', locals: {charity_type: @charities.online_charities} %>
-    </div>
+<div class="charities hidden" id="padmin-online">
+  <div class = "online">
+    <%= render partial: 'padmin', locals: {charity_type: @charities.online_charities} %>
+  </div>
+</div>
 
-  <h2>Offline Charities</h2>
-    <div class = "offline">
-      <%= render partial: 'padmin', locals: {charity_type: @charities.offline_charities} %>
-    </div>
+<div class="charities hidden" id="padmin-offline">
+<div class = "offline">
+    <%= render partial: 'padmin', locals: {charity_type: @charities.offline_charities} %>
+  </div>
+</div>
+
+</div>
 
 
-<div class="details">
-    <h2>All Charity Administrators</h2>
-</div >
-
-<%= render partial: 'shared/admin_box_display', locals: {admins: @admins} %>
+<div class="charities hidden" id="all-admins">
+  <div class="details">
+    <%= render partial: 'shared/admin_box_display', locals: {admins: @admins} %>
+  </div>
+</div>
