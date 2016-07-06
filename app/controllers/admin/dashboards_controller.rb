@@ -10,6 +10,7 @@ class Admin::DashboardsController < Admin::BaseController
         @charity = Charity.find(charity_id)
       end
     end
+
     if current_user.platform_admin?
       @users = User.all_admins
       @pending_charities = Charity.pending_charities

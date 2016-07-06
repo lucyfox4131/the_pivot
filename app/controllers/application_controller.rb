@@ -21,6 +21,15 @@ class ApplicationController < ActionController::Base
     current_user && current_user.admin?
   end
 
+  def current_charity?
+    if @current_user.charities
+      #what if i basically just use the same thing and create a session for current charity
+      #could make things more secure....
+      #some admins may be associated with more than one charity, we need to figure out how to handle that..
+
+    end
+  end
+
   private
     def authorize!
       redirect_to(root_url, warning: "You Do Not Have Access") unless authorized?

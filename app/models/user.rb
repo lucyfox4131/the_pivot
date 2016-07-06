@@ -70,5 +70,4 @@ class User < ActiveRecord::Base
       end
     end.compact
   end
-
 end

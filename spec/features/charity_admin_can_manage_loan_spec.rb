@@ -30,7 +30,6 @@ RSpec.feature "Charity admin manages loans" do
       within(".#{family_2.last_name}") do
         expect(page).to have_button("Add Loan")
       end
-
     end
   end
 end

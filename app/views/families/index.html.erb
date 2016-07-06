@@ -15,7 +15,7 @@
 
 <div class="row nationality">
 <% @nationalities.each do |nationality| %>
-  <div class="col-lg-5 col-sm-offset-1 <%=nationality.name%>">
+  <div class="col-lg-6  <%=nationality.name%>">
     <h4> <%= nationality.name %> Families Arriving Soon:</h4>
     <%= render partial: 'shared/confidential_family_list', locals: {families: nationality.families.active} %>
   </div>
