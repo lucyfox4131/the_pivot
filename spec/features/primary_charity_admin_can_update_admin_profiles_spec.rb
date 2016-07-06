@@ -3,16 +3,11 @@ require 'rails_helper'
 RSpec.feature "primary charity admin updates" do
   scenario "successfully update another admin's contact info" do
     charity = create(:charity)
-    primary_admin, admin = create_list(:user, 2)
-    role1 = Role.create(name: "primary_charity_admin")
-    role2 = Role.create(name: "charity_admin")
+    primary_charity_admin, charity_admin = create_list(:user, 2)
+    create(:primary_charity_admin_user_role, user: primary_charity_admin, charity: charity)
+    create(:charity_admin_user_role, user: charity_admin, charity: charity)
 
-    primary_admin.roles << role1
-    admin.roles << role2
-    primary_admin.charities << charity
-    admin.charities << charity
-
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( primary_admin )
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( primary_charity_admin )
 
     visit charity_dashboard_path(charity.slug, charity.id)
 

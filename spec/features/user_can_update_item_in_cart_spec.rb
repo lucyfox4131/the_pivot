@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "user can update item in cart" do
-  scenario "items is updated" do
+  scenario "item is updated" do
     family = create(:family)
     create(:supply, name: "Dresser", value: 50.0, multiplier_type: "adult")
     supply = family.create_supply_items
@@ -14,14 +14,22 @@ RSpec.feature "user can update item in cart" do
     end
 
     visit cart_index_path
-    expect(page).to have_content("Total: $50.00")
-    expect(page).to have_content("Dresser")
 
-    within(".Dresser") do
+    within("tr.Dresser") do
+      expect(page).to have_content("Dresser")
+    end
+
+    within("h2#cart-total") do
+      expect(page).to have_content("Total: $50.00")
+    end
+
+    within("tr.Dresser") do
       select  2, from: "supply_item[quantity]"
       click_on("Update Cart")
     end
 
-    expect(page).to have_content("Total: $100.00")
+    within("h2#cart-total") do
+      expect(page).to have_content("Total: $100.00")
+    end
   end
 end

@@ -9,11 +9,11 @@
     <% end %>
   </div>
 </div>
-<h4 class="col-sm-5 col-sm-offset-1 details">Arrival Date:
+<h4 class="col-sm-5 col-sm-offset-1 details arrival-date">Arrival Date:
   <% if @family.retired? %>
-    <h4>Family Arrived</h4></h4>
+    <h4 id="family-arrived">Family Arrived</h4></h4>
   <% else %>
     <%= format_date @family.arrival_date%></h4>
-    <h4 class="col-sm-5 col-sm-offset-1 details">Donate by: <%= format_date @family.donation_deadline %>
+    <h4 class="col-sm-5 col-sm-offset-1 details donate-by">Donate by: <%= format_date @family.donation_deadline %>
     </h4>
 <% end %>

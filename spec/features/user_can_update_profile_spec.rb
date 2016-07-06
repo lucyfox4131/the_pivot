@@ -9,6 +9,7 @@ RSpec.feature "User can edit profile" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
     visit dashboard_path
+
     click_on "Update my profile"
     expect(current_path).to eq(edit_user_path(user))
 
@@ -57,7 +58,7 @@ RSpec.feature "User can edit profile" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
     visit edit_user_path(other_user)
-    
+
     expect(current_path).to eq(root_path)
   end
 

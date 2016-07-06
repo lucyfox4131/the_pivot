@@ -4,8 +4,8 @@ RSpec.feature "Admin updates charity" do
   scenario "sees 'successfully updated' message" do
     charity = create(:charity)
     charity_admin = create(:user)
-    role = Role.create(name: "charity_admin")
-    UserRole.create(user: charity_admin, charity: charity, role: role)
+    create(:charity_admin_user_role, user: charity_admin, charity: charity)
+
     family_1, family_2, family_3 = create_list(:family, 3, charity: charity)
     loan = create(:loan, family_id: family_1.id)
 
@@ -23,9 +23,11 @@ RSpec.feature "Admin updates charity" do
 
     expect(current_path).to eq(edit_charity_path(charity))
 
-    fill_in "Name", with: "New Name"
-    fill_in "Description", with: "Updated description of this charity."
-    click_on "Update Charity"
+    within(".panel-body") do
+      fill_in "Name", with: "New Name"
+      fill_in "Description", with: "Updated description of this charity."
+      click_on "Update Charity"
+    end
 
     expect(page).to have_content("Your updates have been saved")
 
