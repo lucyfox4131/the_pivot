@@ -1,4 +1,5 @@
 class CharitiesController < ApplicationController
+  respond_to :html, :js
 
   def index
     @charities = Charity.online_charities
