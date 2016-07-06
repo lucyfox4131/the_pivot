@@ -16,9 +16,11 @@ RSpec.feature "user can view all families" do
 
     visit families_path
 
-    expect(page).to have_content "#{family1.nationality.name} Families Arriving"
-    expect(page).to have_content "#{family2.nationality.name} Families Arriving"
-    expect(page).to have_content "#{family3.nationality.name} Families Arriving"
+    within(".nationality") do
+      expect(page).to have_content "#{family1.nationality.name} Families Arriving"
+      expect(page).to have_content "#{family2.nationality.name} Families Arriving"
+      expect(page).to have_content "#{family3.nationality.name} Families Arriving"
+    end
 
     within ".#{family1.nationality.name}" do
       expect(page).to have_content("Family of #{family1.num_people}")

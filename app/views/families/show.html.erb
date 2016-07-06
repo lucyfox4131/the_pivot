@@ -86,7 +86,7 @@
               <%= f.select(:quantity, (1..supply_item.quantity_remaining), { :prompt => '0'}, { class: 'form-control' }) %>
             </div>
           </td>
-          <td><%= f.submit 'add to cart', class: "btn btn-warning"%></td>
+          <td class="add-to-cart"><%= f.submit 'add to cart', class: "btn btn-warning"%></td>
         </tr>
         </div>
       <% end %>
@@ -95,7 +95,7 @@
   </table>
 <% else %>
   <h4>This family was welcomed with the following donations:</h4>
-    <table class="table">
+    <table class="table arrived-family-donations">
       <tr>
         <th>Donated Item</th>
         <th>Donated Quantity</th>
