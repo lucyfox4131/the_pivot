@@ -13,8 +13,8 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      @user.charities << current_user.charities.first
-      @user.roles << Role.find_by(name: "charity_admin")
+      role = Role.find_by(name: "charity_admin")
+      UserRole.create(user: @user, role: role, charity: current_user.charities.first)
       flash[:success] = "New admin '#{@user.username}' successfully created!"
       redirect_to admin_dashboard_path
     else

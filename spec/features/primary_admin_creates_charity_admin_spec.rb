@@ -5,9 +5,9 @@ RSpec.feature "Primary charity admin creates charity admin" do
     create(:charity_admin_role)
     charity = create(:charity)
     primary_admin = create(:user)
+    role = Role.create(name: "primary_charity_admin")
 
-    primary_admin.roles << create(:primary_charity_admin_role)
-    primary_admin.charities << charity
+    UserRole.create(user: primary_admin, role: role, charity: charity)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( primary_admin )
 
