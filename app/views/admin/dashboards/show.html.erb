@@ -24,43 +24,4 @@
     <h2>All Charity Administrators</h2>
 </div >
 
-<div class="search-font filter">
-    <label>Filter By Username  </label>
-    <input type="text" placeholder="Username" id="user_filter_username">
-</div>
-
-<div class="box">
-  <%= link_to "Create New Admin", new_admin_user_path, class: "btn button-indigo" %>
-</div>
-
-<div class="col-sm-12 col-sm-offset-1 users">
-  <% @users.each do |user| %>
-    <div data-username="<%= user.username %>"class="form-box col-sm-5 user">
-      <div class="white-texxt">
-        <%= user.username %>,
-        <%= user.charities.first.name %>
-      </div>
-      <div>
-        <%= form_for [:admin, user], multipart: true do |f|  %>
-          <div class="form-group">
-            <%= f.label :username %>
-            <%= f.text_field :username, class: "form-control" %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :email %>
-            <%= f.email_field :email, class: "form-control" %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :cell %>
-            <%= f.telephone_field :cell, class: "form-control" %>
-          </div>
-
-        <%= f.submit "Update Admin", class: "btn btn-info active" %>
-        <% end %>
-        <%= button_to "Remove Admin Status", admin_user_path(user), method: :delete, class: "btn btn-warning active" %>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render partial: 'shared/admin_box_display', locals: {admins: @admins} %>
