@@ -30,7 +30,7 @@ class PermissionsService
     end
 
     def platform_admin_permissions
-      return true if controller == 'admin/dashboard' && action.in?(%w(show))
+      return true if controller == 'admin/dashboards' && action.in?(%w(show))
       return true if controller == 'admin/users' && action.in?(%w(update destroy create new edit))
       return true if controller == 'admin/families' && action.in?(%w(show new create index edit update))
 
