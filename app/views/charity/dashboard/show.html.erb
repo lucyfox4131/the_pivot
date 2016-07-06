@@ -4,21 +4,15 @@
 
 <%= link_to "Update my profile", edit_user_path(current_user), class: "btn btn-warning" %>
 
-<% if current_user.charity_admin?  %>
-  <% if current_charity %>
-    <div class = "charity-admin-charity">
-      <h2> <%= current_charity.name %> <h2>
-        <%= link_to "Update Charity", edit_charity_path(current_charity), class: "btn btn-warning" %>
-    </div>
-  <% end %>
-      <%= link_to "All Families", admin_families_path, class: "btn btn-warning" %>
-      <%= link_to "Create a New Family", new_admin_family_path, class: "btn btn-primary" %>
-<% end %>
-<div class="details">
-  <% if current_charity %>
-    <h2>Administrators for <%= current_charity.name %></h2>
-  <% else %>
-    <h2>All Charity Administrators</h2>
-  <% end %>
+<div class = "charity-admin-charity">
+  <h2> <%= current_charity.name %> <h2>
+    <%= link_to "Update Charity", edit_charity_path(current_charity), class: "btn btn-warning" %>
 </div>
+  <%= link_to "All Families", admin_families_path, class: "btn btn-warning" %>
+  <%= link_to "Create a New Family", new_admin_family_path, class: "btn btn-primary" %>
+
+<div class="details">
+    <h2>Administrators for <%= current_charity.name %></h2>
+</div>
+
 <%= render partial: 'shared/admin_box_display', locals: {admins: @admins} %>

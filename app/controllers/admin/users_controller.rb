@@ -2,7 +2,6 @@ class Admin::UsersController < Admin::BaseController
 
   def new
     @user = User.new
-    @charity = current_user.charities.first.name
   end
 
   def edit
@@ -31,8 +30,7 @@ class Admin::UsersController < Admin::BaseController
         if current_user.platform_admin?
           redirect_to admin_dashboard_path
         else
-          charity = @user.charities.first
-          redirect_to charity_dashboard_path(charity.slug, charity.id)
+          redirect_to charity_dashboard_path(current_charity.slug, current_charity.id)
         end
       else
         redirect_to dashboard_path
@@ -45,9 +43,8 @@ class Admin::UsersController < Admin::BaseController
 
   def destroy
     @user = User.find(params[:id])
-      @user.demote_user
-      @user.charities.clear
-      flash[:success] = "Successfully removed admin status of #{@user.username}"
+    @user.remove_admin_status
+    flash[:success] = "Successfully removed admin status of #{@user.username}"
     redirect_to admin_dashboard_path
   end
 
