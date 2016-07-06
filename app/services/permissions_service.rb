@@ -72,7 +72,7 @@ class PermissionsService
       return true if controller == 'cart' && action.in?(%w(index))
       return true if controller == 'cart_items' && action.in?(%w(create update destroy))
       return true if controller == 'donations' && action.in?(%w(index show new create))
-      return true if controller == 'loans' && action.in?(%w(show new create edit update))
+      return true if controller == 'loans' && action.in?(%w(show edit update))
       return true if controller == 'homes' && action.in?(%w(show))
       return true if controller == 'charities' && action.in?(%w(index new create show))
       return true if controller == 'charity/families' && action.in?(%w(index))

@@ -28,7 +28,12 @@ class Admin::UsersController < Admin::BaseController
     if @user.update_attribute('email', user_params[:email]) && @user.update_attribute('cell', user_params[:cell])
       flash[:success] = "Your updates have been saved"
       if @user.admin?
-        redirect_to admin_dashboard_path
+        if current_user.platform_admin?
+          redirect_to admin_dashboard_path
+        else
+          charity = @user.charities.first
+          redirect_to charity_dashboard_path(charity.slug, charity.id)
+        end
       else
         redirect_to dashboard_path
       end
