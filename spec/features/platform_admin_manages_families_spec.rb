@@ -14,15 +14,15 @@ RSpec.feature "platform admin manages families" do
 
       visit admin_dashboard_path
 
-      within(find(".#{charity_1.name}").find(".#{family_1.last_name}")) do
+      within(find(".#{charity_1.name}").find(".active-families")) do
         expect(page).to have_content(family_1.last_name)
       end
 
-      within(find(".#{charity_2.name}").find(".#{family_2.last_name}")) do
+      within(find(".#{charity_2.name}").find(".active-families")) do
         expect(page).to have_content(family_2.last_name)
       end
 
-      within(find(".#{charity_3.name}").find(".#{family_3.last_name}")) do
+      within(find(".#{charity_3.name}").find(".active-families")) do
         expect(page).to have_content(family_3.last_name)
       end
     end

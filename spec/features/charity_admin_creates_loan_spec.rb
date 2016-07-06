@@ -12,7 +12,7 @@ RSpec.feature "Admin creates loan for family" do
     visit admin_families_path
 
     within(".row-nationality-active") do
-      click_button "Add Loan"
+      click_link "Add Loan"
     end
 
     expect(current_path).to eq(new_loan_path)
