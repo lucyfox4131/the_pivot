@@ -317,6 +317,10 @@
     color: white;
 }
 
+body.homepage {
+  background-color: #bdbdbd;
+}
+
 #map-container {
     height: 400px;
     border-radius: 16px 16px;

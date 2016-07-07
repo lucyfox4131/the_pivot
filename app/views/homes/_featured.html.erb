@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="lead-text col-sm-3">
+    <p>Imagine <span class="pop"> <a href="https://medium.com/uprooted/what-s-in-my-bag-758d435f6e62#.yx166rox8">fleeing your home</a></span> with just a backpack. Crossing an <span class="pop"> <a href="https://medium.com/uprooted/stranded-lives-3aedc80c1337#.jlsgtlysv">ocean in a raft, </a></span> only to find the borders closed</p>
+
+     <p>Getting the chance to <span class="pop">start over in America</span>. Arriving with sparse possessions, <span class="pop">no money</span>, little English, and few prospects.</p>
+
+     <h3>But welcomed by <span class="pop">safety, freedom and the generosity</span> of the American people.</h3>
+  </div>
+  <div class="home-photo col-sm-6">
+    <%= image_tag picture, class:"img-responsive" %>
+    <figcaption></br></figcaption>
+  </div>
+
+  <div class="tweets-div col-sm-3">
+    <h2 class="tweet-heading">Latest from UNHCR</h2>
+    <%= image_tag "twitter_logo.png", class:"twitter-image" %>
+    <% @tweets.each do |tweet|  %>
+    <blockquote class="tweet"><%= parsed_tweet tweet%></blockquote>
+    <% end %>
+    <%= button_to "Follow UNHCR on Twitter", 'https://twitter.com/Refugees', class: "twitter-button btn btn-primary" %>
+  </div>
+</div>
