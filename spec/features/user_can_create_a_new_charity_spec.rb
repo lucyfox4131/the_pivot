@@ -8,7 +8,7 @@ RSpec.feature "User creates new charity" do
 
       visit charities_path
 
-      click_button "Apply To Be One of Our Charities"
+      click_on "Apply To Be One of Our Charities"
 
       expect(page).to have_content("Create a New Charity")
       expect(current_path).to eq(new_charity_path)
@@ -33,7 +33,7 @@ RSpec.feature "User creates new charity" do
 
       visit charities_path
 
-      click_button "Apply To Be One of Our Charities"
+      click_on "Apply To Be One of Our Charities"
 
       expect(page).to have_content("Create a New Charity")
       expect(current_path).to eq(new_charity_path)

@@ -278,7 +278,7 @@ DEPENDENCIES
   pry
   rails (= 4.2.6)
   rails_12factor
-  responders
+  responders (~> 2.0)
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -289,4 +289,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.12.4
+   1.12.5
