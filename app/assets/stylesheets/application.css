@@ -370,3 +370,11 @@ body.homepage {
   height: 384px;
   width: 100%;
 }
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 300 !important;
+    font-size: large !important;
+}
