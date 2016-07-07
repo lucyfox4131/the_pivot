@@ -2,7 +2,7 @@
   <p><%= @charity.description %></p>
 
 <ul class="charity-families-list">
-  <% @families.each do |fam| %>
+  <% @charity.families.each do |fam| %>
     <%= link_to "#{fam.nationality.name} Family of #{fam.num_people}", family_path(fam.id) %>
   <% end %>
 </ul>

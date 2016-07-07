@@ -11,7 +11,9 @@ class PermissionsService
       platform_admin_permissions
     elsif user.charity_admin? || user.primary_charity_admin?
       charity_admin_permissions
-    else user.other_user?
+    elsif user.username?
+      registered_user_permissions
+    else
       other_user_permissions
     end
   end
@@ -65,7 +67,7 @@ class PermissionsService
       return true if controller == 'categories' && action.in?(%w(show))
     end
 
-    def other_user_permissions
+    def registered_user_permissions
       return true if controller == 'sessions' && action.in?(%w(new create destroy))
       return true if controller == 'families' && action.in?(%w(index show))
       return true if controller == 'users' && action.in?(%w(show new create edit update))
@@ -75,6 +77,19 @@ class PermissionsService
       return true if controller == 'loans' && action.in?(%w(show edit update))
       return true if controller == 'homes' && action.in?(%w(show))
       return true if controller == 'charities' && action.in?(%w(index new create show))
+      return true if controller == 'charity/families' && action.in?(%w(index))
+      return true if controller == 'categories' && action.in?(%w(show))
+    end
+
+    def other_user_permissions
+      return true if controller == 'sessions' && action.in?(%w(new create))
+      return true if controller == 'families' && action.in?(%w(index show))
+      return true if controller == 'users' && action.in?(%w(show new create))
+      return true if controller == 'cart' && action.in?(%w(index))
+      return true if controller == 'cart_items' && action.in?(%w(create update destroy))
+      return true if controller == 'loans' && action.in?(%w(show edit update))
+      return true if controller == 'homes' && action.in?(%w(show))
+      return true if controller == 'charities' && action.in?(%w(index show))
       return true if controller == 'charity/families' && action.in?(%w(index))
       return true if controller == 'categories' && action.in?(%w(show))
     end

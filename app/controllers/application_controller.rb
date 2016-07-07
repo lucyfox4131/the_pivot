@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :set_cart
   before_action :authorize!
   helper_method :current_user, :cart_item_count, :current_admin?, :current_charity
-
+  add_flash_types :success, :info, :warning, :danger
+  
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
