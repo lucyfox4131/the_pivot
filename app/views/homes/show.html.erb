@@ -1,27 +1,29 @@
-<div class="row-1">
-  <div class="lead-text col-sm-3">
-    <p>Imagine <span class="pop"> <a href="https://medium.com/uprooted/what-s-in-my-bag-758d435f6e62#.yx166rox8">fleeing your home</a></span> with just a backpack. Crossing an <span class="pop"> <a href="https://medium.com/uprooted/stranded-lives-3aedc80c1337#.jlsgtlysv">ocean in a raft, </a></span> only to find the borders closed</p>
-
-     <p>Getting the chance to <span class="pop">start over in America</span>. Arriving with sparse possessions, <span class="pop">no money</span>, little English, and few prospects.</p>
-
-     <h3>But welcomed by <span class="pop">safety, freedom and the generosity</span> of the American people.</h3>
+<div class="intro">
+  <div id="this-carousel-id" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="active item">
+        <%= render partial: 'featured', locals: {picture: "18-lens.jpg"} %>
+      </div>
+      <div class="item">
+        <%= render partial: 'featured', locals: {picture: "lebanon-9.jpg"} %>
+      </div>
+      <div class="item">
+        <%= render partial: 'featured', locals: {picture: "Niarchos.jpg"} %>
+      </div>
+      <div class="item">
+        <%= render partial: 'featured', locals: {picture: "jordan-life.jpg"} %>
+      </div>
+      <div class="item">
+        <%= render partial: 'featured', locals: {picture: "refugees-istanbul.jpg"} %>
+      </div>
   </div>
-  <div class="home-photo col-sm-6">
-    <%= image_tag "cover_syria.jpeg", class:"img-responsive" %>
-    <figcaption></br></figcaption>
+    <a class="carousel-control" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
   </div>
-
-  <div class="tweets-div col-sm-3">
-    <h2 class="tweet-heading">Latest from UNHCR</h2>
-    <%= image_tag "twitter_logo.png", class:"twitter-image" %>
-    <% @tweets.each do |tweet|  %>
-    <blockquote class="tweet"><%= parsed_tweet tweet%></blockquote>
-    <% end %>
-    <%= button_to "Follow UNHCR on Twitter", 'https://twitter.com/Refugees', class: "twitter-button btn btn-primary" %>
-  </br>
 </div>
 
-<div>
+
+<div class="container">
     <div class="col-md-2 col-sm-3">
         <div class="box box-grey">
             <h2 class="heading-md">Donations Received</h2>
@@ -32,7 +34,6 @@
             <h1 class="heading-md"><%= @donation_stats[:num_items] %></h1>
         </div>
     </div>
-
     <div class="col-md-2 col-sm-3">
         <div class="box box-grey">
             <h2 class="heading-md">Money Raised</h2>
@@ -43,7 +44,6 @@
             <h1 class="heading-md"><%= currency_short @donation_stats[:money_raised]%></h1>
         </div>
     </div>
-
     <div class="col-md-2 col-sm-3">
         <div class="box box-grey">
             <h2 class="heading-md">Families Helped</h2>
