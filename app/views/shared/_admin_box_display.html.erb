@@ -1,3 +1,5 @@
+<div class="container">
+
 <div class="search-font filter">
     <label>Filter By Username  </label>
     <input type="text" placeholder="Username" id="user_filter_username">
@@ -12,7 +14,7 @@
     <div data-username="<%= admin.username %>"class="form-box col-sm-5 user">
       <div class="white-texxt">
         <%= admin.username %>,
-        <%= admin.charities.first.name %>
+        <%= charity_exists(admin) %>
       </div>
       <div>
         <%= form_for [:admin, admin], multipart: true do |f|  %>
@@ -33,8 +35,11 @@
 
         <%= f.submit "Update Admin", class: "btn btn-info active" %>
         <% end %>
-        <%= button_to "Remove Admin Status", admin_user_path(admin), method: :delete, class: "btn btn-warning active" %>
+        <div class="col-sm-2">
+          <%= button_to "Remove Admin", admin_user_path(admin), method: :delete,  class: "btn btn-warning active btn-xs" %>
+        </div>
       </div>
     </div>
   <% end %>
+</div>
 </div>
