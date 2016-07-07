@@ -39,4 +39,12 @@ class Charity < ActiveRecord::Base
     status == "offline"
   end
 
+  def self.create_new_charity(params, current_user)
+    charity = Charity.new(name: params[:charity][:name],
+                          description: params[:charity][:description],
+                          status: 0)
+    role = Role.find_by(name: "primary_charity_admin")
+    UserRole.create(user: current_user, role: role, charity: charity)
+    return charity
+  end
 end

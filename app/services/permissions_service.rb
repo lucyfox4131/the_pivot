@@ -45,7 +45,7 @@ class PermissionsService
       return true if controller == 'loans' && action.in?(%w(show new create edit update))
       return true if controller == 'homes' && action.in?(%w(show))
       return true if controller == 'charities' && action.in?(%w(index new create edit update show))
-      return true if controller == 'charity/families' && action.in?(%w(index))
+      # return true if controller == 'charity/families' && action.in?(%w(index))
       return true if controller == 'categories' && action.in?(%w(show))
     end
 
@@ -63,7 +63,6 @@ class PermissionsService
       return true if controller == 'loans' && action.in?(%w(show new create edit update))
       return true if controller == 'homes' && action.in?(%w(show))
       return true if controller == 'charities' && action.in?(%w(index new create edit update show))
-      return true if controller == 'charity/families' && action.in?(%w(index))
       return true if controller == 'categories' && action.in?(%w(show))
     end
 
@@ -77,7 +76,6 @@ class PermissionsService
       return true if controller == 'loans' && action.in?(%w(show edit update))
       return true if controller == 'homes' && action.in?(%w(show))
       return true if controller == 'charities' && action.in?(%w(index new create show))
-      return true if controller == 'charity/families' && action.in?(%w(index))
       return true if controller == 'categories' && action.in?(%w(show))
     end
 
@@ -90,7 +88,6 @@ class PermissionsService
       return true if controller == 'loans' && action.in?(%w(show edit update))
       return true if controller == 'homes' && action.in?(%w(show))
       return true if controller == 'charities' && action.in?(%w(index show))
-      return true if controller == 'charity/families' && action.in?(%w(index))
       return true if controller == 'categories' && action.in?(%w(show))
     end
 end
