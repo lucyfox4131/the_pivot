@@ -9,8 +9,10 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:success] = "Hi, #{user.username}!"
-      if user.charity_admin? || user.platform_admin? || user.primary_charity_admin?
+      if user.charity_admin?
         session.delete(:return_to)
+        redirect_to charity_dashboard_path
+      elsif user.platform_admin?
         redirect_to admin_dashboard_path
       else
         if session[:return_to] && session[:return_to].include?("cart")

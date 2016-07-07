@@ -6,7 +6,6 @@ class CharitiesController < ApplicationController
 
   def show
     @charity = Charity.find_by(params[:id])
-    @families = @charity.families
     @donation_stats = Donation.stats
   end
 
