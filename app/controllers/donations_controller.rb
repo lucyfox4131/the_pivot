@@ -18,7 +18,7 @@ class DonationsController < ApplicationController
   end
 
   def new
-    @cart_items = @cart.get_supply_items
+    @cart_items = @cart.get_cart_item_list
   end
 
   def create

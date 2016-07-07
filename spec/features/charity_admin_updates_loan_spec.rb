@@ -14,13 +14,15 @@ RSpec.feature "Admin updates loan for family" do
     visit admin_families_path
 
     within(".#{family.last_name}") do
-      click_button "Update Loan"
+      click_link "Update Loan"
     end
 
     expect(current_path).to eq(edit_loan_path(loan))
 
-    fill_in "Requested amount", with: "2000.00"
-    fill_in "Purpose", with: "This is an updated purpose."
+    within(".panel-body") do
+      fill_in "Requested amount", with: "2000.00"
+      fill_in "Purpose", with: "This is an updated purpose"
+    end
 
     click_on "Update Loan"
 
@@ -29,7 +31,10 @@ RSpec.feature "Admin updates loan for family" do
 
     visit family_path(family)
 
-    expect(page).to have_content("$2,000.00")
-    expect(page).to have_content("This is an updated purpose.")
+    within(".#{family.last_name}-loan-info") do
+      expect(page).to have_content("$2,000.00")
+      expect(page).to have_content("This is an updated purpose")
+    end
+
   end
 end

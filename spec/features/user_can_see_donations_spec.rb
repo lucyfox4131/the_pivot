@@ -27,16 +27,22 @@ RSpec.feature "user can see all donations" do
 
     expect(page).to have_content("#{user.username}'s Donations")
     expect(page).to have_content("Total Donations: 1")
-    expect(page).to have_content("Somali family of 3")
-    expect(page).to have_content("1 Small Pot")
-    expect(page).to have_content("1 Couch")
-    expect(page).to_not have_content("1 Large Pot")
+
+    within("td.family-info") do
+      expect(page).to have_content("Somali family of 3")
+    end
+
+    within("td.donation-item-info") do
+      expect(page).to have_content("1 Small Pot")
+      expect(page).to have_content("1 Couch")
+      expect(page).to_not have_content("1 Large Pot")
+    end
   end
 
   scenario "guest user visiting donations is redirected to log in" do
     visit donations_path
 
-    expect(current_path).to eq(login_path)
-    expect(page).to have_content("Please login to see your donation history")
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content("You Do Not Have Access")
   end
 end

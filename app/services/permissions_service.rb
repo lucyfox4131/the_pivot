@@ -9,11 +9,11 @@ class PermissionsService
   def allow?
     if user.platform_admin?
       platform_admin_permissions
-    elsif user.charity_admin?
+    elsif user.charity_admin? || user.primary_charity_admin?
       charity_admin_permissions
-    elsif user.primary_charity_admin?
-      primary_charity_admin_permissions
-    else user.other_user?
+    elsif user.username?
+      registered_user_permissions
+    else
       other_user_permissions
     end
   end
@@ -32,32 +32,62 @@ class PermissionsService
     end
 
     def platform_admin_permissions
-      true
+      return true if controller == 'admin/dashboards' && action.in?(%w(show))
+      return true if controller == 'admin/users' && action.in?(%w(update destroy create new edit))
+      return true if controller == 'admin/families' && action.in?(%w(show new create index edit update))
+
+      return true if controller == 'sessions' && action.in?(%w(new create destroy))
+      return true if controller == 'families' && action.in?(%w(index show))
+      return true if controller == 'users' && action.in?(%w(index new create edit update))
+      return true if controller == 'cart' && action.in?(%w(index))
+      return true if controller == 'cart_items' && action.in?(%w(create update destroy))
+      return true if controller == 'donations' && action.in?(%w(index show new create))
+      return true if controller == 'loans' && action.in?(%w(show new create edit update))
+      return true if controller == 'homes' && action.in?(%w(show))
+      return true if controller == 'charities' && action.in?(%w(index new create edit update show))
+      # return true if controller == 'charity/families' && action.in?(%w(index))
+      return true if controller == 'categories' && action.in?(%w(show))
     end
 
     def charity_admin_permissions
-      true
+      return true if controller == 'admin/users' && action.in?(%w(update destroy create new edit))
+      return true if controller == 'admin/families' && action.in?(%w(show new create index edit update))
+      return true if controller == 'charity/dashboard' && action.in?(%w(show))
+
+      return true if controller == 'sessions' && action.in?(%w(new create destroy))
+      return true if controller == 'families' && action.in?(%w(index show))
+      return true if controller == 'users' && action.in?(%w(index new create edit update))
+      return true if controller == 'cart' && action.in?(%w(index))
+      return true if controller == 'cart_items' && action.in?(%w(create update destroy))
+      return true if controller == 'donations' && action.in?(%w(index show new create))
+      return true if controller == 'loans' && action.in?(%w(show new create edit update))
+      return true if controller == 'homes' && action.in?(%w(show))
+      return true if controller == 'charities' && action.in?(%w(index new create edit update show))
+      return true if controller == 'categories' && action.in?(%w(show))
     end
 
-    def primary_charity_admin_permissions
-      if controller == "admin/dashboards"
-        return true
-      else
-        true
-      end
+    def registered_user_permissions
+      return true if controller == 'sessions' && action.in?(%w(new create destroy))
+      return true if controller == 'families' && action.in?(%w(index show))
+      return true if controller == 'users' && action.in?(%w(show new create edit update))
+      return true if controller == 'cart' && action.in?(%w(index))
+      return true if controller == 'cart_items' && action.in?(%w(create update destroy))
+      return true if controller == 'donations' && action.in?(%w(index show new create))
+      return true if controller == 'loans' && action.in?(%w(show edit update))
+      return true if controller == 'homes' && action.in?(%w(show))
+      return true if controller == 'charities' && action.in?(%w(index new create show))
+      return true if controller == 'categories' && action.in?(%w(show))
     end
 
     def other_user_permissions
-      if controller == "admin/dashboards"
-        return false
-      elsif controller == "admin/families"
-        return false
-      elsif controller == "admin/base"
-        return false
-      elsif controller == "loans" && action.in?(%w(new create edit update))
-        return false
-      else
-        return true
-      end
+      return true if controller == 'sessions' && action.in?(%w(new create))
+      return true if controller == 'families' && action.in?(%w(index show))
+      return true if controller == 'users' && action.in?(%w(new create))
+      return true if controller == 'cart' && action.in?(%w(index))
+      return true if controller == 'cart_items' && action.in?(%w(create update destroy))
+      return true if controller == 'loans' && action.in?(%w(show edit update))
+      return true if controller == 'homes' && action.in?(%w(show))
+      return true if controller == 'charities' && action.in?(%w(index show))
+      return true if controller == 'categories' && action.in?(%w(show))
     end
 end

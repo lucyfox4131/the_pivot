@@ -32,4 +32,31 @@ module ApplicationHelper
     parsed_tweet.html_safe
   end
 
+  def charity_exists(admin)
+    if admin.charities.first
+      admin.charities.first.name
+    end
+  end
+
+  def charity_header(charity_type)
+    case charity_type
+    when @charities.pending_charities
+      heading = "Pending Charities"
+    when @charities.online_charities
+      heading = "Online Charities"
+    when @charities.offline_charities
+      heading = "Offline Charities"
+    end
+  end
+
+  def dashboard_redirect(current_user)
+    if current_user.platform_admin?
+      admin_dashboard_path
+    elsif current_user.charity_admin?
+      charity_dashboard_path(current_user.charity.slug, current_user.charity.id)
+    else
+      dashboard_path
+    end
+  end
+
 end

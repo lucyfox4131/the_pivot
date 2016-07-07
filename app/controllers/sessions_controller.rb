@@ -9,16 +9,10 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:success] = "Hi, #{user.username}!"
-      if user.charity_admin? || user.platform_admin? || user.primary_charity_admin?
-        session.delete(:return_to)
-        redirect_to admin_dashboard_path
+      if @cart.contents.count > 0
+        redirect_to cart_index_path
       else
-        if session[:return_to] && session[:return_to].include?("cart")
-          redirect_to session.delete(:return_to)
-        else
-          session.delete(:return_to)
-          redirect_to dashboard_path
-        end
+        redirect_to dashboard_redirect(current_user)
       end
     else
       flash.now[:danger] = "Invalid username or password. Try Again."

@@ -2,7 +2,6 @@ class Admin::UsersController < Admin::BaseController
 
   def new
     @user = User.new
-    @charity = current_user.charities.first.name
   end
 
   def edit
@@ -13,9 +12,9 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      @user.charities << current_user.charities.first
-      @user.roles << Role.find_by(name: "charity_admin")
-      flash[:success] = "Welcome, #{@user.username}!"
+      role = Role.find_by(name: "charity_admin")
+      UserRole.create(user: @user, role: role, charity: current_user.charities.first)
+      flash[:success] = "New admin '#{@user.username}' successfully created!"
       redirect_to admin_dashboard_path
     else
       flash.now[:warning] = @user.errors.full_messages.join(", ")
@@ -27,10 +26,10 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(params[:id])
     if @user.update_attribute('email', user_params[:email]) && @user.update_attribute('cell', user_params[:cell])
       flash[:success] = "Your updates have been saved"
-      if @user.admin?
+      if current_user.platform_admin?
         redirect_to admin_dashboard_path
       else
-        redirect_to dashboard_path
+        redirect_to charity_dashboard_path(current_charity.slug, current_charity.id)
       end
     else
       flash.now[:warning] = @user.errors.full_messages.join(", ")
@@ -40,9 +39,8 @@ class Admin::UsersController < Admin::BaseController
 
   def destroy
     @user = User.find(params[:id])
-      @user.demote_user
-      @user.charities.clear
-      flash[:success] = "Successfully removed admin status of #{@user.username}"
+    @user.remove_admin_status
+    flash[:success] = "Successfully removed admin status of #{@user.username}"
     redirect_to admin_dashboard_path
   end
 

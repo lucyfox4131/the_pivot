@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :families, only: [:index, :show]
 
-  resources :users, only: [:index, :new, :create, :edit, :update]
+  resources :users, only: [:new, :create, :edit, :update]
 
   resources :cart, only: [:index]
 
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   namespace :charity, path: ':charity_slug', as: :charity do
     resources :families, only: [:index]
+    resources :dashboard, only: [:show]
   end
 
   scope :category do

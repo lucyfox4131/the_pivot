@@ -11,14 +11,18 @@ RSpec.feature  "family list show correct items needed when donations made" do
       and_return( user )
 
     visit family_path(fam1)
+
     expect(page).to have_content("Twin Bedframe")
+
     within(".Twin") do
       click_on "add to cart"
     end
 
     visit cart_index_path
+
     click_on "Checkout"
     click_on "Confirm Donation"
+
     visit family_path(fam1)
 
     expect(page).to_not have_content("Twin Bedframe")
@@ -33,6 +37,7 @@ RSpec.feature  "family list show correct items needed when donations made" do
     donation_item = create(:donation_item)
 
     visit family_path(fam1)
+    
     within(".Twin") do
       expect(page).to have_select("supply_item[quantity]", options: ["1", "2"])
       expect(page).to_not have_select("supply_item[quantity]",

@@ -8,4 +8,12 @@ class Category < ActiveRecord::Base
   def to_param
     slug
   end
+
+  def find_families
+    if name == "Loan"
+      Loan.active.families
+    else
+      self.families.active
+    end
+  end
 end

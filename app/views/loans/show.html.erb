@@ -26,18 +26,16 @@
         </tr>
         <%= form_for @loan, url: cart_items_path, method: :create do |f| %>
           <div class='<%= @loan.purpose %> table-info' >
-        <tr><td><%= currency(@loan.requested_amount) %></td>
+        <tr><td id="loan-amount"><%= currency(@loan.requested_amount) %></td>
           <td><%= f.hidden_field :id, :value => @loan.id %>
             <div class="form-group">
               <%= f.select(:requested_amount, (@loan.donation_range), { :prompt => '0'}, { class: 'form-control' }) %>
+              <%= f.submit 'Donate Now', class: "learn-more"%>
             </div>
           </td></tr>
         </div>
       <% end %>
       </table>
-  </div>
-  <div class="learn-more">
-    <%= link_to "Donate Now", @loan_path %>
   </div>
 </div>
 </div>

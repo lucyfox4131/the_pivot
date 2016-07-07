@@ -14,14 +14,18 @@ RSpec.feature "user can remove item from cart" do
     end
 
     visit cart_index_path
-    expect(page).to have_content("Total: $50.00")
 
-    expect(page).to have_content("Dresser")
-    click_on("Remove")
+    within("h2#cart-total") do
+      expect(page).to have_content("Total: $50.00")
+    end
 
-    expect(page).to have_content("Successfully deleted Dresser")
+    within("tr.#{supply.name}") do
+      expect(page).to have_content("Dresser")
+      click_on("Remove")
+    end
+
+    expect(page).to have_content("Successfully deleted Dresser from your cart")
     expect(page).to have_content("There are no items in your cart")
-
     click_on("Dresser")
 
     expect(current_path).to eq(family_path(family))

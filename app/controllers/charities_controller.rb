@@ -6,7 +6,6 @@ class CharitiesController < ApplicationController
 
   def show
     @charity = Charity.find_by(params[:id])
-    @families = @charity.families
     @donation_stats = Donation.stats
   end
 
@@ -18,7 +17,11 @@ class CharitiesController < ApplicationController
     charity = Charity.find(params[:id])
     if charity.update(charity_params)
       flash[:success] = "Your updates have been saved"
-      redirect_to admin_dashboard_path
+      if current_user.platform_admin?
+        redirect_to admin_dashboard_path
+      else
+        redirect_to charity_dashboard_path(charity.slug, charity.id)
+      end
     else
       flash.now[:warning] = @user.errors.full_messages.join(", ")
       render :edit
@@ -35,9 +38,7 @@ class CharitiesController < ApplicationController
   end
 
   def create
-    @charity = Charity.new(name: params[:charity][:name],
-                          description: params[:charity][:description],
-                          status: 0)
+    @charity = Charity.create_new_charity(params, current_user)
     if @charity.save
       flash[:success] = "Your charity request has been recieved.
         Once it has been approved it will be visible on our site."

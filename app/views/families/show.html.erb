@@ -21,11 +21,11 @@
     <%= family_presenter.retired_or_active_progress_bar %>
   <% end %>
 
-  <h5><%= currency @supplies_purchased_value %> has been donated.</h5>
+  <h5><%= currency @family.value_of_supplies_purchased %> has been donated.</h5>
   <div class="progress">
     <div class="progress-bar" role="progressbar" aria-valuemin="0"
-        aria-valuemax="100" style="min-width: 2em; width: <%= @percentage_purchased %>%;">
-      <%= @percentage_purchased %>%
+        aria-valuemax="100" style="min-width: 2em; width: <%= @family.percentage_donated %>%;">
+      <%= @family.percentage_donated %>%
     </div>
   </div>
 
@@ -41,7 +41,7 @@
   </tr>
 
     <%= form_for @family.loan, url: cart_items_path, method: :create do |f| %>
-      <div class='<%= @family.loan.purpose %> table-info' >
+      <div class='<%= @family.last_name%>-loan-info table-info' >
       <tr>
         <td><%= @family.loan.purpose %></br>
         <td><%= currency(@family.loan.requested_amount) %></td>
@@ -86,7 +86,7 @@
               <%= f.select(:quantity, (1..supply_item.quantity_remaining), { :prompt => '0'}, { class: 'form-control' }) %>
             </div>
           </td>
-          <td><%= f.submit 'add to cart', class: "btn btn-warning"%></td>
+          <td class="add-to-cart"><%= f.submit 'add to cart', class: "btn btn-warning"%></td>
         </tr>
         </div>
       <% end %>
@@ -95,7 +95,7 @@
   </table>
 <% else %>
   <h4>This family was welcomed with the following donations:</h4>
-    <table class="table">
+    <table class="table arrived-family-donations">
       <tr>
         <th>Donated Item</th>
         <th>Donated Quantity</th>

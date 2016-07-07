@@ -1,6 +1,7 @@
 <h1 class="text-center">Your Donations Cart</h1>
+<div class="container">
 
-<% if !session.exists? || !@cart.contents.empty? %>
+<% if !@cart.contents.empty? %>
   <table class="table table-hover">
     <tr class="active">
       <th>Item</th>
@@ -11,9 +12,9 @@
       <th></th>
       <th></th>
     </tr>
-  <% @cart_items.each do |cart_item| %>
+  <% @cart.get_cart_item_list.each do |cart_item| %>
     <% if cart_item.class != LoanDecorator %>
-        <tr>
+        <tr class = "<%= cart_item.supply.name %>">
           <td><%= link_to cart_item.name, family_path(cart_item.family) %></td>
           <td><%= cart_item.description %></td>
           <td><%= currency cart_item.value %></td>
@@ -33,7 +34,7 @@
           <td><%= button_to "Remove", cart_item_path(cart_item, class_type: "supply"), method: :delete, class: "btn btn-warning" %></td>
         </tr>
     <% else %>
-      <tr>
+      <tr class = '<%= cart_item.purpose %>' >
         <td><%= link_to "#{cart_item.purpose} loan", family_path(cart_item.family) %></td>
         <td><%= cart_item.description %></td>
         <td><%= currency cart_item.requested_amount %></td>
@@ -57,7 +58,7 @@
   <% end %>
 </table>
 
-  <h2>Total: <%= currency @cart.total_price %> </h2>
+  <h2 id="cart-total"> Total: <%= currency @cart.total_price %> </h2>
 
   <% present @cart do |cart_presenter| %>
     <%= cart_presenter.checkout_link %>
@@ -66,3 +67,4 @@
 <% else %>
   <h3 class="text-center">There are no items in your cart</h3>
 <% end %>
+</div>
