@@ -17,7 +17,7 @@
           <td><%= link_to cart_item.name, family_path(cart_item.family) %></td>
           <td><%= cart_item.description %></td>
           <td><%= currency cart_item.value %></td>
-          <td class="supply_item_subtotal"><%= currency cart_item.subtotal(cart_item.supply_item_quantity) %></td>
+          <td class="supply_item_subtotal"><%= @subtotal %></td>
 
           <div class="<%= cart_item.supply.name %>">
 

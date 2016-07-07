@@ -20,6 +20,7 @@ class CartItemsController < ApplicationController
     if params[:supply_item]
       supply_item = SupplyItem.find(params[:supply_item][:id].to_i)
       @cart.change_cart_item_quantity(supply_item, params[:supply_item][:quantity])
+      @subtotal = ((params[:supply_item][:quantity].to_i) * (supply_item.supply.value.to_i)).to_s
     else
       loan = Loan.find(params[:loan][:id].to_i)
       @cart.change_cart_item_quantity(loan, params[:loan][:quantity])
