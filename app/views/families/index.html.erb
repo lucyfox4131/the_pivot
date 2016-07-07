@@ -14,14 +14,16 @@
     </div>
   </div>
 </div>
-<br>
-<div class="nationality">
-<% @nationalities.each do |nationality| %>
-  <div class="row <%=nationality.name%>">
-    <h4> <%= nationality.name %> Families Arriving Soon:</h4>
-    <%= render partial: 'shared/confidential_family_list', locals: {families: nationality.families.active} %>
+
+<div class="container">
+  <div class="nationality">
+    <% @nationalities.each do |nationality| %>
+    <div class="row <%=nationality.name%>">
+      <h4> <%= nationality.name %> Families Arriving Soon:</h4>
+      <%= render partial: 'shared/confidential_family_list', locals: {families: nationality.families.active} %>
+    </div>
+    <% end %>
   </div>
-<% end %>
 </div>
 
 <h2 class="text-center">Want to know more about the conflict? Click a country below.</h2>
