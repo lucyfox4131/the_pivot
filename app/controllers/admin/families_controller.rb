@@ -27,7 +27,7 @@ class Admin::FamiliesController < Admin::BaseController
     if @family.save
       @family.create_supply_items
       flash[:success] = "Family with last name, #{@family.last_name}, created!"
-      url = "https://refugeerestore.herokuapp.com/families/#{@family.id}"
+      url = "https://refugeerestart.herokuapp.com/families/#{@family.id}"
       TextSender.send_text_message(url)
       redirect_to admin_family_path(@family)
     else
@@ -55,17 +55,17 @@ class Admin::FamiliesController < Admin::BaseController
 
   def family_params
     params.require(:family).permit(
-                                     :first_name,
-                                     :last_name,
-                                     :arrival_date,
-                                     :num_married_adults,
-                                     :num_unmarried_adults,
-                                     :num_children_over_two,
-                                     :num_children_under_two,
-                                     :donation_deadline,
-                                     :nationality_id,
-                                     :description,
-                                     :family_photo
+                                   :first_name,
+                                   :last_name,
+                                   :arrival_date,
+                                   :num_married_adults,
+                                   :num_unmarried_adults,
+                                   :num_children_over_two,
+                                   :num_children_under_two,
+                                   :donation_deadline,
+                                   :nationality_id,
+                                   :description,
+                                   :family_photo
                                    )
   end
 end
