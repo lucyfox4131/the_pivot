@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
   def redirect_path(user)
     if user.charity_admin?
       session.delete(:return_to)
-      redirect_to charity_dashboard_path
+      redirect_to charity_dashboard_path(user.charity.slug, user.charity.id)
     elsif user.platform_admin?
       redirect_to admin_dashboard_path
     else
