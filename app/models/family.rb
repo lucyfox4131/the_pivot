@@ -72,7 +72,11 @@ class Family < ActiveRecord::Base
   end
 
   def percentage_donated
-    ((value_of_supplies_purchased / value_of_supplies_needed) * 100).to_i
+    if value_of_supplies_needed == 0|| value_of_supplies_purchased == 0
+      return 0
+    else
+      ((value_of_supplies_purchased / value_of_supplies_needed) * 100).to_i
+    end
   end
 
   def retired?

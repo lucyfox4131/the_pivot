@@ -1,6 +1,6 @@
 <h1 class="text-center">Your Donations Cart</h1>
 
-<% if !session.exists? || !@cart.contents.empty? %>
+<% if !@cart.contents.empty? %>
   <table class="table table-hover">
     <tr class="active">
       <th>Item</th>
@@ -11,7 +11,7 @@
       <th></th>
       <th></th>
     </tr>
-  <% @cart_items.each do |cart_item| %>
+  <% @cart.get_cart_item_list.each do |cart_item| %>
     <% if cart_item.class != LoanDecorator %>
         <tr class = "<%= cart_item.supply.name %>">
           <td><%= link_to cart_item.name, family_path(cart_item.family) %></td>
