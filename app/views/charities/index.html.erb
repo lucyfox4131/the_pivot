@@ -3,7 +3,9 @@
 
 <div class="box">
   <% if current_user %>
+
     <%= link_to "Apply To Be One of Our Charities", new_charity_path, remote: true, class: "btn btn-primary" %>
+
   <% end %>
 </div>
 
@@ -13,11 +15,11 @@
 
 <div class="col-sm-12 col-sm-offset-1">
 <% @charities.each do |charity| %>
-  <div class="boxx col-sm-5">
+  <div class="form-box col-sm-5">
     <div class="container">
-      <div class="col-sm-5 photo">
+      <div class="col-sm-4 photo">
         <%= image_tag "reSTORE.png", :class => "img-responsive center-block" %>
-        <p><%= link_to "Learn more about #{charity.name}", charity_path(charity.slug), class: "center-block learn-more" %></p>
+        <p class= '<%= charity.slug %>'> <%= link_to "Learn more about #{charity.name}", charity_path(charity.slug), class: "center-block learn-more" %></p>
         <p>
           <div class="white-text">
             <%= charity.description %>

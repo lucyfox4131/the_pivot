@@ -1,17 +1,29 @@
 <div class="list-group families">
-  <ul>
   <% families.each do |family| %>
     <div class= "<%= family.last_name %>">
     <% if current %>
-      <li data-name="<%= family.last_name %>"class="list-group-item family"><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arriving in <%= days_from_today family.arrival_date %></li>
-      <%= render partial: "admin/families/loan_information", locals: {family: family} %>
-      <%= button_to "Update Family", edit_admin_family_path(family), method: :get, class: "btn btn-warning"  %></li>
+    <div class="col-sm-6">
+      <ul>
+        <li data-name="<%= family.last_name %>"class="list-group-item list-group-item-success family"><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arriving in <%= days_from_today family.arrival_date %>
+          <div class="btn-group">
+            <%= render partial: "admin/families/loan_information", locals: {family: family} %>
+            <%= link_to "Update Family", edit_admin_family_path(family), method: :get, class: "btn btn-warning btn-xs"  %>
+          </div>
+        </li>
+      </ul>
+    </div>
     <% else %>
-      <li data-name="<%= family.last_name %>"class="list-group-item family"><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arrived <%= days_from_today family.arrival_date %> ago</li>
-      <%= render partial: "admin/families/loan_information", locals: {family: family} %>
-      <%= button_to "Update Family", edit_admin_family_path(family), method: :get, class: "btn btn-warning"  %></li>
+    <div class="col-sm-6">
+      <ul>
+        <li data-name="<%= family.last_name %>"class="list-group-item list-group-item-warning family"><%= link_to "#{family.last_name}, #{family.first_name}", admin_family_path(family) %>: arrived <%= days_from_today family.arrival_date %> ago
+          <div class="btn-group">
+            <%= render partial: "admin/families/loan_information", locals: {family: family} %>
+            <%= link_to "Update Family", edit_admin_family_path(family), method: :get, class: "btn btn-warning btn-xs"  %>
+          </div>
+        </li>
+      </ul>
+    </div>
     <% end %>
   <% end %>
-    </div>
-  </ul>
+  </div>
 </div>

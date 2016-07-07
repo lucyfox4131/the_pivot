@@ -17,6 +17,7 @@ RSpec.feature "User creates new charity" do
       fill_in "Description", with: "Description of our new charity."
       click_on "Create Charity"
 
+      expect(current_path).to eq(charities_path)
       expect(page).to have_content("Your charity request has been recieved.
                     Once it has been approved it will be visible on our site.")
 

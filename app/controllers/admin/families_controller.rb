@@ -54,16 +54,18 @@ class Admin::FamiliesController < Admin::BaseController
   private
 
   def family_params
-    params.require(:family).permit(:first_name,
-                                   :last_name,
-                                   :arrival_date,
-                                   :num_married_adults,
-                                   :num_unmarried_adults,
-                                   :num_children_over_two,
-                                   :num_children_under_two,
-                                   :donation_deadline,
-                                   :nationality_id,
-                                   :description,
-                                   :family_photo)
+    params.require(:family).permit(
+                                     :first_name,
+                                     :last_name,
+                                     :arrival_date,
+                                     :num_married_adults,
+                                     :num_unmarried_adults,
+                                     :num_children_over_two,
+                                     :num_children_under_two,
+                                     :donation_deadline,
+                                     :nationality_id,
+                                     :description,
+                                     :family_photo
+                                   )
   end
 end

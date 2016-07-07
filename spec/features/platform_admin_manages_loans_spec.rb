@@ -4,9 +4,8 @@ RSpec.feature "Platform admin manages loan information" do
   context "user is logged in as platform admin" do
     scenario "platform admin successfully updates loan" do
       platform_admin = create(:user)
-      charity_1, charity_2 = create_list(:charity, 2)
-      role = Role.create(name: "platform_admin")
-      UserRole.create(user: platform_admin, role: role)
+      create(:platform_admin_user_role, user: platform_admin)
+      charity_1, charity_2 = create_list(:charity, 2)  
       family_1 = create(:family, charity: charity_1)
       family_2 = create(:family, charity: charity_2)
       family_3 = create(:family, charity: charity_2)
@@ -17,7 +16,7 @@ RSpec.feature "Platform admin manages loan information" do
       visit admin_dashboard_path
 
       within(".#{family_1.last_name}") do
-        click_button "Update Loan"
+        click_link "Update Loan"
       end
 
       expect(current_path).to eq(edit_loan_path(loan))

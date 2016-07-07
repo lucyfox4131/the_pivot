@@ -12,7 +12,7 @@ RSpec.feature "user can checkout with loans and supplies in cart" do
 
     visit family_path(family)
 
-    within(".#{loan.purpose}") do
+    within(".#{family.last_name}-loan-info") do
       select 15, from: "loan[requested_amount]"
       find(:button, 'add to cart').click
     end

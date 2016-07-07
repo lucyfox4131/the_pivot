@@ -12,14 +12,14 @@
   <% @donations.each do |donation| %>
     <tr>
       <td> <%= link_to donation.id, donation_path(donation.id) %></td>
-      <td> <%= donation.status %> </td>
+      <td id="donation-status"> <%= donation.status %> </td>
       <td> <%= donation.date %></td>
-      <td>
+      <td class="family-info">
       <% donation.donation_items.each do |donation_item| %>
         <%= donation_item.family_description %></br>
       <% end %>
       </td>
-      <td>
+      <td class="donation-item-info">
       <% donation.donation_items.each do |donation_item| %>
         <% if donation_item.supply_item %>
           <%= donation_item.quantity %>

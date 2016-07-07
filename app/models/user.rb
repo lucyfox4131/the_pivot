@@ -25,12 +25,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def charity
+    charities.first unless !charities
+  end
+
   def platform_admin?
     roles.exists?(name: "platform_admin")
   end
 
   def charity_admin?
-    roles.exists?(name: "charity_admin")
+    roles.exists?(name: "charity_admin") || roles.exists?(name: "primary_charity_admin")
   end
 
   def primary_charity_admin?
@@ -45,9 +49,14 @@ class User < ActiveRecord::Base
     !charity_admin? && !platform_admin? && !primary_charity_admin?
   end
 
+  def remove_admin_status
+    demote_user
+    charities.clear
+  end
+
   def demote_user
     if admin?
-      roles.delete(name: "charity_admin")
+      roles.delete(name: "charity_admin") || roles.delete(name: "primary_charity_admin")
     end
   end
 
@@ -61,7 +70,7 @@ class User < ActiveRecord::Base
     end.compact
   end
 
-  def self.charity_admins(current_user_charity)
+  def charity_admins(current_user_charity)
     User.all.map do |user|
       if !user.charities.empty? && user.charities.first == current_user_charity
         if !user.roles.empty? && user.roles.first.name == "charity_admin"
@@ -70,5 +79,4 @@ class User < ActiveRecord::Base
       end
     end.compact
   end
-
 end

@@ -4,8 +4,7 @@ RSpec.feature "Admin creates loan for family" do
   scenario "admin sees loan under family" do
     charity_admin = create(:user)
     charity = create(:charity)
-    role = Role.create(name: "charity_admin")
-    UserRole.create(user: charity_admin, charity: charity, role: role)
+    create(:charity_admin_user_role, user: charity_admin, charity: charity)
     family = create(:family)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( charity_admin )
@@ -13,7 +12,7 @@ RSpec.feature "Admin creates loan for family" do
     visit admin_families_path
 
     within(".row-nationality-active") do
-      click_button "Add Loan"
+      click_link "Add Loan"
     end
 
     expect(current_path).to eq(new_loan_path)
@@ -34,8 +33,6 @@ RSpec.feature "Admin creates loan for family" do
   scenario "non-admin cannot create loan for family" do
     user = create(:user)
     charity = create(:charity)
-    role = Role.create(name: "registered_user")
-    UserRole.create(user: user, role: role)
     family = create(:family)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
