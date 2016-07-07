@@ -1,3 +1,5 @@
+<div class="container">
+
 <h1>Create a New Charity</h1>
 
 <%= form_for @charity, url: "/charities/#{@charity.id}" do |f| %>
@@ -14,3 +16,4 @@
   <%= f.submit "Create Charity", class: "btn btn-warning" %>
 
 <% end %>
+</div>
