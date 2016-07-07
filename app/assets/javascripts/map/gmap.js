@@ -23,6 +23,8 @@ naypyidaw_marker.bindPopup("<b>Myanmar (Burma)</b><br><a href='https://www.rescu
 var kabul_marker = L.marker([33.9391, 67.7100]).addTo(map);
 kabul_marker.bindPopup("<b>Afghanistan</b><br><a href='https://www.rescue.org/country/afghanistan'>Conflict Information</a>");
 
+map.mouseoverZoom.disable();
+
 // var popup = L.popup();
 
 // function onMapClick(e) {
