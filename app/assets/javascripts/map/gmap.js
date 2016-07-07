@@ -9,19 +9,19 @@ L.tileLayer('https://api.mapbox.com/styles/v1/aweisbro/ciqbqo9ye000zc8m4b163fyin
 }).addTo(map);
 
 var damascus_marker = L.marker([33.5138, 36.2765]).addTo(map);
-damascus_marker.bindPopup("<b>Syria</b><br>x families");
+damascus_marker.bindPopup("<b>Syria</b><br><a href='http://www.rescue.org/crisis-syria-refugees'>Conflict Information</a>");
 
 var mogadishu_marker = L.marker([5.1521, 46.1996]).addTo(map);
-mogadishu_marker.bindPopup("<b>Somalia</b><br>x families");
+mogadishu_marker.bindPopup("<b>Somalia</b><br><a href='https://www.rescue.org/country/somalia'>Conflict Information</a>");
 
 var baghdad_marker = L.marker([33.3128, 44.3615]).addTo(map);
-baghdad_marker.bindPopup("<b>Iraq</b><br>x families");
+baghdad_marker.bindPopup("<b>Iraq</b><br><a href='https://www.rescue.org/country/iraq'>Conflict Information</a>");
 
-var myanmar_marker = L.marker([21.9162, 95.9560]).addTo(map);
-myanmar_marker.bindPopup("<b>Burma</b><br>x families");
+var naypyidaw_marker = L.marker([21.9162, 95.9560]).addTo(map);
+naypyidaw_marker.bindPopup("<b>Myanmar (Burma)</b><br><a href='https://www.rescue.org/country/myanmar'>Conflict Information</a>");
 
 var kabul_marker = L.marker([33.9391, 67.7100]).addTo(map);
-kabul_marker.bindPopup("<b>Afgahistan</b><br>x families");
+kabul_marker.bindPopup("<b>Afghanistan</b><br><a href='https://www.rescue.org/country/afghanistan'>Conflict Information</a>");
 
 // var popup = L.popup();
 
