@@ -11629,10 +11629,6 @@ $(document).ready(function () {
   });
 
 });
-(function() {
-  $('.carousel').carousel();
-
-}).call(this);
 $(window).load(function() {
 //   loadScript();
 // });
