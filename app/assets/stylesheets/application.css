@@ -181,6 +181,14 @@
   margin-right: -10px;
 }
 
+.intro {
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: -40px;
+  margin-right: -10px;
+}
+
 .button-green {
   background-color: #557e24;
   color: white;
@@ -275,7 +283,7 @@
 }
 
 .box-yellow {
-  background: #ffbf00;
+  background: #87b7b8;
   margin-left: -20px;
   min-height: 150px;
 }
@@ -318,7 +326,8 @@
     margin-top: 25px;
     border-width: 7px;
   }
-  #map-canvas {
-    height: 384px;
-    width: 100%;
-  }
+
+#map-canvas {
+  height: 384px;
+  width: 100%;
+}

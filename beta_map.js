@@ -126,3 +126,56 @@ function zoomToFeature(e) {
 function zoomToMap(e) {
   map.setView([39.737074, -104.953460], 12);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+  <div id="this-carousel-id" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="active item">
+          <a><%= link_to image_tag("children.jpg", :alt => "Slide1")%></a>
+
+        <div class="carousel-caption">
+          <p>The Antennae Galaxies</p>
+          <p><a href="http://hubblesite.org/gallery/album/entire/pr2006046a/xlarge_web/npp/128/">Hubblesite.org &raquo;</a></p>
+        </div>
+      </div>
+      <div class="item">
+          <a><img src="assets/images/2.jpg" alt="Carina Caterpillar" /></a>
+
+        <div class="carousel-caption">
+          <p>Carina Nebula: The Caterpillar</p>
+          <p><a href="http://hubblesite.org/gallery/album/entire/pr2007016e/xlarge_web/npp/128/">Hubblesite.org &raquo;</a></p>
+        </div>
+      </div>
+    </div>
+
+      <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+  </div>
+</div>
+
+<script>
+$(function(){
+$('#this-carousel-id').carousel();
+});
+</script>
+
+</body>
+</html>
