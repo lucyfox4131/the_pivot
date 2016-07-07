@@ -4,6 +4,12 @@ $(function() {
   });
 });
 
+$(function() {
+  $('#loan_quantity').on('change', function() {
+    $('form.edit_loan').submit();
+  });
+});
+
 // On dropdown change, submit the form
     // on change
 // Something like $('form#toggle_admin_form').submit();

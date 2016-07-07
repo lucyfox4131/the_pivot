@@ -1,1 +1,3 @@
-$('.supply_item_subtotal').html('<%= j (render @supply_item) %>');
+$('.supply_item_subtotal').html('<%= j (render cart_item.subtotal) %>');
+
+$('.loan_subtotal').html('<%= j (render cart_item.quantity) %>');

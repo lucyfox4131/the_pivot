@@ -18,7 +18,7 @@ class CartItemsController < ApplicationController
 
   def update
     if params[:supply_item]
-      @supply_item = SupplyItem.find(params[:supply_item][:id].to_i)
+      supply_item = SupplyItem.find(params[:supply_item][:id].to_i)
       @cart.change_cart_item_quantity(supply_item, params[:supply_item][:quantity])
     else
       loan = Loan.find(params[:loan][:id].to_i)
