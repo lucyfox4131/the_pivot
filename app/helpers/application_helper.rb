@@ -49,4 +49,14 @@ module ApplicationHelper
     end
   end
 
+  def dashboard_redirect(current_user)
+    if current_user.platform_admin?
+      admin_dashboard_path
+    elsif current_user.charity_admin?
+      charity_dashboard_path(current_user.charity.slug, current_user.charity.id)
+    else
+      dashboard_path
+    end
+  end
+
 end
