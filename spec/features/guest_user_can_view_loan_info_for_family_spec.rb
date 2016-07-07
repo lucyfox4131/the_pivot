@@ -20,10 +20,6 @@ RSpec.feature "user can view loan info for family" do
     within("#loan-amount") do
       expect(page).to have_content "$1,000.00"
     end
-
-    within(".learn-more") do
-      expect(page).to have_link "Donate Now"
-    end
   end
 
   scenario "user does not see retired loans" do
