@@ -74,14 +74,12 @@ function initialize() {
           kabul_info.open(map,kabul_marker);
         });
 
-
         map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
           damascus_marker.setMap(map);
           mogadishu_marker.setMap(map);
           baghdad_marker.setMap(map);
           myanmar_marker.setMap(map);
           kabul_marker.setMap(map);
-
 
   }
 
