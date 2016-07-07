@@ -1,7 +1,6 @@
 <h1>Admin Dashboard</h1>
 <div class = "charity-admin-charity">
   <h2> <%= current_charity.name %> <h2>
-
   <div class="btn-group">
     <%= link_to "See my donations", donations_path, class: "btn btn-warning" %>
     <%= link_to "Update my profile", edit_user_path(current_user), class: "btn btn-warning" %>
@@ -10,7 +9,6 @@
     <%= link_to "Create a New Family", new_admin_family_path, class: "btn btn-default" %>
     <button type="button" class="btn button-indigo active" id="administrators">Manage Administrators</button>
   </div>
-
 
   <div class="charities hidden" id="all-admins">
     <div class="details">

@@ -22,6 +22,16 @@ class ApplicationController < ActionController::Base
     current_user.charity
   end
 
+  def dashboard_redirect(current_user)
+    if current_user.platform_admin?
+      admin_dashboard_path
+    elsif current_user.charity_admin?
+      charity_dashboard_path(current_user.charity.slug, current_user.charity.id)
+    else
+      dashboard_path
+    end
+  end
+
   private
     def authorize!
       redirect_to(root_url, warning: "You Do Not Have Access") unless authorized?

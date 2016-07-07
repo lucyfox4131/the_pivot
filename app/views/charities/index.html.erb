@@ -16,7 +16,7 @@
         <p class= '<%= charity.slug %>'> <%= link_to "Learn more about #{charity.name}", charity_path(charity.slug), class: "center-block learn-more" %></p>
         <p>
           <div class="white-text">
-            <%= charity.description %>
+            <%= truncate(charity.description, length: 100) %>
           </div>
         </p>
       </div>
