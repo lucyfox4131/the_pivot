@@ -11,7 +11,7 @@
       <th></th>
       <th></th>
     </tr>
-  <% @cart.get_supply_items.each do |cart_item| %>
+  <% @cart.get_cart_item_list.each do |cart_item| %>
     <% if cart_item.class != LoanDecorator %>
         <tr class = "<%= cart_item.supply.name %>">
           <td><%= link_to cart_item.name, family_path(cart_item.family) %></td>

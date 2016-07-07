@@ -24,14 +24,18 @@ class Cart
                     "quantity"    => quantity
                   }
     else
-      contents.each do |cart_item|
-        cart_item_exists = cart_item["class_type"] == item.class.to_s && cart_item["id"] == item.id
-        if cart_item_exists
-          cart_item["quantity"] += quantity
-        else
-          contents << {"class_type" => item.class.to_s, "id" => item.id, "quantity" => quantity}
-          return contents
-        end
+      find_or_create_new_cart_item(item, quantity)
+    end
+  end
+
+  def find_or_create_new_cart_item(item, quantity)
+    contents.each do |cart_item|
+      cart_item_exists = cart_item["class_type"] == item.class.to_s && cart_item["id"] == item.id
+      if cart_item_exists
+        cart_item["quantity"] += quantity
+      else
+        contents << {"class_type" => item.class.to_s, "id" => item.id, "quantity" => quantity}
+        return contents
       end
     end
   end
@@ -105,7 +109,7 @@ class Cart
     total_price.to_f
   end
 
-  def get_supply_items
+  def get_cart_item_list
     contents.map do |cart_item|
       if cart_item["class_type"] == "Loan"
         loan = Loan.find(cart_item["id"])
@@ -115,30 +119,5 @@ class Cart
         SupplyItemDecorator.new(supply_item, cart_item["quantity"])
       end
     end
-  end
-
-  def get_cart_item_list
-    get_supply_items
-  end
-
-  def get_supply_items_hash
-    get_supply_items.inject({}) do |hash, cart_item|
-      hash[cart_item] = cart_item.quantity
-      hash
-    end
-  end
-
-  def get_supply_list_from_cart
-    get_supply_items.map do |cart_item|
-      cart_item.supply
-    end
-  end
-
-  def get_loan_items
-    contents.map do |cart_item|
-      if cart_item[:class_type] == "Loan"
-        Loan.find(cart_item[:id].to_i)
-      end
-    end.compact
   end
 end

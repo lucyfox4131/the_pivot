@@ -82,7 +82,7 @@ class PermissionsService
     def other_user_permissions
       return true if controller == 'sessions' && action.in?(%w(new create))
       return true if controller == 'families' && action.in?(%w(index show))
-      return true if controller == 'users' && action.in?(%w(show new create))
+      return true if controller == 'users' && action.in?(%w(new create))
       return true if controller == 'cart' && action.in?(%w(index))
       return true if controller == 'cart_items' && action.in?(%w(create update destroy))
       return true if controller == 'loans' && action.in?(%w(show edit update))
