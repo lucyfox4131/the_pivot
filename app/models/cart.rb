@@ -5,6 +5,17 @@ class Cart
     @contents = initial_contents || []
   end
 
+  def create_new_cart_item(params)
+    if params[:supply_item]
+      cart_item = SupplyItem.find(params[:supply_item][:id].to_i)
+      add_cart_item(cart_item, params[:supply_item][:quantity])
+    else
+      cart_item = Loan.find(params[:loan][:id].to_i)
+      add_cart_item(cart_item, params[:loan][:requested_amount])
+    end
+    cart_item
+  end
+
   def add_cart_item(item, quantity)
     if contents.empty?
       contents << {
@@ -25,7 +36,15 @@ class Cart
     end
   end
 
-
+  def update_cart_item(params)
+    if params[:supply_item]
+      supply_item = SupplyItem.find(params[:supply_item][:id].to_i)
+      change_cart_item_quantity(supply_item, params[:supply_item][:quantity])
+    else
+      loan = Loan.find(params[:loan][:id].to_i)
+      change_cart_item_quantity(loan, params[:loan][:quantity])
+    end
+  end
 
   def delete_cart_item(item)
     contents.each do |cart_item|
@@ -33,6 +52,21 @@ class Cart
         contents.delete(cart_item)
       end
     end
+  end
+
+  def find_item_to_destroy(params)
+    link_info = {name: "", family: ""}
+    if params[:class_type] == "supply"
+      delete_cart_item(SupplyItem.find(params[:id]))
+      link_info[:name] = SupplyItem.find(params[:id]).supply.name
+      link_info[:family] =  SupplyItem.find_family(params[:id])
+    else
+      loan = Loan.find(params[:id])
+      delete_cart_item(loan)
+      link_info[:name] = loan.purpose
+      link_info[:family] = loan.family
+    end
+    link_info
   end
 
   def change_cart_item_quantity(item, new_cart_item_quantity)
