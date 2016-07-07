@@ -1,4 +1,5 @@
 <%= form_for @charity, url: "/charities/#{@charity.id}" do |f| %>
+
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
