@@ -24,9 +24,10 @@ class CartItemsController < ApplicationController
     else
       loan = Loan.find(params[:loan][:id].to_i)
       @cart.change_cart_item_quantity(loan, params[:loan][:quantity])
+      @loan_subtotal = params[:loan][:quantity]
     end
     session[:cart] = @cart.contents
-    redirect_to cart_index_path
+    # redirect_to cart_index_path
   end
 
   def destroy
