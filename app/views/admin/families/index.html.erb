@@ -7,7 +7,7 @@
   <div class="details">
     <h2>Families Arriving Soon</h2>
   </div>
-    <%= render partial: 'family_list', locals: {families:@families.active, current: true}%>
+    <%= render partial: 'family_list', locals: {families: @families.active, current: true}%>
 </div>
 
 
@@ -15,5 +15,5 @@
   <div class="details">
     <h2>Families Already Arrived</h2>
   </div>
-    <%= render partial: 'family_list', locals: {families:@families.retired, current: false}%>
+    <%= render partial: 'family_list', locals: {families: @families.retired, current: false}%>
 </div>

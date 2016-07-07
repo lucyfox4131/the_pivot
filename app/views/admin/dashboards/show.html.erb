@@ -1,23 +1,5 @@
 <h1>Admin Dashboard</h1>
 
-<% if current_user.any_charity_admin?  %>
-  <% if @charity %>
-    <div class = "charity-admin-charity">
-      <h2> <%= @charity.name %> <h2>
-        <div class="btn-group">
-        <%= link_to "Update Charity", edit_charity_path(@charity), class: "btn btn-default" %>
-  <% end %>
-      <%= link_to "See my donations", donations_path, class: "btn btn-warning" %>
-      <%= link_to "Update my profile", edit_user_path(current_user), class: "btn btn-warning" %>
-      <%= link_to "All Families", admin_families_path, class: "btn btn-default" %>
-      <%= link_to "Create a New Family", new_admin_family_path, class: "btn btn-default" %>
-      <button type="button" class="btn button-indigo active" id="administrators">Manage Administrators</button>
-    </div>
-    </div>
-<% end %>
-
-
-<% if current_user.platform_admin? %>
 <div class="container">
 
 <div class="btn-group">
@@ -31,28 +13,27 @@
 
 <div class="charities hidden" id="padmin-pending">
   <div class = "pending">
-    <%= render partial: 'padmin', locals: {charity_type: @pending_charities} %>
+    <%= render partial: 'padmin', locals: {charity_type: @charities.pending_charities} %>
   </div>
 </div>
 
 <div class="charities hidden" id="padmin-online">
   <div class = "online">
-    <%= render partial: 'padmin', locals: {charity_type: @online_charities} %>
+    <%= render partial: 'padmin', locals: {charity_type: @charities.online_charities} %>
   </div>
 </div>
 
 <div class="charities hidden" id="padmin-offline">
 <div class = "offline">
-    <%= render partial: 'padmin', locals: {charity_type: @offline_charities} %>
+    <%= render partial: 'padmin', locals: {charity_type: @charities.offline_charities} %>
   </div>
 </div>
 
 </div>
-<% end %>
 
 
 <div class="charities hidden" id="all-admins">
   <div class="details">
-    <%= render partial: 'all_charities' %>
+    <%= render partial: 'shared/admin_box_display', locals: {admins: @admins} %>
   </div>
 </div>
