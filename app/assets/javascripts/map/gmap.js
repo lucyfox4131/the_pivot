@@ -9,19 +9,31 @@ L.tileLayer('https://api.mapbox.com/styles/v1/aweisbro/ciqbqo9ye000zc8m4b163fyin
 }).addTo(map);
 
 var damascus_marker = L.marker([33.5138, 36.2765]).addTo(map);
-damascus_marker.bindPopup("Syria");
+damascus_marker.bindPopup("<b>Syria</b><br>x families");
 
 var mogadishu_marker = L.marker([5.1521, 46.1996]).addTo(map);
-mogadishu_marker.bindPopup("Somalia");
+mogadishu_marker.bindPopup("<b>Somalia</b><br>x families");
 
 var baghdad_marker = L.marker([33.3128, 44.3615]).addTo(map);
-baghdad_marker.bindPopup("Iraq");
+baghdad_marker.bindPopup("<b>Iraq</b><br>x families");
 
 var myanmar_marker = L.marker([21.9162, 95.9560]).addTo(map);
-myanmar_marker.bindPopup("Burma");
+myanmar_marker.bindPopup("<b>Burma</b><br>x families");
 
 var kabul_marker = L.marker([33.9391, 67.7100]).addTo(map);
-kabul_marker.bindPopup("Afghanistan");
+kabul_marker.bindPopup("<b>Afgahistan</b><br>x families");
+
+// var popup = L.popup();
+
+// function onMapClick(e) {
+//     popup
+//         .setLatLng(e.latlng)
+//         .setContent("You clicked the map at " + e.latlng.toString())
+//         .openOn(map);
+// }
+//
+// map.on('click', onMapClick);
+
 
 });
 
