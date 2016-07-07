@@ -38,4 +38,15 @@ module ApplicationHelper
     end
   end
 
+  def charity_header(charity_type)
+    case charity_type
+    when @charities.pending_charities
+      heading = "Pending Charities"
+    when @charities.online_charities
+      heading = "Online Charities"
+    when @charities.offline_charities
+      heading = "Offline Charities"
+    end
+  end
+
 end
