@@ -32,4 +32,21 @@ module ApplicationHelper
     parsed_tweet.html_safe
   end
 
+  def charity_exists(admin)
+    if admin.charities.first
+      admin.charities.first.name
+    end
+  end
+
+  def charity_header(charity_type)
+    case charity_type
+    when @charities.pending_charities
+      heading = "Pending Charities"
+    when @charities.online_charities
+      heading = "Online Charities"
+    when @charities.offline_charities
+      heading = "Offline Charities"
+    end
+  end
+
 end

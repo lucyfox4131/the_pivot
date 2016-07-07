@@ -1,3 +1,4 @@
+<div class="container">
 <h2>Donation ID: <%= @donation.id %> </h2>
 <h4>Placed on: <%= @donation.date %></h4>
 <h4 id="donation-status">Status: <%= @donation.status %></h4>
@@ -38,3 +39,4 @@
 <% else %>
   <%= link_to "Back to my Dashboard", dashboard_path(current_user) %>
 <% end %>
+</div>
