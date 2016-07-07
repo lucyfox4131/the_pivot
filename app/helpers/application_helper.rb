@@ -32,4 +32,10 @@ module ApplicationHelper
     parsed_tweet.html_safe
   end
 
+  def charity_exists(admin)
+    if admin.charities.first
+      admin.charities.first.name
+    end
+  end
+
 end

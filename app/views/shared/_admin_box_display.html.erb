@@ -14,9 +14,7 @@
     <div data-username="<%= admin.username %>"class="form-box col-sm-5 user">
       <div class="white-texxt">
         <%= admin.username %>,
-        <% if admin.charities.first %>
-          <%= admin.charities.first.name %>
-        <% end %>
+        <%= charity_exists(admin) %>
       </div>
       <div>
         <%= form_for [:admin, admin], multipart: true do |f|  %>
