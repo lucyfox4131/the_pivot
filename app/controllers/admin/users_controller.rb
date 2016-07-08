@@ -2,6 +2,7 @@ class Admin::UsersController < Admin::BaseController
 
   def new
     @user = User.new
+    @charities = Charity.pluck(:name)
   end
 
   def edit
@@ -11,9 +12,10 @@ class Admin::UsersController < Admin::BaseController
   def create
     @user = User.new(user_params)
     if @user.save
+      charity = find_charity(params)
       session[:user_id] = @user.id
       role = Role.find_by(name: "charity_admin")
-      UserRole.create(user: @user, role: role, charity: current_user.charities.first)
+      UserRole.create(user: @user, role: role, charity: charity)
       flash[:success] = "New admin '#{@user.username}' successfully created!"
       redirect_to admin_dashboard_path
     else

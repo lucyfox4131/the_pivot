@@ -32,6 +32,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def find_charity(params)
+    if params[:user][:charity]
+      charity = Charity.find_by(name: params[:user][:charity])
+    else
+      current_user.charity
+    end
+  end
+
   private
     def authorize!
       redirect_to(root_url, warning: "You Do Not Have Access") unless authorized?
