@@ -157,11 +157,13 @@ class Seed
   end
 
   def create_admin_user_roles
+    user_id_array = (1..200).to_a
+    user_id = user_id_array.sample
     role = Role.find_by(name: "charity_admin")
     Charity.all.each do |charity|
       3.times do
-        user = User.find(Random.new.rand(1..200))
-        UserRole.create!(
+        user = User.find(user_id)
+        UserRole.create(
         user: user,
         role: role,
         charity: charity
