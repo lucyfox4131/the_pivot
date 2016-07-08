@@ -27,6 +27,7 @@
             <%= f.label :password %>
             <%= f.password_field :password, class: "form-control" %>
           </div>
+
           <% if current_user.platform_admin? %>
             <div class="form-group">
               <%= f.label :charity %>
