@@ -1,9 +1,11 @@
+<div class="container">
+
   <h1><%= @charity.name %></h1>
   <p><%= @charity.description %></p>
 
 <ul class="charity-families-list">
   <% @charity.families.each do |fam| %>
-    <%= link_to "#{fam.nationality.name} Family of #{fam.num_people}", family_path(fam.id) %>
+    <li><%= link_to "#{fam.nationality.name} Family of #{fam.num_people}", family_path(fam.id) %></li>
   <% end %>
 </ul>
 
@@ -40,4 +42,5 @@
             <h1 class="heading-md"><%= @donation_stats[:num_families] %></h1>
         </div>
     </div>
+</div>
 </div>
