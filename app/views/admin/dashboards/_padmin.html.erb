@@ -17,7 +17,7 @@
           Families
         </div>
         <div class="active-families">
-          <%= render partial: 'padmin_family_list', locals: {families: charity.families.active, current: true}%>
+            <%= render partial: 'padmin_family_list', locals: {families: charity.families.active, current: true}%>
         </div>
         <%= render partial: 'padmin_family_list', locals: {families: charity.families.retired, current: false}%>
       </div>

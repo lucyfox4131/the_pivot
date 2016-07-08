@@ -38,7 +38,7 @@ class CharitiesController < ApplicationController
   end
 
   def create
-    @charity = Charity.create_new_charity(params, current_user)
+    @charity = Charity.create_new_charity(charity_params, current_user)
     if @charity.save
       flash[:success] = "Your charity request has been recieved.
         Once it has been approved it will be visible on our site."
