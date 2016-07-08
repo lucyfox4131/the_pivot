@@ -1,14 +1,32 @@
 <div class="container">
+<h1 class='white col-sm-10 col-sm-offset-1'> <%= @charity.name %> </h1>
+<div class="jumbotron col-sm-10 col-sm-offset-1">
+  <div class="container">
+    <div class="col-sm-4 white-text">
+      <p><%= @charity.description %></p>
+    </div>
+    <div class="col-sm-6 col-sm-offset-1 charity-families-box">
+      <div class="white-texxt">
+        Families
+      </div>
+      <div class="active-families">
+        <div class="families-table">
+          <table class="table">
+            <% @charity.families.each do |fam| %>
+            <tr>
+              <td>
+                <%= link_to "#{fam.nationality.name} Family of #{fam.num_people}", family_path(fam.id) %>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
-  <h1><%= @charity.name %></h1>
-  <p><%= @charity.description %></p>
-
-<ul class="charity-families-list">
-  <% @charity.families.each do |fam| %>
-    <li><%= link_to "#{fam.nationality.name} Family of #{fam.num_people}", family_path(fam.id) %></li>
-  <% end %>
-</ul>
-
+<div class="container">
 <div class="charity-stats">
     <div class="col-md-2 col-sm-3">
         <div class="box box-grey">
@@ -42,5 +60,6 @@
             <h1 class="heading-md"><%= @donation_stats[:num_families] %></h1>
         </div>
     </div>
+</div>
 </div>
 </div>

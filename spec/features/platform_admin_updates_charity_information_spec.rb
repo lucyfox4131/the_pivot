@@ -51,7 +51,7 @@ end
 
       visit charity_dashboard_path(online_charity.slug, online_charity.id)
 
-      expect(page).to have_content("Admin Dashboard for #{online_charity.slug}")
+      expect(page).to have_content("Admin Dashboard")
 
       expect(page).to_not have_content("#{pending_charity.slug}")
       expect(page).to_not have_content("#{offline_charity.slug}")
