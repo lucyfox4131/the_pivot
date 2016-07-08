@@ -3,7 +3,7 @@
     <div class="panel panel-default">
 
       <div class="panel-heading">
-        <h3 class="panel-title text-center">Create New Admin For <%= current_charity.name %></h3>
+        <h3 class="panel-title text-center">Create New Admin</h3>
       </div>
 
       <div class="panel-body">
@@ -27,6 +27,12 @@
             <%= f.label :password %>
             <%= f.password_field :password, class: "form-control" %>
           </div>
+          <% if current_user.platform_admin? %>
+            <div class="form-group">
+              <%= f.label :charity %>
+              <%= f.select :charity, (@charities), class: "form-control" %>
+            </div>
+          <% end %>
 
           <%= f.submit "Create Charity Admin Account", class: "btn button-indigo" %>
         <% end %>
