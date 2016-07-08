@@ -1,4 +1,4 @@
-<div class="profile">
+<div class="container profile">
 <div>
   <h1 class="family-heading col-sm-offset-1"><%= @loan.purpose %></h1>
   <div class="tags">
@@ -36,6 +36,16 @@
         </div>
       <% end %>
       </table>
+  </div>
+</div>
+
+<div class="col-sm-10 col-sm-offset-1">
+  <h5><%= currency @supplies_purchased_value %> has been donated.</h5>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuemin="0"
+        aria-valuemax="100" style="min-width: 2em; width: <%= @percentage_purchased %>%;">
+      <%= @percentage_purchased %>%
+    </div>
   </div>
 </div>
 </div>

@@ -11,7 +11,7 @@ RSpec.feature "Guest Views Charity" do
       expect(page).to have_content(charity.name)
       expect(page).to have_content(charity.description)
 
-      within("ul.charity-families-list") do
+      within(".families-table") do
         expect(page).to have_link("#{family_1.nationality.name} Family of #{family_1.num_people}")
       end
 

@@ -13,7 +13,7 @@ RSpec.feature "Admin updates charity" do
 
     visit charity_dashboard_path(charity.slug, charity.id)
 
-    expect(page).to have_content("Admin Dashboard for #{charity.name}")
+    expect(page).to have_content("#{charity.name}")
 
     within(".charity-admin-charity") do
       click_link "Update Charity"
@@ -29,8 +29,8 @@ RSpec.feature "Admin updates charity" do
 
     expect(page).to have_content("Your updates have been saved")
 
-    expect(page).to have_content("Admin Dashboard for New Name")
-    
+    expect(page).to have_content("Admin Dashboard")
+
     within(".charity-admin-charity") do
       expect(page).to have_content("Update Charity")
     end
