@@ -29,12 +29,6 @@ class DonationsController < ApplicationController
         @donation.create_donation_item(cart_item, @donation)
       end
       flash[:success] = "Your donation (ID#: #{@donation.id}) was received. Thank you!"
-      # DonationsMailer.donation_email({
-      #   current_user: current_user,
-      #   supplies: @cart.get_cart_item_list,
-      #   session: session,
-      #   total_price: @cart.total_price,
-      #   dashboard_url: dashboard_url}).deliver_now
       session[:cart] = []
       redirect_to donations_path
     else
