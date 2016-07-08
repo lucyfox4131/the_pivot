@@ -17,7 +17,11 @@
           Families
         </div>
         <div class="active-families">
-          <%= render partial: 'padmin_family_list', locals: {families: charity.families.active, current: true}%>
+          <% if charity.families.empty? %>
+            <%= link_to "Add a Family to this Charity", new_admin_family_path %>
+          <% else %>
+            <%= render partial: 'padmin_family_list', locals: {families: charity.families.active, current: true}%>
+          <% end %>
         </div>
         <%= render partial: 'padmin_family_list', locals: {families: charity.families.retired, current: false}%>
       </div>
