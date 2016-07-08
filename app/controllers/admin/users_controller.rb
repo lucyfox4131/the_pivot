@@ -13,11 +13,10 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new(user_params)
     if @user.save
       charity = find_charity(params)
-      session[:user_id] = @user.id
       role = Role.find_by(name: "charity_admin")
       UserRole.create(user: @user, role: role, charity: charity)
       flash[:success] = "New admin '#{@user.username}' successfully created!"
-      redirect_to admin_dashboard_path
+      redirect_to dashboard_redirect(current_user)
     else
       flash.now[:warning] = @user.errors.full_messages.join(", ")
       render :new
